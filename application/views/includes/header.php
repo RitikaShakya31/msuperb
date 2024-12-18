@@ -113,10 +113,13 @@
 									Home
 								</a>
 							</li>
-							<li class="navbar-item dropdown"><a class="navbar-link "
-									href="<?= base_url('product') ?>">Our Products</a>
-
+							<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url() ?>">
+									About Us
+								</a>
 							</li>
+							<li class="navbar-item dropdown"><a class="navbar-link "
+									href="<?= base_url('product') ?>">Explore All Test</a>
+							</li>							
 							<?php
 							if ($this->session->has_userdata('login_user_id')):
 								?>
@@ -134,15 +137,12 @@
 								<?php
 							endif;
 							?>
-							<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('about') ?>">
-									About Us
-								</a>
-							</li>
+							
 
-							<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('blogs') ?>">
+							<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('blogs') ?>">
 									Blogs
 								</a>
-							</li>
+							</li> -->
 						</ul>
 
 

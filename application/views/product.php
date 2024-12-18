@@ -1,7 +1,7 @@
 <?php $this->load->view('includes/header'); ?>
 <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
     <div class="container">
-        <h2>Product List</h2>
+        <h2>Test List</h2>
         <!-- <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Product List</li>
@@ -70,12 +70,10 @@
                                     <option value="1">Price, high to low</option>
                                 </select>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" id="filter_data">
+                <div class="row  row-cols-md-4 row-cols-lg-4 row-cols-xl-3" id="filter_data">
                 <div class="loader-wrapper"><div class="loader"></div></div>
                 </div>
             </div>
