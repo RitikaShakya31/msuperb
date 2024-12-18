@@ -1,0 +1,5 @@
+user agent: *
+Disallow:
+
+
+sitemap: https://www.svghhealthcare.com/sitemap.xml
