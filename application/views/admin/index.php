@@ -15,7 +15,7 @@
 
             <div class="row">
                 <div class="col-xl-8">
-                    <h4>Users</h4>
+                    <!-- <h4>Users</h4>
                     <div class="row">
                         <div class="col-md-4">
                             <a href="<?= base_url('activeUser') ?>">
@@ -57,7 +57,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <h4>Products</h4>
@@ -109,108 +109,6 @@
                                             <div class="media-body">
                                                 <p class="text-muted fw-medium">Total Sub Product</p>
                                                 <h4 class="mb-0"><?= $total_product ?></h4>
-                                            </div>
-                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h4>Orders</h4>
-                        <div class="col-md-4">
-                            <a href="<?= base_url('recentOrders') ?>">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted fw-medium">New Orders</p>
-                                                <h4 class="mb-0"><?= $recent_orders ?></h4>
-                                            </div>
-
-                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-archive-in font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="<?= base_url('acceptedOrders') ?>">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted fw-medium">Accepted Orders</p>
-                                                <h4 class="mb-0"><?= $accepted_orders ?></h4>
-                                            </div>
-
-                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="<?= base_url('dispatchOrders') ?>">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted fw-medium">Dispatch Orders</p>
-                                                <h4 class="mb-0"><?= $dispatch_orders ?></h4>
-                                            </div>
-                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="<?= base_url('completedOrders') ?>">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted fw-medium">Completed Orders</p>
-                                                <h4 class="mb-0"><?= $completed_orders ?></h4>
-                                            </div>
-                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="<?= base_url('cancelOrders') ?>">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted fw-medium">Canceled Orders</p>
-                                                <h4 class="mb-0"><?= $canceled_orders ?></h4>
                                             </div>
                                             <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                                                 <span class="avatar-title rounded-circle bg-primary">

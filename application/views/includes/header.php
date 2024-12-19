@@ -120,34 +120,11 @@
 							<li class="navbar-item dropdown"><a class="navbar-link "
 									href="<?= base_url('product') ?>">Explore All Test</a>
 							</li>							
-							<?php
-							if ($this->session->has_userdata('login_user_id')):
-								?>
-								<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('orders') ?>">
-										<?= $this->profile[0]['name'] ?> Orders
-									</a>
-								</li> -->
-								<?php
-							else:
-								?>
-								<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('login') ?>">
-										Login Here
-									</a>
-								</li> -->
-								<?php
-							endif;
-							?>
-							
-
-							<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('blogs') ?>">
-									Blogs
-								</a>
-							</li> -->
+							<li class="navbar-item dropdown"><a class="navbar-link"
+									href="<?= base_url('nearest-lab') ?>">Nearest lab</a>
+							</li>							
 						</ul>
-
-
 						<div class="navbar-info-group">
-
 						</div>
 					</div>
 				</div>
@@ -189,7 +166,6 @@
 				<?php
 				if ($this->session->has_userdata('login_user_id')):
 					?>
-
 					<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('orders') ?>">
 							<?= $this->profile[0]['name'] ?> Orders
 						</a>

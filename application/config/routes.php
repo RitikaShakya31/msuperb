@@ -22,6 +22,14 @@ $route['setDeliveryCharges'] = 'admin/AdminHome/setDeliveryCharges';
 $route['contactdetails'] = 'admin/AdminHome/contactdetails';
 $route['policy'] = 'admin/AdminHome/policy';
 $route['policyedit/(:any)'] = 'admin/AdminHome/policyedit/$1';
+$route['registerAll'] = 'admin/AdminHome/registerAll';
+$route['registerView'] = 'admin/AdminHome/registerView';
+$route['registerAdd'] = 'admin/AdminHome/registerAdd';
+$route['testAll'] = 'admin/AdminHome/all_test';
+$route['testAdd'] = 'admin/AdminHome/test_add';
+$route['userAll'] = 'admin/AdminHome/user_all';
+$route['payment-history'] = 'admin/AdminHome/payment_history';
+$route['paymentStatus/(:any)'] = 'admin/AdminHome/paymentStatus/$1';
 
 //  =>  User
 
@@ -72,6 +80,7 @@ $route['setting'] = 'admin/AdminHome/setting';
 $route['contact'] = 'UserHome/contact';
 $route['login'] = 'UserHome/login';
 $route['check_verification'] = 'UserHome/check_verification';
+$route['nearest-lab'] = 'UserHome/nearest_lab';
 // $route['user-login'] = 'UserHome/login';
 
 $route['register'] = 'UserHome/register';

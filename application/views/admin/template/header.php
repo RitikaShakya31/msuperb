@@ -2,17 +2,12 @@
 <html lang="en">
 
 <head>
-
 	<meta charset="utf-8" />
 	<title><?= $title ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?>">
-
+	<link rel="shortcut icon" href="<?= base_url('assets/images/image.png') ?>">
 	<?php include('header_link.php') ?>
-
 </head>
-
 <body data-sidebar="dark">
 	<div id="layout-wrapper">
 		<div id="preloader">
@@ -33,12 +28,12 @@
 					<!-- LOGO -->
 					<div class="navbar-brand-box">
 
-						<a href="<?= base_url() ?>" class="logo logo-light">
+						<a href="" class="logo logo-light">
 							<span class="logo-sm">
-								<img src="<?= base_url('assets/admin/images/logo.png') ?>" alt="" height="22">
+								<img src="<?= base_url('assets/img/msuperb-logo.png') ?>" alt="" height="22">
 							</span>
 							<span class="logo-lg">
-							<img src="<?= base_url('assets/images/logo.png') ?>" alt="" height="70s">
+							<img src="<?= base_url('assets/img/msuperb-logo.png') ?>" alt="" height="70s">
 							</span>
 						</a>
 					</div>

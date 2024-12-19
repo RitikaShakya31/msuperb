@@ -21,12 +21,50 @@
 <?php }
 $this->session->unset_userdata('msg'); ?>
 
-<section class="home-classic-slider slider-arrow">
+
+<section class="home-banner">
+    <?php
+    if ($banner) {
+        foreach ($banner as $all) {
+            ?>
+            <div class="banner-part"
+                style="background: url(<?= base_url('upload/banner/' . $all['image_path']) ?>) no-repeat center; height: 480px; position: relative; background-size: cover;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-6">
+                            <!-- Button inside the banner -->
+                            <div class="upload-prescription-btn"
+                                style="position: absolute; bottom: 30px; left: 18%; transform: translateX(-50%); z-index: 10;">
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
+                                    style="padding: 10px 20px; font-size: 16px;">
+                                    <i class="fa fa-file"></i>
+                                    Upload Your Prescription
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    } else {
+        ?>
+        <div class="no-banner">
+            <p>No banners available.</p>
+        </div>
+        <?php
+    }
+    ?>
+</section>
+
+
+
+
+<!-- <section class="home-classic-slider slider-arrow">
     <?php
     if ($banner) {
         $i = 0;
         foreach ($banner as $all) {
-
             ?>
             <div class="banner-part sliderheight banner-imgs"
                 style="background: url(<?= base_url('upload/banner/' . $all['image_path']) ?>) no-repeat center;">
@@ -46,55 +84,42 @@ $this->session->unset_userdata('msg'); ?>
         <?php
     }
     ?>
-</section>
+</section> -->
 <section class="section feature-part">
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12">
                 <div class="section-heading">
                     <h2>Our Brand Labs</h2>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center row-cols-xs-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4">
+        </div> -->
+
+        <div class="row justify-content-center custom-row-cols">
             <?php
             if ($cate != '') {
                 foreach ($cate as $row) {
-                    // $data = getSingleRowById('product_image', array('product_id' => $row['product_id']));
-                    // feature_product($row, "product", "single");
                     ?>
-                    <div class="col">
-                        <div class="card text-center">
+                    <div class="col custom-col">
+                        <div class="card text-center" style="padding: 0px!important;width: 75%;">
                             <div class="media">
-                                <?php if ($row['product_status'] == 2) {
-                                    ?>
-                                    <div class="label"><label class="label-text feat">Out of stock</label></div>
-                                    <?php
-                                } else {
-                                }
-                                ?>
                                 <?= (($row['is_bestselling'] == '1') ? '<div class="bestselling-label"><label class="label-text bg-success">Bestselling</label></div>' : '') ?>
                                 <a class="image"
                                     href="<?= base_url('product-details/' . encryptId($row['category_id']) . '/' . url_title($row['category_name'])) ?>">
-                                    <img src="<?= setImage(@$row['image'], 'upload/category/') ?>" alt="Category" width="100" height="50">
+                                    <img src="<?= setImage(@$row['image'], 'upload/category/') ?>" alt="Category" width="80"
+                                        height="80" style="object-fit: contain;">
                                 </a>
                             </div>
-                            <div class="content">
-                                <h6 class="name">
-                                    <a href="<?= base_url('product-details/' . encryptId($row['category_id']) . '/' . url_title($row['category_name'])) ?>"
-                                        class="sagar-ellipse">
-                                        <?= $row['category_name']; ?>
-                                    </a></h6>
-                            </div>
                         </div>
+                        <p class="brand-name"><?= $row['category_name']; ?></p>
                     </div>
-
                 <?php }
             } else {
-                echo 'no category availabe';
+                echo 'no category available';
             }
             ?>
         </div>
+
         <!-- <div class="row">
             <div class="col-lg-12">
                 <div class="section-btn-25"><a href="<?= base_url('product') ?>" class="btn btn-outline"><i

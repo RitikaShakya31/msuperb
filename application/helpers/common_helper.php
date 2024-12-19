@@ -616,7 +616,11 @@ function setImage($image_nm, $location)
 	}
 }
 
-
+function flashMultiData($vardata)
+{
+	$ci = &get_instance();
+	return $ci->session->set_flashdata($vardata);
+}
 function mailmsg($to, $subject, $message)
 {
 	$config['protocol']    = 'smtp';

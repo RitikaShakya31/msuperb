@@ -21,20 +21,6 @@
                     <div class="account-card paymentMethodWrapper">
                         <div class="account-title">
                             <h4>User Info</h4>
-                            <?php
-                            // if ($this->session->has_userdata('login_user_id')):
-                            ?>
-                            <?php
-                            // else:
-                            ?>
-                            <!--<div class="mud d-flex align-items-center">-->
-                            <!--    <span class="me-3">Already have an account?</span>-->
-                            <!--    <button type="button" class="cart-checkout-btn-1 cart-checkout-btn">-->
-                            <!--        Login</button>-->
-                            <!--</div>-->
-                            <?php
-                            // endif;
-                            ?>
                         </div>
                         <input class="form-control checkoutfield" type="hidden" name="total_item_amount"
                             id="totalamount" value="<?php echo $this->cart->total(); ?>">
@@ -51,7 +37,6 @@
                                         required>
                                     <?= form_error('name', '<div class="error" style="color:red;">', '</div>'); ?>
                                 </div>
-
                                 <div class="form-outline">
                                     <label class="mt-2">Contact No.</label>
                                     <input type="number" class="form-control checkoutfield" id="contact"
@@ -156,7 +141,15 @@
                                         placeholder="Address*" value="<?= @$login[0]['address'] ?>" required>
                                 </div>
                             </div>
-
+                            <div class="form-outline">
+                                <label class="mt-2">Home/Lab Service</label>
+                                <select class="form-control checkoutfield" name="service_type">
+                                    <option value="Home Service">Home Service</option>
+                                    <option selected="selected">Select Type</option>
+                                    <option value="Lab Service">Laboratory Service</option>
+                                </select>
+                                <?= form_error('service_type', '<div class="error" style="color:red;">', '</div>'); ?>
+                            </div>
                             <div class="account-title">
                                 <h4>Shipping address</h4>
                             </div>
@@ -402,10 +395,5 @@
         }
     });
 </script>
-
-
-
 </body>
-
-
 </html>

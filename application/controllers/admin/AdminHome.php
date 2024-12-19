@@ -12,7 +12,6 @@ class AdminHome extends CI_Controller
 		}
 		date_default_timezone_set("Asia/Kolkata");
 	}
-
 	public function dashboard()
 	{
 
@@ -30,7 +29,6 @@ class AdminHome extends CI_Controller
 		$getRows['recentOrderList'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '0' AND status != '10' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')", 'create_date', 'DESC');
 		$this->load->view('admin/index', $getRows);
 	}
-
 	public function banner()
 	{
 		extract($this->input->get());
@@ -75,7 +73,6 @@ class AdminHome extends CI_Controller
 		}
 		$this->load->view('admin/banner', $data);
 	}
-
 	public function promoCode()
 	{
 		$id = $this->input->get('promo');
@@ -135,68 +132,158 @@ class AdminHome extends CI_Controller
 			$this->load->view('admin/user_promo_code', $data);
 		}
 	}
-	public function blog()
-	{
-		$id = $this->input->get('blog_pin');
-		$dID = $this->input->get('dID');
-		if (isset($id)) {
-			$sId = decryptId($id);
-			$getPlans = getRowById('blog', 'id', $sId);
-		} else {
-			$sId = '';
-		}
+	public function registerAll()
+    {
+        $dID = $this->input->get('dID');
+        if (isset($dID)) {
+            $update = $this->CommonModel->deleteRowById('register', ['register_id' => decryptId($dID)]);
+            redirect('registerAll');
+            exit;
+        }
+        $get['all_register'] = $this->CommonModel->getRowByIdInOrder('register', [], 'register_id', 'DESC');
+        $get['title'] = 'All Lab Registrations';
+        $this->load->view('admin/register_all', $get);
+    }
+    public function registerView()
+    {
+        $id = $this->input->get('id');
+        $get['data'] = $this->CommonModel->getSingleRowById('register', "register_id = '$id'");
+        $get['variant'] = $this->CommonModel->getRowByMoreId('service_list', "register_id = '$id'");
+        $get['services'] = $this->CommonModel->getAllRows('all_service');
+        $get['title'] = 'View Lab Details';
+        $this->load->view('admin/register_view', $get);
+    }
+	public function registerAdd()
+    {
+        $id = $this->input->get('id');
+        $data['services'] = $this->CommonModel->getAllRows('all_service');
+        if (isset($id)) {
+            $data['title'] = 'Edit Register';
+            $decrypt_id = decryptId($id);
+            $getReg = $this->CommonModel->getSingleRowById('register', "register_id = '$decrypt_id'");
+            $data['variant'] = $this->CommonModel->getRowByMoreId('service_list', "register_id = '$decrypt_id'");
+        } else {
+            $data['title'] = 'Add Register';
+            $getReg = false;
+        }
+        $data['lab_location'] = set_value('lab_location') == false ? @$getReg['lab_location'] : set_value('lab_location');
+        $data['lab_email'] = set_value('lab_email') == false ? @$getReg['lab_email'] : set_value('lab_email');
+        $data['lab_contact'] = set_value('lab_contact') == false ? @$getReg['lab_contact'] : set_value('lab_contact');
+        $data['lab_name'] = set_value('lab_name') == false ? @$getReg['lab_name'] : set_value('lab_name');
+        $data['bank_name'] = set_value('bank_name') == false ? @$getReg['bank_name'] : set_value('bank_name');
+        $data['ifsc_code'] = set_value('ifsc_code') == false ? @$getReg['ifsc_code'] : set_value('ifsc_code');
+        $data['upi_id'] = set_value('upi_id') == false ? @$getReg['upi_id'] : set_value('upi_id');
+        if (count($_POST) > 0) {
+            extract($this->input->post());
+            $post['lab_location'] = $lab_location;
+            $post['lab_email'] = $lab_email;
+            $post['lab_contact'] = $lab_contact;
+            $post['lab_name'] = $lab_name;
+            $post['upi_id'] = $upi_id;
+            $post['ifsc_code'] = $ifsc_code;
+            $post['bank_name'] = $bank_name;
+            $post['slug_title'] = url_title($lab_name, '-', true);
+            $post['password'] = $post['slug_title'] . rand(1000, 9999);
+            if (isset($id)) {
+                $update = $this->CommonModel->updateRowById('register', 'register_id', $decrypt_id, $post);
+                $sizecount = count($service);
+                if ($sizecount > 0) {
+                    for ($i = 0; $i < $sizecount; $i++) {
+                        $variantdata = ['register_id' => (int) decryptId($id), 'service' => $service[$i], 'charge' => (int) $charge[$i]];
+                        if ($service[$i] != '') {
+                            if ($varid[$i] != '') {
+                                $varinsert = $this->CommonModel->updateRowByMoreId('service_list', "id = '{$varid[$i]}'", $variantdata);
+                            } else {
+                                $varinsert = $this->CommonModel->insertRowReturnId('service_list', $variantdata);
+                            }
+                        }
+                    }
+                }
+                flashData('errors', 'Produce update successfully');
+            } else {
+                $p_id = $this->CommonModel->insertRowReturnIdWithClean('register', $post);
+                $sizecount = count($service);
+                if ($sizecount > 0) {
 
+                    for ($i = 0; $i < $sizecount; $i++) {
+                        $variantdata = ['register_id' => $p_id, 'service' => $service[$i], 'charge' => $charge[$i]];
+                        $insert = $this->CommonModel->insertRow('service_list', $variantdata);
+                    }
+                }
+                flashData('errors', 'Registration   added');
+            }
+            redirect('registerAll');
+        }
+        $this->load->view('admin/register_add', $data);
+    }    public function all_test()
+    {
+        $dID = $this->input->get('dID');
+        if (isset($dID)) {
+            $update = $this->CommonModel->deleteRowById('all_service', ['service_id' => decryptId($dID)]);
+            redirect('testAll');
+            exit;
+        }
+        $get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
+        $get['title'] = 'All Tests';
+        $this->load->view('admin/all_test', $get);
+    }
+    public function test_add()
+    {
+        $id = $this->input->get('id');
+        $data['services'] = $this->CommonModel->getAllRows('all_service');
+        if (isset($id)) {
 
-		$data['blogtitle'] = set_value('title') == false ? @$getPlans[0]['title'] : set_value('title');
-		$data['cover'] = set_value('cover_image') == false ? @$getPlans[0]['cover_image'] : set_value('cover_image');
-		$data['description'] = set_value('description') == false ? @$getPlans[0]['description'] : set_value('description');
-
-
-		if (isset($dID)) {
-			$delete = $this->CommonModel->deleteRowById('blog', array('id' => decryptId($dID)));
-		}
-
-		if (isset($id)) {
-			$data['title'] = 'Blog Edit';
-		} else {
-			$data['title'] = 'Blog add';
-		}
-		if (count($_POST) > 0) {
-			extract($this->input->post());
-			$post['title'] = strtoupper($title);
-
-			$post['description'] = $description;
-
-			if (isset($id)) {
-				$post['update_date'] = setDateTime();
-				if ($_FILES['cover_image']['name'] != '') {
-					$post['cover_image'] = imageUpload('cover_image', 'upload/blog/', $data['cover']);
-				}
-
-				$update = updateRowById('blog', 'id', $sId, $post);
-				if ($update) {
-					flashData('errors', 'Blog Update Successfully');
-				} else {
-					flashData('errors', 'Blog Not Update. please try again');
-				}
-			} else {
-				$post['create_date'] = setDateTime();
-				if ($_FILES['cover_image']['name'] != '') {
-					$post['cover_image'] = imageUpload('cover_image', 'upload/blog/', "");
-				}
-				$insert = insertRow('blog', $post);
-				if ($insert) {
-					flashData('errors', 'Blog Add Successfully');
-				} else {
-					flashData('errors', 'Blog Not Add');
-				}
-			}
-			redirect('blog');
-		} else {
-			$data['title'] = 'Blog';
-			$this->load->view('admin/blog', $data);
-		}
-	}
+            $data['title'] = 'Edit Test';
+            $decrypt_id = decryptId($id);
+            $getReg = $this->CommonModel->getSingleRowById('all_service', "service_id = '$decrypt_id'");
+        } else {
+            $data['title'] = 'Add Test';
+            $getReg = false;
+        }
+        $data['service_name'] = set_value('service_name') == false ? @$getReg['service_name'] : set_value('service_name');
+        $data['service_charge'] = set_value('service_charge') == false ? @$getReg['service_charge'] : set_value('service_charge');
+        if (count($_POST) > 0) {
+            extract($this->input->post());
+            $post['service_charge'] = $service_charge;
+            $post['service_name'] = $service_name;
+            if (isset($id)) {
+                $this->CommonModel->updateRowById('all_service', 'service_id', $decrypt_id, $post);
+                flashData('errors', 'Test update successfully');
+            } else {
+                $this->CommonModel->insertRowReturnIdWithClean('all_service', $post);
+                flashData('errors', 'Test added');
+            }
+            redirect('testAll');
+        }
+        $this->load->view('admin/test_add', $data);
+    }
+    public function user_all()
+    {
+        $dID = $this->input->get('dID');
+        if (isset($dID)) {
+            $delete = $this->CommonModel->deleteRowById('appointment', ['id' => decryptId($dID)]);
+            if ($delete) {
+                flashMultiData(['success_status' => "success", 'msg' => "Patient Data Deleted"]);
+            } else {
+                flashMultiData(['success_status' => "error", 'msg' => "Something Went Wrong."]);
+            }
+            redirect('userAll');
+            exit;
+        }
+        $get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
+        $get['all_appointments'] = $this->CommonModel->getRowByIdInOrder('appointment', [], 'id', 'DESC');
+        $get['title'] = 'Patient Details';
+        $this->load->view('admin/user_all', $get);
+    }
+    public function payment_history()
+    {
+        $get['setting_data'] = $this->CommonModel->getAllRows('settings');
+        $get['commission'] = $get['setting_data'][40]['content_value'];
+        $get['payment_details'] = $this->CommonModel->getRowByIdInOrder('appointment', "visit_status = '1'", 'id', 'DESC');
+        $get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
+        $get['title'] = 'Payment History';
+        $this->load->view('admin/payment_history', $get);
+    }	
 	public function setDeliveryCharges()
 	{
 		extract($this->input->post());
@@ -232,7 +319,6 @@ class AdminHome extends CI_Controller
 		}
 		$this->load->view('admin/delivery_charges', $data);
 	}
-
 	public function contactdetails()
 	{
 		extract($this->input->post());
@@ -271,7 +357,6 @@ class AdminHome extends CI_Controller
 		$data['is_register'] = 0;
 		$this->load->view('admin/users/user_all', $data);
 	}
-
 	public function inactiveUser()
 	{
 		$data['title'] = "All Inactive Users";
@@ -279,7 +364,6 @@ class AdminHome extends CI_Controller
 		$data['is_register'] = 0;
 		$this->load->view('admin/users/user_all', $data);
 	}
-
 	public function userStatus($user_id, $status)
 	{
 		if ($status == 1) {
@@ -327,10 +411,6 @@ class AdminHome extends CI_Controller
 		$data['all_data'] = $this->CommonModel->getSingleRowById('user_registration', "user_id = '" . decryptId($id) . "'");
 		$this->load->view('admin/users/user_details', $data);
 	}
-
-	// Order 
-
-
 	public function onprocessOrders()
 	{
 		$data['title'] = ' Orders Onprocess';
@@ -343,7 +423,6 @@ class AdminHome extends CI_Controller
 		$data['allOrders'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '0' AND status != '10'", 'create_date', 'DESC');
 		$this->load->view('admin/orders', $data);
 	}
-
 	public function acceptOrder()
 	{
 		$estimated_time = $this->input->post('estimated_time');
@@ -357,7 +436,6 @@ class AdminHome extends CI_Controller
 		}
 		redirect('recentOrders');
 	}
-
 	public function cancelOrder()
 	{
 		$cancel_msg = $this->input->post('cancel_msg');
@@ -370,14 +448,12 @@ class AdminHome extends CI_Controller
 		}
 		redirect('recentOrders');
 	}
-
 	public function acceptedOrders()
 	{
 		$data['allOrders'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '1' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')", 'create_date', 'DESC');
 		$data['title'] = 'All Accepted Orders';
 		$this->load->view('admin/orders', $data);
 	}
-
 	public function dispatchOrder($id, $type)
 	{
 		if ($type == '3') {
@@ -421,28 +497,24 @@ class AdminHome extends CI_Controller
 		flashData('errors', $message);
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-
 	public function dispatchOrders()
 	{
 		$data['allOrders'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '3' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')", 'create_date', 'DESC');
 		$data['title'] = 'All Dispatch Orders';
 		$this->load->view('admin/orders', $data);
 	}
-
 	public function completedOrders()
 	{
 		$data['allOrders'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '4' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')", 'create_date', 'DESC');
 		$data['title'] = 'All Completed Orders';
 		$this->load->view('admin/orders', $data);
 	}
-
 	public function cancelOrders()
 	{
 		$data['allOrders'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '2' AND (payment_mode = '1' OR payment_mode = '2')", 'create_date', 'DESC');
 		$data['title'] = 'All Cancel Orders';
 		$this->load->view('admin/orders', $data);
 	}
-
 	public function allOrders()
 	{
 		$date = $this->input->get('date');

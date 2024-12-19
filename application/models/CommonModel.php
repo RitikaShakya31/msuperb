@@ -36,7 +36,18 @@ class CommonModel extends CI_Model
 		$this->db->insert($table, $post);
 		return $this->db->insert_id();
 	}
-
+	public function getFilteredRowsWithCondition($table, $conditions, $order_by, $order, $limit, $extra_condition, $search)
+	{
+		$this->db->where($conditions);
+		if ($extra_condition) {
+			$this->db->where($extra_condition);
+		}
+		$this->db->like('product_name', $search);
+		$this->db->order_by($order_by, $order);
+		$this->db->limit($limit);
+		return $this->db->get($table)->result_array();
+	}
+	
 	function insertRowInBatch($table, $post)
 	{
 		$clean_post = $this->security->xss_clean($post);

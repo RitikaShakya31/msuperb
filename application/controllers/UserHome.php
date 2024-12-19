@@ -40,14 +40,32 @@ class UserHome extends CI_Controller
         $data['contact'] = $this->contact;
         $this->load->view('product', $data);
     }
-    public function blogs()
+    public function nearest_lab()
     {
-        $data['sidecategory'] = $this->CommonModel->getAllRowsInOrder('category', 'category_id', 'ASC');
-        $data['subcategory'] = $this->CommonModel->getAllRowsInOrder('sub_category', 'category_id', 'desc');
-        $data['blog'] = $this->CommonModel->getAllRowsInOrder('blog', 'id', 'desc');
-        $data['title'] = ' Our blogs | CARE1 | Your One Care Medical';
+        // Retrieve search input
+        $search = isset($_GET['searchbox']) ? trim($_GET['searchbox']) : '';
+    
+        // Base query to fetch labs
+        if ($search != '') {
+            $query = "SELECT * FROM `tbl_register` WHERE `status` = 'accepted' AND `lab_location` LIKE '%" . $this->db->escape_like_str($search) . "%'";
+            $labsData = $this->CommonModel->runQuery($query);
+            
+            // If no results, fetch all accepted labs
+            if (empty($labsData)) {
+                $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
+            }
+        } else {
+            // Fetch all accepted labs when no search input is provided
+            $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
+        }
+    
+        // Pass data to the view
+        $data['labsData'] = $labsData;
+        $data['search'] = $search; // To retain search term in the input box
+        $data['title'] = 'Our Labs';
         $data['contact'] = $this->contact;
-        $this->load->view('blogs', $data);
+    
+        $this->load->view('nearest_lab', $data);
     }
     public function blog_details($id)
     {
@@ -103,8 +121,21 @@ class UserHome extends CI_Controller
     public function product_details($id, $title)
     {
         $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1' , 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
-        $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
-        $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
+        // $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1','product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
+        $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
+            'product',
+            [
+                'status' => '1',
+                'is_delete' => '1',
+                'category_id' => decryptId($id)
+            ],
+            'product_id',
+            'DESC',
+            '20',
+            "(product_type = '1' OR product_type = '2')"
+        );
+        
+        // $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
 
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
@@ -1125,7 +1156,6 @@ class UserHome extends CI_Controller
         $responce['otp'] = $this->session->userdata('otp');
         echo json_encode($responce);
     }
-    // function for google firebase
     public function check_login()
     {
         $responce = [];

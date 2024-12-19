@@ -101,26 +101,33 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <img style="width: 100%;"
-                    src="<?= setImage(@$category['banner'], 'upload/category/') ?>" alt="Category">
+                <img style="width: 100%;" src="<?= setImage(@$category['banner'], 'upload/category/') ?>"
+                    alt="Category">
                 <div class="details-content">
                     <p class="details-desc"><?= $category['category_description']; ?></p>
-
                     <div class="details-list-group"><label class="details-list-title">Share:</label>
                         <ul class="details-share-list">
-                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=<?= $server_link ?>&t=<?= $details['product_name']; ?>"
+                            <li>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $server_link ?>&t=<?= $details['product_name']; ?>"
                                     onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                    target="_blank" class="icofont-facebook" title="Facebook"></a></li>
-                            <li><a href="https://twitter.com/share?url=<?= $server_link ?>&text=<?= $details['product_name']; ?>"
+                                    target="_blank" class="icofont-facebook" title="Facebook"></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/share?url=<?= $server_link ?>&text=<?= $details['product_name']; ?>"
                                     onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                    target="_blank" class="icofont-twitter" title="Twitter"></a></li>
-                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= $server_link ?>&t=<?= $details['product_name']; ?>"
+                                    target="_blank" class="icofont-twitter" title="Twitter"></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= $server_link ?>&t=<?= $details['product_name']; ?>"
                                     onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                    target="_blank" class="icofont-linkedin" title="Linkedin"></a></li>
-                            <li><a href="whatsapp://send?text=<?= $server_link ?>" data-action="share/whatsapp/share"
+                                    target="_blank" class="icofont-linkedin" title="Linkedin"></a>
+                            </li>
+                            <li>
+                                <a href="whatsapp://send?text=<?= $server_link ?>" data-action="share/whatsapp/share"
                                     onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                                     target="_blank" title="Share on whatsapp" class="icofont-whatsapp"
-                                    title="Whatsapp"><i class="fab fa-whatsapp"></i> </a></li>
+                                    title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -128,7 +135,19 @@
         </div>
     </div>
 </section>
-<form action="<?= base_url('product') ?>" action="" class="product-form">
+<h2 class="mb-4 text-center">Specialized Health Packages</h2>
+<div class="row suggest-slider justify-content-center">
+    <?php
+    if ($packagepro != '') {
+        foreach ($packagepro as $row) {
+            product($row, "product", "double");
+        }
+    } else {
+        echo 'No test available';
+    }
+    ?>
+</div>
+<form action="<?= base_url('product-details') ?>" method="get" class="product-form">
     <input placeholder="Search test..." type="text" name="searchbox" list="browsers" id="browser"
         value="<?= isset($search) ? $search : '' ?>" required>
     <datalist id="browsers">
@@ -143,19 +162,6 @@
         ?>
     </datalist><button type="submit"><i class="fas fa-search"></i></button>
 </form>
-<h2 class="mb-4 text-center">Specialized Health Packages</h2>
-<div class="row suggest-slider justify-content-center">
-    <?php
-    if ($packagepro != '') {
-        foreach ($packagepro as $row) {
-            product($row, "product", "double");
-        }
-    } else {
-        echo 'No test available';
-    }
-    ?>
-</div>
-<h2 class="mb-4 mt-5 text-center">Routine Tests</h2>
 <div class="row suggest-slider justify-content-center">
     <?php
     if ($routinepro != '') {
@@ -167,18 +173,6 @@
     }
     ?>
 </div>
-</div>
-<h2 class="mb-4 mt-5 text-center">Individual Tests</h2>
-<div class="row suggest-slider justify-content-center mb-5">
-    <?php
-    if ($dailypro != '') {
-        foreach ($dailypro as $row) {
-            product($row, "product", "double");
-        }
-    } else {
-        echo 'No test available';
-    }
-    ?>
 </div>
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
