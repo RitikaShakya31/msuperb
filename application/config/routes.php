@@ -13,6 +13,7 @@ $route['admin'] = 'admin/AdminAuth/admin';
 $route['adminLogout'] = 'admin/AdminAuth/adminLogout';
 
 $route['dashboard'] = 'admin/AdminHome/dashboard';
+$route['prescription'] = 'admin/AdminHome/prescription';
 $route['totalVisiters'] = 'admin/AdminHome/totalVisiters';
 $route['banner'] = 'admin/AdminHome/banner';
 $route['promoCode'] = 'admin/AdminHome/promoCode';

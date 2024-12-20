@@ -46,7 +46,7 @@
           </div>
           <!-- Right side form -->
           <div class="col-md-6">
-            <form action="<?= base_url('UserHome/prescriptionData')?>" method="post">
+            <form action="<?= base_url('UserHome/prescriptionData')?>" method="post" enctype="multipart/form-data">
               <div class="mb-3">
                 <!-- <label for="name" class="form-label">Name</label> -->
                 <input type="text" class="form-control" placeholder="Name *" name="name" id="name" required>

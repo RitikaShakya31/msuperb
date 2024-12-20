@@ -44,12 +44,12 @@ class UserHome extends CI_Controller
     {
         // Retrieve search input
         $search = isset($_GET['searchbox']) ? trim($_GET['searchbox']) : '';
-    
+
         // Base query to fetch labs
         if ($search != '') {
             $query = "SELECT * FROM `tbl_register` WHERE `status` = 'accepted' AND `lab_location` LIKE '%" . $this->db->escape_like_str($search) . "%'";
             $labsData = $this->CommonModel->runQuery($query);
-            
+
             // If no results, fetch all accepted labs
             if (empty($labsData)) {
                 $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
@@ -58,20 +58,20 @@ class UserHome extends CI_Controller
             // Fetch all accepted labs when no search input is provided
             $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
         }
-    
+
         // Pass data to the view
         $data['labsData'] = $labsData;
         $data['search'] = $search; // To retain search term in the input box
         $data['title'] = 'Our Labs';
         $data['contact'] = $this->contact;
-    
+
         $this->load->view('nearest_lab', $data);
     }
     public function compare($id)
     {
         $data['product'] = $this->CommonModel->getSingleRowById('product', ['product_id' => decryptId($id)]);
         $proName = $data['product']['product_name'];
-        
+
         $data['title'] = 'Compare Labs';
         $data['contact'] = $this->contact;
         $this->load->view('compare', $data);
@@ -82,19 +82,18 @@ class UserHome extends CI_Controller
         if (count($_POST) > 0) {
             $post = $this->input->post();
             $post['create_date'] = date('Y-m-d');
+            if ($_FILES['prescription_image']['name'] != '') {
+                $post['prescription_image'] = imageUpload('prescription_image', 'upload/prescription/', '');
+            }
             $insert = $this->CommonModel->insertRowReturnId('prescription_data', $post);
             if ($insert) {
-                flashMultiData(['success_status' => "success", 'msg' => "Your query is successfully submit. We will contact you as soon as possible"]);
-                // $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submit. We will contact you as soon as possible.</div>');
+                $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submit. We will contact you as soon as possible.</div>');
             } else {
                 $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing technical error ,please try again later or get in touch with Email ID provided in contact section.</div>');
             }
             redirect($_SERVER['HTTP_REFERER']);
-        } else {
         }
-        
     }
-
     public function delete_variant()
     {
         $id = $_POST['id'];
@@ -140,7 +139,7 @@ class UserHome extends CI_Controller
     }
     public function product_details($id, $title)
     {
-        $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1' , 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
+        $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         // $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1','product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
             'product',
@@ -154,7 +153,7 @@ class UserHome extends CI_Controller
             '20',
             "(product_type = '1' OR product_type = '2')"
         );
-        
+
         // $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
 
@@ -171,10 +170,10 @@ class UserHome extends CI_Controller
     public function test_details($id, $title)
     {
         $data['product'] = $this->CommonModel->getSingleRowById('product', array('product_id' => decryptId($id)));
-        $category_id = $data['product']['category_id'];       
-        $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' =>$category_id));
-        
-        $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1','category_id' =>$category_id), 'product_id', 'DESC', '20');
+        $category_id = $data['product']['category_id'];
+        $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => $category_id));
+
+        $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => $category_id), 'product_id', 'DESC', '20');
 
         $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '| CARE1 | Your One Care Medical' : $data['details']['seo_title'];
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];

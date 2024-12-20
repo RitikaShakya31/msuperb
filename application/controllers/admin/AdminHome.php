@@ -275,6 +275,12 @@ class AdminHome extends CI_Controller
         $get['title'] = 'Patient Details';
         $this->load->view('admin/user_all', $get);
     }
+    public function prescription()
+    {
+        $get['prescription_data'] = $this->CommonModel->getRowByIdInOrder('prescription_data', [], 'id', 'DESC');
+        $get['title'] = 'Prescription Details';
+        $this->load->view('admin/prescription', $get);
+    }	
     public function payment_history()
     {
         $get['setting_data'] = $this->CommonModel->getAllRows('settings');

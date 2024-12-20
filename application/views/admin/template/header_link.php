@@ -18,7 +18,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
-<script src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
+<script src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>  
 <script src="<?= base_url('assets/ckeditor/samples/js/sample.js') ?>"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>

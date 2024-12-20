@@ -31,6 +31,10 @@ $page_id = $this->input->get('page_id');
 						<span key="t-dashboards">Patient Details </span>
 					</a>
 				</li>
+				<li><a href="<?= base_url('prescription') ?>" key="t-blog">
+						<i class='bx bxs-wallet'></i>
+						<span key="t-dashboards">Prescription</span></a>
+				</li>
 				<li><a href="<?= base_url('payment-history') ?>" key="t-blog">
 						<i class='bx bxs-wallet'></i>
 						<span key="t-dashboards">Payment</span></a>
