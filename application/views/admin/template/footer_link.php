@@ -19,7 +19,9 @@
 
 <script src="<?= base_url() ?>assets/admin/js/pages/form-advanced.init.js"></script>
 <script src="<?= base_url() ?>assets/admin/js/app.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/40.0.0/ckeditor.min.js" integrity="sha512-Zyl/SvrviD3rEMVNCPN+m5zV0PofJYlGHnLDzol2kM224QpmWj9p5z7hQYppmnLFhZwqif5Fugjjouuk5l1lgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/40.0.0/ckeditor.min.js"
+    integrity="sha512-Zyl/SvrviD3rEMVNCPN+m5zV0PofJYlGHnLDzol2kM224QpmWj9p5z7hQYppmnLFhZwqif5Fugjjouuk5l1lgA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
@@ -65,26 +67,26 @@
 </script>
 
 <script>
-	ClassicEditor
-		.create( document.querySelector( '#editor' ) )
-		.then( editor => {
-			window.editor = editor;
-		} )
-		.catch( error => {
-			console.error( 'There was a problem initializing the editor.', error );
-		} );
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(error => {
+            console.error('There was a problem initializing the editor.', error);
+        });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
-if($this->session->flashdata('errors')){
+if ($this->session->flashdata('errors')) {
     ?>
     <script>
-    Swal.fire({
-  title: "<i>Info</i>", 
-  html: "<?= $this->session->flashdata('errors') ?>",  
-  confirmButtonText: "Okay", 
-});
-</script>
+        Swal.fire({
+            title: "<i>Info</i>",
+            html: "<?= $this->session->flashdata('errors') ?>",
+            confirmButtonText: "Okay",
+        });
+    </script>
     <?php
 }
 ?>

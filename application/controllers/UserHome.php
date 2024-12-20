@@ -67,14 +67,34 @@ class UserHome extends CI_Controller
     
         $this->load->view('nearest_lab', $data);
     }
-    public function blog_details($id)
+    public function compare($id)
     {
-        $data['blog'] = $this->CommonModel->getSingleRowById('blog', ['id' => decryptId($id)]);
-        $data['title'] = $data['blog']['title'];
-        $data['desc'] = $data['blog']['title'];
+        $data['product'] = $this->CommonModel->getSingleRowById('product', ['product_id' => decryptId($id)]);
+        $proName = $data['product']['product_name'];
+        
+        $data['title'] = 'Compare Labs';
         $data['contact'] = $this->contact;
-        $this->load->view('blog-details', $data);
+        $this->load->view('compare', $data);
     }
+
+    public function prescriptionData()
+    {
+        if (count($_POST) > 0) {
+            $post = $this->input->post();
+            $post['create_date'] = date('Y-m-d');
+            $insert = $this->CommonModel->insertRowReturnId('prescription_data', $post);
+            if ($insert) {
+                flashMultiData(['success_status' => "success", 'msg' => "Your query is successfully submit. We will contact you as soon as possible"]);
+                // $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submit. We will contact you as soon as possible.</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing technical error ,please try again later or get in touch with Email ID provided in contact section.</div>');
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+        }
+        
+    }
+
     public function delete_variant()
     {
         $id = $_POST['id'];

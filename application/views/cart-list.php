@@ -1,7 +1,6 @@
 <ul class="cart-list">
 
 	<?php foreach ($this->cart->contents() as $items):
-
 		?>
 		<li class="cart-item">
 			<div class="cart-media"><a
@@ -45,7 +44,9 @@
 				</div>
 			</div>
 		</li>
-
+		<a class="cart-checkout-btn-1" href="<?= base_url('compare/') . encryptId($items['id']) ?>">
+			<span class="checkout-label">Compare with other lab</span>
+		</a>
 	<?php endforeach; ?>
 </ul>
 
@@ -60,7 +61,8 @@
 	<?php
 	if ($this->session->has_userdata('login_user_id')):
 		?>
-		<a class="cart-checkout-btn-1" href="<?= base_url('checkout') ?>">
+
+		<a class="cart-checkout-btn-1 mt-2" href="<?= base_url('checkout') ?>">
 			<span class="checkout-label">Proceed to Checkout</span>
 			<span class="checkout-price">₹
 				<?php echo $this->cart->format_number($this->cart->total()); ?></span></a>

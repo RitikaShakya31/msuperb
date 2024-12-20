@@ -12,26 +12,83 @@
 <script src="<?= base_url() ?>assets/js/slick.js"></script>
 <script src="<?= base_url() ?>assets/js/main.js"></script>
 <script src="<?= base_url() ?>assets/js/myplugin.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div id="snackbar">Item Added Successfully</div>
+
+
+<script>
+      <?php 
+    if (sessionId('success_status')) {
+    ?>
+        Swal.fire({
+            title: '<?= sessionId('success_status') ?>!',
+            text: '<?= sessionId('msg') ?>',
+            icon: '<?= sessionId('success_status') ?>',
+            confirmButtonText: 'Done'
+        })
+    <?php
+    }
+    ?>
+</script>
 <!-- Modal -->
 <div class="modal fade" id="prescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Prescription</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+          <!-- Left side image -->
+          <div class="col-md-6">
+            <img src="<?= base_url('assets/img/2.webp') ?>" alt="Prescription" class="img-fluid">
+          </div>
+          <!-- Right side form -->
+          <div class="col-md-6">
+            <form action="<?= base_url('UserHome/prescriptionData')?>" method="post">
+              <div class="mb-3">
+                <!-- <label for="name" class="form-label">Name</label> -->
+                <input type="text" class="form-control" placeholder="Name *" name="name" id="name" required>
+              </div>
+              <div class="mb-3">
+                <!-- <label for="contact" class="form-label">Contact</label> -->
+                <input type="tel" class="form-control" id="contact"  name="contact_no" placeholder="Mobile no *" required>
+              </div>
+              <div class="mb-3">
+                <!-- <label for="email" class="form-label">Email</label> -->
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email id *" required>
+              </div>
+              <div class="mb-3">
+                <input type="file" class="form-control"  accept=".png, .jpg, .webp, .jpeg" placeholder="Upload Prescription" name="prescription_image" required>
+                <label for="image" class="form-label">Please Attach the Prescription</label>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" name="gender" id="gender" required>
+                  <option value="" disabled selected>Select Gender *</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <!-- <label for="dob" class="form-label">Date of Birth</label> -->
+                <input type="date" class="form-control" id="dob" placeholder="Date of Birth" name="DOB" required>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="agree" required>
+                <label class="form-check-label" for="agree">I agree to the terms and conditions</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
     </div>
   </div>
 </div>
+
 <script>
   // Function to check if all required form fields are filled
   function isFormFilled() {

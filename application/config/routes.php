@@ -81,6 +81,7 @@ $route['contact'] = 'UserHome/contact';
 $route['login'] = 'UserHome/login';
 $route['check_verification'] = 'UserHome/check_verification';
 $route['nearest-lab'] = 'UserHome/nearest_lab';
+$route['compare/(:any)'] = 'UserHome/compare/$1';
 // $route['user-login'] = 'UserHome/login';
 
 $route['register'] = 'UserHome/register';

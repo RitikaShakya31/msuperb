@@ -1,43 +1,33 @@
 <!doctype html>
 <html lang="en">
-
-
 <head>
     <meta charset="utf-8" />
     <title>Admin Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="shortcut icon" href="<?= base_url() ?>assets/admin/images/favicon.png">
-
     <link href="<?= base_url() ?>assets/admin/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-
     <link href="<?= base_url() ?>assets/admin/css/icons.min.css" rel="stylesheet" type="text/css" />
-
     <link href="<?= base_url() ?>assets/admin/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
 </head>
-
 <body>
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card overflow-hidden">
-                        <div class="bg-primary bg-soft">
-                            <div class="row">
+                    <div class="card overflow-hidden" style="border-radius: 8px; border: 1px solid #00000036;">
+                        <div style="background-color: #ebeef399 !important; border-bottom: 1px solid #00000036;">
+                            <div class="row align-items-center" style="padding: 10px 0px;">
                                 <div class="col-7">
-                                    <div class="text-primary p-4">
-                                        <h5 class="text-primary">Welcome Back !</h5>
-                                        <p>Sign in to continue to Care1.</p>
+                                    <div class="text-primary ">
+                                        <h5 style="color:#ff5c01 !important; padding-left:31px;">Please Login To Continue </h5>
+                                        <!-- <p>Sign in to continue to <?= $setting[9]['content_value'] ?>.</p> -->
                                     </div>
                                 </div>
-                                <div class="col-5 align-self-end">
-                                    <img src="<?= base_url('assets/admin/images/logo.png') ?>" alt="" class="img-fluid" >
+                                <div class="col-5">
+                                    <img src="<?= base_url('assets/images/logo.png') ?>" alt="logo" class="img-fluid" width="150" >
                                 </div>
                             </div>
                         </div>
                         <div class="card-body pt-0 mt-3">
-
                             <?php if ($this->session->flashdata('login_error') != '') {
                             ?>
                                 <div class="alert alert-danger">
@@ -61,7 +51,7 @@
                                     </div>
 
                                     <div class="mt-3 d-grid">
-                                        <button class="btn btn-primary waves-effect waves-light" type="submit">Log In</button>
+                                        <button style="background: #d54b00; color:#fff; " class="btn waves-effect waves-light" type="submit">Log In</button>
                                     </div>
                                 </form>
                             </div>
@@ -71,7 +61,6 @@
             </div>
         </div>
     </div>
-
     <script src="<?= base_url() ?>assets/admin/libs/jquery/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url() ?>assets/admin/libs/metismenu/metisMenu.min.js"></script>

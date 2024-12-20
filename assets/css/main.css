@@ -398,7 +398,7 @@ button:focus {
 	text-transform: uppercase;
 	padding: 10px 32px;
 	border-radius: 6px;
-	border: 2px solid #095287;
+	/* border: 2px solid #095287; */
 }
 
 .btn:focus {
@@ -753,13 +753,14 @@ button:focus {
 }
 
 .form-control {
-	width: 100%;
-	height: 45px;
-	border-radius: 6px;
-	padding: 0px 20px 2px;
-	color: #353535;
-	background: #ffffff;
-	border: 1px solid var(--border);
+	width: 92%;
+    height: 45px;
+    /* border-radius: 6px; */
+    /* padding: 0px 20px 2px; */
+    padding-left: 0;
+    color: #353535;
+    background: #ffffff;
+    border-bottom: 1px solid #110c0c5e;
 }
 
 .form-control:focus-within {
@@ -800,6 +801,10 @@ button:focus {
 	text-transform: capitalize;
 	color: var(--text);
 	cursor: pointer;
+	border: none;
+	border-radius:0;
+	width: 92%;
+	padding-left: 0px;
 }
 
 .form-select:focus-within {
