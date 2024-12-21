@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row  row-cols-md-4 row-cols-lg-4 row-cols-xl-3" id="filter_data">
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-3" id="filter_data">
                 <div class="loader-wrapper"><div class="loader"></div></div>
                 </div>
             </div>

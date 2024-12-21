@@ -27,6 +27,7 @@ $route['registerAll'] = 'admin/AdminHome/registerAll';
 $route['registerView'] = 'admin/AdminHome/registerView';
 $route['registerAdd'] = 'admin/AdminHome/registerAdd';
 $route['testAll'] = 'admin/AdminHome/all_test';
+$route['brandAll'] = 'admin/AdminHome/all_brand';
 $route['testAdd'] = 'admin/AdminHome/test_add';
 $route['userAll'] = 'admin/AdminHome/user_all';
 $route['payment-history'] = 'admin/AdminHome/payment_history';
@@ -38,7 +39,6 @@ $route['activeUser'] = 'admin/AdminHome/activeUser';
 $route['inactiveUser'] = 'admin/AdminHome/inactiveUser';
 $route['userStatus/(:any)/(:any)'] = 'admin/AdminHome/userStatus/$1/$2';
 $route['userDetails/(:any)'] = 'admin/AdminHome/userDetails/$1';
-
 $route['productReview'] = 'admin/AdminHome/productReview';
 $route['reviewStatus/(:any)/(:any)'] = 'admin/AdminHome/reviewStatus/$1/$2';
 

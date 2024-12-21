@@ -1,25 +1,20 @@
 <ul class="cart-list">
-
 	<?php foreach ($this->cart->contents() as $items):
 		?>
 		<li class="cart-item">
-			<div class="cart-media"><a
-					href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>">
-					<img src="<?= setImage($items['image'], 'upload/product/') ?>" alt="<?php echo $items['name']; ?>">
-				</a><button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
-						class="far fa-trash-alt"></i></button></div>
-			<div class="cart-info-group">
-				<div class="cart-info">
-					<h6><a
-							href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $items['name']; ?>
-							- <?php echo $items['variant_name']; ?></a> &nbsp;<button
-							class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
-								class="far fa-trash-alt"></i></button></h6>
-					<p>Quantity - <?php echo $items['qty']; ?> X
-						<?php echo $this->cart->format_number($items['price']); ?>/-
-					</p>
+			<div>
+				<div class="cart-media">
+					<a
+						href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>">
+						<img src="<?= setImage($items['image'], 'upload/product/') ?>" alt="<?php echo $items['name']; ?>">
+					</a>
+
+					<button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
+							class="far fa-trash-alt"></i>
+					</button>
+
 				</div>
-				<div class="cart-action-group">
+				<div class="cart-action-group mt-2">
 					<!-- <div class="product-action"><button class="action-minus qty-minus" data-rowid="<?= $items['id']; ?>" title="Quantity Minus"><i class="icofont-minus"></i></button>
 						<input class="action-input" title="Quantity Number" type="text" id="qtysidecart<?= $items['id'] ?>" name="quantity" value="1">
 						<button class="action-plus qty-plus" data-rowid="<?= $items['id']; ?>" title="Quantity Plus"><i class="icofont-plus"></i></button>
@@ -30,27 +25,42 @@
 							<i class="icofont-minus">
 							</i>
 						</button>
-
 						<input class="action-input" title="Quantity Number" id="qtysidecart<?= $items['rowid'] ?>"
 							type="number" name="quantity" value="<?= $items['qty'] ?>">
-
 						<button class="action-plus qty" title="Quantity Plus" data-rowid="<?= $items['rowid'] ?>"
 							data-type="sidecart">
 							<i class="icofont-plus">
 							</i>
 						</button>
 					</div>
-					<h6>₹<?php echo $items['price'] * $items['qty']; ?></h6>
+					
 				</div>
 			</div>
+
+			<div class="cart-info-group">
+				<div class="cart-info">
+				<a class="cart-checkout-btn-2" href="<?= base_url('compare/') . encryptId($items['id']) ?>">
+							<span class="compare-label">Compare with other</span>
+						</a>
+					<h6>
+						<a
+							href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $items['name']; ?>
+							- <?php echo $items['variant_name']; ?></a> &nbsp;
+						
+						<!-- <button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
+								class="far fa-trash-alt"></i></button> -->
+					</h6>
+					<p>Quantity - <?php echo $items['qty']; ?> X
+						<?php echo $this->cart->format_number($items['price']); ?>/-
+					</p>
+					<h6>₹<?php echo $items['price'] * $items['qty']; ?></h6>
+				</div>
+
+			</div>
 		</li>
-		<a class="cart-checkout-btn-1" href="<?= base_url('compare/') . encryptId($items['id']) ?>">
-			<span class="checkout-label">Compare with other lab</span>
-		</a>
+
 	<?php endforeach; ?>
 </ul>
-
-
 <div class="cart-footer">
 	<!-- <button class="coupon-btn">Do you have a coupon code?</button>
 	<form class="coupon-form"><input type="text" placeholder="Enter your coupon code"><button type="submit"><span>apply</span></button></form> -->
@@ -61,7 +71,6 @@
 	<?php
 	if ($this->session->has_userdata('login_user_id')):
 		?>
-
 		<a class="cart-checkout-btn-1 mt-2" href="<?= base_url('checkout') ?>">
 			<span class="checkout-label">Proceed to Checkout</span>
 			<span class="checkout-price">₹

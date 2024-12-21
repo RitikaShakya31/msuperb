@@ -18,7 +18,6 @@ class UserHome extends CI_Controller
         $data['combopro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
         $data['cate'] = $this->CommonModel->getAllRowsInOrderWithLimit('category', '25', 'category_id', 'ASC');
         $data['title'] = 'CARE1 | Your One Care Medical ';
-        $data['testimonial'] = $this->CommonModel->getAllRowsInOrder('testimonial', 'id', 'desc');
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
         $this->load->view('home', $data);

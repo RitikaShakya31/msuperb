@@ -3,13 +3,41 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h2 class="mb-sm-0 "><?= $title ?></h2>
-                        <a href="<?= base_url("testAdd"); ?>" class="btn btn-success"><i class="fa fa-plus"></i>
-                            Add</a>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="row">
+                                            <label for="example-text-input" class="col-md-3 col-form-label">Test
+                                                Name</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" name="service_name" required
+                                                    value="<?= $service_name ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="row">
+                                            <label for="example-text-input" class="col-md-3 col-form-label">Test
+                                                Amount</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" name="service_charge" required
+                                                    value="<?= $service_charge ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mb-2">
+                                <button type="submit" id="save" class="btn btn-primary w-md">Save</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </form>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -36,7 +64,7 @@
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>testAdd?id=<?= $id; ?>"
+                                                    <a href="<?php echo base_url(); ?>testAll?id=<?= $id; ?>"
                                                         class="mt-1 btn btn-success"><i class="fa fa-edit"></i></a><br>
                                                     <a href="<?= base_url("testAll?dID=$id"); ?>"
                                                         onclick="return confirm('Are you sure ?')"

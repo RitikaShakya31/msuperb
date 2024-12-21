@@ -86,22 +86,47 @@ $(".home-index-slider").slick({
 		dots: false,
 		infinite: true,
 		autoplay: false,
-		arrows: !0,
+		arrows: true,
 		speed: 1000,
 		prevArrow: '<i class="icofont-arrow-right dandik"></i>',
 		nextArrow: '<i class="icofont-arrow-left bamdik"></i>',
-		slidesToShow: 3, // Show 2 cards by default
-		slidesToScroll: 3, // Scroll 2 items at once
+		slidesToShow: 3, // Show 3 cards by default
+		slidesToScroll: 3, // Scroll 3 items at once
 		responsive: [
-			{ breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 2 cards on medium screens
-			{ breakpoint: 992, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 2 cards on smaller screens
-			{ breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 2 cards on even smaller screens
+			{ breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 3 cards on large screens
+			{ breakpoint: 992, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 3 cards on medium screens
+			{ breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 3 cards on smaller screens
 			{
 				breakpoint: 576,
-				settings: { slidesToShow: 3, slidesToScroll: 3, arrows: false },
-			}, // 2 cards on very small screens, no arrows
+				settings: { slidesToShow: 1, slidesToScroll: 1, arrows: false }, // 1 card on very small screens, no arrows
+			},
 		],
 	});
+
+$(".lab-slider").slick({
+	dots: false,
+	infinite: true,
+	autoplay: false,
+	arrows: true,
+	speed: 1000,
+	prevArrow: '<i class="icofont-arrow-right dandik"></i>',
+	nextArrow: '<i class="icofont-arrow-left bamdik"></i>',
+	slidesToShow: 5, // Default cards to show
+	slidesToScroll: 5, // Default cards to scroll
+	responsive: [
+		{ breakpoint: 1200, settings: { slidesToShow: 5, slidesToScroll: 5 } }, // Adjust for medium screens
+		{ breakpoint: 992, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // Adjust for smaller screens
+		{ breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // Adjust for even smaller screens
+		{
+			breakpoint: 576,
+			settings: {
+				slidesToShow: 2, // Show 2 cards in mobile view
+				slidesToScroll: 2, // Scroll 2 cards in mobile view
+				arrows: false, // Disable arrows for mobile view
+			},
+		},
+	],
+});
 
 $(".new-slider").slick({
 	dots: !1,

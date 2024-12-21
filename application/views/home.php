@@ -12,6 +12,12 @@
             background-size: cover !important;
         }
     }
+    @media (max-width: 576px) {
+    .banner-part {
+        height: 280px !important; /* Adjust height for mobile view */
+    }
+}
+
 </style>
 <!-- Button trigger modal -->
 
@@ -20,7 +26,6 @@
     <?= $this->session->userdata('msg'); ?>
 <?php }
 $this->session->unset_userdata('msg'); ?>
-
 
 <section class="home-banner">
     <?php
@@ -34,11 +39,11 @@ $this->session->unset_userdata('msg'); ?>
                         <div class="col-md-8 col-lg-6">
                             <!-- Button inside the banner -->
                             <div class="upload-prescription-btn"
-                                style="position: absolute; bottom: 30px; left: 18%; transform: translateX(-50%); z-index: 10;">
+                                style="position: absolute; bottom: 30px; left: 30%; transform: translateX(-50%); z-index: 10;">
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
                                     style="padding: 10px 20px; font-size: 16px;">
                                     <i class="fa fa-file"></i>
-                                    Upload Your Prescription
+                                    Upload Prescription
                                 </a>
                             </div>
                         </div>
@@ -56,10 +61,6 @@ $this->session->unset_userdata('msg'); ?>
     }
     ?>
 </section>
-
-
-
-
 <!-- <section class="home-classic-slider slider-arrow">
     <?php
     if ($banner) {
@@ -94,14 +95,13 @@ $this->session->unset_userdata('msg'); ?>
                 </div>
             </div>
         </div> -->
-
         <div class="row justify-content-center custom-row-cols">
             <?php
             if ($cate != '') {
                 foreach ($cate as $row) {
                     ?>
                     <div class="col custom-col">
-                        <div class="card text-center" style="padding: 0px!important;width: 75%;">
+                        <div class="card text-center" style="padding: 0px!important;">
                             <div class="media">
                                 <?= (($row['is_bestselling'] == '1') ? '<div class="bestselling-label"><label class="label-text bg-success">Bestselling</label></div>' : '') ?>
                                 <a class="image"

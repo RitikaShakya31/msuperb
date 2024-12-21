@@ -26,6 +26,25 @@ $page_id = $this->input->get('page_id');
 						<span key="t-dashboards">Lab Registrations</span>
 					</a>
 				</li>
+				<li class="<?php if ($page == "company" || $page == "categoryAll" || $page == 'categoryAdd' || $page == 'subCategoryAdd' || $page == 'subCategoryAll' || $page == 'productAll' || $page == 'productAdd' || $page == 'productDetails') {
+					echo "mm-active";
+				} ?>">
+					<a href="javascript: void(0);" class="has-arrow waves-effect">
+						<i class="fab fa-product-hunt"></i>
+						<span key="t-ecommerce">Product</span>
+					</a>
+					<ul class="sub-menu" aria-expanded="false">
+						<li><a href="<?= base_url('categoryAll') ?>" class="<?php if ($page == "categoryAll" || $page == 'categoryAdd') {
+							  echo 'active';
+						  } ?>" key="t-category">Brand</a></li>
+						<li><a href="<?= base_url('subCategoryAll') ?>" class="<?php if ($page == "subCategoryAll" || $page == 'subCategoryAdd') {
+							  echo 'active';
+						  } ?>" key="t-sub-category">Laboratory</a></li>
+						<li><a href="<?= base_url('productAll') ?>" class="<?php if ($page == "productAll" || $page == 'productAdd' || $page == 'productDetails') {
+							  echo 'active';
+						  } ?>" key="t-product">Test</a></li>
+					</ul>
+				</li>
 				<li><a href="<?= base_url('userAll') ?>" key="t-blog">
 						<i class='bx bxs-user'></i>
 						<span key="t-dashboards">Patient Details </span>
@@ -46,6 +65,11 @@ $page_id = $this->input->get('page_id');
 				<li><a href="<?= base_url('testAll') ?>" key="t-blog">
 						<i class="bx bx-file"></i>
 						<span key="t-dashboards">All Test</span>
+					</a>
+				</li>
+				<li><a href="<?= base_url('brandAll') ?>" key="t-blog">
+						<i class="bx bx-file"></i>
+						<span key="t-dashboards">Brand List</span>
 					</a>
 				</li>
 
@@ -92,28 +116,7 @@ $page_id = $this->input->get('page_id');
 						<span key="t-file-manager">Policy</span>
 					</a>
 				</li>
-
-				<li class="<?php if ($page == "company" || $page == "categoryAll" || $page == 'categoryAdd' || $page == 'subCategoryAdd' || $page == 'subCategoryAll' || $page == 'productAll' || $page == 'productAdd' || $page == 'productDetails') {
-					echo "mm-active";
-				} ?>">
-					<a href="javascript: void(0);" class="has-arrow waves-effect">
-						<i class="fab fa-product-hunt"></i>
-						<span key="t-ecommerce">Product</span>
-					</a>
-					<ul class="sub-menu" aria-expanded="false">
-						<li><a href="<?= base_url('categoryAll') ?>" class="<?php if ($page == "categoryAll" || $page == 'categoryAdd') {
-							  echo 'active';
-						  } ?>" key="t-category">Category</a></li>
-						<li><a href="<?= base_url('subCategoryAll') ?>" class="<?php if ($page == "subCategoryAll" || $page == 'subCategoryAdd') {
-							  echo 'active';
-						  } ?>" key="t-sub-category">Sub Category</a></li>
-						<li><a href="<?= base_url('productAll') ?>" class="<?php if ($page == "productAll" || $page == 'productAdd' || $page == 'productDetails') {
-							  echo 'active';
-						  } ?>" key="t-product">Product</a></li>
-					</ul>
-				</li>
-
-				<li class="<?php if ($page == "activeUser" || $page == 'inactiveUser' || $page == "newUser" || $page == 'verifyCancelUser' || $page_id == '1') {
+				<!-- <li class="<?php if ($page == "activeUser" || $page == 'inactiveUser' || $page == "newUser" || $page == 'verifyCancelUser' || $page_id == '1') {
 					echo "mm-active";
 				} ?>">
 					<a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -134,9 +137,9 @@ $page_id = $this->input->get('page_id');
 							</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 
-				<li class="<?php if ($page == "recentOrders" || $page == 'acceptedOrders' || $page == 'dispatchOrders' || $page == 'completedOrders' || $page == 'allOrders') {
+				<!-- <li class="<?php if ($page == "recentOrders" || $page == 'acceptedOrders' || $page == 'dispatchOrders' || $page == 'completedOrders' || $page == 'allOrders') {
 					echo "mm-active";
 				} ?>">
 					<a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -183,7 +186,7 @@ $page_id = $this->input->get('page_id');
 
 
 					</ul>
-				</li>
+				</li> -->
 				<!-- <li>
 					<a href="<?= base_url('totalVisiters') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>

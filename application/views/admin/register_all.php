@@ -63,10 +63,10 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <!-- <th>Action</th> -->
                                         <th>Create date</th>
+                                        <th>Brand Name</th>
                                         <th>Lab Name</th>
-                                        <th>Lab Email</th>
+                                        <!-- <th>Lab Email</th> -->
                                         <th>Lab Location</th>
                                         <th>Accept/Reject</th>
                                         <th>More</th>
@@ -82,18 +82,12 @@
                                             ?>
                                             <tr>
                                                 <td><?= $i ?></td>
-                                                <!-- <td>
-                                                    <a href="<?php echo base_url(); ?>registerAdd?id=<?= $id; ?>"
-                                                        class="mt-1 btn btn-success"><i class="fa fa-edit"></i></a><br>
-                                                    <a href="<?= base_url("registerAll?dID=$id"); ?>"
-                                                        onclick="return confirm('Are you sure ?')"
-                                                        class="mt-1 btn btn-danger"><i class="fa fa-trash"></i></a>
-                                                </td> -->
                                                 <td><?= $item['create_date'] ?> </td>
+                                                <td><?= $item['brand_name'] ?> </td>
                                                 <td>
                                                     <p style="line-height:25px;"> <?= ucwords($item['lab_name']) ?></p>
                                                 </td>
-                                                <td><?= $item['lab_email'] ?> </td>
+                                                <!-- <td><?= $item['lab_email'] ?> </td> -->
                                                 <td><?= $item['lab_location'] ?></td>
                                                 </td>
                                                 <td>
