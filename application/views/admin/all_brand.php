@@ -25,15 +25,15 @@
                                                     Description</label>
                                                 <div class="col-md-10">
                                                     <textarea name="brand_description" style="width: 100%;" id="editor"
-                                                        rows="10"><?= $category_description ?></textarea>
+                                                        rows="10"><?= $brand_description ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-3">
                                             <div class="row">
-                                                <label for="example-text-input" class="col-md-3 col-form-label">Brand
+                                                <label for="example-text-input" class="col-md-4 col-form-label">Brand
                                                     Logo</label>
-                                                <div class="col-md-9">
+                                                <div class="col-md-8">
                                                     <input class="form-control" type="file" name="brand_logo" required
                                                         <?= $brand_logo == "" ? 'required' : '' ?>>
                                                 </div>
@@ -47,9 +47,9 @@
                                         </div>
                                         <div class="col-lg-6 mb-3">
                                             <div class="row">
-                                                <label for="example-text-input" class="col-md-3 col-form-label">Brand
+                                                <label for="example-text-input" class="col-md-4 col-form-label">Brand
                                                     Banner</label>
-                                                <div class="col-md-9">
+                                                <div class="col-md-8">
                                                     <input class="form-control" type="file" name="brand_banner" required
                                                         value="<?= $brand_name ?>">
                                                 </div>
@@ -109,7 +109,7 @@
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url("upload/category/") . $item['brand_logo']; ?>">
+                                                    <a href="<?= base_url("upload/category/") . $item['brand_logo']; ?>" target="_blank">
                                                         <img src="<?= base_url("upload/category/") . $item['brand_logo']; ?>"
                                                             style="width: 80px; height: 60px">
                                                     </a>

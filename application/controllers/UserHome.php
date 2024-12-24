@@ -11,12 +11,13 @@ class UserHome extends CI_Controller
     public function index()
     {
         $data['banner'] = $this->CommonModel->getAllRowsInOrder('banner', 'banner_id', 'desc');
-        $data['product'] = $this->CommonModel->getRowByOrderWithLimit('product', array('status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '10');
-        $data['productdesc'] = $this->CommonModel->getRowByOrderWithLimit('product', array('status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
-        $data['normalpro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
-        $data['featurepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
-        $data['combopro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
+        // $data['product'] = $this->CommonModel->getRowByOrderWithLimit('product', array('status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '10');
+        // $data['productdesc'] = $this->CommonModel->getRowByOrderWithLimit('product', array('status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
+        // $data['normalpro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
+        // $data['featurepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
+        // $data['combopro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
         $data['cate'] = $this->CommonModel->getAllRowsInOrderWithLimit('category', '25', 'category_id', 'ASC');
+        $data['brand'] = $this->CommonModel->getAllRowsInOrderWithLimit('all_brand', '25', 'brand_id', 'DESC');
         $data['title'] = 'CARE1 | Your One Care Medical ';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
@@ -75,7 +76,6 @@ class UserHome extends CI_Controller
         $data['contact'] = $this->contact;
         $this->load->view('compare', $data);
     }
-
     public function prescriptionData()
     {
         if (count($_POST) > 0) {
@@ -135,6 +135,32 @@ class UserHome extends CI_Controller
         $data['all_data'] = $this->CommonModel->runQuery($query);
         $data['contact'] = $this->contact;
         $this->load->view('get_product', $data);
+    }
+    public function lab_details($id, $title)
+    {
+
+        $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('register', array('brand_name' => decryptId($id)), 'register_id', 'DESC', '20');
+               $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
+            'product',
+            [
+                'status' => '1',
+                'is_delete' => '1',
+                'category_id' => decryptId($id)
+            ],
+            'product_id',
+            'DESC',
+            '20',
+            "(product_type = '1' OR product_type = '2')"
+        );
+        $data['category'] = $this->CommonModel->getSingleRowById('all_brand', array('brand_id' => decryptId($id)));
+        $data['products_variant'] = $this->CommonModel->getRowById('product_variant', 'product_id', decryptId($id));
+        $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
+        $data['reviews'] = $this->CommonModel->getRowByOrderWithLimit('product_review', array('product_id' => decryptId($id), 'status' => 'accepted'), 'rid', 'DESC', '100');
+        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '| CARE1 | Your One Care Medical' : $data['details']['seo_title'];
+        $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
+        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '| CARE1 | Your One Care Medical' : $data['details']['seo_keyword'];
+        $data['contact'] = $this->contact;
+        $this->load->view('lab_details', $data);
     }
     public function product_details($id, $title)
     {

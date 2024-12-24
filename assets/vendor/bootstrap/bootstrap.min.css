@@ -1998,7 +1998,7 @@ textarea.form-control-lg {
 	background-repeat: no-repeat;
 	background-position: right 0.75rem center;
 	background-size: 16px 12px;
-	border-bottom: 1px solid #110c0c5e !important;
+	border-bottom: 1px solid #110c0c5e !important;	
 	border-radius: 0.25rem;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -4932,7 +4932,7 @@ fieldset:disabled .btn {
 }
 .modal {
 	position: fixed;
-	top: 9%;
+	top: 0;
 	left: 0;
 	z-index: 1060;
 	display: none;

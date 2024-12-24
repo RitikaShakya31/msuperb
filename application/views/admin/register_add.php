@@ -26,7 +26,7 @@
                                                     <?php if ($brand) {
                                                         foreach ($brand as $data) {
                                                             ?>
-                                                            <option value="<?= $data['brand_name'] ?>">
+                                                            <option value="<?= $data['brand_id'] ?>">
                                                                 <?= $data['brand_name'] ?>
                                                             </option>
                                                             <?php

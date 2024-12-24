@@ -5,7 +5,6 @@
         background-size: contain !important;
     }
 
-
     @media (max-width: 991px) {
         .banner-imgs {
             height: 140px !important;
@@ -20,13 +19,10 @@
 
 </style>
 <!-- Button trigger modal -->
-
-
 <?php if ($this->session->userdata('msg') != '') { ?>
     <?= $this->session->userdata('msg'); ?>
 <?php }
 $this->session->unset_userdata('msg'); ?>
-
 <section class="home-banner">
     <?php
     if ($banner) {
@@ -81,20 +77,40 @@ $this->session->unset_userdata('msg'); ?>
         }
     } else {
         ?>
-
         <?php
     }
     ?>
 </section> -->
 <section class="section feature-part">
     <div class="container">
-        <!-- <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading">
-                    <h2>Our Brand Labs</h2>
-                </div>
-            </div>
-        </div> -->
+        <div class="row justify-content-center custom-row-cols">
+            <?php
+            if ($brand != '') {
+                foreach ($brand as $row) {
+                    ?>
+                    <div class="col custom-col">
+                        <div class="card text-center" style="padding: 0px!important;">
+                            <div class="media">
+                                <?= (($row['is_bestselling'] == '1') ? '<div class="bestselling-label"><label class="label-text bg-success">Bestselling</label></div>' : '') ?>
+                                <a class="image"
+                                    href="<?= base_url('lab-details/' . encryptId($row['brand_id']) . '/' . url_title($row['brand_name'])) ?>">
+                                    <img src="<?= setImage(@$row['brand_logo'], 'upload/category/') ?>" alt="Category" width="80"
+                                        height="80" style="object-fit: contain;">
+                                </a>
+                            </div>
+                        </div>
+                        <p class="brand-name"><?= $row['brand_name']; ?></p>
+                    </div>
+                <?php }
+            } else {
+                echo 'no category available';
+            }
+            ?>
+        </div>
+    </div>
+</section>
+<section class="section feature-part">
+    <div class="container">
         <div class="row justify-content-center custom-row-cols">
             <?php
             if ($cate != '') {
@@ -119,16 +135,8 @@ $this->session->unset_userdata('msg'); ?>
             }
             ?>
         </div>
-
-        <!-- <div class="row">
-            <div class="col-lg-12">
-                <div class="section-btn-25"><a href="<?= base_url('product') ?>" class="btn btn-outline"><i
-                            class="fas fa-eye"></i><span>show more</span></a></div>
-            </div>
-        </div> -->
     </div>
 </section>
-
 <section class="about-choose pb-65 ">
     <div class="container">
         <div class="row">
@@ -142,7 +150,7 @@ $this->session->unset_userdata('msg'); ?>
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-boxes"></i> <!-- Font Awesome icon for "Wide Range of Products" -->
+                        <i class="fas fa-boxes"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Quick Process</h4>
@@ -152,7 +160,7 @@ $this->session->unset_userdata('msg'); ?>
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-vials"></i> <!-- Font Awesome icon for "Trusted Diagnostic Services" -->
+                        <i class="fas fa-vials"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Accurate Report</h4>
@@ -162,7 +170,7 @@ $this->session->unset_userdata('msg'); ?>
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-laptop-medical"></i> <!-- Font Awesome icon for "Online Consultations" -->
+                        <i class="fas fa-laptop-medical"></i> 
                     </div>
                     <div class="choose-text">
                         <h4>Quality Services</h4>
@@ -202,7 +210,6 @@ $this->session->unset_userdata('msg'); ?>
         </div>
     </div>
 </section>
-
 <section class="inner-section faq-part">
     <div class="container">
         <div class="row">
@@ -239,24 +246,8 @@ $this->session->unset_userdata('msg'); ?>
         </div>
     </div>
 </section>
-
-<!-- <section class="ptb-50">
-
-    <div loading="lazy" data-mc-src="1c1070c3-e56b-4939-b99c-f3aaa731fb53#null"></div>
-
-    <script src="https://cdn2.woxo.tech/a.js#6698ed9e4ff48fbd0a8b57c1" async data-usrc>
-    </script>
-</section> -->
-
-
-
-
 <?php $this->load->view('includes/footer'); ?>
-
 <?php $this->load->view('includes/footer-link'); ?>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
 </html>

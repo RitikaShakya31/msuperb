@@ -66,7 +66,6 @@
                                         <th>Create date</th>
                                         <th>Brand Name</th>
                                         <th>Lab Name</th>
-                                        <!-- <th>Lab Email</th> -->
                                         <th>Lab Location</th>
                                         <th>Accept/Reject</th>
                                         <th>More</th>
@@ -79,15 +78,15 @@
                                         foreach ($all_register as $item) {
                                             $i = $i + 1;
                                             $id = encryptId($item['register_id']);
+                                            $brand = $this->CommonModel->getSingleRowById('all_brand', ['brand_id '=> $item['brand_name']]);
                                             ?>
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <td><?= $item['create_date'] ?> </td>
-                                                <td><?= $item['brand_name'] ?> </td>
+                                                <td><?= $brand['brand_name'] ?> </td>
                                                 <td>
                                                     <p style="line-height:25px;"> <?= ucwords($item['lab_name']) ?></p>
                                                 </td>
-                                                <!-- <td><?= $item['lab_email'] ?> </td> -->
                                                 <td><?= $item['lab_location'] ?></td>
                                                 </td>
                                                 <td>

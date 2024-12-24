@@ -1304,7 +1304,7 @@ tbody tr {
 
 tbody tr td {
 	padding: 12px 20px;
-	text-align: center;
+	/* text-align: center; */
 	border-right: 1px solid var(--border);
 }
 
@@ -8223,4 +8223,10 @@ html .njs-sticky-side.image_button_cover a:hover {
 .upload-prescription-btn .btn-primary:hover {
     background-color: #55aa6e;
     color: #fff;
+}
+.book-now{
+	background: #38a653;
+    color: white;
+    padding: 7px;
+    border-radius: 28px;
 }

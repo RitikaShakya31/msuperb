@@ -91,6 +91,7 @@ $route['order-history'] = 'UserHome/order_history';
 $route['profile'] = 'UserHome/profile';
 $route['product'] = 'UserHome/product';
 $route['product-details/(:any)/(:any)'] = 'UserHome/product_details/$1/$2';
+$route['lab-details/(:any)/(:any)'] = 'UserHome/lab_details/$1/$2';
 $route['test-details/(:any)/(:any)'] = 'UserHome/test_details/$1/$2';
 $route['orderInvoice/(:any)'] = 'UserHome/orderInvoice/$1';
 $route['orderDetails/(:any)'] = 'UserHome/orderDetails/$1';

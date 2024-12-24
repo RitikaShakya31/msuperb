@@ -42,7 +42,7 @@
         <div class="row">
           <!-- Left side image -->
           <div class="col-md-6">
-            <img src="<?= base_url('assets/img/2.webp') ?>" alt="Prescription" class="img-fluid">
+            <img src="<?= base_url('assets/img/prescription.png') ?>" alt="Prescription" class="img-fluid">
           </div>
           <!-- Right side form -->
           <div class="col-md-6">

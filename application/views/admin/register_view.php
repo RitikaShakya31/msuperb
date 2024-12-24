@@ -97,7 +97,7 @@
                                                         <label for="service-dropdown" class="col-md-4 col-form-label">Test
                                                             Name</label>
                                                         <div class="col-md-8">
-                                                            <select class="form-control" name="service[]" disabled>  
+                                                            <select class="form-control" name="service[]" disabled>
                                                                 <option value="">Select Service</option>
                                                                 <?php if ($services) {
                                                                     foreach ($services as $service) {
@@ -105,21 +105,30 @@
                                                                         $selected = ($service['service_id'] == $provar['service']) ? 'selected' : '';
                                                                         ?>
                                                                         <option value="<?= $service['service_id'] ?>" <?= $selected ?>>
-                                                                            <?= $service['service_name'] ?> :
-                                                                            <?= $service['service_charge'] ?>
+                                                                            <?= $service['service_name'] ?>
                                                                         </option>
                                                                         <?php
                                                                     }
                                                                 } ?>
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div>                                                    
                                                     <!-- Hidden inputs for charge and service_id -->
                                                     <input class="form-control" type="hidden" value="<?= $provar['charge'] ?>"
                                                         name="charge[]">
                                                     <input class="form-control" type="hidden" value="<?= $provar['service'] ?>"
                                                         name="service_id[]">
                                                 </div>
+                                                <div class="col-lg-6 mb-3">
+                                                        <div class="row">
+                                                            <label for="charge-input"
+                                                                class="col-md-2 col-form-label">Charge</label>
+                                                            <div class="col-md-10">
+                                                                <input class="form-control" type="text" name="charge"
+                                                                value="<?= $provar['charge'] ?>" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 <!-- <div class="col-lg-2 mb-3">
                                                     <div class="row">
                                                         <input class="form-control" type="hidden" name="varid[]"
@@ -133,8 +142,6 @@
                                         }
                                     }
                                     ?>
-
-
                                     <!-- <div class="col-lg-12 mb-3 field_wrapper">
                                         <div class="row">
                                             <div class="col-lg-6 mb-3">
@@ -204,10 +211,10 @@
                         <option value="">Select Test</option>
                         <?php if ($services) {
                             foreach ($services as $service) { ?>
-                                                        <option value="<?= $service['service_id'] ?>">
-                                                          <?= $service['service_name'] ?> : <?= $service['service_charge'] ?>
-                                                            </option>
-                                           <?php }
+                                                                <option value="<?= $service['service_id'] ?>">
+                                                                  <?= $service['service_name'] ?> : <?= $service['service_charge'] ?>
+                                                                    </option>
+                                               <?php }
                         } ?>
                     </select>
                 </div>
@@ -241,6 +248,4 @@
             x--; // Decrease field counter
         });
     });
-
-
 </script>

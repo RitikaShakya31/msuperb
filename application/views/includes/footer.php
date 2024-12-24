@@ -84,8 +84,7 @@
 					<h3 class="footer-title">Our Policies</h3>
 					<div class="footer-links">
 						<ul>
-							<li><a href="<?= base_url('shipping-policy'); ?>">Return/Refund/Cancellation Policy</a>
-							</li>
+							<li><a href="<?= base_url('shipping-policy'); ?>">Return/Refund/Cancellation Policy</a></li>
 							<li><a href="<?= base_url('term-condition'); ?>">Terms & Conditions</a></li>
 							<li><a href="<?= base_url('privacy-policy'); ?>">Privacy Policy</a></li>
 						</ul>
@@ -96,8 +95,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="footer-bottom">
-					<p class="footer-copytext">&copy; All Copyrights Reserved by <a href="<?= base_url() ?>">Msuperb</a>
-					</p>
+					<p class="footer-copytext">&copy; All Copyrights Reserved by <a href="<?= base_url() ?>">Msuperb</a></p>
 					<div class="footer-card"><a href="<?= base_url() ?>"><img
 								src="<?= base_url() ?>assets/images/payment/jpg/01.jpg" alt="payment"></a><a
 							href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/images/payment/jpg/02.jpg"
