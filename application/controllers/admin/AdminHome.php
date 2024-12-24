@@ -34,7 +34,6 @@ class AdminHome extends CI_Controller
 		$data['banner'] = $this->CommonModel->getSingleRowById('banner', "banner_id = '1'");
 		if (count($_FILES) > 0) {
 			$postdata['image_path'] = fullImage('image_path', BANNER_IMAGE, $data['image_path']);
-
 			$update = $this->CommonModel->updateRowById('banner', ['banner_id' => 1], 'catalog_id', $postdata);
 			if ($update) {
 				flashMultiData(['success_status' => "success", 'msg' => " Banner Update successfully"]);
@@ -44,7 +43,6 @@ class AdminHome extends CI_Controller
 				redirect('banner');
 			}
 		}
-		
 		$this->load->view('admin/banner', $data);
 	}
 	public function promoCode()
@@ -220,10 +218,11 @@ class AdminHome extends CI_Controller
 			$getReg = false;
 		}
 		$get['service_name'] = set_value('service_name') == false ? @$getReg['service_name'] : set_value('service_name');
-		$get['service_charge'] = set_value('service_charge') == false ? @$getReg['service_charge'] : set_value('service_charge');
+		$get['service_type'] = set_value('service_type') == false ? @$getReg['service_type'] : set_value('service_type');
+		// $get['service_charge'] = set_value('service_charge') == false ? @$getReg['service_charge'] : set_value('service_charge');
 		if (count($_POST) > 0) {
 			extract($this->input->post());
-			$post['service_charge'] = $service_charge;
+			$post['service_type'] = $service_type;
 			$post['service_name'] = $service_name;
 
 			if (isset($id) && !empty($id)) {

@@ -3,41 +3,55 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="row">
-                                            <label for="example-text-input" class="col-md-3 col-form-label">Test
-                                                Name</label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" name="service_name" required
-                                                    value="<?= $service_name ?>">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-3">
+                                            <div class="row">
+                                                <label for="example-text-input" class="col-md-3 col-form-label">Test
+                                                    Type</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" name="service_type">
+                                                        <option value="" disabled>Select Type</option>
+                                                        <option value="3">Package </option>
+                                                        <option value="2">Routine</option>
+                                                        <option value="1">Daily </option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="row">
-                                            <label for="example-text-input" class="col-md-3 col-form-label">Test
-                                                Amount</label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" name="service_charge" required
-                                                    value="<?= $service_charge ?>">
+                                        <div class="col-lg-6 mb-3">
+                                            <div class="row">
+                                                <label for="example-text-input" class="col-md-3 col-form-label">Test
+                                                    Name</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" type="text" name="service_name" required
+                                                        value="<?= $service_name ?>">
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- <div class="col-lg-6 mb-3">
+                                            <div class="row">
+                                                <label for="example-text-input" class="col-md-3 col-form-label">Test
+                                                    Amount</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" type="text" name="service_charge"
+                                                        required value="<?= $service_charge ?>">
+                                                </div>
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-center mb-2">
-                                <button type="submit" id="save" class="btn btn-primary w-md">Save</button>
+                                <div class="text-center mb-2">
+                                    <button type="submit" id="save" class="btn btn-primary w-md">Save</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -49,8 +63,8 @@
                                         <th>Sr No.</th>
                                         <th>Action</th>
                                         <th>Published date</th>
+                                        <th>Test Type</th>
                                         <th>Test Name</th>
-                                        <th>Test Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,11 +86,21 @@
                                                 </td>
                                                 <td><?= $item['create_date'] ?> </td>
                                                 <td>
+                                                    <?php
+                                                    if ($item['service_type'] == '1') {
+                                                        echo 'Daily';
+                                                    } elseif ($item['service_type'] == '2') {
+                                                        echo 'Routine';
+                                                    } else {
+                                                        echo 'Package';
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <!-- <td><?= $item['service_charge'] ?> </td> -->
+                                                <td>
                                                     <p style="line-height:25px;">
                                                         <?= ucwords($item['service_name']) ?>
                                                     </p>
-                                                </td>
-                                                <td><?= $item['service_charge'] ?> </td>
                                                 </td>
                                             </tr>
                                             <?php

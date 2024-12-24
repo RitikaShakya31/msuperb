@@ -81,7 +81,7 @@ $this->session->unset_userdata('msg'); ?>
     }
     ?>
 </section> -->
-<!-- <section class="section feature-part">
+<section class="section feature-part">
     <div class="container">
         <div class="row justify-content-center custom-row-cols">
             <?php
@@ -108,7 +108,7 @@ $this->session->unset_userdata('msg'); ?>
             ?>
         </div>
     </div>
-</section> -->
+</section>
 <section class="section feature-part">
     <div class="container">
         <div class="row justify-content-center custom-row-cols">
