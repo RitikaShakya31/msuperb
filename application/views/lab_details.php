@@ -140,7 +140,42 @@
     <?php
     if ($packagepro != '') {
         foreach ($packagepro as $row) {
-            product($row, "product", "double");
+            $reg_id = $row['register_id'];
+			$data = $this->CommonModel->getSingleRowById('service_list', "register_id = '$reg_id'");
+            $ser_id = $data['service'];
+			$ser_data = $this->CommonModel->getSingleRowById('all_service', "service_id = '$ser_id'");
+            ?>
+            <div class="product-card d-flex flex-column justify-content-between">
+                <div class="product-media">
+                    <?= (($row['is_bestselling'] == '1') ? '<div class="bestselling-label"><label class="label-text bg-success">Bestselling</label></div>' : '') ?>
+                </div>
+                <div class="product-content" style="border:none;">
+                    <h6 class="product-name"><a
+                            href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>">
+                            <?= $ser_data['service_name']; ?>
+                        </a></h6>
+                    <h6 class="product-price mb-1"><span>₹
+                            <?= $ser_data['service_charge']; ?><small></small>
+                        </span></h6>
+                    <div class="product-action d-none">
+                        <button class="action-minus" title="Quantity Minus" data-rowid="<?= $row['product_id'] ?>"
+                            data-type="sidecart"><i class="icofont-minus"></i></button>
+                        <input class="action-input" title="Quantity Number" id="qtysidecart<?= $row['product_id'] ?>"
+                            type="text" name="quantity" value="1">
+                        <button class="action-plus" title="Quantity Plus" data-rowid="<?= $row['product_id'] ?>"
+                            data-type="sidecart"><i class="icofont-plus"></i></button>
+                    </div>
+                    <div class="row" style="justify-content: center;">
+                        <a href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>" class="
+                            col-md-6 mt-2 product-add" title="Know More"><span>know more</span></a>
+                        <button class="col-md-6 mt-2 product-add  addCart  crtbtn-<?= $row['product_id'] ?>"
+                            data-id="<?= $row['product_id'] ?>" title="Add to Cart"><i
+                                class="fas fa-shopping-basket"></i><span>add
+                                to cart</span></button>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
     } else {
         echo 'No test available';

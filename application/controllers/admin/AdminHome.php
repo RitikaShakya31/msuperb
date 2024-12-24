@@ -31,46 +31,20 @@ class AdminHome extends CI_Controller
 	}
 	public function banner()
 	{
-		extract($this->input->get());
-		$id = $this->input->get('bID');
-		$BdID = $this->input->get('BdID');
-		if ($id) {
-			$sId = decryptId($id);
-			$get = $this->CommonModel->getSingleRowById('banner', "banner_id = '$sId'");
-		}
-		$data['image_path'] = set_value('image_path') == false ? @$get['image_path'] : set_value('image_path');
-		$data['all_banner'] = $this->CommonModel->getAllRowsInOrder('banner', 'create_date', 'DESC');
+		$data['banner'] = $this->CommonModel->getSingleRowById('banner', "banner_id = '1'");
+		if (count($_FILES) > 0) {
+			$postdata['image_path'] = fullImage('image_path', BANNER_IMAGE, $data['image_path']);
 
-		if ($BdID != '') {
-			$delete = $this->CommonModel->deleteRowById('banner', array('banner_id' => decryptId($BdID)));
-			unlink('upload/banner/' . $img);
-			redirect('banner');
-			exit;
-		}
-
-		if (isset($id)) {
-			$data['title'] = 'Banner Edit';
-		} else {
-			$data['title'] = 'Banner add';
-		}
-		if (count($_POST) > 0) {
-
-			if (!empty($_FILES['image_path']['name'])) {
-				$p = fullImage('image_path', BANNER_IMAGE, $data['image_path']);
-				$post['image_path'] = $p;
-			}
-
-			if (isset($id)) {
-				$post['update_date'] = setDateTime();
-				$update = $this->CommonModel->updateRowById('banner', 'banner_id', $sId, $post);
-				flashData('errors', 'Banner Update Successfully');
+			$update = $this->CommonModel->updateRowById('banner', ['banner_id' => 1], 'catalog_id', $postdata);
+			if ($update) {
+				flashMultiData(['success_status' => "success", 'msg' => " Banner Update successfully"]);
+				redirect('banner');
 			} else {
-				$post['create_date'] = setDateTime();
-				$insert = $this->CommonModel->insertRow('banner', $post);
-				flashData('errors', 'Banner Add successfully.');
+				flashMultiData(['success_status' => "error", 'msg' => "Something went wrong."]);
+				redirect('banner');
 			}
-			redirect('banner');
 		}
+		
 		$this->load->view('admin/banner', $data);
 	}
 	public function promoCode()

@@ -140,7 +140,8 @@ class UserHome extends CI_Controller
     {
 
         $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('register', array('brand_name' => decryptId($id)), 'register_id', 'DESC', '20');
-               $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
+       
+        $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
             'product',
             [
                 'status' => '1',
