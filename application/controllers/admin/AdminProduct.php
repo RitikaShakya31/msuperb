@@ -84,7 +84,7 @@ class AdminProduct extends CI_Controller
 		$data['lab_email'] = set_value('lab_email') == false ? @$getReg['lab_email'] : set_value('lab_email');
 		$data['lab_contact'] = set_value('lab_contact') == false ? @$getReg['lab_contact'] : set_value('lab_contact');
 		$data['lab_name'] = set_value('lab_name') == false ? @$getReg['lab_name'] : set_value('lab_name');
-		$data['brand_name'] = set_value('brand_name') == false ? @$getReg['brand_name'] : set_value('brand_name');
+		$data['bank_name'] = set_value('bank_name') == false ? @$getReg['bank_name'] : set_value('bank_name');
 		$data['ifsc_code'] = set_value('ifsc_code') == false ? @$getReg['ifsc_code'] : set_value('ifsc_code');
 		$data['upi_id'] = set_value('upi_id') == false ? @$getReg['upi_id'] : set_value('upi_id');
 		$data['sub_category_name'] = set_value('sub_category_name') == false ? @$get['sub_category_name'] : set_value('sub_category_name');
@@ -107,8 +107,8 @@ class AdminProduct extends CI_Controller
 			$this->form_validation->set_rules('category_id', 'category', 'required');
 			if ($this->form_validation->run()) {
 				$post['sub_category_name'] = $sub_category_name;
-				$post['lab_email'] = $lab_email;
 				$post['lab_location'] = $lab_location;
+				$post['lab_email'] = $lab_email;
 				$post['lab_contact'] = $lab_contact;
 				$post['bank_name'] = $bank_name;
 				$post['ifsc_code'] = $ifsc_code;
@@ -120,47 +120,9 @@ class AdminProduct extends CI_Controller
 				}
 				if (isset($id)) {
 					$update = $this->CommonModel->updateRowById('sub_category', 'sub_category_id', $decrypt_id, $post);
-					$service = $this->input->post('service');
-				$charge = $this->input->post('charge');
-				$varid = $this->input->post('varid');
-				$service_type = $this->input->post('service_type');
-				$sizecount = count($service);
-				if ($sizecount > 0) {
-					for ($i = 0; $i < $sizecount; $i++) {
-						$variantdata = [
-							'register_id' => (int) decryptId($id),
-							'service_type' => $service_type[$i],
-							'service' => $service[$i],
-							'charge' => (int) $charge[$i],
-						];
-						if ($service[$i] != '') {
-							if ($varid[$i] != '') {
-								$this->CommonModel->updateRowByMoreId('service_list', "id = '{$varid[$i]}'", $variantdata);
-							} else {
-								$this->CommonModel->insertRowReturnId('service_list', $variantdata);
-							}
-						}
-					}
-				}
 					flashData('errors', 'Sub Category Update Successfully');
 				} else {
-					$p_id = $this->CommonModel->insertRowReturnIdWithClean('sub_category', $post);
-					$service = $this->input->post('service');
-					$charge = $this->input->post('charge');
-					$service_type = $this->input->post('service_type');
-	
-					$sizecount = count($service);
-					if ($sizecount > 0) {
-						for ($i = 0; $i < $sizecount; $i++) {
-							$variantdata = [
-								'register_id' => $p_id,
-								'service_type' => $service_type[$i],
-								'service' => $service[$i],
-								'charge' => (int) $charge[$i],
-							];
-							$this->CommonModel->insertRow('service_list', $variantdata);
-						}
-					}
+					$insert = $this->CommonModel->insertRow('sub_category', $post);
 					flashData('errors', 'Sub Category Add Successfully');
 				}
 				redirect('subCategoryAll');
@@ -208,6 +170,7 @@ class AdminProduct extends CI_Controller
 	public function productAdd()
 	{
 		$id = $this->input->get('id');
+		$data['services'] = $this->CommonModel->getAllRows('all_service');
 		if (isset($id)) {
 			$id = $this->input->get('id');
 			$decrypt_id = decryptId($id);

@@ -18,26 +18,21 @@
                                 <div class="row">
                                     <div class="col-lg-4 mb-3">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Test Name</label>
-                                            <div class="col-md-12">
-                                                <input class="form-control" type="text" name="product_name" required value="<?= $product_name ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 mb-3">
-                                        <div class="row">
                                             <label class="col-sm-3 control-label">Brand</label>
                                             <div class="col-sm-12">
-                                                <select class="form-control select" name="category_id" onchange="getCategory(this.value)">
-                                                    <option value="">Select Category</option>
+                                                <select class="form-control select" name="category_id"
+                                                    onchange="getCategory(this.value)">
+                                                    <option value="" disabled>Select Brand</option>
                                                     <?php
                                                     $c = getRowsByMoreIdWithOrder('category', "is_delete = '1'", "category_name", 'ASC');
                                                     foreach ($c as $cate) {
-                                                    ?>
+                                                        ?>
                                                         <option value="<?= $cate['category_id'] ?>" <?php if ($category_id == $cate['category_id']) {
-                                                                                                        echo 'selected';
-                                                                                                    } ?>><?= ucwords($cate['category_name']) ?></option>
-                                                    <?php
+                                                              echo 'selected';
+                                                          } ?>>
+                                                            <?= ucwords($cate['category_name']) ?>
+                                                        </option>
+                                                        <?php
                                                     }
                                                     ?>
                                                 </select>
@@ -48,16 +43,40 @@
                                         <div class="row">
                                             <label class="col-sm-12 control-label">Laboratory</label>
                                             <div class="col-sm-12">
-                                                <select class="form-control select" name="sub_category_id" data-placeholder="Select sub category" id="sub_category">
+                                                <select class="form-control select" name="sub_category_id"
+                                                    data-placeholder="Select sub category" id="sub_category">
                                                     <?php
                                                     $subCate = getRowsByMoreIdWithOrder('sub_category', "category_id = '$category_id' AND is_delete = '1'", 'sub_category_name', 'ASC');
                                                     foreach ($subCate as $c) {
-                                                    ?>
-                                                        <option value="<?= $c['sub_category_id'] ?>" <?= $c['sub_category_id'] == $sub_category_id ? 'selected' : '' ?>><?= $c['sub_category_name'] ?></option>
-                                                    <?php
+                                                        ?>
+                                                        <option value="<?= $c['sub_category_id'] ?>"
+                                                            <?= $c['sub_category_id'] == $sub_category_id ? 'selected' : '' ?>>
+                                                            <?= $c['sub_category_name'] ?>
+                                                        </option>
+                                                        <?php
                                                     }
                                                     ?>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <div class="row">
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Test
+                                                Name</label>
+                                            <div class="col-md-12">
+                                                <select class="form-control" name="product_name">
+                                                    <option value="">Select Test</option>
+                                                    <?php if ($services) {
+                                                        foreach ($services as $service) { ?>
+                                                            <option value="<?= $service['service_id'] ?>">
+                                                                <?= $service['service_name'] ?>
+                                                            </option>
+                                                        <?php }
+                                                    } ?>
+                                                </select>
+                                                <!-- <input class="form-control" type="text" name="product_name" required
+                                                    value="<?= $product_name ?>"> -->
                                             </div>
                                         </div>
                                     </div>
@@ -86,48 +105,60 @@
                                     </div> -->
                                     <div class="col-lg-4 mb-3 d-none">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label"><br></label>
+                                            <label for="example-text-input"
+                                                class="col-md-12 col-form-label"><br></label>
                                             <div class="col-md-12">
-                                                <input type="checkbox" name="is_bestselling" value="1" <?= ($is_bestselling == 1)? 'checked':'' ?>/> Is Best selling ?
-                                                
+                                                <input type="checkbox" name="is_bestselling" value="1"
+                                                    <?= ($is_bestselling == 1) ? 'checked' : '' ?> /> Is Best selling ?
+
                                             </div>
                                         </div>
-                                    </div>                                
+                                    </div>
                                     <div class="col-lg-4 mb-3 ">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Market Price</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Market
+                                                Price</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" type="number" name="market_price" required value="<?= $market_price ?>">
+                                                <input class="form-control" type="number" name="market_price" required
+                                                    value="<?= $market_price ?>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Sale Price</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Sale
+                                                Price</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" type="number" name="sale_price" required value="<?= $sale_price ?>">
+                                                <input class="form-control" type="number" name="sale_price" required
+                                                    value="<?= $sale_price ?>">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4 mb-3 d-none">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Quantity</label>
+                                            <label for="example-text-input"
+                                                class="col-md-12 col-form-label">Quantity</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" type="number" name="quantity" value="<?= $quantity ?>">
+                                                <input class="form-control" type="number" name="quantity"
+                                                    value="<?= $quantity ?>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 mb-3 d-none">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Quantity Type</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Quantity
+                                                Type</label>
                                             <div class="col-md-12">
                                                 <select name="quantity_type" class="form-select">
                                                     <option value="">Select Type</option>
-                                                    <option value="gm" <?= $quantity_type == 'gm' ? 'selected' : '' ?>>gm</option>
-                                                    <option value="kg" <?= $quantity_type == 'kg' ? 'selected' : '' ?>>kg</option>
+                                                    <option value="gm" <?= $quantity_type == 'gm' ? 'selected' : '' ?>>gm
+                                                    </option>
+                                                    <option value="kg" <?= $quantity_type == 'kg' ? 'selected' : '' ?>>kg
+                                                    </option>
                                                     <option value="leter" <?= $quantity_type == 'leter' ? 'selected' : '' ?>>leter</option>
-                                                    <option value="ml" <?= $quantity_type == 'ml' ? 'selected' : '' ?>>ml</option>
+                                                    <option value="ml" <?= $quantity_type == 'ml' ? 'selected' : '' ?>>ml
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -135,34 +166,42 @@
 
                                     <div class="col-lg-12  mb-3">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Description</label>
+                                            <label for="example-text-input"
+                                                class="col-md-12 col-form-label">Description</label>
                                             <div class="col-md-12">
-                                                <textarea name="description" style="width: 100%;" id="editor" rows="10"><?= $description ?></textarea>
+                                                <textarea name="description" style="width: 100%;" id="editor"
+                                                    rows="10"><?= $description ?></textarea>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12 mb-3 ">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">SEO title</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">SEO
+                                                title</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" type="text" name="seo_title" required value="<?= $seo_title ?>">
+                                                <input class="form-control" type="text" name="seo_title" required
+                                                    value="<?= $seo_title ?>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12  mb-3 ">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">SEO description</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">SEO
+                                                description</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" type="text" name="seo_description" required value="<?= $seo_description ?>">
+                                                <input class="form-control" type="text" name="seo_description" required
+                                                    value="<?= $seo_description ?>">
                                             </div>
                                         </div>
                                     </div>
-                                     <div class="col-lg-12  mb-3 ">
+                                    <div class="col-lg-12  mb-3 ">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">SEO Keywords</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">SEO
+                                                Keywords</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" type="text" name="seo_keyword" required value="<?= $seo_keyword?>">
+                                                <input class="form-control" type="text" name="seo_keyword" required
+                                                    value="<?= $seo_keyword ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +214,7 @@
                                     <!--        </div>-->
                                     <!--    </div>-->
                                     <!--</div>-->
-                                     <div class="col-lg-4 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <label style="color: gray">Note:- Image Size 600X400</label>
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label">Test
@@ -234,7 +273,7 @@
                                                 if ($variant) {
                                                     foreach ($variant as $variant_details) {
                                                         $id = encryptId($variant_details['id']);
-                                            ?>
+                                                        ?>
                                                         <div class="row p-1 mb-3" id="variant<?= $variant_details['id'] ?>">
                                                             <div class="col-md-12 p-1 text-primary">Variant #<?php echo $variant_details['id'] ?></div>
                                                             <div class="col-md-3 p-1">
@@ -279,14 +318,14 @@
                                                     foreach ($image_all as $img) {
                                                         $imgId = encryptId($img['product_image_id']);
                                                         $imgData = $img['image_path'];
-                                            ?>
+                                                        ?>
                                                         <div class="col-lg-4 mb-2">
                                                             <div style="width: 100%; border: 1px solid #aeaeae; border-radius: 5px">
                                                                 <img src="<?= base_url("upload/product/") . $imgData ?>" style="width: 100%;height: 180px; margin-top: 10px">
                                                                 <div style="margin-top: 10px; text-align: center">
                                                                     <?php
                                                                     if ($numImage != 1) {
-                                                                    ?>
+                                                                        ?>
                                                                         <a class="btn btn-danger" style="margin-right: 5px" onclick="return confirm('Are you sure to delete this image?')" href="<?= base_url("productImageD/$imgId/$imgData") ?>">
                                                                             <i class="fa fa-trash"></i> Delete
                                                                         </a>
@@ -321,7 +360,7 @@
 
 <?php $this->load->view('admin/template/footer'); ?>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         initSample();
     });
 
@@ -330,23 +369,23 @@
             type: "POST",
             url: "<?= base_url("getSubCategory") ?>",
             data: 'category_id=' + val,
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".loader").show();
             },
-            success: function(data) {
+            success: function (data) {
                 $("#sub_category").html(data);
                 $(".loader").hide();
             }
         });
     }
 
-    var imagesPreview = function(input, placeToInsertImagePreview) {
+    var imagesPreview = function (input, placeToInsertImagePreview) {
         if (input.files) {
             var filesAmount = input.files.length;
             // if (filesAmount <= 5) {
             for (i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = function (event) {
                     $($.parseHTML('<img style="width:200px; height:150px; margin-left:15px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                 }
                 reader.readAsDataURL(input.files[i]);
@@ -354,13 +393,13 @@
         }
     };
 
-    $('.image').on('change', function() {
+    $('.image').on('change', function () {
         $('.gallery').html('');
         imagesPreview(this, 'div.gallery');
     });
 </script>
 <script>
-    $("#rowAdder").click(function() {
+    $("#rowAdder").click(function () {
         newRowAdd =
             '<div class="row mb-3"><div class="col-md-12 p-1 text-primary">Variant #</div>' +
             '<div class="col-md-3 p-1">' +
@@ -389,11 +428,11 @@
 
         $('#newinput').append(newRowAdd);
     });
-    $("body").on("click", "#DeleteRow", function() {
+    $("body").on("click", "#DeleteRow", function () {
         $(this).parents("#row").remove();
     });
 
-    $(document).on('click', '.delete_variant', function() {
+    $(document).on('click', '.delete_variant', function () {
         var pid = $(this).data('id');
         if (confirm('Are you sure to delete this record, It is irreversible ?')) {
             $.ajax({
@@ -402,7 +441,7 @@
                 data: {
                     id: pid
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response == 0) {
                         alert('Successfully Deleted');
                         $("#variant" + pid).remove();

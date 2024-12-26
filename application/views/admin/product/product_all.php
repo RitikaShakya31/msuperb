@@ -35,12 +35,13 @@
                                         $i = 0;
                                         foreach ($all_product as $item) {
                                             $i = $i + 1;
+                                            $getPro = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $item['product_name']]);
                                             $id = encryptId($item['product_id']);
                                     ?>
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <td>
-                                                    <p class="wrap_text"><?= ucwords($item['product_name']) ?></p>
+                                                    <p class="wrap_text"><?= ucwords($getPro['service_name']) ?></p>
                                                     <?= (($item['is_bestselling'] == '1') ? '<span class="bg-info badge badge-info">Bestselling</span>' : '') ?>
                                                 </td>
                                                 <!-- <td><?= $item['category_name'] ?> </td>

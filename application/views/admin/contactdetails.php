@@ -18,19 +18,19 @@
                         <div class="card-body">
                             <form action="" method="post" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label for="example-text-input" class="col-form-label">Contact No.</label>
                                         <div class="col-md-9">
                                             <input class="form-control" type="text" name="contact_f" value="<?= $contact_f ?>">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label for="example-text-input" class="col-form-label">Email ID</label>
                                         <div class="col-md-9">
                                             <input class="form-control" type="text" name="email_f" value="<?= $email_f ?>">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label for="example-text-input" class="col-form-label">Address</label>
                                         <div class="col-md-9">
                                             <input class="form-control" type="text" name="location" value="<?= $location ?>">
