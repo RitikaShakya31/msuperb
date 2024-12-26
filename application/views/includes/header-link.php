@@ -3,39 +3,39 @@
   <meta name="google-site-verification" content="uWi_cEkPlaWYyOChX06Bfy9H9hYTYTNZHntYItpaVw8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="template" content="CARE1">
-  <meta name="title" content="<?php echo isset($title) && $title != '' ? $title : $title . 'CARE1 | Your One Care Medical'; ?>">
- <meta name="description" content="<?php echo isset($desc) ? ($desc != '' ? $desc : 'CARE1 | Your One Care Medical') : 'CARE1 | Your One Care Medical'; ?>">
-  <meta name="keywords" content="<?php echo isset($keyword) ? ($keyword != '' ? $keyword : 'CARE1 | Your One Care Medical') : 'CARE1 | Your One Care Medical'; ?>">
+  <meta name="title" content="<?php echo isset($title) && $title != '' ? $title : $title . 'Msuperb '; ?>">
+ <meta name="description" content="<?php echo isset($desc) ? ($desc != '' ? $desc : 'Msuperb') : 'Msuperb'; ?>">
+  <meta name="keywords" content="<?php echo isset($keyword) ? ($keyword != '' ? $keyword : 'Msuperb') : 'Msuperb'; ?>">
 
 
   <!---------------------------------------------------Twitter Meta Property Started------------------------------------------------->
 
   <meta property="twitter:card" content="summary" />
-  <meta name="twitter:title" content="CARE1 | Your One Care Medical" />
-  <meta name="twitter:description" content="CARE1 | Your One Care Medical" />
+  <meta name="twitter:title" content="Msuperb" />
+  <meta name="twitter:description" content="Msuperb" />
   <meta name="twitter:url" content="https://www.care1.com" />
   <meta property="twitter:site" content="https://www.care1.com" />
   <meta property="twitter:image" content="https://www.care1.com/assets/images/favicon.png" />
   <meta property="twitter:image:width" content="349" />
   <meta property="twitter:image:height" content="307" />
-  <meta name="twitter:domain" content="CARE1 | Your One Care Medical " />
+  <meta name="twitter:domain" content="Msuperb " />
 
   <!---------------------------------------------------Twitter Meta Property End------------------------------------------------->
 
   <!---------------------------------------------------OG Meta Property Started------------------------------------------------------>
-  <meta property="og:title" content="CARE1 | Your One Care Medical | Complete Health Care Supplement For Men & Women" />
-  <meta property="og:description" content="CARE1 | Your One Care Medical" />
+  <meta property="og:title" content="Msuperb " />
+  <meta property="og:description" content="Msuperb" />
   <meta property=og:image content="https://www.care1.com/assets/images/favicon.png" />
   <meta property="og:url" content="https://www.care1.com" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="article" />
-  <meta property="og:sitename" content="CARE1 | Your One Care Medical " />
-  <meta property="article:publisher" content="CARE1 | Your One Care Medical " />
+  <meta property="og:sitename" content="Msuperb " />
+  <meta property="article:publisher" content="Msuperb " />
   <meta name="distribution" content="global" />
-  <meta property="article:tag" content="Complete Health Care Solutions" />
-  <meta property="article:tag" content="Boost Your Immunity System" />
-  <meta property="article:tag" content="Health Care Herbal Supplement For Men & Women" />
-  <meta property="article:tag" content="Herbal Products" />
+  <meta property="article:tag" content="" />
+  <meta property="article:tag" content="" />
+  <meta property="article:tag" content="" />
+  <meta property="article:tag" content="" />
   <meta property="og:image:width" content="349" />
   <meta property="og:image:height" content="307" />
 

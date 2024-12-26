@@ -92,8 +92,7 @@
                                                 
                                             </div>
                                         </div>
-                                    </div>
-                                
+                                    </div>                                
                                     <div class="col-lg-4 mb-3 ">
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label">Market Price</label>

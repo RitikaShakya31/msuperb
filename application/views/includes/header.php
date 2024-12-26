@@ -4,7 +4,6 @@
 <?php $this->load->view('includes/header-link'); ?>
 
 <body>
-
 	<div class="backdrop"></div>
 	<a class="backtop fas fa-arrow-up" href="#"></a>
 	<div class="header-top">
@@ -151,16 +150,15 @@
 						Home
 					</a>
 				</li>
-				<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('about') ?>">
+				<li class="navbar-item dropdown"><a class="navbar-link" href="">
 						About Us
 					</a>
 				</li>
-				<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('blogs') ?>">
-						Blogs
+				<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('product') ?>">
+				Explore All Test
 					</a>
 				</li>
-				<li class="navbar-item dropdown"><a class="navbar-link " href="<?= base_url('product') ?>">Our
-						Products</a>
+				<li class="navbar-item dropdown"><a class="navbar-link " href="<?= base_url('nearest-lab') ?>">Nearest lab</a>
 
 				</li>
 				<?php

@@ -141,6 +141,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <input class="form-control" type="hidden" name="service_type[]"
+                                                value="<?= $services['service_type']?>">
                                                 <div class="col-lg-2 mb-3">
                                                     <div class="row">
                                                         <input class="form-control" type="hidden" name="varid[]"
@@ -184,6 +186,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <input class="form-control" type="hidden" name="service_type[]"
+                                            value="<?= $services['service_type']?>">
                                             <div class="col-lg-2 mb-3">
                                                 <div class="row">
                                                     <input class="form-control" type="hidden" name="varid[]" value="">
@@ -239,6 +243,9 @@
                     </div>
                 </div>
             </div>
+              <input class="form-control" type="hidden" name="service_type[]"
+                                                value="">
+            
             <div class="col-lg-2 mb-3">
                 <div class="row">
                     <input class="form-control" type="hidden" name="varid[]" value="">

@@ -136,6 +136,7 @@ class AdminHome extends CI_Controller
 			$getReg = $this->CommonModel->getSingleRowById('register', "register_id = '$decrypt_id'");
 			$data['variant'] = $this->CommonModel->getRowByMoreId('service_list', "register_id = '$decrypt_id'");
 		} else {
+			
 			$data['title'] = 'Add Register';
 			$getReg = false;
 		}
@@ -148,6 +149,9 @@ class AdminHome extends CI_Controller
 		$data['ifsc_code'] = set_value('ifsc_code') == false ? @$getReg['ifsc_code'] : set_value('ifsc_code');
 		$data['upi_id'] = set_value('upi_id') == false ? @$getReg['upi_id'] : set_value('upi_id');
 		if (count($_POST) > 0) {
+			// echo '<pre>';
+			// print_r($_POST);
+			// exit();
 			extract($this->input->post());
 			$post['lab_location'] = $lab_location;
 			$post['lab_email'] = $lab_email;
@@ -164,12 +168,13 @@ class AdminHome extends CI_Controller
 				$service = $this->input->post('service');
 				$charge = $this->input->post('charge');
 				$varid = $this->input->post('varid');
-
+				$service_type = $this->input->post('service_type');
 				$sizecount = count($service);
 				if ($sizecount > 0) {
 					for ($i = 0; $i < $sizecount; $i++) {
 						$variantdata = [
 							'register_id' => (int) decryptId($id),
+							'service_type' => $service_type[$i],
 							'service' => $service[$i],
 							'charge' => (int) $charge[$i],
 						];
@@ -187,12 +192,14 @@ class AdminHome extends CI_Controller
 				$p_id = $this->CommonModel->insertRowReturnIdWithClean('register', $post);
 				$service = $this->input->post('service');
 				$charge = $this->input->post('charge');
+				$service_type = $this->input->post('service_type');
 
 				$sizecount = count($service);
 				if ($sizecount > 0) {
 					for ($i = 0; $i < $sizecount; $i++) {
 						$variantdata = [
 							'register_id' => $p_id,
+							'service_type' => $service_type[$i],
 							'service' => $service[$i],
 							'charge' => (int) $charge[$i],
 						];

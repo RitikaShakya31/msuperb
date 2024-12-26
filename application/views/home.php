@@ -122,8 +122,8 @@ $this->session->unset_userdata('msg'); ?>
                                 <?= (($row['is_bestselling'] == '1') ? '<div class="bestselling-label"><label class="label-text bg-success">Bestselling</label></div>' : '') ?>
                                 <a class="image"
                                     href="<?= base_url('product-details/' . encryptId($row['category_id']) . '/' . url_title($row['category_name'])) ?>">
-                                    <img src="<?= setImage(@$row['image'], 'upload/category/') ?>" alt="Category" width="80"
-                                        height="80" style="object-fit: contain;">
+                                    <img src="<?= setImage(@$row['image'], 'upload/category/') ?>" alt="Category" width="70"
+                                        height="70" style="object-fit: contain;">
                                 </a>
                             </div>
                         </div>
