@@ -18,7 +18,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 mb-3">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Product Name</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Test Name</label>
                                             <div class="col-md-12">
                                                 <input class="form-control" type="text" name="product_name" required value="<?= $product_name ?>">
                                             </div>
@@ -26,9 +26,9 @@
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label">Category</label>
+                                            <label class="col-sm-3 control-label">Brand</label>
                                             <div class="col-sm-12">
-                                                <select class="form-control select2" name="category_id" onchange="getCategory(this.value)">
+                                                <select class="form-control select" name="category_id" onchange="getCategory(this.value)">
                                                     <option value="">Select Category</option>
                                                     <?php
                                                     $c = getRowsByMoreIdWithOrder('category', "is_delete = '1'", "category_name", 'ASC');
@@ -46,9 +46,9 @@
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <div class="row">
-                                            <label class="col-sm-12 control-label">Sub Category</label>
+                                            <label class="col-sm-12 control-label">Laboratory</label>
                                             <div class="col-sm-12">
-                                                <select class="form-control select2" name="sub_category_id" data-placeholder="Select sub category" id="sub_category">
+                                                <select class="form-control select" name="sub_category_id" data-placeholder="Select sub category" id="sub_category">
                                                     <?php
                                                     $subCate = getRowsByMoreIdWithOrder('sub_category', "category_id = '$category_id' AND is_delete = '1'", 'sub_category_name', 'ASC');
                                                     foreach ($subCate as $c) {
@@ -61,7 +61,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 mb-3">
+                                    <!-- <div class="col-lg-4 mb-3">
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label">Product Type</label>
                                             <div class="col-md-12">
@@ -72,8 +72,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 mb-3">
+                                    </div> -->
+                                    <!-- <div class="col-lg-4 mb-3">
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label">Product Status</label>
                                             <div class="col-md-12">
@@ -83,8 +83,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 mb-3">
+                                    </div> -->
+                                    <div class="col-lg-4 mb-3 d-none">
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label"><br></label>
                                             <div class="col-md-12">
@@ -178,7 +178,7 @@
                                      <div class="col-lg-4 mb-3">
                                         <label style="color: gray">Note:- Image Size 600X400</label>
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Product
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Test
                                                 Image</label>
                                             <div class="col-md-12">
                                                 <input type="file" class="form-control image" multiple <?= isset($id) ? '' : 'required' ?> name="image[]">
@@ -194,7 +194,7 @@
                                     <div class="col-lg-4  mb-3">
                                         <div class="gallery"></div>
                                     </div>
-                                    <div class="col-lg-12  mb-3">
+                                    <!-- <div class="col-lg-12  mb-3">
 
                                         <button id="rowAdder" type="button" class="btn btn-dark">
                                             <span class="fa fa-plus">
@@ -268,8 +268,8 @@
                                             }
                                             ?>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4  mt-2">
+                                    </div> -->
+                                    <!-- <div class="col-lg-4  mt-2">
                                         <div class="row">
                                             <?php
                                             if (isset($id)) {
@@ -302,7 +302,7 @@
                                             }
                                             ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="text-center">

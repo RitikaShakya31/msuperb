@@ -93,7 +93,7 @@
                                                 <td><?= $item['email'] ?></td>
                                                 <td><?= $item['gender'] ?></td>
                                                 <td><?= $item['DOB'] ?></td>
-                                                <td><a href="<?= base_url('upload/prescription/' . $item['prescription_image']) ?>"
+                                                <td><a class="btn btn-success" href="<?= base_url('upload/prescription/' . $item['prescription_image']) ?>"
                                                         target="_blank">
                                                         Click Here</a></td>
                                                 <!-- <td>

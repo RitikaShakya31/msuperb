@@ -20,7 +20,7 @@ $page_id = $this->input->get('page_id');
 						<span key="t-dashboards">Dashboards</span>
 					</a>
 				</li>
-				<li class="menu-title" key="t-apps">Apps</li>
+				<li class="menu-title" key="t-apps">Management</li>
 				<!-- <li><a href="<?= base_url('registerAll') ?>" key="t-blog">
 						<i class="bx bx-file"></i>
 						<span key="t-dashboards">Lab Registrations</span>
@@ -34,10 +34,10 @@ $page_id = $this->input->get('page_id');
 						<span key="t-ecommerce">Product</span>
 					</a>
 					<ul class="sub-menu" aria-expanded="false">
-						<li><a href="<?= base_url('categoryAll') ?>" class="<?php if ($page == "categoryAll" || $page == 'categoryAdd') {
+						<li><a href="<?= base_url('brandAll') ?>" class="<?php if ($page == "brandAll" || $page == 'categoryAdd') {
 							  echo 'active';
 						  } ?>" key="t-category">Brand</a></li>
-						<li><a href="<?= base_url('subCategoryAll') ?>" class="<?php if ($page == "subCategoryAll" || $page == 'subCategoryAdd') {
+						<li><a href="<?= base_url('laboratoryAll') ?>" class="<?php if ($page == "laboratoryAll" || $page == 'subCategoryAdd') {
 							  echo 'active';
 						  } ?>" key="t-sub-category">Laboratory</a></li>
 						<li><a href="<?= base_url('productAll') ?>" class="<?php if ($page == "productAll" || $page == 'productAdd' || $page == 'productDetails') {
@@ -45,6 +45,26 @@ $page_id = $this->input->get('page_id');
 						  } ?>" key="t-product">Test</a></li>
 					</ul>
 				</li>
+				<li>
+					<a href="<?= base_url('banner') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Banner</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= base_url('promoCode') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Promo Code</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= base_url('setDeliveryCharges') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Delivery Charges</span>
+					</a>
+				</li>
+
+				<li class="menu-title" key="t-apps">Query</li>
 				<li><a href="<?= base_url('userAll') ?>" key="t-blog">
 						<i class='bx bxs-user'></i>
 						<span key="t-dashboards">Patient Details </span>
@@ -58,34 +78,23 @@ $page_id = $this->input->get('page_id');
 						<i class='bx bxs-wallet'></i>
 						<span key="t-dashboards">Payment</span></a>
 				</li>
+				<li class="menu-title" key="t-apps">Setting</li>
+				
 				<!-- <li><a href="<?= base_url('support-query') ?>" key="t-blog">
 						<i class='bx bx-support'></i>
 						<span key="t-dashboards">Lab Support Query</span></a>
 				</li> -->
-				<li><a href="<?= base_url('testAll') ?>" key="t-blog">
+				<!-- <li><a href="<?= base_url('testAll') ?>" key="t-blog">
 						<i class="bx bx-file"></i>
 						<span key="t-dashboards">All Test</span>
 					</a>
-				</li>
+				</li> -->
 				<!-- <li><a href="<?= base_url('brandAll') ?>" key="t-blog">
 						<i class="bx bx-file"></i>
 						<span key="t-dashboards">Brand List</span>
 					</a>
 				</li> -->
-
-				<li>
-					<a href="<?= base_url('banner') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Banner</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="<?= base_url('promoCode') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Promo Code</span>
-					</a>
-				</li>
+				
 				<!-- <li>
 					<a href="<?= base_url('blog') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>
@@ -98,12 +107,7 @@ $page_id = $this->input->get('page_id');
 				<!--		<span key="t-file-manager">Product Review</span>-->
 				<!--	</a>-->
 				<!--</li>-->
-				<li>
-					<a href="<?= base_url('setDeliveryCharges') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Delivery Charges</span>
-					</a>
-				</li>
+				
 				<li>
 					<a href="<?= base_url('contactdetails') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>

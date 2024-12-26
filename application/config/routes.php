@@ -63,10 +63,10 @@ $route['shiprocket/(:any)'] = 'admin/AdminHome/shiprocket/$1';
 
 // => Product
 
-$route['categoryAll'] = 'admin/AdminProduct/categoryAll';
+$route['brandAll'] = 'admin/AdminProduct/categoryAll';
 $route['categoryAdd'] = 'admin/AdminProduct/categoryAdd';
-$route['subCategoryAll'] = 'admin/AdminProduct/subCategoryAll';
-$route['subCategoryAdd'] = 'admin/AdminProduct/subCategoryAdd';
+$route['laboratoryAll'] = 'admin/AdminProduct/subCategoryAll';
+$route['allTest'] = 'admin/AdminProduct/subCategoryAdd';
 
 $route['getSubCategory'] = 'admin/AdminProduct/getSubCategory';
 $route['productAll'] = 'admin/AdminProduct/productAll';

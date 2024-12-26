@@ -60,14 +60,14 @@
                     </div> -->
 
                     <div class="row">
-                        <h4>Products</h4>
+                        <!-- <h4>Products</h4> -->
                         <div class="col-md-4">
-                            <a href="<?= base_url('categoryAll') ?>">
+                            <a href="<?= base_url('brandAll') ?>">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="media">
                                             <div class="media-body">
-                                                <p class="text-muted fw-medium">Total Category</p>
+                                                <p class="text-muted fw-medium">Total Brands</p>
                                                 <h4 class="mb-0"><?= $product_category ?></h4>
                                             </div>
 
@@ -82,12 +82,12 @@
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a href="<?= base_url('subCategoryAll') ?>">
+                            <a href="<?= base_url('laboratoryAll') ?>">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="media">
                                             <div class="media-body">
-                                                <p class="text-muted fw-medium">Total Sub Category</p>
+                                                <p class="text-muted fw-medium">Total Loboratory</p>
                                                 <h4 class="mb-0"><?= $product_sub_category ?></h4>
                                             </div>
 
@@ -101,7 +101,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <a href="<?= base_url('productAll') ?>">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class AdminProduct extends CI_Controller
 	public function categoryAll()
 	{
 		$get['category_all'] = $this->CommonModel->getRowByIdInOrder('category', "is_delete = '1'", 'category_name', 'ASC');
-		$get['title'] = 'All Category';
+		$get['title'] = 'All Brands';
 		$this->load->view('admin/product/category_all', $get);
 	}
 	public function categoryAdd()
@@ -216,11 +216,11 @@ class AdminProduct extends CI_Controller
 			$data['image_all'] = $this->CommonModel->getRowById('product_image', "product_id", $decrypt_id);
 			$data['variant'] = $this->CommonModel->getRowById('product_variant', "product_id", $decrypt_id);
 		} else {
-			$data['title'] = 'Add Product';
+			$data['title'] = 'Add Test';
 			$getProduct = false;
 		}
 		$data['product_name'] = set_value('product_name') == false ? @$getProduct['product_name'] : set_value('product_name');
-		$data['product_type'] = set_value('product_type') == false ? @$getProduct['product_type'] : set_value('product_type');
+		// $data['product_type'] = set_value('product_type') == false ? @$getProduct['product_type'] : set_value('product_type');
 		$data['description'] = set_value('description') == false ? @$getProduct['description'] : set_value('description');
 		$data['market_price'] = set_value('market_price') == false ? @$getProduct['market_price'] : set_value('market_price');
 		$data['sale_price'] = set_value('sale_price') == false ? @$getProduct['sale_price'] : set_value('sale_price');
@@ -236,42 +236,42 @@ class AdminProduct extends CI_Controller
 			extract($this->input->post());
 			$post['product_name'] = $product_name;
 			$post['description'] = $description;
-			$post['product_type'] = $product_type;
+			// $post['product_type'] = $product_type;
 			$post['market_price'] = $market_price;
 			$post['sale_price'] = $sale_price;
 			$post['seo_title'] = $seo_title;
 			$post['seo_description'] = $seo_description;
 			$post['seo_keyword'] = $seo_keyword;
-			$post['product_status'] = $product_status;
+			// $post['product_status'] = $product_status;
 			$post['sub_category_id'] = $sub_category_id;
 			$post['category_id'] = $category_id;
 			$post['is_bestselling'] = ((isset($is_bestselling)) ? 1 : 0);
 
-			$variant = ['variant_product_id' => $_POST['variant_product_id'], 'product_title' => $_POST['variant_product_title'], 'market_price' => $_POST['variant_market_price'], 'sale_price' => $_POST['variant_sale_price'], 'product_description' => $_POST['variant_product_description'], 'tag' => $_POST['variant_tag']];
-			unset(
-				$_POST['product_title'],
-				$_POST['market_price'],
-				$_POST['sale_price'],
-				$_POST['product_description'],
-				$_POST['tag'],
-				$_POST['variant_product_id']
-			);
-			$dataCount = count($variant['product_title']);
+			// $variant = ['variant_product_id' => $_POST['variant_product_id'], 'product_title' => $_POST['variant_product_title'], 'market_price' => $_POST['variant_market_price'], 'sale_price' => $_POST['variant_sale_price'], 'product_description' => $_POST['variant_product_description'], 'tag' => $_POST['variant_tag']];
+			// unset(
+			// 	$_POST['product_title'],
+			// 	$_POST['market_price'],
+			// 	$_POST['sale_price'],
+			// 	$_POST['product_description'],
+			// 	$_POST['tag'],
+			// 	$_POST['variant_product_id']
+			// );
+			// $dataCount = count($variant['product_title']);
 			if (isset($id)) {
 				$update = $this->CommonModel->updateRowById('product', 'product_id', $decrypt_id, $post);
-				if ($dataCount > 0) {
-					for ($i = 0; $i < $dataCount; $i++) {
-						if ($variant['product_title'][$i] != '') {
-							$post2 = array('product_id' => $decrypt_id, 'product_title' => $variant['product_title'][$i], 'market_price' => $variant['market_price'][$i], 'sale_price' => $variant['sale_price'][$i], 'product_description' => $variant['product_description'][$i], 'tag' => $variant['tag'][$i]);
+				// if ($dataCount > 0) {
+				// 	for ($i = 0; $i < $dataCount; $i++) {
+				// 		if ($variant['product_title'][$i] != '') {
+				// 			$post2 = array('product_id' => $decrypt_id, 'product_title' => $variant['product_title'][$i], 'market_price' => $variant['market_price'][$i], 'sale_price' => $variant['sale_price'][$i], 'product_description' => $variant['product_description'][$i], 'tag' => $variant['tag'][$i]);
 
-							if ($variant['variant_product_id'][$i] != '') {
-								$updates = $this->CommonModel->updateRowById('product_variant', 'id', $variant['variant_product_id'][$i], $post2);
-							} else {
-								$inserts = $this->CommonModel->insertRow('product_variant', $post2);
-							}
-						}
-					}
-				}
+				// 			if ($variant['variant_product_id'][$i] != '') {
+				// 				$updates = $this->CommonModel->updateRowById('product_variant', 'id', $variant['variant_product_id'][$i], $post2);
+				// 			} else {
+				// 				$inserts = $this->CommonModel->insertRow('product_variant', $post2);
+				// 			}
+				// 		}
+				// 	}
+				// }
 
 				$filesCount = count($_FILES['image']['name']);
 
@@ -281,14 +281,12 @@ class AdminProduct extends CI_Controller
 						if (!empty($_FILES['image']['name'][$i])) { // चेक करें कि फाइल खाली नहीं है
 							$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
 							$newFilename = round(microtime(true) * 1000) . '.' . $extension;
-
 							$_FILES['files']['name'] = $newFilename;
 							$_FILES['files']['type'] = $_FILES['image']['type'][$i];
 							$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
 							$_FILES['files']['error'] = $_FILES['image']['error'][$i];
 							$_FILES['files']['size'] = $_FILES['image']['size'][$i];
-
-							$picture = fullImage('files', PRODUCT_IMAGE); // इमेज सेविंग फंक्शन
+							$picture = fullImage('files', PRODUCT_IMAGE);
 							if ($picture) {
 								$post3['image_path'] = $picture;
 								$post3['product_id'] = isset($decrypt_id) ? $decrypt_id : $p_id;
@@ -299,20 +297,10 @@ class AdminProduct extends CI_Controller
 				} else {
 					$file_error = "Please select at least one file to upload.";
 				}
-				// exit;
 				flashData('errors', 'Produce update successfully');
 			} else {
 				$p_id = $this->CommonModel->insertRowReturnIdWithClean('product', $post);
 				if ($p_id > 0) {
-
-					if ($dataCount > 0) {
-						for ($i = 0; $i < $dataCount; $i++) {
-							if ($variant['product_title'][$i] != '') {
-								$post2 = array('product_id' => $p_id, 'product_title' => $variant['product_title'][$i], 'market_price' => $variant['market_price'][$i], 'sale_price' => $variant['sale_price'][$i], 'product_description' => $variant['product_description'][$i], 'tag' => $variant['tag'][$i]);
-								$insert = $this->CommonModel->insertRow('product_variant', $post2);
-							}
-						}
-					}
 					$filesCount = count($_FILES['image']['name']);
 					if ($filesCount > 0) {
 						for ($i = 0; $i < $filesCount; $i++) {
@@ -358,7 +346,7 @@ class AdminProduct extends CI_Controller
 		$data['company_id'] = set_value('company_id') == false ? @$getProduct['company_id'] : set_value('company_id');
 		$data['category_id'] = set_value('category_id') == false ? @$getProduct['category_id'] : set_value('category_id');
 		$data['sub_category_id'] = set_value('sub_category_id') == false ? @$getProduct['sub_category_id'] : set_value('sub_category_id');
-		$data['product_type'] = set_value('product_type') == false ? @$getProduct['product_type'] : set_value('product_type');
+		// $data['product_type'] = set_value('product_type') == false ? @$getProduct['product_type'] : set_value('product_type');
 		$data['description'] = set_value('description') == false ? @$getProduct['description'] : set_value('description');
 		$data['product_type'] = set_value('product_type') == false ? @$getProduct['product_type'] : set_value('product_type');
 		$data['market_price'] = set_value('market_price') == false ? @$getProduct['market_price'] : set_value('market_price');
