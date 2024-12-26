@@ -21,11 +21,11 @@ $page_id = $this->input->get('page_id');
 					</a>
 				</li>
 				<li class="menu-title" key="t-apps">Apps</li>
-				<li><a href="<?= base_url('registerAll') ?>" key="t-blog">
+				<!-- <li><a href="<?= base_url('registerAll') ?>" key="t-blog">
 						<i class="bx bx-file"></i>
 						<span key="t-dashboards">Lab Registrations</span>
 					</a>
-				</li>
+				</li> -->
 				<li class="<?php if ($page == "company" || $page == "categoryAll" || $page == 'categoryAdd' || $page == 'subCategoryAdd' || $page == 'subCategoryAll' || $page == 'productAll' || $page == 'productAdd' || $page == 'productDetails') {
 					echo "mm-active";
 				} ?>">
@@ -67,11 +67,11 @@ $page_id = $this->input->get('page_id');
 						<span key="t-dashboards">All Test</span>
 					</a>
 				</li>
-				<li><a href="<?= base_url('brandAll') ?>" key="t-blog">
+				<!-- <li><a href="<?= base_url('brandAll') ?>" key="t-blog">
 						<i class="bx bx-file"></i>
 						<span key="t-dashboards">Brand List</span>
 					</a>
-				</li>
+				</li> -->
 
 				<li>
 					<a href="<?= base_url('banner') ?>" class="waves-effect">

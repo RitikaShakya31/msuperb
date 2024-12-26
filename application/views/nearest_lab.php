@@ -24,10 +24,11 @@
                 </div>
                 <div class="product-content" style="border:none;">
                     <h6 class="lab-name">
-                        <a
-                            href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)); ?>">
-                            <?= htmlspecialchars($row['lab_name'], ENT_QUOTES, 'UTF-8'); ?>
-                        </a>
+                        <!-- <a
+                            href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)); ?>"> -->
+                            
+                            <?= htmlspecialchars($row['sub_category_name'], ENT_QUOTES, 'UTF-8'); ?>
+                        <!-- </a> -->
                     </h6>
                     <ul class="review-rating">
                         <li class="icofont-ui-rating">

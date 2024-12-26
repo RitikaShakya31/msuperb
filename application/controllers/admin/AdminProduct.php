@@ -68,23 +68,34 @@ class AdminProduct extends CI_Controller
 	public function subCategoryAll()
 	{
 		$data['sub_category'] = $this->CommonModel->getRowByIdInOrder('sub_category', "is_delete = '1'", 'sub_category_name', 'ASC');
-		$data['title'] = "All Sub Category";
+		$data['title'] = "All Laboratory";
 		$this->load->view('admin/product/sub_category_all', $data);
 	}
 	public function subCategoryAdd()
 	{
 		$dID = $this->input->get('dID');
 		$id = $this->input->get('id');
+		$data['services'] = $this->CommonModel->getAllRows('all_service');
+		$data['brand'] = $this->CommonModel->getAllRows('all_brand');
 		extract($this->input->post());
 		$decrypt_id = decryptId($this->input->get('id'));
 		$get = $this->CommonModel->getSingleRowById('sub_category', "sub_category_id = '$decrypt_id'");
+		$data['lab_location'] = set_value('lab_location') == false ? @$getReg['lab_location'] : set_value('lab_location');
+		$data['lab_email'] = set_value('lab_email') == false ? @$getReg['lab_email'] : set_value('lab_email');
+		$data['lab_contact'] = set_value('lab_contact') == false ? @$getReg['lab_contact'] : set_value('lab_contact');
+		$data['lab_name'] = set_value('lab_name') == false ? @$getReg['lab_name'] : set_value('lab_name');
+		$data['brand_name'] = set_value('brand_name') == false ? @$getReg['brand_name'] : set_value('brand_name');
+		$data['ifsc_code'] = set_value('ifsc_code') == false ? @$getReg['ifsc_code'] : set_value('ifsc_code');
+		$data['upi_id'] = set_value('upi_id') == false ? @$getReg['upi_id'] : set_value('upi_id');
 		$data['sub_category_name'] = set_value('sub_category_name') == false ? @$get['sub_category_name'] : set_value('sub_category_name');
 		$data['category_id'] = set_value('category_id') == false ? @$get['category_id'] : set_value('category_id');
 		$data['sub_category_image'] = set_value('category_image2') == false ? @$get['sub_category_image'] : set_value('category_image2');
 		if (isset($id)) {
-			$data['title'] = 'Edit Sub Category';
+			$data['title'] = 'Edit Laboratory';
+			$getReg = $this->CommonModel->getSingleRowById('register', "register_id = '$decrypt_id'");
+			$data['variant'] = $this->CommonModel->getRowByMoreId('service_list', "register_id = '$decrypt_id'");
 		} else {
-			$data['title'] = 'Add Sub Category';
+			$data['title'] = 'Add Laboratory';
 		}
 		if (isset($dID)) {
 			$update = $this->CommonModel->updateRowById('sub_category', 'sub_category_id', decryptId($dID), array('is_delete' => '0'));
@@ -96,6 +107,12 @@ class AdminProduct extends CI_Controller
 			$this->form_validation->set_rules('category_id', 'category', 'required');
 			if ($this->form_validation->run()) {
 				$post['sub_category_name'] = $sub_category_name;
+				$post['lab_email'] = $lab_email;
+				$post['lab_location'] = $lab_location;
+				$post['lab_contact'] = $lab_contact;
+				$post['bank_name'] = $bank_name;
+				$post['ifsc_code'] = $ifsc_code;
+				$post['upi_id'] = $upi_id;
 				$post['category_id'] = $category_id;
 				if (!empty($_FILES['sub_category_image']['name'])) {
 					$picture = imageUploadWithRatio('sub_category_image', CATEGORY_IMAGE, 600, 400, $data['sub_category_image']);
@@ -103,9 +120,47 @@ class AdminProduct extends CI_Controller
 				}
 				if (isset($id)) {
 					$update = $this->CommonModel->updateRowById('sub_category', 'sub_category_id', $decrypt_id, $post);
+					$service = $this->input->post('service');
+				$charge = $this->input->post('charge');
+				$varid = $this->input->post('varid');
+				$service_type = $this->input->post('service_type');
+				$sizecount = count($service);
+				if ($sizecount > 0) {
+					for ($i = 0; $i < $sizecount; $i++) {
+						$variantdata = [
+							'register_id' => (int) decryptId($id),
+							'service_type' => $service_type[$i],
+							'service' => $service[$i],
+							'charge' => (int) $charge[$i],
+						];
+						if ($service[$i] != '') {
+							if ($varid[$i] != '') {
+								$this->CommonModel->updateRowByMoreId('service_list', "id = '{$varid[$i]}'", $variantdata);
+							} else {
+								$this->CommonModel->insertRowReturnId('service_list', $variantdata);
+							}
+						}
+					}
+				}
 					flashData('errors', 'Sub Category Update Successfully');
 				} else {
-					$insert = $this->CommonModel->insertRow('sub_category', $post);
+					$p_id = $this->CommonModel->insertRowReturnIdWithClean('sub_category', $post);
+					$service = $this->input->post('service');
+					$charge = $this->input->post('charge');
+					$service_type = $this->input->post('service_type');
+	
+					$sizecount = count($service);
+					if ($sizecount > 0) {
+						for ($i = 0; $i < $sizecount; $i++) {
+							$variantdata = [
+								'register_id' => $p_id,
+								'service_type' => $service_type[$i],
+								'service' => $service[$i],
+								'charge' => (int) $charge[$i],
+							];
+							$this->CommonModel->insertRow('service_list', $variantdata);
+						}
+					}
 					flashData('errors', 'Sub Category Add Successfully');
 				}
 				redirect('subCategoryAll');
@@ -133,7 +188,7 @@ class AdminProduct extends CI_Controller
 		} else {
 			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1'", $join, 'product_name', 'ASC', 1);
 		}
-		$get['title'] = 'All Product';
+		$get['title'] = 'All Test';
 		$this->load->view('admin/product/product_all', $get);
 	}
 	function getSubCategory()

@@ -18,11 +18,11 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Product Name</th>
+                                        <th>Test Name</th>
                                         <!-- <th>Category</th>
                                         <th>Sub Category</th> -->
                                         <!-- <th>Status</th> -->
-                                        <th>Product Type</th>
+                                        <th>Test Type</th>
                                         <th>Market Price</th>
                                         <th>Sale Price</th>
                                         <!-- <th>Quantity</th> -->

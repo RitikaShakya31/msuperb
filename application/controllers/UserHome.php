@@ -43,25 +43,22 @@ class UserHome extends CI_Controller
     public function nearest_lab()
     {
         // Retrieve search input
-        $search = isset($_GET['searchbox']) ? trim($_GET['searchbox']) : '';
-
-        // Base query to fetch labs
-        if ($search != '') {
-            $query = "SELECT * FROM `tbl_register` WHERE `status` = 'accepted' AND `lab_location` LIKE '%" . $this->db->escape_like_str($search) . "%'";
-            $labsData = $this->CommonModel->runQuery($query);
-
-            // If no results, fetch all accepted labs
-            if (empty($labsData)) {
-                $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
-            }
-        } else {
-            // Fetch all accepted labs when no search input is provided
-            $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
-        }
-
-        // Pass data to the view
-        $data['labsData'] = $labsData;
-        $data['search'] = $search; // To retain search term in the input box
+        // $search = isset($_GET['searchbox']) ? trim($_GET['searchbox']) : '';
+        // // Base query to fetch labs
+        // if ($search != '') {
+        //     $query = "SELECT * FROM `tbl_register` WHERE `status` = 'accepted' AND `lab_location` LIKE '%" . $this->db->escape_like_str($search) . "%'";
+        //     $labsData = $this->CommonModel->runQuery($query);
+        //     // If no results, fetch all accepted labs
+        //     if (empty($labsData)) {
+        //         $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
+        //     }
+        // } else {
+        //     // Fetch all accepted labs when no search input is provided
+        //     $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
+        // }
+        $data['labsData'] = $this->CommonModel->getAllRowsInOrder('tbl_sub_category', 'sub_category_id', 'DESC', array('status' => 'accepted'));
+        // $data['labsData'] = $labsData;
+        // $data['search'] = $search; // To retain search term in the input box
         $data['title'] = 'Our Labs';
         $data['contact'] = $this->contact;
 
