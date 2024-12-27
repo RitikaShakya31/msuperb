@@ -22,11 +22,13 @@ $page_id = $this->input->get('page_id');
 						<span key="t-dashboards">Lab Registrations</span>
 					</a>
 				</li> -->
-				<li><a href="<?= base_url('testAll') ?>" key="t-blog">
+				<li>
+					<a href="<?= base_url('banner') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>
-						<span key="t-dashboards">All Test</span>
+						<span key="t-file-manager">Banner</span>
 					</a>
 				</li>
+				
 				<li class="<?php if ($page == "company" || $page == "categoryAll" || $page == 'categoryAdd' || $page == 'subCategoryAdd' || $page == 'subCategoryAll' || $page == 'productAll' || $page == 'productAdd' || $page == 'productDetails') {
 					echo "mm-active";
 				} ?>">
@@ -45,6 +47,11 @@ $page_id = $this->input->get('page_id');
 							  echo 'active';
 						  } ?>" key="t-product">Test</a></li>
 					</ul>
+				</li>
+				<li><a href="<?= base_url('testAll') ?>" key="t-blog">
+						<i class="bx bx-file"></i>
+						<span key="t-dashboards">All Test</span>
+					</a>
 				</li>
 				<!-- <li class="<?php if ($page == "recentOrders" || $page == 'acceptedOrders' || $page == 'dispatchOrders' || $page == 'completedOrders' || $page == 'allOrders') {
 					echo "mm-active";
@@ -92,25 +99,6 @@ $page_id = $this->input->get('page_id');
 						</li>
 					</ul>
 				</li> -->
-				<li>
-					<a href="<?= base_url('banner') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Banner</span>
-					</a>
-				</li>
-				<li>
-					<a href="<?= base_url('promoCode') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Promo Code</span>
-					</a>
-				</li>
-				<li>
-					<a href="<?= base_url('setDeliveryCharges') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Delivery Charges</span>
-					</a>
-				</li>
-
 				<li class="menu-title" key="t-apps">Query</li>
 				<li><a href="<?= base_url('userAll') ?>" key="t-blog">
 						<i class='bx bxs-user'></i>
@@ -150,7 +138,18 @@ $page_id = $this->input->get('page_id');
 				<!--		<span key="t-file-manager">Product Review</span>-->
 				<!--	</a>-->
 				<!--</li>-->
-
+				<li>
+					<a href="<?= base_url('promoCode') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Promo Code</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= base_url('setDeliveryCharges') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Delivery Charges</span>
+					</a>
+				</li>
 				<li>
 					<a href="<?= base_url('contactdetails') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>

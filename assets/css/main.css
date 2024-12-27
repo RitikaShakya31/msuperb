@@ -416,8 +416,8 @@ button:focus {
 }
 
 .btn-inline:hover {
-	color: #095287;
-	background: var(--white);
+	color: #fff;
+	background: #0e5186;
 }
 
 .btn-outline {
@@ -1032,8 +1032,8 @@ button:focus {
 
 .star-rating {
 	direction: rtl;
-	text-align: center;
-	margin: 25px 0px;
+	text-align: left;
+	margin: 20px 0px;
 }
 
 .star-rating input {
@@ -1048,7 +1048,7 @@ button:focus {
 	display: inline-block;
 	position: relative;
 	cursor: pointer;
-	margin: 0px 8px;
+	margin: 0px 5px;
 }
 
 .star-rating label:hover::after {
@@ -1063,7 +1063,7 @@ button:focus {
 	content: "\ec7c";
 	font-family: "Icofont";
 	font-weight: 900;
-	font-size: 35px;
+	font-size: 20px;
 	display: block;
 	color: #bbbbbb;
 }
@@ -1072,7 +1072,7 @@ button:focus {
 	content: "\ec7c";
 	font-family: "Icofont";
 	font-weight: 900;
-	font-size: 35px;
+	font-size: 20px;
 	position: absolute;
 	display: block;
 	top: 0px;

@@ -114,9 +114,73 @@
                         data-id="<?= $product['product_id'] ?>" title="Add to Cart"><span>add to cart</span></button>
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
-</section>  
+</section>
+<div class="container">
+    <div class="row">
+        <!-- Left Column (Reviews) -->
+        <div class="col-lg-6">
+            <div class="product-details-frame-left">
+                <ul class="review-list">
+                    <li class="review-item">
+                        <div class="review-media">
+                            <a class="review-avatar" href="#"><img src="<?= base_url('assets/images/user.png')?>" alt="review" /></a>
+                            <h5 class="review-meta">
+                                <a href="#">miron mahmud</a><span>June 02, 2020</span>
+                            </h5>
+                        </div>
+                        <ul class="review-rating">
+                            <li class="icofont-ui-rating"></li>
+                            <li class="icofont-ui-rating"></li>
+                            <li class="icofont-ui-rating"></li>
+                            <li class="icofont-ui-rating"></li>
+                            <li class="icofont-ui-rate-blank"></li>
+                        </ul>
+                        <p>
+                            Lorem ipsum dolor sit 
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Right Column (Review Form) -->
+        <div class="col-lg-6">
+            <div class="product-details-frame">
+                <h3 class="frame-title">add your review</h3>
+                <form class="review-form">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="star-rating">
+                                <input type="radio" name="rating" id="star-1" /><label for="star-1"></label>
+                                <input type="radio" name="rating" id="star-2" /><label for="star-2"></label>
+                                <input type="radio" name="rating" id="star-3" /><label for="star-3"></label>
+                                <input type="radio" name="rating" id="star-4" /><label for="star-4"></label>
+                                <input type="radio" name="rating" id="star-5" /><label for="star-5"></label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Name" required/>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <button class="btn btn-inline">
+                                <i class="icofont-water-drop"></i><span>drop your review</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <form action="<?= base_url('product') ?>" action="" class="product-form">
     <input placeholder="Search test..." type="text" name="searchbox" list="browsers" id="browser"
         value="<?= isset($search) ? $search : '' ?>" required>
