@@ -56,6 +56,9 @@ $route['cancelOrders'] = 'admin/AdminHome/cancelOrders';
 $route['allOrders'] = 'admin/AdminHome/allOrders';
 $route['sendnotification'] = 'admin/AdminHome/sendnotification';
 $route['statusrefunded/(:any)/(:any)'] = 'admin/AdminHome/statusrefunded/$1/$2';
+$route['statusUpdate/(:any)/(:any)'] = 'admin/AdminHome/statusUpdate/$1/$2';
+$route['changePassword'] = 'admin/AdminHome/changePassword';
+
 
 // => shiprocket
 

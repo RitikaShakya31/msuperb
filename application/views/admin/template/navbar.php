@@ -46,7 +46,7 @@ $page_id = $this->input->get('page_id');
 						  } ?>" key="t-product">Test</a></li>
 					</ul>
 				</li>
-				<li class="<?php if ($page == "recentOrders" || $page == 'acceptedOrders' || $page == 'dispatchOrders' || $page == 'completedOrders' || $page == 'allOrders') {
+				<!-- <li class="<?php if ($page == "recentOrders" || $page == 'acceptedOrders' || $page == 'dispatchOrders' || $page == 'completedOrders' || $page == 'allOrders') {
 					echo "mm-active";
 				} ?>">
 					<a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -91,7 +91,7 @@ $page_id = $this->input->get('page_id');
 							</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 				<li>
 					<a href="<?= base_url('banner') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>
@@ -162,6 +162,10 @@ $page_id = $this->input->get('page_id');
 						<i class="bx bx-file"></i>
 						<span key="t-file-manager">Policy</span>
 					</a>
+				</li>
+				<li><a href="<?= base_url('changePassword') ?>" key="t-blog">
+						<i class='bx bxs-key'></i>
+						<span key="t-dashboards">Change Password</span></a>
 				</li>
 				<!-- <li class="<?php if ($page == "activeUser" || $page == 'inactiveUser' || $page == "newUser" || $page == 'verifyCancelUser' || $page_id == '1') {
 					echo "mm-active";

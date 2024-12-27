@@ -80,13 +80,13 @@ class AdminProduct extends CI_Controller
 		extract($this->input->post());
 		$decrypt_id = decryptId($this->input->get('id'));
 		$get = $this->CommonModel->getSingleRowById('sub_category', "sub_category_id = '$decrypt_id'");
-		$data['lab_location'] = set_value('lab_location') == false ? @$getReg['lab_location'] : set_value('lab_location');
-		$data['lab_email'] = set_value('lab_email') == false ? @$getReg['lab_email'] : set_value('lab_email');
-		$data['lab_contact'] = set_value('lab_contact') == false ? @$getReg['lab_contact'] : set_value('lab_contact');
-		$data['lab_name'] = set_value('lab_name') == false ? @$getReg['lab_name'] : set_value('lab_name');
-		$data['bank_name'] = set_value('bank_name') == false ? @$getReg['bank_name'] : set_value('bank_name');
-		$data['ifsc_code'] = set_value('ifsc_code') == false ? @$getReg['ifsc_code'] : set_value('ifsc_code');
-		$data['upi_id'] = set_value('upi_id') == false ? @$getReg['upi_id'] : set_value('upi_id');
+		$data['lab_location'] = set_value('lab_location') == false ? @$get['lab_location'] : set_value('lab_location');
+		$data['lab_email'] = set_value('lab_email') == false ? @$get['lab_email'] : set_value('lab_email');
+		$data['lab_contact'] = set_value('lab_contact') == false ? @$get['lab_contact'] : set_value('lab_contact');
+		$data['lab_name'] = set_value('lab_name') == false ? @$get['lab_name'] : set_value('lab_name');
+		$data['bank_name'] = set_value('bank_name') == false ? @$get['bank_name'] : set_value('bank_name');
+		$data['ifsc_code'] = set_value('ifsc_code') == false ? @$get['ifsc_code'] : set_value('ifsc_code');
+		$data['upi_id'] = set_value('upi_id') == false ? @$get['upi_id'] : set_value('upi_id');
 		$data['sub_category_name'] = set_value('sub_category_name') == false ? @$get['sub_category_name'] : set_value('sub_category_name');
 		$data['category_id'] = set_value('category_id') == false ? @$get['category_id'] : set_value('category_id');
 		$data['sub_category_image'] = set_value('category_image2') == false ? @$get['sub_category_image'] : set_value('category_image2');
@@ -114,6 +114,8 @@ class AdminProduct extends CI_Controller
 				$post['ifsc_code'] = $ifsc_code;
 				$post['upi_id'] = $upi_id;
 				$post['category_id'] = $category_id;
+				$post['slug_title'] = url_title($sub_category_name, '-', true);
+				$post['password'] = $post['slug_title'] . rand(1000, 9999);
 				if (!empty($_FILES['sub_category_image']['name'])) {
 					$picture = imageUploadWithRatio('sub_category_image', CATEGORY_IMAGE, 600, 400, $data['sub_category_image']);
 					$post['sub_category_image'] = $picture;

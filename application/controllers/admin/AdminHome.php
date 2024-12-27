@@ -336,6 +336,49 @@ class AdminHome extends CI_Controller
 		$get['title'] = 'Payment History';
 		$this->load->view('admin/payment_history', $get);
 	}
+
+
+	public function changePassword()
+    {
+        $admin_id = $this->session->userdata('admin_id');
+        $data['admin'] = $this->CommonModel->getSingleRowById('admin_login', "admin_id = '$admin_id'");
+        $stored_password = $data['admin']['password']; // Plain text password
+
+        if ($this->input->post()) {
+            $post = $this->input->post();
+
+            // Retrieve form inputs
+            $old_password = $post['password'];
+            $new_password = $post['new_password'];
+            $confirm_password = $post['confirm_password'];
+
+            // Validate old password
+            if ($old_password !== $stored_password) {
+                flashMultiData(['success_status' => "error", 'msg' => "Old password is incorrect."]);
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+
+            // Check if new password matches confirm password
+            if ($new_password !== $confirm_password) {
+                flashMultiData(['success_status' => "error", 'msg' => "New password and confirm password do not match."]);
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+
+            // Store the new password directly
+            $update_data = ['password' => $new_password];
+
+            $update = $this->CommonModel->updateRowById('admin_login', 'admin_id', $admin_id, $update_data);
+
+            if ($update) {
+                flashMultiData(['success_status' => "success", 'msg' => "Password Updated Successfully"]);
+            } else {
+                flashMultiData(['success_status' => "error", 'msg' => "Something went wrong."]);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        $this->load->view('admin/change_password', $data);
+    }
 	public function setDeliveryCharges()
 	{
 		extract($this->input->post());
@@ -402,6 +445,44 @@ class AdminHome extends CI_Controller
 		}
 		$this->load->view('admin/contactdetails', $data);
 	}
+	public function statusUpdate($user_id, $status)
+    {
+        if ($status == 1) {
+            $post = array('status' => 'accepted');
+            $successMessage = 'User Inactive Successfully';
+            $getData = $this->CommonModel->getSingleRowById('sub_category', ["sub_category_id" => decryptId($user_id)]);
+
+            // Prepare and send the email only if accepted
+            $curdate = date('d-m-Y');
+
+            $data['curdate'] = $curdate;
+            $data['lab_name'] = trim($getData['sub_category']);
+            $data['lab_email'] = trim($getData['lab_email']);
+            $data['password'] = trim($getData['password']);
+            $data['login_link'] = base_url('user-login/');
+
+            $emailContent = $this->load->view('email/status_update', $data, true);
+            $sendMail = send_email($getData['lab_email'], 'Registration Verified', $emailContent);
+
+        } else {
+            $post = array('status' => 'rejected');
+            $successMessage = 'User Active Successfully';
+        }
+
+        // Update status in the database
+        $update = $this->CommonModel->updateRowById('sub_category', 'sub_category_id', decryptId($user_id), $post);
+
+        // Handle flash messages and redirect
+        if ($update) {
+            flashData('errors', $successMessage);
+        } else {
+            flashData('errors', 'Something went wrong. Please try again');
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+
+
 	public function activeUser()
 	{
 		$data['title'] = "All Active Users";

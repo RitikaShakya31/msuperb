@@ -26,13 +26,12 @@ class AdminAuth extends CI_Controller
 						$id = $get[0]['admin_id'];
 						$name = $get[0]['name'];
 						$f_password = $get[0]['password'];
-				// 		echo encryptId($password);exit;
 						$status = $get[0]['status'];
-						if ($password != decryptId($f_password)) {
+						if ($password != $f_password) {
 							flashData('login_error', 'Enter a valid Password.');
 						} else if ($status == '0') {
 							flashData('login_error', 'You are blocked.');
-						} else if ($password == decryptId($f_password)) {
+						} else if ($password == $f_password) {
 							$this->session->set_userdata(array('admin_id' => $id, 'admin_name' => $name));
 							redirect('dashboard');
 						} else {
