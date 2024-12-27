@@ -1,5 +1,7 @@
 <ul class="cart-list">
 	<?php foreach ($this->cart->contents() as $items):
+	//  $productName = $this->CommonModel->getSingleRowById('product', ['product_name' => $items['product_name']]);
+	 $productName = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $items['name']]);
 		?>
 		<li class="cart-item">
 			<div>
@@ -33,20 +35,19 @@
 							</i>
 						</button>
 					</div>
-					
 				</div>
 			</div>
 
 			<div class="cart-info-group">
 				<div class="cart-info">
-				<a class="cart-checkout-btn-2" href="<?= base_url('compare/') . encryptId($items['id']) ?>">
-							<span class="compare-label">Compare with other</span>
-						</a>
+					<a class="cart-checkout-btn-2" href="<?= base_url('compare/') . encryptId($items['id']) ?>">
+						<span class="compare-label">Compare with other</span>
+					</a>
 					<h6>
 						<a
-							href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $items['name']; ?>
+							href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $productName['service_name']; ?>
 							- <?php echo $items['variant_name']; ?></a> &nbsp;
-						
+
 						<!-- <button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
 								class="far fa-trash-alt"></i></button> -->
 					</h6>

@@ -9,53 +9,96 @@
         <!-- Optional header if needed -->
     </thead>
     <tbody>
-        <?php 
-        $brand = $product['category_id'];
-        $brandname = $this->CommonModel->getSingleRowById('category', ['category_id' => $brand]);
+        <?php
+        // Fetch all services related to the product_name
+        $allServices = $this->CommonModel->getRowByMoreId('product', ['product_name' => $product['product_name']]);
+
+        // Initialize arrays to store product details for side-by-side comparison
+        $labNames = [];
+        $testNames = [];
+        $prices = [];
+
+        foreach ($allServices as $service) {
+            // Fetch sub-category name and test name dynamically for each service
+            $testname = $this->CommonModel->getSingleRowById('sub_category', ['sub_category_id' => $service['sub_category_id']]);
+            $test = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $service['product_name']]);
+
+            // Store product details
+            $labNames[] = $testname['sub_category_name'] ?? 'N/A';
+            $testNames[] = $test['service_name'] ?? 'N/A';
+            $prices[] = $service['sale_price'] ?? 'N/A';
+        }
         ?>
+
+        <!-- Lab Name Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;">Lab Name</td>
-            <!-- <td style="padding: 8px; border: 1px solid #ddd;"><?= $brandname['category_name'] ?></td> -->
-            <td style="padding: 8px; border: 1px solid #ddd;">Apolo</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">Suburban </td>
-            <td style="padding: 8px; border: 1px solid #ddd;">Thyrocare </td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Lab Name</td>
+            <?php foreach ($labNames as $labName): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $labName ?></td>
+            <?php endforeach; ?>
         </tr>
+
+        <!-- Test Name Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;">Test Name</td>
-            <!-- <td style="padding: 8px; border: 1px solid #ddd;"><?= $product['product_name'] ?></td> -->
-            <td style="padding: 8px; border: 1px solid #ddd;">Blood Test</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">Blood Test</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">Blood Test</td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Test Name</td>
+            <?php foreach ($testNames as $testName): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $testName ?></td>
+            <?php endforeach; ?>
         </tr>
+
+        <!-- Reporting Time Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;">Reporting Time</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">On Time</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">On Time</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">On Time</td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Reporting Time</td>
+            <?php foreach ($allServices as $service): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;">On Time</td>
+            <?php endforeach; ?>
         </tr>
+
+        <!-- Report Accuracy Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;">Report Accuracy</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">90% </td>
-            <td style="padding: 8px; border: 1px solid #ddd;">100%</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">94%</td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Report Accuracy</td>
+            <?php foreach ($allServices as $service): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;">90%</td>
+            <?php endforeach; ?>
         </tr>
+
+        <!-- Service Rating Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;">Service Rating</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">4.5 star</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">5 star</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">4 star</td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Service Rating</td>
+            <?php foreach ($allServices as $service): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;">4 star</td>
+            <?php endforeach; ?>
         </tr>
+
+        <!-- Total Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;">Total</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">₹200</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">₹250</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">₹190</td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Total</td>
+            <?php foreach ($prices as $price): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;">₹<?= $price ?></td>
+            <?php endforeach; ?>
         </tr>
+        <!-- Action Row -->
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;color: #0b5286;font-weight: 600;"></td>
-            <td style="padding: 8px;"><button  class="book-now" title="Add to Cart"><span>Book Now</span></button></td>
-            <td style="padding: 8px;"><button  class="book-now" title="Add to Cart"><span>Book Now</span></button></td>
-            <td style="padding: 8px;"><button  class="book-now" title="Add to Cart"><span>Book Now</span></button></td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #0b5286; font-weight: 600;">Action</td>
+            <?php foreach ($allServices as $service): ?>
+                <td style="padding: 8px; border: 1px solid #ddd;">
+                    <?php
+                    if ($this->session->has_userdata('login_user_id')):
+                        ?>
+                        <button class="book-now addCart crtbtn-<?= $service['product_id'] ?>"
+                            data-id="<?= $service['product_id'] ?>" title="Add to Cart">
+                            <span>Book Now</span>
+                        </button>
+                        <?php
+                    else:
+                        ?>
+                        <button class="book-now bookButton"  title="Add to Cart">
+                            <span>Book Now</span>
+                        </button>
+                    <?php endif; ?>
+
+                </td>
+            <?php endforeach; ?>
         </tr>
     </tbody>
 </table>
@@ -63,6 +106,13 @@
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.bookButton').click(function () {
+            $('#exampleModal').modal('show'); // Open modal
+        });
+    });
+</script>
 </body>
 
 </html>

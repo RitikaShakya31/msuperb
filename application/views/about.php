@@ -35,41 +35,34 @@
 
 <section class="about-choose pb-65">
     <div class="container">
-        <div class="row">
-            <div class="col-11 col-md-9 col-lg-7 col-xl-6 mx-auto">
-                <div class="section-heading">
-                    <h2>Advantages Of Care1 Products</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
+    <div class="row">
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-boxes"></i> <!-- Font Awesome icon for "Wide Range of Products" -->
+                        <i class="fas fa-boxes"></i>
                     </div>
                     <div class="choose-text">
-                        <h4>Wide Range of Products</h4>
+                        <h4>Quick Process</h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-vials"></i> <!-- Font Awesome icon for "Trusted Diagnostic Services" -->
+                        <i class="fas fa-vials"></i>
                     </div>
                     <div class="choose-text">
-                        <h4>Trusted Diagnostic Services</h4>
+                        <h4>Accurate Report</h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-laptop-medical"></i> <!-- Font Awesome icon for "Online Consultations" -->
+                        <i class="fas fa-laptop-medical"></i> 
                     </div>
                     <div class="choose-text">
-                        <h4>Online Consultations</h4>
+                        <h4>Quality Services</h4>
                     </div>
                 </div>
             </div>
@@ -79,7 +72,7 @@
                         <i class="fas fa-shipping-fast"></i> <!-- Font Awesome icon for "Order Tracking" -->
                     </div>
                     <div class="choose-text">
-                        <h4>Order Tracking</h4>
+                        <h4>Patient Support</h4>
                     </div>
                 </div>
             </div>
@@ -99,7 +92,7 @@
                         <i class="fas fa-book-medical"></i> <!-- Font Awesome icon for "Health Blogs and Tips" -->
                     </div>
                     <div class="choose-text">
-                        <h4>Health Blogs and Tips</h4>
+                        <h4>Health Tips</h4>
                     </div>
                 </div>
             </div>
@@ -107,7 +100,7 @@
     </div>
 </section>
 
-<section class="about-choose pb-110">
+<!-- <section class="about-choose pb-110">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -131,7 +124,7 @@
 
         </div>
     </div>
-</section>
+</section> -->
 
 <section class="section countdown-part"
     style="background-image: url('assets/images/bg-2.png');background-size: cover; background-position: top;">

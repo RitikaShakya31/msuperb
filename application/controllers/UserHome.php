@@ -227,7 +227,6 @@ class UserHome extends CI_Controller
             if ($count > 0) {
                 $this->session->set_userdata('msg', '<h6 class="alert alert-warning">You have already registered with this email id or contact no.</h6>');
             } else {
-
                 $otp = rand(1000, 10000);
                 $msg = "" . $otp . " is the verification code to log in to your  account.";
                 // mailmsg( $post['email_id'], 'Verify Account!', $msg);
@@ -1045,8 +1044,8 @@ class UserHome extends CI_Controller
     }
     public function about()
     {
-        $data['title'] = 'About Us -  | Your One Care Medical';
-        $data['testimonial'] = $this->CommonModel->getAllRowsInOrder('testimonial', 'id', 'desc');
+        $data['title'] = 'About Us';
+        // $data['testimonial'] = $this->CommonModel->getAllRowsInOrder('testimonial', 'id', 'desc');
         $data['contact'] = $this->contact;
         $this->load->view('about', $data);
     }

@@ -28,7 +28,6 @@
                             <div class="form-group" style="display:none" id="otpbox">
                                 <input type="text" class="form-control myinput" name="otp" maxlength="4" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Enter OTP" id="otp" autocomplete="off">
                             </div>
-
                             <div class="form-button">
                                 <div class="d-flex justify-content-center">
                                     <a href="javascript: void(0);" id="otpverify" class="btn btn-success w-50" style="display:none;"> <span>Submit</span> </a>
@@ -43,8 +42,6 @@
                                     <p id="otpmessage"></p>
                                 </div>
                                 <hr>
-
-
                                 <p>
                                     Don't have any account?<a href="<?= base_url('register') ?>">register here</a>
                                 </p>
