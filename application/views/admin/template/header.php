@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<title><?= $title ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="<?= base_url('assets/images/image.png') ?>">
+	<link rel="shortcut icon" href="<?= base_url($setting[3]['particular_value']) ?>">
 	<?php include('header_link.php') ?>
 </head>
 <body data-sidebar="dark">

@@ -11,6 +11,7 @@ class UserHome extends CI_Controller
     public function index()
     {
         $data['banner'] = $this->CommonModel->getAllRowsInOrder('banner', 'banner_id', 'desc');
+        $data['getFaqs'] = $this->CommonModel->getAllRowsInOrder('faqs', 'fid', 'desc');
         // $data['product'] = $this->CommonModel->getRowByOrderWithLimit('product', array('status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '10');
         // $data['productdesc'] = $this->CommonModel->getRowByOrderWithLimit('product', array('status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
         // $data['normalpro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1'), 'product_id', 'DESC', '20');
@@ -21,6 +22,7 @@ class UserHome extends CI_Controller
         $data['title'] = ' Home ';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
+       
         $this->load->view('home', $data);
     }
     public function product()
@@ -38,6 +40,7 @@ class UserHome extends CI_Controller
         $data['subcategory'] = $this->CommonModel->getAllRowsInOrder('sub_category', 'category_id', 'desc');
         $data['title'] = ' Our product';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('product', $data);
     }
     public function nearest_lab()
@@ -61,6 +64,7 @@ class UserHome extends CI_Controller
         // $data['search'] = $search; // To retain search term in the input box
         $data['title'] = 'Our Labs';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
 
         $this->load->view('nearest_lab', $data);
     }
@@ -181,6 +185,7 @@ class UserHome extends CI_Controller
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
         $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('product-details', $data);
     }
     public function test_details($id, $title)
@@ -195,6 +200,7 @@ class UserHome extends CI_Controller
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
         $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('test_details', $data);
     }
     public function contact()
@@ -1047,6 +1053,7 @@ class UserHome extends CI_Controller
         $data['title'] = 'About Us';
         // $data['testimonial'] = $this->CommonModel->getAllRowsInOrder('testimonial', 'id', 'desc');
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('about', $data);
     }
     public function login_check()

@@ -26,7 +26,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-img d-flex justify-content-center">
-                    <img src="<?= base_url() ?>assets/img/about-1.png" alt="about" style="width:100%">
+                    <img src="<?= $setting[2]['particular_value'] ?>" alt="about" style="width:100%">
                 </div>
             </div>
         </div>

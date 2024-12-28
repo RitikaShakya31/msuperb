@@ -3241,6 +3241,13 @@ tbody tr td:last-child {
 	.brand-wrap {
 		width: 200px;
 	}
+	
+	.upload-prescription-btn{
+		position: absolute; 
+		bottom: 30px; left: 30% !important; 
+		transform: translateX(-50%); 
+		z-index: 10;
+	}
 }
 
 .choose-card {
@@ -7677,7 +7684,7 @@ html .njs-sticky-side.image_button_cover a:hover {
     color: #FFF;
     border-radius: 50px;
     text-align: center;
-    font-size: 30px;
+    font-size: 34px;
     /* box-shadow: 2px 2px 3px #999; */
     z-index: 100;
 }
@@ -7841,6 +7848,7 @@ html .njs-sticky-side.image_button_cover a:hover {
 		visibility: hidden;
 		pointer-events: none;
 	}
+
 }
 
 .my-float {
@@ -8208,7 +8216,9 @@ html .njs-sticky-side.image_button_cover a:hover {
     padding-top: 8px;
 
 }
-
+.upload-prescription-btn{
+	position: absolute; bottom: 30px; left: 15%; transform: translateX(-50%); z-index: 10;
+}
 .upload-prescription-btn .btn-primary {
     background-color: #0b5286;
     color: white;

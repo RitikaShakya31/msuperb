@@ -22,12 +22,12 @@ $page_id = $this->input->get('page_id');
 						<span key="t-dashboards">Lab Registrations</span>
 					</a>
 				</li> -->
-				<li>
+				<!-- <li>
 					<a href="<?= base_url('banner') ?>" class="waves-effect">
 						<i class="bx bx-file"></i>
 						<span key="t-file-manager">Banner</span>
 					</a>
-				</li>
+				</li> -->
 				
 				<li class="<?php if ($page == "company" || $page == "categoryAll" || $page == 'categoryAdd' || $page == 'subCategoryAdd' || $page == 'subCategoryAll' || $page == 'productAll' || $page == 'productAdd' || $page == 'productDetails') {
 					echo "mm-active";
@@ -162,6 +162,18 @@ $page_id = $this->input->get('page_id');
 						<span key="t-file-manager">Policy</span>
 					</a>
 				</li>
+				<li>
+					<a href="<?= base_url('addFaqs') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Faq's</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= base_url('setting') ?>" class="waves-effect">
+						<i class="bx bx-file"></i>
+						<span key="t-file-manager">Setting</span>
+					</a>
+				</li>
 				<li><a href="<?= base_url('changePassword') ?>" key="t-blog">
 						<i class='bx bxs-key'></i>
 						<span key="t-dashboards">Change Password</span></a>
@@ -196,12 +208,7 @@ $page_id = $this->input->get('page_id');
 						<span key="t-file-manager">Total Visiters</span>
 					</a>
 				</li> -->
-				<!-- <li>
-					<a href="<?= base_url('setting') ?>" class="waves-effect">
-						<i class="bx bx-file"></i>
-						<span key="t-file-manager">Setting</span>
-					</a>
-				</li> -->
+				
 			</ul>
 		</div>
 	</div>

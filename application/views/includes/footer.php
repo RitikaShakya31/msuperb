@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-sm-6 col-xl-3">
 				<div class="footer-widget">
-					<a class="footer-logo" href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/images/logo.png"
+					<a class="footer-logo" href="<?= base_url() ?>"><img src="<?= base_url($setting[1]['particular_value']) ?>"
 							alt="CARE1 | Your One Care Medical"></a>
 					<p class="footer-desc">At Msuperb, we are dedicated to simplifying healthcare for you. Our mission
 						is to provide easy access to quality healthcare products and services, all in one place

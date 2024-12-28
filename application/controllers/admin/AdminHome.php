@@ -11,6 +11,7 @@ class AdminHome extends CI_Controller
 			redirect("admin");
 		}
 		date_default_timezone_set("Asia/Kolkata");
+		$this->setting = $this->CommonModel->getAllRows('setting');
 	}
 	public function dashboard()
 	{
@@ -27,23 +28,8 @@ class AdminHome extends CI_Controller
 		$getRows['canceled_orders'] = $this->CommonModel->getNumRows("book_product", "booking_status = '2' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')");
 		$getRows['title'] = "Home";
 		$getRows['recentOrderList'] = $this->CommonModel->getRowByIdInOrder('book_product', "booking_status = '0' AND status != '10' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')", 'create_date', 'DESC');
+		$getRows['setting'] = $this->setting;
 		$this->load->view('admin/index', $getRows);
-	}
-	public function banner()
-	{
-		$data['banner'] = $this->CommonModel->getSingleRowById('banner', "banner_id = '1'");
-		if (count($_FILES) > 0) {
-			$postdata['image_path'] = fullImage('image_path', BANNER_IMAGE, $data['image_path']);
-			$update = $this->CommonModel->updateRowById('banner', ['banner_id' => 1], 'catalog_id', $postdata);
-			if ($update) {
-				flashMultiData(['success_status' => "success", 'msg' => " Banner Update successfully"]);
-				redirect('banner');
-			} else {
-				flashMultiData(['success_status' => "error", 'msg' => "Something went wrong."]);
-				redirect('banner');
-			}
-		}
-		$this->load->view('admin/banner', $data);
 	}
 	public function promoCode()
 	{
@@ -101,6 +87,7 @@ class AdminHome extends CI_Controller
 			redirect('promoCode');
 		} else {
 			$data['title'] = 'Promo Code';
+			$data['setting'] = $this->setting;
 			$this->load->view('admin/user_promo_code', $data);
 		}
 	}
@@ -114,6 +101,7 @@ class AdminHome extends CI_Controller
 		}
 		$get['all_register'] = $this->CommonModel->getRowByIdInOrder('register', [], 'register_id', 'DESC');
 		$get['title'] = 'All Lab Registrations';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/register_all', $get);
 	}
 	public function registerView()
@@ -123,6 +111,7 @@ class AdminHome extends CI_Controller
 		$get['variant'] = $this->CommonModel->getRowByMoreId('service_list', "register_id = '$id'");
 		$get['services'] = $this->CommonModel->getAllRows('all_service');
 		$get['title'] = 'View Lab Details';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/register_view', $get);
 	}
 	public function registerAdd()
@@ -211,6 +200,7 @@ class AdminHome extends CI_Controller
 
 			redirect('registerAll');
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/register_add', $data);
 	}
 	public function all_test()
@@ -252,6 +242,7 @@ class AdminHome extends CI_Controller
 		}
 		$get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
 		$get['title'] = 'All Tests';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/all_test', $get);
 	}
 	public function all_brand()
@@ -300,9 +291,9 @@ class AdminHome extends CI_Controller
 		}
 		$get['all_brand'] = $this->CommonModel->getRowByIdInOrder('all_brand', [], 'brand_id', 'DESC');
 		$get['title'] = 'All Brands';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/all_brand', $get);
 	}
-
 	public function user_all()
 	{
 		$dID = $this->input->get('dID');
@@ -319,12 +310,14 @@ class AdminHome extends CI_Controller
 		$get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
 		$get['all_appointments'] = $this->CommonModel->getRowByIdInOrder('appointment', [], 'id', 'DESC');
 		$get['title'] = 'Patient Details';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/user_all', $get);
 	}
 	public function prescription()
 	{
 		$get['prescription_data'] = $this->CommonModel->getRowByIdInOrder('prescription_data', [], 'id', 'DESC');
 		$get['title'] = 'Prescription Details';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/prescription', $get);
 	}
 	public function payment_history()
@@ -334,10 +327,9 @@ class AdminHome extends CI_Controller
 		$get['payment_details'] = $this->CommonModel->getRowByIdInOrder('appointment', "visit_status = '1'", 'id', 'DESC');
 		$get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
 		$get['title'] = 'Payment History';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/payment_history', $get);
 	}
-
-
 	public function changePassword()
     {
         $admin_id = $this->session->userdata('admin_id');
@@ -363,7 +355,6 @@ class AdminHome extends CI_Controller
                 flashMultiData(['success_status' => "error", 'msg' => "New password and confirm password do not match."]);
                 redirect($_SERVER['HTTP_REFERER']);
             }
-
             // Store the new password directly
             $update_data = ['password' => $new_password];
 
@@ -376,7 +367,7 @@ class AdminHome extends CI_Controller
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
-
+		$data['setting'] = $this->setting;
         $this->load->view('admin/change_password', $data);
     }
 	public function setDeliveryCharges()
@@ -443,6 +434,7 @@ class AdminHome extends CI_Controller
 				redirect('contactdetails');
 			}
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/contactdetails', $data);
 	}
 	public function statusUpdate($user_id, $status)
@@ -480,9 +472,95 @@ class AdminHome extends CI_Controller
         }
         redirect($_SERVER['HTTP_REFERER']);
     }
+	public function addFaqs()
+	{
+		if (isset($_GET['faq'])) {
+			$id = $this->input->get('faq');
+		} else {
+			$id = 0;
+		}
+		if (isset($_GET['dID'])) {
+			$dID = $this->input->get('dID');
+		} else {
+			$dID = '';
+		}
+
+		$sId = decryptId($id);
+		$getPlans = getRowById('faqs', 'fid', $sId);
+		$data['question'] = set_value('question') == false ? @$getPlans[0]['question'] : set_value('question');
+		$data['answer'] = set_value('answer') == false ? @$getPlans[0]['answer'] : set_value('answer');
+		if (decryptId($dID) != '') {
+			$delete = $this->CommonModel->deleteRowById('faqs', array('fid' => decryptId($dID)));
+			redirect(base_url('addFaqs'));
+		}
+
+		if (isset($id)) {
+			$data['title'] = 'FAQ Edit';
+		} else {
+			$data['title'] = 'FAQ\'s';
+		}
+		if (count($_POST) > 0) {
+			extract($this->input->post());
+			$post['question'] = $question;
+			$post['answer'] = $answer;
+			if ($id != 0) {
+
+				$post['update_date'] = setDateTime();
+				$update = updateRowById('faqs', 'fid', $sId, $post);
+
+				if ($update) {
+					flashData('errors', 'FAQ Update Successfully');
+				} else {
+					flashData('errors', 'Promo code Not Update. please try again');
+				}
+			} else {
+
+				$post['create_date'] = setDateTime();
+				$insert = $this->CommonModel->insertRowReturnId('faqs', $post);
+
+				if ($insert) {
+					flashData('errors', 'FAQ Add Successfully');
+				} else {
+					flashData('errors', 'FAQ Not Add');
+				}
+			}
+
+			redirect('addFaqs');
+		} else {
+			$data['setting'] = $this->setting;
+			$data['title'] = 'FAQ\'s';
+			$this->load->view('admin/faqs', $data);
+		}
+	}
 
 
 
+
+
+
+
+
+	//    ALL FUNCTIONS
+
+
+
+	public function banner()
+	{
+		$data['banner'] = $this->CommonModel->getSingleRowById('banner', "banner_id = '1'");
+		if (count($_FILES) > 0) {
+			$postdata['image_path'] = fullImage('image_path', BANNER_IMAGE, $data['image_path']);
+			$update = $this->CommonModel->updateRowById('banner', ['banner_id' => 1], 'catalog_id', $postdata);
+			if ($update) {
+				flashMultiData(['success_status' => "success", 'msg' => " Banner Update successfully"]);
+				redirect('banner');
+			} else {
+				flashMultiData(['success_status' => "error", 'msg' => "Something went wrong."]);
+				redirect('banner');
+			}
+		}
+		$this->load->view('admin/banner', $data);
+	}
+	
 	public function activeUser()
 	{
 		$data['title'] = "All Active Users";

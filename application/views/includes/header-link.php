@@ -43,7 +43,7 @@
 
 
   <title>Msuperb | <?= $title ?></title>
-  <link rel="icon" href="<?= base_url() ?>assets/images/image.png">
+  <link rel="icon" href="<?= base_url($setting[3]['particular_value']) ?>">
   <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/flaticon/flaticon.css">
 
   <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/icofont/icofont.min.css">

@@ -43,12 +43,13 @@
 				<div class="header-media-group"><button class="header-user">
 						<i class="fas fa-bars"></i></button>
 					<a href="<?= base_url() ?>">
-						<img src="<?= base_url() ?>assets/images/logo.png"
-							alt="CARE1 | Your One Care Medical"></a><button class="header-src"><i
-							class="fas fa-search"></i></button>
+						<img src="<?= base_url() ?>assets/images/logo.png" alt="CARE1 | Your One Care Medical">
+					</a><button class="header-src"><i class="fas fa-search"></i></button>
 				</div>
-				<a href="<?= base_url() ?>" class="header-logo"><img src="<?= base_url() ?>assets/images/logo.png"
-						alt="CARE1 | Your One Care Medical"></a>
+				<a href="<?= base_url() ?>" class="header-logo">
+					<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="Msuperb">
+
+				</a>
 				<?php
 				if ($this->session->has_userdata('login_user_id')):
 					?>
@@ -64,7 +65,6 @@
 						<img src="<?= base_url() ?>assets/images/user.png" alt="user">
 						<span>Login</span>
 					</a>
-
 					<?php
 				endif;
 				?>
@@ -112,16 +112,16 @@
 									Home
 								</a>
 							</li>
-							<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url() ?>">
+							<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('about') ?>">
 									About Us
 								</a>
 							</li>
 							<li class="navbar-item dropdown"><a class="navbar-link "
 									href="<?= base_url('product') ?>">Explore All Test</a>
-							</li>							
+							</li>
 							<li class="navbar-item dropdown"><a class="navbar-link"
 									href="<?= base_url('nearest-lab') ?>">Nearest lab</a>
-							</li>							
+							</li>
 						</ul>
 						<div class="navbar-info-group">
 						</div>
@@ -141,8 +141,9 @@
 		<div id="cart"></div>
 	</aside>
 	<aside class="nav-sidebar">
-		<div class="nav-header"><a href="#"><img src="<?= base_url() ?>assets/images/logo.png"
-					alt="Care1 health care logo"></a><button class="nav-close"><i class="icofont-close"></i></button>
+		<div class="nav-header"><a href="#">
+				<img src="<?= base_url() ?>assets/images/logo.png" alt="Msuperb"></a><button class="nav-close"><i
+					class="icofont-close"></i></button>
 		</div>
 		<div class="nav-content">
 			<ul class="nav-list">
@@ -155,10 +156,11 @@
 					</a>
 				</li>
 				<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('product') ?>">
-				Explore All Test
+						Explore All Test
 					</a>
 				</li>
-				<li class="navbar-item dropdown"><a class="navbar-link " href="<?= base_url('nearest-lab') ?>">Nearest lab</a>
+				<li class="navbar-item dropdown"><a class="navbar-link " href="<?= base_url('nearest-lab') ?>">Nearest
+						lab</a>
 
 				</li>
 				<?php

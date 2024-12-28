@@ -29,13 +29,13 @@ $this->session->unset_userdata('msg'); ?>
         foreach ($banner as $all) {
             ?>
             <div class="banner-part"
-                style="background: url(<?= base_url('upload/banner/' . $all['image_path']) ?>) no-repeat center; height: 480px; position: relative; background-size: cover;">
+                style="background: url(<?= $setting[0]['particular_value'] ?>) no-repeat center; height: 480px; position: relative; background-size: cover;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-lg-6">
                             <!-- Button inside the banner -->
                             <div class="upload-prescription-btn"
-                                style="position: absolute; bottom: 30px; left: 30%; transform: translateX(-50%); z-index: 10;">
+                                style="">
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
                                     style="padding: 10px 20px; font-size: 16px;">
                                     <i class="fa fa-file"></i>
@@ -222,25 +222,24 @@ $this->session->unset_userdata('msg'); ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="faq-parent">
-
-                    <div class="faq-child">
-                        <div class="faq-que">
-                            <button>What should I do if I have a problem with my order?</button>
-                        </div>
-                        <div class="faq-ans">
-                            <p>If you encounter any issues with your order, please contact our customer support team,
-                                and we will resolve it promptly.</p>
-                        </div>
-                    </div>
-                    <div class="faq-child">
-                        <div class="faq-que">
-                            <button>How can I stay updated on health-related information?</button>
-                        </div>
-                        <div class="faq-ans">
-                            <p>Stay informed by following our blog and subscribing to our newsletter for the latest
-                                health tips and product updates.</p>
-                        </div>
-                    </div>
+                <?php
+                    if ($getFaqs):
+                        foreach ($getFaqs as $row):
+                            ?>
+                            <div class="faq-child">
+                                <div class="faq-que">
+                                    <button class="d-flex align-items-center justify-content-between"><?= $row['question'] ?>
+                                        <div><i class="fa fa-plus"></i></div>
+                                    </button>
+                                </div>
+                                <div class="faq-ans">
+                                    <p><?= $row['answer'] ?></p>
+                                </div>
+                            </div>
+                            <?php
+                        endforeach;
+                    endif;
+                    ?>
                 </div>
             </div>
         </div>

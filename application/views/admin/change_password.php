@@ -1,10 +1,8 @@
 <?php $this->load->view('admin/template/header', $title); ?>
 <?php $id = $this->input->get('id'); ?>
 <div class="main-content">
-
     <div class="page-content">
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">

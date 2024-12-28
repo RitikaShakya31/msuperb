@@ -1,6 +1,10 @@
 <?php $this->load->view('includes/header'); ?>
 <?php $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
 <style>
+    .form-control {
+	border: 1px solid #110c0c5e !important;
+	padding: 18px !important;
+}
     .labl {
         display: block;
     }
@@ -137,7 +141,7 @@
                             <li class="icofont-ui-rating"></li>
                             <li class="icofont-ui-rate-blank"></li>
                         </ul>
-                        <p>
+                        <p style="padding-left:14%;">
                             Lorem ipsum dolor sit 
                         </p>
                     </li>
@@ -180,7 +184,6 @@
         </div>
     </div>
 </div>
-
 <form action="<?= base_url('product') ?>" action="" class="product-form">
     <input placeholder="Search test..." type="text" name="searchbox" list="browsers" id="browser"
         value="<?= isset($search) ? $search : '' ?>" required>
