@@ -451,7 +451,7 @@ class AdminHome extends CI_Controller
             $data['lab_name'] = trim($getData['sub_category']);
             $data['lab_email'] = trim($getData['lab_email']);
             $data['password'] = trim($getData['password']);
-            $data['login_link'] = base_url('user-login/');
+            $data['login_link'] = base_url('lab-login/');
 
             $emailContent = $this->load->view('email/status_update', $data, true);
             $sendMail = send_email($getData['lab_email'], 'Registration Verified', $emailContent);

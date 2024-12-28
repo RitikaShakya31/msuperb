@@ -33,6 +33,22 @@ $route['userAll'] = 'admin/AdminHome/user_all';
 $route['payment-history'] = 'admin/AdminHome/payment_history';
 $route['paymentStatus/(:any)'] = 'admin/AdminHome/paymentStatus/$1';
 
+//Lab routes
+$route['lab-login'] = 'lab/LabHome/user_login';
+$route['lab-dashboard'] = 'lab/LabHome/user_dashboard';
+$route['supportFormData'] = 'lab/LabHome/supportFormData';
+$route['visitStatus/(:any)'] = 'lab/LabHome/visitStatus/$1';
+$route['appointment-list'] = 'lab/LabHome/appointment_list';
+$route['services-list'] = 'lab/LabHome/services_list';
+$route['payment-list'] = 'lab/LabHome/payment_list';
+$route['lab-profile'] = 'lab/LabHome/lab_profile';
+$route['userLogout'] = 'lab/LabHome/userLogout';
+
+
+
+
+
+
 //  =>  User
 
 $route['activeUser'] = 'admin/AdminHome/activeUser';
@@ -87,7 +103,6 @@ $route['login'] = 'UserHome/login';
 $route['check_verification'] = 'UserHome/check_verification';
 $route['nearest-lab'] = 'UserHome/nearest_lab';
 $route['compare/(:any)'] = 'UserHome/compare/$1';
-// $route['user-login'] = 'UserHome/login';
 
 $route['register'] = 'UserHome/register';
 $route['checkout'] = 'UserHome/checkout';

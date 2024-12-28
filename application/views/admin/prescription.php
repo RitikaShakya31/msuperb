@@ -193,7 +193,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $getReg = $this->CommonModal->getSingleRowById('register', "register_id = '{$item['lab_id']}'");
+                        $getReg = $this->CommonModel->getSingleRowById('register', "register_id = '{$item['lab_id']}'");
                         ?>
                         <tr>
                             <td><?= $getReg['lab_email'] ?></td>

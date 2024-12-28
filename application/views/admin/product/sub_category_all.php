@@ -129,8 +129,8 @@
                                                                     </div>
                                                                     <div class="modal-body" id="modalBody<?= $i ?>">
                                                                         <p><strong>Pathology Lab Panel URL:</strong> <a
-                                                                                href="<?= base_url('user-login') ?>"
-                                                                                target="_blank"> <?= base_url('user-login') ?></a>
+                                                                                href="<?= base_url('lab-login') ?>"
+                                                                                target="_blank"> <?= base_url('lab-login') ?></a>
                                                                         </p>
                                                                         <p><strong>Email:</strong> <?= $item['lab_email'] ?>
                                                                         </p>
