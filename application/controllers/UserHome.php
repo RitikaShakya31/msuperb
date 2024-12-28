@@ -406,6 +406,7 @@ class UserHome extends CI_Controller
         $data['title'] = ' Profile -  | Your One Care Medical';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('order-history', $data);
     }
     public function requestOtp()
@@ -492,6 +493,7 @@ class UserHome extends CI_Controller
             $data['title'] = 'Profile -  | Your One Care Medical';
             $data['logo'] = 'assets/logo.png';
             $data['contact'] = $this->contact;
+            $data['setting'] = $this->setting;
             $this->load->view('profile', $data);
         }
     }
@@ -806,6 +808,7 @@ class UserHome extends CI_Controller
 
         } else {
             $data['contact'] = $this->contact;
+            $data['setting'] = $this->setting;
             $this->load->view('checkout', $data);
         }
     }
@@ -879,7 +882,7 @@ class UserHome extends CI_Controller
     public function checkout_save()
     {
         $ga = 0;
-        $data['gst'] = $this->CommonModel->getSingleRowById('setting', ['id' => 1]);
+        // $data['gst'] = $this->CommonModel->getSingleRowById('setting', ['id' => 1]);
         if (count($_POST) > 0) {
             $postdata = $this->input->post();
             $postdata['same_as_billing'] = (($this->input->post('same_as_billing') !== null) ? '1' : '0');
@@ -900,11 +903,11 @@ class UserHome extends CI_Controller
             } else {
                 $post = $this->CommonModel->insertRowReturnId('book_product', $postdata);
             }
-            $gst_at = 0;
+            // $gst_at = 0;
             if (count($this->cart->contents()) > 0) {
                 foreach ($this->cart->contents() as $items):
-                    $gst_amt = ($items['price'] * ((int) $data['gst']['particular_value'] / 100));
-                    $price = $items['price'] - $gst_amt;
+                    // $gst_amt = ($items['price'] * ((int) $data['gst']['particular_value'] / 100));
+                    $price = $items['price'];
                     $mydata[] = array(
                         'create_date' => setDateTime(),
                         'order_id' => $orderId,
@@ -912,14 +915,14 @@ class UserHome extends CI_Controller
                         'base_price' => $items['market_price'],
                         'user_price' => (int) $price,
                         'booking_price' => ($price * $items['qty']),
-                        'gst_amt' => (int) ($gst_amt * $items['qty']),
-                        'gst_per' => $data['gst']['particular_value'],
+                        // 'gst_amt' => (int) ($gst_amt * $items['qty']),
+                        // 'gst_per' => $data['gst']['particular_value'],
                         'product_id' => explode('-', $items['id'])[0],
                         'product_img' => $items['image'],
                         'product_name' => clean($items['name']),
                         'variant_id' => $items['variant'],
-                        'variant_name' => clean($items['variant_name']),
-                        'is_variant' => (($items['variant'] != 0) ? 1 : 0),
+                        // 'variant_name' => clean($items['variant_name']),
+                        // 'is_variant' => (($items['variant'] != 0) ? 1 : 0),
 
                     );
                     $ga += $items['price'] * $items['qty'];

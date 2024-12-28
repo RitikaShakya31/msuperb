@@ -90,12 +90,12 @@ $(".home-index-slider").slick({
 		speed: 1000,
 		prevArrow: '<i class="icofont-arrow-right dandik"></i>',
 		nextArrow: '<i class="icofont-arrow-left bamdik"></i>',
-		slidesToShow: 3, // Show 3 cards by default
-		slidesToScroll: 3, // Scroll 3 items at once
+		slidesToShow: 4, // Show 4 cards by default
+		slidesToScroll: 4, // Scroll 4 items at once
 		responsive: [
-			{ breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 3 cards on large screens
-			{ breakpoint: 992, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 3 cards on medium screens
-			{ breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // 3 cards on smaller screens
+			{ breakpoint: 1200, settings: { slidesToShow: 4, slidesToScroll: 4 } }, // 4 cards on large screens
+			{ breakpoint: 992, settings: { slidesToShow: 4, slidesToScroll: 4 } }, // 4 cards on medium screens
+			{ breakpoint: 768, settings: { slidesToShow: 4, slidesToScroll: 4 } }, // 4 cards on smaller screens
 			{
 				breakpoint: 576,
 				settings: { slidesToShow: 1, slidesToScroll: 1, arrows: false }, // 1 card on very small screens, no arrows

@@ -46,11 +46,11 @@
 </style>
 <section class="inner-section single-banner">
   <div class="container">
-    <h2>Your Order History</h2>
-    <ol class="breadcrumb">
+    <h2>Your Appointment History</h2>
+    <!-- <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Orders</li>
-    </ol>
+    </ol> -->
   </div>
 </section>
 <section class="inner-section orderlist-part">
@@ -73,7 +73,7 @@
       <div class="row">
         <div class="col-lg-12">
           <?php
-          echo "<h4 class='heading text-dark'>My Orders</h4>";
+          echo "<h4 class='heading text-dark'>My Appointment</h4>";
           $i = 0;
           if (!empty($orderDetails)) {
             foreach ($orderDetails as $row) {
@@ -199,8 +199,8 @@
                             <thead>
                               <tr>
                                 <th scope="col">Serial</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Name</th>
+                                <!-- <th scope="col">Product</th> -->
+                                <th scope="col">Test Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">quantity</th>
                               </tr>
@@ -211,6 +211,7 @@
                               $checkoutProduct = getRowById('book_item', 'order_id', $row['order_id']);
                               if (!empty($checkoutProduct)) {
                                 foreach ($checkoutProduct as $productRow) {
+                                  $productName = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $productRow['product_name']]);
 
                                   $products = getSingleRowById('product', ['product_id' => $productRow['product_id']]);
 
@@ -228,13 +229,14 @@
                                         <?= $j ?>
                                       </h6>
                                     </td>
-                                    <td class="table-image">
+                                    <!-- <td class="table-image">
                                       <img src="<?= setImage($data['image_path'], 'upload/product/') ?>" alt="<?= $products['product_name'] ?>">
-                                    </td>
+                                    </td> -->
                                     <td class="table-name">
                                       <a href="<?= base_url('product-details/' . encryptId($products['product_id']) . '/' . url_title($products['product_name'])) ?>">
                                         <h6>
-                                          <?= $products['product_name'] ?> - <?= $productRow['variant_name'] ?>
+                                          <?= $productName['service_name'] ?>
+                                           <!-- - <?= $productRow['variant_name'] ?> -->
                                         </h6>
                                       </a>
                                       <?php
@@ -385,6 +387,7 @@
           if (!empty($cancelOrderDetails)) {
             echo "<h4 class='heading'>Cancelled orders</h4>";
             foreach ($cancelOrderDetails as $row) {
+             
               $i = $i + 1;
               $getnum = getNumRows('book_item', array('order_id' => $row['order_id']));
           ?>
@@ -510,8 +513,8 @@
                           <thead>
                             <tr>
                               <th scope="col">Serial</th>
-                              <th scope="col">Product</th>
-                              <th scope="col">Name</th>
+                              <!-- <th scope="col">Product</th> -->
+                              <th scope="col">Test Name</th>
                               <th scope="col">Price</th>
                               <th scope="col">quantity</th>
                             </tr>
@@ -522,6 +525,7 @@
                             $checkoutProduct = getRowById('book_item', 'order_id', $row['order_id']);
                             if (!empty($checkoutProduct)) {
                               foreach ($checkoutProduct as $productRow) {
+                                $productName = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $productRow['product_name']]);
                                 $products = getRowById('product', 'product_id', $productRow['product_id'])[0];
                                 $data = getSingleRowById('product_image', array('product_id' => $products['product_id']));
                                 $j = $j + 1;
@@ -532,10 +536,11 @@
                                       <?= $j ?>
                                     </h6>
                                   </td>
-                                  <td class="table-image"><img src="<?= setImage($data['image_path'], 'upload/product/') ?>" alt="<?= $products['product_name'] ?>"></td>
+                                  <!-- <td class="table-image"><img src="<?= setImage($data['image_path'], 'upload/product/') ?>" alt="<?= $products['product_name'] ?>"></td> -->
                                   <td class="table-name">
                                     <h6>
-                                      <?= $products['product_name'] ?> - <?= $productRow['variant_name'] ?>
+                                      <?= $productName['service_name'] ?>
+                                       <!-- - <?= $productRow['variant_name'] ?> -->
                                     </h6>
                                   </td>
                                   <td class="table-price">

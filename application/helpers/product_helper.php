@@ -26,7 +26,7 @@ function product($row, $ss = 1)
             <div class="row" style="justify-content: center;">
                 <a href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>"" class="col-md-6 mt-2 product-add" title="Know More"><span>know more</span></a>
                 <button class="col-md-6 mt-2 product-add  addCart  crtbtn-<?= $row['product_id'] ?>"
-                    data-id="<?= $row['product_id'] ?>" title="Add to Cart"><i class="fas fa-shopping-basket"></i><span>add
+                    data-id="<?= $row['product_id'] ?>" title="Add to Cart"><span>add
                         to cart</span></button>
             </div>
         </div>

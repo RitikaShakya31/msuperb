@@ -17,18 +17,18 @@
 
 
 <script>
-      <?php 
-    if (sessionId('success_status')) {
+  <?php
+  if (sessionId('success_status')) {
     ?>
-        Swal.fire({
-            title: '<?= sessionId('success_status') ?>!',
-            text: '<?= sessionId('msg') ?>',
-            icon: '<?= sessionId('success_status') ?>',
-            confirmButtonText: 'Done'
-        })
+    Swal.fire({
+      title: '<?= sessionId('success_status') ?>!',
+      text: '<?= sessionId('msg') ?>',
+      icon: '<?= sessionId('success_status') ?>',
+      confirmButtonText: 'Done'
+    })
     <?php
-    }
-    ?>
+  }
+  ?>
 </script>
 <!-- Modal -->
 <div class="modal fade" id="prescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -46,21 +46,23 @@
           </div>
           <!-- Right side form -->
           <div class="col-md-6">
-            <form action="<?= base_url('UserHome/prescriptionData')?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('UserHome/prescriptionData') ?>" method="post" enctype="multipart/form-data">
               <div class="mb-3">
                 <!-- <label for="name" class="form-label">Name</label> -->
                 <input type="text" class="form-control" placeholder="Name *" name="name" id="name" required>
               </div>
               <div class="mb-3">
                 <!-- <label for="contact" class="form-label">Contact</label> -->
-                <input type="tel" class="form-control" id="contact"  name="contact_no" placeholder="Mobile no *" required>
+                <input type="tel" class="form-control" id="contact" name="contact_no" placeholder="Mobile no *"
+                  required>
               </div>
               <div class="mb-3">
                 <!-- <label for="email" class="form-label">Email</label> -->
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email id *" required>
               </div>
               <div class="mb-3">
-                <input type="file" class="form-control"  accept=".png, .jpg, .webp, .jpeg" placeholder="Upload Prescription" name="prescription_image" required>
+                <input type="file" class="form-control" accept=".png, .jpg, .webp, .jpeg"
+                  placeholder="Upload Prescription" name="prescription_image" required>
                 <label for="image" class="form-label">Please Attach the Prescription</label>
               </div>
               <div class="mb-3">
@@ -708,7 +710,14 @@
           console.log(response);
         },
         error: function (xhr, status, error) {
-          alert('Error: ' + error);
+
+          console.error('AJAX Error Details:');
+          console.error('Status: ', status); // e.g., "error", "timeout"
+          console.error('Error: ', error);   // e.g., "Internal Server Error"
+          console.error('Response Text: ', xhr.responseText); // Server's response
+
+          // Optionally show the full error in an alert
+          alert('Error: ' + error + '\nStatus: ' + status + '\nResponse: ' + xhr.responseText);
         }
       });
     }
