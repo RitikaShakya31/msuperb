@@ -6,14 +6,14 @@
 		<li class="cart-item">
 			<div>
 				<div class="cart-media">
-					<a
+					<!-- <a
 						href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>">
 						<img src="<?= setImage($items['image'], 'upload/product/') ?>" alt="<?php echo $items['name']; ?>">
-					</a>
-
+					</a> -->
+<!-- 
 					<button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
 							class="far fa-trash-alt"></i>
-					</button>
+					</button> -->
 
 				</div>
 				<div class="cart-action-group mt-2">
@@ -46,10 +46,10 @@
 					<h6>
 						<a
 							href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $productName['service_name']; ?>
-							- <?php echo $items['variant_name']; ?></a> &nbsp;
+							<!-- - <?php echo $items['variant_name']; ?></a> &nbsp; -->
 
-						<!-- <button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
-								class="far fa-trash-alt"></i></button> -->
+						<button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
+								class="far fa-trash-alt"></i></button>
 					</h6>
 					<p>Quantity - <?php echo $items['qty']; ?> X
 						<?php echo $this->cart->format_number($items['price']); ?>/-

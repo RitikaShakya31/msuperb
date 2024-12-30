@@ -190,7 +190,7 @@ class AdminProduct extends CI_Controller
 			$decrypt_id = decryptId($id);
 			$data['title'] = 'Edit Product';
 			$getProduct = $this->CommonModel->getSingleRowById('product', "product_id = '$decrypt_id'");
-			$data['image_all'] = $this->CommonModel->getRowById('product_image', "product_id", $decrypt_id);
+			// $data['image_all'] = $this->CommonModel->getRowById('product_image', "product_id", $decrypt_id);
 			$data['variant'] = $this->CommonModel->getRowById('product_variant', "product_id", $decrypt_id);
 		} else {
 			$data['title'] = 'Add Test';
@@ -250,59 +250,59 @@ class AdminProduct extends CI_Controller
 				// 	}
 				// }
 
-				$filesCount = count($_FILES['image']['name']);
+				// $filesCount = count($_FILES['image']['name']);
 
-				if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'][0])) {
-					$filesCount = count($_FILES['image']['name']);
-					for ($i = 0; $i < $filesCount; $i++) {
-						if (!empty($_FILES['image']['name'][$i])) { // चेक करें कि फाइल खाली नहीं है
-							$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
-							$newFilename = round(microtime(true) * 1000) . '.' . $extension;
-							$_FILES['files']['name'] = $newFilename;
-							$_FILES['files']['type'] = $_FILES['image']['type'][$i];
-							$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-							$_FILES['files']['error'] = $_FILES['image']['error'][$i];
-							$_FILES['files']['size'] = $_FILES['image']['size'][$i];
-							$picture = fullImage('files', PRODUCT_IMAGE);
-							if ($picture) {
-								$post3['image_path'] = $picture;
-								$post3['product_id'] = isset($decrypt_id) ? $decrypt_id : $p_id;
-								$this->CommonModel->insertRow('product_image', $post3);
-							}
-						}
-					}
-				} else {
-					$file_error = "Please select at least one file to upload.";
-				}
+				// if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'][0])) {
+				// 	$filesCount = count($_FILES['image']['name']);
+				// 	for ($i = 0; $i < $filesCount; $i++) {
+				// 		if (!empty($_FILES['image']['name'][$i])) { // चेक करें कि फाइल खाली नहीं है
+				// 			$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
+				// 			$newFilename = round(microtime(true) * 1000) . '.' . $extension;
+				// 			$_FILES['files']['name'] = $newFilename;
+				// 			$_FILES['files']['type'] = $_FILES['image']['type'][$i];
+				// 			$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+				// 			$_FILES['files']['error'] = $_FILES['image']['error'][$i];
+				// 			$_FILES['files']['size'] = $_FILES['image']['size'][$i];
+				// 			$picture = fullImage('files', PRODUCT_IMAGE);
+				// 			if ($picture) {
+				// 				$post3['image_path'] = $picture;
+				// 				$post3['product_id'] = isset($decrypt_id) ? $decrypt_id : $p_id;
+				// 				$this->CommonModel->insertRow('product_image', $post3);
+				// 			}
+				// 		}
+				// 	}
+				// } else {
+				// 	$file_error = "Please select at least one file to upload.";
+				// }
 				flashData('errors', 'Produce update successfully');
 			} else {
 				$p_id = $this->CommonModel->insertRowReturnIdWithClean('product', $post);
-				if ($p_id > 0) {
-					$filesCount = count($_FILES['image']['name']);
-					if ($filesCount > 0) {
-						for ($i = 0; $i < $filesCount; $i++) {
-							if ($_FILES['image']['name'] != '') {
-								$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
-								$newFilename = round(microtime(true) * 1000);
-								$_FILES['files']['name'] = $newFilename . '.' . $extension;
-								$_FILES['files']['type'] = $_FILES['image']['type'][$i];
-								$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-								$_FILES['files']['error'] = $_FILES['image']['error'][$i];
-								$_FILES['files']['size'] = $_FILES['image']['size'][$i];
-								$picture = fullImage('files', PRODUCT_IMAGE);
-								// $picture = imageUploadWithRatio('files', PRODUCT_IMAGE, 600, 400, "");
-								if ($picture) {
-									$post2['image_path'] = $picture;
-									$post2['product_id'] = $p_id;
-									$insert = $this->CommonModel->insertRow('product_image', $post2);
-								}
-							}
-						}
-					}
-					flashData('errors', 'Produce add successfully');
-				} else {
-					flashData('errors', 'Product not add');
-				}
+				// if ($p_id > 0) {
+				// 	$filesCount = count($_FILES['image']['name']);
+				// 	if ($filesCount > 0) {
+				// 		for ($i = 0; $i < $filesCount; $i++) {
+				// 			if ($_FILES['image']['name'] != '') {
+				// 				$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
+				// 				$newFilename = round(microtime(true) * 1000);
+				// 				$_FILES['files']['name'] = $newFilename . '.' . $extension;
+				// 				$_FILES['files']['type'] = $_FILES['image']['type'][$i];
+				// 				$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+				// 				$_FILES['files']['error'] = $_FILES['image']['error'][$i];
+				// 				$_FILES['files']['size'] = $_FILES['image']['size'][$i];
+				// 				$picture = fullImage('files', PRODUCT_IMAGE);
+				// 				// $picture = imageUploadWithRatio('files', PRODUCT_IMAGE, 600, 400, "");
+				// 				if ($picture) {
+				// 					$post2['image_path'] = $picture;
+				// 					$post2['product_id'] = $p_id;
+				// 					$insert = $this->CommonModel->insertRow('product_image', $post2);
+				// 				}
+				// 			}
+				// 		}
+				// 	}
+				// 	flashData('errors', 'Produce add successfully');
+				// } else {
+				// 	flashData('errors', 'Product not add');
+				// }
 			}
 			redirect('productAll');
 		}
@@ -331,8 +331,11 @@ class AdminProduct extends CI_Controller
 		$data['sale_price'] = set_value('sale_price') == false ? @$getProduct['sale_price'] : set_value('sale_price');
 		$data['quantity'] = set_value('quantity') == false ? @$getProduct['quantity'] : set_value('quantity');
 		$data['quantity_type'] = set_value('quantity_type') == false ? @$getProduct['quantity_type'] : set_value('quantity_type');
+		$data['seo_title'] = set_value('seo_title') == false ? @$getProduct['seo_title'] : set_value('seo_title');
+		$data['seo_description'] = set_value('seo_description') == false ? @$getProduct['seo_description'] : set_value('seo_description');
+		$data['seo_keyword'] = set_value('seo_keyword') == false ? @$getProduct['seo_keyword'] : set_value('seo_keyword');
 		$data['image_all'] = $this->CommonModel->getRowById('product_image', "product_id", $decrypt_id);
-		$data['title'] = 'Product Details';
+		$data['title'] = 'Test Details';
 		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/view_product_details', $data);
 	}

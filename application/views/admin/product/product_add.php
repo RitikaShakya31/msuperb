@@ -214,7 +214,7 @@
                                     <!--        </div>-->
                                     <!--    </div>-->
                                     <!--</div>-->
-                                    <div class="col-lg-4 mb-3">
+                                    <!-- <div class="col-lg-4 mb-3 d-none">
                                         <label style="color: gray">Note:- Image Size 600X400</label>
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label">Test
@@ -232,7 +232,7 @@
 
                                     <div class="col-lg-4  mb-3">
                                         <div class="gallery"></div>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="col-lg-12  mb-3">
 
                                         <button id="rowAdder" type="button" class="btn btn-dark">
@@ -345,7 +345,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" id="save" class="btn btn-primary w-md">Save</button>
+                                <button type="submit"  class="btn btn-primary w-md">Save</button>
                             </div>
                             <br />
                         </div>
@@ -355,9 +355,6 @@
         </div>
     </div>
 </div>
-
-
-
 <?php $this->load->view('admin/template/footer'); ?>
 <script>
     $(document).ready(function () {
