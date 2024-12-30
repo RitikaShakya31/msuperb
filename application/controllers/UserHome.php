@@ -616,6 +616,7 @@ class UserHome extends CI_Controller
         $grand_total = 0;
         $ga = 0;
         if (count($_POST) > 0) {
+           
             $this->load->library('form_validation');
 
             // Set validation rules
@@ -671,6 +672,11 @@ class UserHome extends CI_Controller
                             'contact_no' => $postdata['contact_no'],
                             'name' => $postdata['name'],
                             'email_id' => $postdata['email'],
+                            'appointment_date' => $postdata['appointment_date'],
+                            'appointment_time' => $postdata['appointment_time'],
+                            'patient_gender' => $postdata['patient_gender'],
+                            'service_type' => $postdata['service_type'],
+                            'patient_age' => $postdata['patient_age'],
                         );
 
                         $insertStatus = $this->CommonModel->insertRowReturnId('user_registration', $insertData);
@@ -997,6 +1003,7 @@ class UserHome extends CI_Controller
         $msg .= "<br/>";
         $data['message'] = $msg;
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         if (isset($_GET['order'])) {
             $data['orders'] = $this->CommonModel->getSingleRowById('book_product', ["order_id" => $_GET['order']]);
             $data['itemDetails'] = getRowById('book_item', 'order_id', $_GET['order']);

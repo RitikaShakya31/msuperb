@@ -2,9 +2,10 @@
 <?php $server_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
 <style>
     .form-control {
-	border: 1px solid #110c0c5e !important;
-	padding: 18px !important;
-}
+        border: 1px solid #110c0c5e !important;
+        padding: 18px !important;
+    }
+
     .labl {
         display: block;
     }
@@ -114,8 +115,8 @@
                         <span class="sale-text">Rs. <?= $product['sale_price'] ?> /-</span>
                         <del class="del-text">Rs. <?= $product['market_price'] ?></del>
                     </h5>
-                    <button class="product-add  addCart  crtbtn-<?= $product['product_id'] ?>"
-                        data-id="<?= $product['product_id'] ?>" title="Add to Cart"><span>add to cart</span></button>
+                    <!-- <button class="product-add  addCart  crtbtn-<?= $product['product_id'] ?>"
+                        data-id="<?= $product['product_id'] ?>" title="Add to Cart"><span>add to cart</span></button> -->
                 </div>
             </div>
         </div>
@@ -129,12 +130,13 @@
                 <ul class="review-list">
                     <li class="review-item">
                         <div class="review-media">
-                            <a class="review-avatar" href="#"><img src="<?= base_url('assets/images/user.png')?>" alt="review" /></a>
+                            <a class="review-avatar" href="#"><img src="<?= base_url('assets/images/user.png') ?>"
+                                    alt="review" /></a>
                             <h5 class="review-meta">
                                 <a href="#">miron mahmud</a><span>June 02, 2020</span>
                             </h5>
                         </div>
-                        <ul class="review-rating"  style="padding-left:14%;">
+                        <ul class="review-rating" style="padding-left:14%;">
                             <li class="icofont-ui-rating"></li>
                             <li class="icofont-ui-rating"></li>
                             <li class="icofont-ui-rating"></li>
@@ -142,7 +144,7 @@
                             <li class="icofont-ui-rate-blank"></li>
                         </ul>
                         <p style="padding-left:14%;">
-                            Lorem ipsum dolor sit 
+                            Lorem ipsum dolor sit
                         </p>
                     </li>
                 </ul>
@@ -165,7 +167,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name" required/>
+                                <input type="text" class="form-control" placeholder="Name" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -202,7 +204,23 @@
         ?>
     </datalist><button type="submit"><i class="fas fa-search"></i></button>
 </form>
-<div class="row suggest-slider justify-content-center mb-5">
+<div class="container">
+    <div class="row">
+        <?php
+        if (!empty($dailypro)) {
+            foreach ($dailypro as $row) { ?>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <?php product($row, "product", "double"); ?>
+                </div>
+                <?php
+            }
+        } else {
+            echo '<div class="col-12 text-center">No test available</div>';
+        }
+        ?>
+    </div>
+</div>
+<!-- <div class="row suggest-slider justify-content-center mb-5">
     <?php
     if ($dailypro != '') {
         foreach ($dailypro as $row) {
@@ -212,7 +230,7 @@
         echo 'No tests available';
     }
     ?>
-</div>
+</div> -->
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
 </body>

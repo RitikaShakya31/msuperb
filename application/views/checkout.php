@@ -57,9 +57,9 @@
 
                                 <div class="form-outline">
                                     <label class="mt-2">Age</label>
-                                    <input type="text" class="form-control checkoutfield" name="name"
+                                    <input type="text" class="form-control checkoutfield" name="patient_age"
                                         placeholder="Enter Your Age:"
-                                        value="<?= set_value('name', @$login[0]['name']) ?>" required>
+                                        value="<?= set_value('patient_age', @$login[0]['patient_age']) ?>" required>
                                     <?= form_error('name', '<div class="error" style="color:red;">', '</div>'); ?>
                                 </div>
                             </div>

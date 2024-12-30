@@ -24,6 +24,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
 <script>
     $('#datatable').DataTable({
         "scrollX": true,

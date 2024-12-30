@@ -5,17 +5,16 @@
 		?>
 		<li class="cart-item">
 			<div>
-				<div class="cart-media">
-					<!-- <a
+				<!-- <div class="cart-media">
+					<a
 						href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>">
 						<img src="<?= setImage($items['image'], 'upload/product/') ?>" alt="<?php echo $items['name']; ?>">
-					</a> -->
-					<!-- 
+					</a>
+
 					<button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
 							class="far fa-trash-alt"></i>
-					</button> -->
-
-				</div>
+					</button>
+				</div> -->
 				<div class="cart-action-group mt-2">
 					<!-- <div class="product-action"><button class="action-minus qty-minus" data-rowid="<?= $items['id']; ?>" title="Quantity Minus"><i class="icofont-minus"></i></button>
 						<input class="action-input" title="Quantity Number" type="text" id="qtysidecart<?= $items['id'] ?>" name="quantity" value="1">
@@ -45,7 +44,7 @@
 					</a>
 					<h6>
 						<a
-							href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $productName['service_name']; ?>
+							href="<?= base_url('test-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $productName['service_name']; ?>
 							<!-- - <?php echo $items['variant_name']; ?></a> &nbsp; -->
 							<button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
 									class="far fa-trash-alt"></i></button>

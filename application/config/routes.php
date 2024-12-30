@@ -30,6 +30,7 @@ $route['testAll'] = 'admin/AdminHome/all_test';
 $route['brandAll'] = 'admin/AdminHome/all_brand';
 $route['testAdd'] = 'admin/AdminHome/test_add';
 $route['userAll'] = 'admin/AdminHome/user_all';
+$route['appointments'] = 'admin/AdminHome/appointments';
 $route['payment-history'] = 'admin/AdminHome/payment_history';
 $route['paymentStatus/(:any)'] = 'admin/AdminHome/paymentStatus/$1';
 

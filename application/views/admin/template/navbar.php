@@ -100,6 +100,11 @@ $page_id = $this->input->get('page_id');
 					</ul>
 				</li> -->
 				<li class="menu-title" key="t-apps">Query</li>
+				<li><a href="<?= base_url('appointments') ?>" key="t-blog">
+						<i class="bx bx-file"></i>
+						<span key="t-dashboards">Appointment</span>
+					</a>
+				</li>
 				<li><a href="<?= base_url('userAll') ?>" key="t-blog">
 						<i class='bx bxs-user'></i>
 						<span key="t-dashboards">Patient Details </span>
