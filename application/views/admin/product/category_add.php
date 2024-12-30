@@ -54,6 +54,7 @@
                                                 Banner</label>
                                             <div class="col-md-9">
                                                 <input class="form-control " type="file" name="banner" <?= $image == "" ? 'required' : '' ?>>
+                                                <h6>Image Size: 1296*300</h6>
                                             </div>
                                         </div>
                                     </div>

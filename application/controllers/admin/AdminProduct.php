@@ -157,7 +157,7 @@ class AdminProduct extends CI_Controller
 			['sub_category', 'sub_category.sub_category_id = product.sub_category_id', 'LEFT'],
 		];
 		if (isset($subCategoryId)) {
-			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1' AND product.sub_category_id = '" . decryptId($subCategoryId) . "'", $join, 'product_name', 'ASC', 1);
+			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1' AND product.sub_category_id = '" . decryptId($subCategoryId)  . "'", $join, 'product_name', 'ASC', 1);
 		} else {
 			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1'", $join, 'product_name', 'ASC', 1);
 		}
@@ -213,7 +213,7 @@ class AdminProduct extends CI_Controller
 			extract($this->input->post());
 			$post['product_name'] = $product_name;
 			$post['description'] = $description;
-			// $post['product_type'] = $product_type;
+			$post['product_type'] = $product_type;
 			$post['market_price'] = $market_price;
 			$post['sale_price'] = $sale_price;
 			$post['seo_title'] = $seo_title;

@@ -47,7 +47,7 @@
                                                 <!-- <td><?= $item['category_name'] ?> </td>
                                                 <td><?= $item['sub_category_name'] ?> </td> -->
                                                 <!-- <td><?= (($item['product_status'] == '1') ? '<span class="bg-info badge badge-info">Instock</span>' : (($item['product_status'] == '2') ? '<span class="bg-danger badge badge-danger">Out of stock</span>' : '')) ?></td> -->
-                                                <td><?= (($item['product_type'] == '3') ? 'Combo' : (($item['product_type'] == '2') ? 'Featured' : 'Normal')) ?></td>
+                                                <td><?= (($item['product_type'] == '3') ? 'Package' : (($item['product_type'] == '2') ? 'Offer' : 'Normal')) ?></td>
                                                 <td><?= $item['market_price'] ?></td>
                                                 <td><?= $item['sale_price'] ?></td>
                                                 <!-- <td><?= $item['quantity'] ?> <?= $item['quantity_type'] ?></td> -->

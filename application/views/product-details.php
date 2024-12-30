@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <img style="width: 100%;" src="<?= setImage(@$category['banner'], 'upload/category/') ?>"
+                <img style="width: 100%;border-radius: 45px;" src="<?= setImage(@$category['banner'], 'upload/category/') ?>"
                     alt="Category">
                 <div class="details-content">
                     <p class="details-desc"><?= $category['category_description']; ?></p>
@@ -135,24 +135,40 @@
         </div>
     </div>
 </section>
-<h2 class="mb-4 text-center">Specialized Health Packages</h2>
-<div class="row suggest-slider justify-content-center">
-    <?php
-    if ($packagepro != '') {
-        foreach ($packagepro as $row) {
+<?php if ($offers != ''): ?>
+    <h2 class="mb-4 text-center">Special Offers</h2>
+    <div class="row suggest-slider justify-content-center">
+        <?php
+        foreach ($offers as $row) {
             product($row, "product", "double");
         }
-    } else {
-        echo 'No test available';
-    }
-    ?>
+        ?>
+    </div>
+<?php endif; ?>
+
+<h2 class="mb-4 text-center">Health Packages</h2>
+<div class="container">
+    <div class="row">
+        <?php
+        if (!empty($packagepro)) {
+            foreach ($packagepro as $row) { ?>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <?php product($row, "product", "double"); ?>
+                </div>
+                <?php
+            }
+        } else {
+            echo '<div class="col-12 text-center">No test available</div>';
+        }
+        ?>
+    </div>
 </div>
 <?php
 if ($category['offer'] != '') {
     ?>
-    <img style="width: 100%;" src="<?= setImage(@$category['offer'], 'upload/category/') ?>" alt="Category" height="300">
+    <img style="width: 100%;" src="<?= setImage(@$category['offer'], 'upload/category/') ?>"
+        alt="<?= $category['category_name'] ?>">
 <?php } else {
-
 } ?>
 <form action="<?= base_url('product-details') ?>" method="get" class="product-form">
     <input placeholder="Search test..." type="text" name="searchbox" list="browsers" id="browser"
@@ -169,21 +185,25 @@ if ($category['offer'] != '') {
         ?>
     </datalist><button type="submit"><i class="fas fa-search"></i></button>
 </form>
-<div class="row suggest-slider justify-content-center">
-    <?php
-    if ($routinepro != '') {
-        foreach ($routinepro as $row) {
-            product($row, "product", "double");
+<div class="container">
+    <div class="row">
+        <?php
+        if (!empty($routinepro)) {
+            foreach ($routinepro as $row) { ?>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <?php product($row, "product", "double"); ?>
+                </div>
+                <?php
+            }
+        } else {
+            echo '<div class="col-12 text-center">No test available</div>';
         }
-    } else {
-        echo 'No test available';
-    }
-    ?>
+        ?>
+    </div>
 </div>
 </div>
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
-
 </body>
 
 </html>

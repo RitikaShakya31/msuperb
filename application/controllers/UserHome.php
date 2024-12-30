@@ -158,25 +158,15 @@ class UserHome extends CI_Controller
     public function product_details($id, $title)
     {
         $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
-        $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
-            'product',
-            [
-                'status' => '1',
-                'is_delete' => '1',
-                'category_id' => decryptId($id)
-            ],
-            'product_id',
-            'DESC',
-            '20',
-            "(product_type = '1' OR product_type = '2')"
-        );
+        $data['offers'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
+        $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
         $data['products_variant'] = $this->CommonModel->getRowById('product_variant', 'product_id', decryptId($id));
         $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
-        $data['reviews'] = $this->CommonModel->getRowByOrderWithLimit('product_review', array('product_id' => decryptId($id), 'status' => 'accepted'), 'rid', 'DESC', '100');
-        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | Your One Care Medical' : $data['details']['seo_title'];
-        $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
-        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
+        // $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | Your One Care Medical' : $data['details']['seo_title'];
+        // $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
+        // $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
+        $data['title'] = 'Test details';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
         $this->load->view('product-details', $data);

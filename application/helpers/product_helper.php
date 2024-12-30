@@ -3,13 +3,14 @@ function product($row, $ss = 1)
 {
     $data = getSingleRowById('product_image', array('product_id' => $row['product_id']));
     $getPro = getSingleRowById('all_service', ['service_id' => $row['product_name']]);
-    ?>  
+    ?>
     <div class="product-card d-flex flex-column justify-content-between">
         <div class="product-media">
             <?= (($row['is_bestselling'] == '1') ? '<div class="bestselling-label"><label class="label-text bg-success">Bestselling</label></div>' : '') ?>
         </div>
         <div class="product-content" style="border:none;">
-            <h6 class="product-name"><a href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>">
+            <h6 class="product-name"><a
+                    href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>">
                     <?= $getPro['service_name']; ?>
                 </a></h6>
             <h6 class="product-price mb-1"><span>₹
@@ -24,7 +25,8 @@ function product($row, $ss = 1)
                     data-type="sidecart"><i class="icofont-plus"></i></button>
             </div>
             <div class="row" style="justify-content: center;">
-                <a href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>"" class="col-md-6 mt-2 product-add" title="Know More"><span>know more</span></a>
+                <a href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>"" class="
+                    col-md-6 mt-2 product-add" title="Know More"><span>know more</span></a>
                 <button class="col-md-6 mt-2 product-add  addCart  crtbtn-<?= $row['product_id'] ?>"
                     data-id="<?= $row['product_id'] ?>" title="Add to Cart"><span>add
                         to cart</span></button>
@@ -54,8 +56,6 @@ function product_portrait($row)
                 <h6 class="product-name"><a href="#">fresh green chilis</a></h6>
                 <h6 class="product-price"><del>$34</del><span>$28<small>/piece</small></span></h6><button
                     class="product-add" title="Add to Cart"><i class="fas fa-shopping-basket"></i><span>add</span></button>
-                <!-- <div class="product-action"><button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button><input class="action-input" title="Quantity Number" type="text" name="quantity" value="1"><button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                </div> -->
             </div>
         </div>
     </div>

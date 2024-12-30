@@ -80,18 +80,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-lg-4 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Product Type</label>
+                                            <label for="example-text-input" class="col-md-12 col-form-label">Test Type</label>
                                             <div class="col-md-12">
                                                 <select class="select2 form-control" name="product_type">
-                                                    <option value="1" <?= ($product_type == '1') ? 'selected' : '' ?>>Daily</option>
-                                                    <option value="2" <?= ($product_type == '2') ? 'selected' : '' ?>>Routine</option>
+                                                    <option value="1" <?= ($product_type == '1') ? 'selected' : '' ?>>Normal</option>
+                                                    <option value="2" <?= ($product_type == '2') ? 'selected' : '' ?>>Offer</option>
                                                     <option value="3" <?= ($product_type == '3') ? 'selected' : '' ?>>Package</option>
                                                 </select>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <!-- <div class="col-lg-4 mb-3">
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-12 col-form-label">Product Status</label>
