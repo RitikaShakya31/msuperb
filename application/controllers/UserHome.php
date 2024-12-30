@@ -21,7 +21,7 @@ class UserHome extends CI_Controller
         $data['brand'] = $this->CommonModel->getAllRowsInOrderWithLimit('all_brand', '25', 'brand_id', 'DESC');
         $data['title'] = ' Home ';
         $data['contact'] = $this->contact;
-        $data['setting'] = $this->setting;       
+        $data['setting'] = $this->setting;
         $this->load->view('home', $data);
     }
     public function product()
@@ -44,28 +44,25 @@ class UserHome extends CI_Controller
     }
     public function nearest_lab()
     {
-        // Retrieve search input
-        // $search = isset($_GET['searchbox']) ? trim($_GET['searchbox']) : '';
-        // // Base query to fetch labs
-        // if ($search != '') {
-        //     $query = "SELECT * FROM `tbl_register` WHERE `status` = 'accepted' AND `lab_location` LIKE '%" . $this->db->escape_like_str($search) . "%'";
-        //     $labsData = $this->CommonModel->runQuery($query);
-        //     // If no results, fetch all accepted labs
-        //     if (empty($labsData)) {
-        //         $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
-        //     }
-        // } else {
-        //     // Fetch all accepted labs when no search input is provided
-        //     $labsData = $this->CommonModel->getAllRowsInOrder('tbl_register', 'register_id', 'DESC', array('status' => 'accepted'));
-        // }
-        $data['labsData'] = $this->CommonModel->getAllRowsInOrder('tbl_sub_category', 'sub_category_id', 'DESC', array('status' => 'accepted'));
-        // $data['labsData'] = $labsData;
-        // $data['search'] = $search; // To retain search term in the input box
+        $data['labsData'] = $this->CommonModel->getAllRowsInOrder('tbl_category', 'category_id', 'DESC', array('is_delete' => '1'));
         $data['title'] = 'Our Labs';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
-
         $this->load->view('nearest_lab', $data);
+    }
+    public function lab_location($id)
+    {
+        $id = decryptId($id);
+        $data['lab'] = $this->CommonModel->getRowByIdInOrder(
+            'tbl_sub_category',
+            " is_delete = '1' AND category_id = $id",
+            'sub_category_id',
+            'DESC'
+        );
+        $data['title'] = 'Nearest Labs';
+        $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
+        $this->load->view('lab_location', $data);
     }
     public function compare($id)
     {
@@ -129,15 +126,13 @@ class UserHome extends CI_Controller
                 }
             }
         }
-
-        //  echo $query;
         $data['all_data'] = $this->CommonModel->runQuery($query);
         $data['contact'] = $this->contact;
         $this->load->view('get_product', $data);
     }
     public function lab_details($id, $title)
     {
-        $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('register', array('brand_name' => decryptId($id)), 'register_id', 'DESC', '20');       
+        $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('register', array('brand_name' => decryptId($id)), 'register_id', 'DESC', '20');
         $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit(
             'product',
             [
@@ -178,7 +173,7 @@ class UserHome extends CI_Controller
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
         $data['products_variant'] = $this->CommonModel->getRowById('product_variant', 'product_id', decryptId($id));
         $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
-        $data['reviews'] = $this->CommonModel->getRowByOrderWithLimit('product_review', array('product_id' => decryptId($id),'status' => 'accepted'), 'rid', 'DESC', '100');
+        $data['reviews'] = $this->CommonModel->getRowByOrderWithLimit('product_review', array('product_id' => decryptId($id), 'status' => 'accepted'), 'rid', 'DESC', '100');
         $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | Your One Care Medical' : $data['details']['seo_title'];
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
         $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];

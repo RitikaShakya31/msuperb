@@ -542,10 +542,7 @@
 	font-weight: 500;
 	color: var(--primary);
 }
-.review-rating {
-	padding-left:14%;
-	/* margin-bottom: 10px; */
-}
+
 .review-rating li {
 	font-size: 16px;
 	margin-right: 5px;

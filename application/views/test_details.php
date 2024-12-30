@@ -134,7 +134,7 @@
                                 <a href="#">miron mahmud</a><span>June 02, 2020</span>
                             </h5>
                         </div>
-                        <ul class="review-rating">
+                        <ul class="review-rating"  style="padding-left:14%;">
                             <li class="icofont-ui-rating"></li>
                             <li class="icofont-ui-rating"></li>
                             <li class="icofont-ui-rating"></li>

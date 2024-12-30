@@ -131,6 +131,7 @@ $route['save_review'] = 'UserHome/save_review';
 $route['blogs'] = 'UserHome/blogs';
 $route['blog_details/(:any)'] = 'UserHome/blog_details/$1';
 $route['reorder/(:any)'] = 'UserHome/reorder/$1';
+$route['nearest-lab-location/(:any)'] = 'UserHome/lab_location/$1';
 
 
 
