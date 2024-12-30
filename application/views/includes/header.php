@@ -43,7 +43,7 @@
 				<div class="header-media-group"><button class="header-user">
 						<i class="fas fa-bars"></i></button>
 					<a href="<?= base_url() ?>">
-						<img src="<?= base_url() ?>assets/images/logo.png" alt="CARE1 | Your One Care Medical">
+						<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="Msuperb">
 					</a><button class="header-src"><i class="fas fa-search"></i></button>
 				</div>
 				<a href="<?= base_url() ?>" class="header-logo">

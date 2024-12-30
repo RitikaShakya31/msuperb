@@ -27,10 +27,10 @@
 					<div class="navbar-brand-box">
 						<a href="<?= base_url('lab-dashboard') ?>" class="logo logo-light">
 							<span class="logo-sm">
-								<img src="<?= base_url('assets/img/logo.png') ?>" alt="" width="22">
+								<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="" width="22">
 							</span>
 							<span class="logo-lg">
-								<img src="<?= base_url('assets/img/logo.png') ?>" alt="logo" width="120">
+								<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="logo" width="120">
 							</span>
 						</a>
 					</div>					

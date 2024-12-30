@@ -147,6 +147,13 @@
     }
     ?>
 </div>
+<?php
+if ($category['offer'] != '') {
+    ?>
+    <img style="width: 100%;" src="<?= setImage(@$category['offer'], 'upload/category/') ?>" alt="Category" height="300">
+<?php } else {
+
+} ?>
 <form action="<?= base_url('product-details') ?>" method="get" class="product-form">
     <input placeholder="Search test..." type="text" name="searchbox" list="browsers" id="browser"
         value="<?= isset($search) ? $search : '' ?>" required>

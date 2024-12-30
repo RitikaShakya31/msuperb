@@ -1,4 +1,4 @@
-<?php $this->load->view('user/template/header', $title); ?>
+<?php $this->load->view('lab/template/header', $title); ?>
 <?php $id = $this->input->get('id'); ?>
 <div class="main-content">
     <div class="page-content">

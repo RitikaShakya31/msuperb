@@ -1,4 +1,4 @@
-<?php $this->load->view('user/template/header', $title); ?>
+<?php $this->load->view('lab/template/header', $title); ?>
 <style>
     .dots-menu {
         cursor: pointer;
@@ -82,7 +82,7 @@
                                                     <?= ++$i; ?>
                                                 </td>
                                                 <td>
-                                                    <?= convertDatedmy($all['appointment_date']) ?>
+                                                    <?= $all['appointment_date'] ?>
                                                 </td>
                                                 <td>
                                                     <?= $all['patient_name'] ?>

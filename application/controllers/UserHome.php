@@ -21,8 +21,7 @@ class UserHome extends CI_Controller
         $data['brand'] = $this->CommonModel->getAllRowsInOrderWithLimit('all_brand', '25', 'brand_id', 'DESC');
         $data['title'] = ' Home ';
         $data['contact'] = $this->contact;
-        $data['setting'] = $this->setting;
-       
+        $data['setting'] = $this->setting;       
         $this->load->view('home', $data);
     }
     public function product()
@@ -72,7 +71,6 @@ class UserHome extends CI_Controller
     {
         $data['product'] = $this->CommonModel->getSingleRowById('product', ['product_id' => decryptId($id)]);
         $proName = $data['product']['product_name'];
-
         $data['title'] = 'Compare Labs';
         $data['contact'] = $this->contact;
         $this->load->view('compare', $data);

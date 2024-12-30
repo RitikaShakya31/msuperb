@@ -9,12 +9,14 @@ class AdminProduct extends CI_Controller
 			redirect("admin");
 		}
 		date_default_timezone_set("Asia/Kolkata");
+		$this->setting = $this->CommonModel->getAllRows('setting');
 	}
 	//   category
 	public function categoryAll()
 	{
 		$get['category_all'] = $this->CommonModel->getRowByIdInOrder('category', "is_delete = '1'", 'category_name', 'ASC');
 		$get['title'] = 'All Brands';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/product/category_all', $get);
 	}
 	public function categoryAdd()
@@ -52,6 +54,10 @@ class AdminProduct extends CI_Controller
 					$banner = imageUploadWithRatio('banner', CATEGORY_BANNER, 600, 400, $data['banner']);
 					$post['banner'] = $banner;
 				}
+				if (!empty($_FILES['offer']['name'])) {
+					$offer = imageUploadWithRatio('offer', CATEGORY_BANNER, 600, 400, $data['offer']);
+					$post['offer'] = $offer;
+				}
 				if (isset($id)) {
 					$update = $this->CommonModel->updateRowById('category', 'category_id', $decrypt_id, $post);
 					flashData('errors', 'Category Update Successfully');
@@ -62,6 +68,7 @@ class AdminProduct extends CI_Controller
 				redirect('categoryAll');
 			}
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/category_add', $data);
 	}
 	//   sub category
@@ -69,6 +76,7 @@ class AdminProduct extends CI_Controller
 	{
 		$data['sub_category'] = $this->CommonModel->getRowByIdInOrder('sub_category', "is_delete = '1'", 'sub_category_name', 'ASC');
 		$data['title'] = "All Laboratory";
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/sub_category_all', $data);
 	}
 	public function subCategoryAdd()
@@ -130,6 +138,7 @@ class AdminProduct extends CI_Controller
 				redirect('subCategoryAll');
 			}
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/sub_category_add', $data);
 	}
 	//  Product
@@ -153,12 +162,14 @@ class AdminProduct extends CI_Controller
 			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1'", $join, 'product_name', 'ASC', 1);
 		}
 		$get['title'] = 'All Test';
+		$get['setting'] = $this->setting;
 		$this->load->view('admin/product/product_all', $get);
 	}
 	function getSubCategory()
 	{
 		$category_id = $this->input->post('category_id');
 		$data['type'] = 1;
+		$data['setting'] = $this->setting;
 		$data['all_data'] = $this->CommonModel->getRowByIdInOrder('sub_category', "category_id = '$category_id' AND is_delete = '1'", 'sub_category_name', 'ASC');
 		$this->load->view('admin/product/sub_category_list', $data);
 	}
@@ -167,6 +178,7 @@ class AdminProduct extends CI_Controller
 		$category_id = $this->input->post('category_id');
 		$data['all_data'] = $this->CommonModel->getRowByIdInOrder('sub_category', "category_id = '$category_id' AND is_delete = '1'", 'sub_category_name', 'ASC');
 		$data['type'] = 2;
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/sub_category_list', $data);
 	}
 	public function productAdd()
@@ -294,6 +306,7 @@ class AdminProduct extends CI_Controller
 			}
 			redirect('productAll');
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/product_add', $data);
 	}
 	public function productImageD($id, $img)
@@ -320,6 +333,7 @@ class AdminProduct extends CI_Controller
 		$data['quantity_type'] = set_value('quantity_type') == false ? @$getProduct['quantity_type'] : set_value('quantity_type');
 		$data['image_all'] = $this->CommonModel->getRowById('product_image', "product_id", $decrypt_id);
 		$data['title'] = 'Product Details';
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/view_product_details', $data);
 	}
 }

@@ -1,6 +1,12 @@
 <?php
 class LabHome extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setting = $this->CommonModel->getAllRows('setting');
+    }
+
     public function user_login()
     {
         if (count($_POST) > 0) {
@@ -42,6 +48,7 @@ class LabHome extends CI_Controller
             'DESC'
         );
         $data['number'] = $this->CommonModel->getNumRows('appointment', ['appointment_date' => $current_date]);
+        $data['setting'] = $this->setting;
         $this->load->view('lab/user_dashboard', $data);
     } 
     public function supportFormData()
@@ -74,7 +81,8 @@ class LabHome extends CI_Controller
         }
         $get['all_appointments'] = $this->CommonModel->getRowByIdInOrder('appointment', [], 'id', 'DESC');
         $get['title'] = 'AHCS | All Appointment List';
-        $this->load->view('user/appointment_list', $get);
+        $get['setting'] = $this->setting;
+        $this->load->view('lab/appointment_list', $get);
     }
     public function lab_profile()
     {
@@ -92,7 +100,8 @@ class LabHome extends CI_Controller
 
         $get['profileData'] = $this->CommonModel->getSingleRowById('register', "register_id = '$user_id'");
         $get['title'] = 'AHCS | Profile';
-        $this->load->view('user/lab_profile', $get);
+        $get['setting'] = $this->setting;
+        $this->load->view('lab/lab_profile', $get);
     }
     public function payment_list()
     {
@@ -115,7 +124,8 @@ class LabHome extends CI_Controller
             'DESC'
         );
         $get['title'] = 'AHCS | All Payment History';
-        $this->load->view('user/payment_list', $get);
+        $get['setting'] = $this->setting;
+        $this->load->view('lab/payment_list', $get);
     }
     public function services_list()
     {

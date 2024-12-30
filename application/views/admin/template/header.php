@@ -27,16 +27,15 @@
 				<div class="d-flex">
 					<!-- LOGO -->
 					<div class="navbar-brand-box">
-
-						<a href="" class="logo logo-light">
+						<a href="<?= base_url('dashboard') ?>" class="logo logo-light">
 							<span class="logo-sm">
-								<img src="<?= base_url('assets/img/msuperb-logo.png') ?>" alt="" height="22">
+								<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="" width="22">
 							</span>
 							<span class="logo-lg">
-							<img src="<?= base_url('assets/img/msuperb-logo.png') ?>" alt="" height="70s">
+								<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="logo" width="120">
 							</span>
 						</a>
-					</div>
+					</div>	
 
 					<button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
 						<i class="fa fa-fw fa-bars"></i>

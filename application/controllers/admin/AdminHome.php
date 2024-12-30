@@ -403,6 +403,7 @@ class AdminHome extends CI_Controller
 				redirect('setDeliveryCharges');
 			}
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/delivery_charges', $data);
 	}
 	public function contactdetails()
@@ -849,6 +850,7 @@ class AdminHome extends CI_Controller
 	{
 		$data['all_data'] = $this->CommonModel->getRowByIdInOrder('policy', [], 'create_date', 'DESC');
 		$data['title'] = 'All Policy';
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/policy', $data);
 	}
 	public function policyedit($id)
@@ -907,6 +909,7 @@ class AdminHome extends CI_Controller
 			flashData('errors', ' Update Successfully');
 			redirect('setting');
 		}
+		$data['setting'] = $this->setting;
 		$this->load->view('admin/settings', $data);
 	}
 	public function sendnotification()

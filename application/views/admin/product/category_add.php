@@ -41,7 +41,7 @@
                                     <div class="col-lg-12 mb-3">
                                         <div class="row">
                                             <label for="example-text-input" class="col-md-3 col-form-label">Brand
-                                                Image</label>
+                                                Logo</label>
                                             <div class="col-md-9">
                                                 <input class="form-control category_image" type="file" name="image"
                                                     <?= $image == "" ? 'required' : '' ?>>
@@ -55,6 +55,17 @@
                                             <div class="col-md-9">
                                                 <input class="form-control " type="file" name="banner" <?= $image == "" ? 'required' : '' ?>>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="row">
+                                            <label for="example-text-input" class="col-md-3 col-form-label">Offer
+                                                Image</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control " type="file" name="offer" <?= $image == "" ? 'required' : '' ?>>
+                                                <h6>Image Size: 1519*300</h6>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
