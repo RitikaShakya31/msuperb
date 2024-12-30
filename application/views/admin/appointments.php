@@ -7,7 +7,6 @@
         display: inline-block;
         user-select: none;
     }
-
     .dropdown {
         position: relative;
         display: inline-block;
@@ -62,12 +61,17 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 8%">S.n.</th>
-                                        <th style="width: 15%">Appointment Date</th>
-                                        <th style="width: 15%">Appointment Time</th>
                                         <th style="width: 20%">Patient Name</th>
                                         <th style="width: 12%">Test </th>
+                                        <th style="width: 15%">Appointment Date</th>
+                                        <th style="width: 15%">Appointment Time</th>
+                                        <th style="width: 20%">Patient Gender</th>
+                                        <th style="width: 20%">Patient Age</th>
+                                        <th style="width: 20%">Patient Contact</th>
+                                        <th style="width: 20%">Patient Email</th>
+                                        <th style="width: 20%">Patient Address</th>
                                         <th style="width: 12%">Service Type</th>
-                                        <th style="width: 10%">More</th>
+                                        <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,12 +86,6 @@
                                                     <?= ++$i; ?>
                                                 </td>
                                                 <td>
-                                                    <?= htmlspecialchars($all['appointment_date'], ENT_QUOTES, 'UTF-8'); ?>
-                                                </td>
-                                                <td>
-                                                    <?= htmlspecialchars($all['appointment_time'], ENT_QUOTES, 'UTF-8'); ?>
-                                                </td>
-                                                <td>
                                                     <?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?>
                                                 </td>
                                                 <td>
@@ -100,10 +98,35 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <?= htmlspecialchars($all['service_type'], ENT_QUOTES, 'UTF-8'); ?>
+                                                    <?= $all['appointment_date']; ?>
                                                 </td>
                                                 <td>
-                                                    <div class="dropdown">
+                                                    <?= $all['appointment_time']; ?>
+                                                </td>
+
+                                                <td>
+                                                    <?= $all['patient_gender']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['patient_age']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['contact_no']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['email']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['address']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['service_type']; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url("appointment-list?dID=$id"); ?>"
+                                                        onclick="return confirm('Are you sure ?')"><i
+                                                            class="fa fa-trash dlt"></i> </a>
+                                                    <!-- <div class="dropdown">
                                                         <span class="dots-menu" title="More Options">⋮</span>
                                                         <div class="dropdown-content">
                                                             <a data-bs-toggle="modal" data-bs-target="#appointmodal<?= $i ?>">
@@ -111,16 +134,15 @@
                                                             </a>
                                                             <a href="<?= base_url("appointment-list?dID=$id"); ?>"
                                                                 onclick="return confirm('Are you sure ?')"><i
-                                                                    class="fa fa-trash dlt"></i> Delete</a>
+                                                                    class="fa fa-trash dlt"></i> </a>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </td>
                                             </tr>
                                             <?php
                                         }
                                     }
                                     ?>
-
                                 </tbody>
                             </table>
                         </div>
@@ -130,7 +152,6 @@
         </div>
     </div>
 </div>
-
 <?php $this->load->view('admin/template/footer'); ?>
 
 <!-- Modal -->
