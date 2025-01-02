@@ -154,7 +154,6 @@
     </div>
 </div>
 <?php endif; ?>
-
 <div class="container">
     <h2 class="mb-4 ">Health Packages</h2>
     <div class="row">
@@ -214,5 +213,4 @@ if ($category['offer'] != '') {
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
 </body>
-
 </html>

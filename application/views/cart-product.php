@@ -3,11 +3,12 @@
 		$productName = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $items['name']]);
 		?>
 		<li class="cart-item">
-			<div class="cart-media"><a
+			<!-- <div class="cart-media">
+				<a
 					href="<?= base_url('product-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>">
 					<img src="<?= setImage($items['image'], 'upload/product/') ?>" alt="<?php echo $items['name']; ?>">
 				</a><button type="button" class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
-						class="far fa-trash-alt"></i></button></div>
+						class="far fa-trash-alt"></i></button></div> -->
 			<div class="cart-info-group">
 				<div class="cart-info">
 					<h6><a

@@ -1042,7 +1042,7 @@ class UserHome extends CI_Controller
         $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '5');
         $data['title'] = 'Terms & Condition ';
         $data['contact'] = $this->contact;
-        $data['setting'] = $this->setting;
+        
         $this->load->view('term-condition', $data);
     }
     public function about()

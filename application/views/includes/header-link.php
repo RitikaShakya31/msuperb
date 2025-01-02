@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="uWi_cEkPlaWYyOChX06Bfy9H9hYTYTNZHntYItpaVw8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="template" content="CARE1">
+  <meta name="template" content="">
   <meta name="title" content="<?php echo isset($title) && $title != '' ? $title : $title . 'Msuperb '; ?>">
  <meta name="description" content="<?php echo isset($desc) ? ($desc != '' ? $desc : 'Msuperb') : 'Msuperb'; ?>">
   <meta name="keywords" content="<?php echo isset($keyword) ? ($keyword != '' ? $keyword : 'Msuperb') : 'Msuperb'; ?>">
@@ -13,9 +13,9 @@
   <meta property="twitter:card" content="summary" />
   <meta name="twitter:title" content="Msuperb" />
   <meta name="twitter:description" content="Msuperb" />
-  <meta name="twitter:url" content="https://www.care1.com" />
-  <meta property="twitter:site" content="https://www.care1.com" />
-  <meta property="twitter:image" content="https://www.care1.com/assets/images/favicon.png" />
+  <meta name="twitter:url" content="" />
+  <meta property="twitter:site" content="" />
+  <meta property="twitter:image" content="/assets/images/favicon.png" />
   <meta property="twitter:image:width" content="349" />
   <meta property="twitter:image:height" content="307" />
   <meta name="twitter:domain" content="Msuperb " />
@@ -25,8 +25,8 @@
   <!---------------------------------------------------OG Meta Property Started------------------------------------------------------>
   <meta property="og:title" content="Msuperb " />
   <meta property="og:description" content="Msuperb" />
-  <meta property=og:image content="https://www.care1.com/assets/images/favicon.png" />
-  <meta property="og:url" content="https://www.care1.com" />
+  <meta property=og:image content="/assets/images/favicon.png" />
+  <meta property="og:url" content="" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="article" />
   <meta property="og:sitename" content="Msuperb " />
