@@ -533,7 +533,6 @@ class AdminHome extends CI_Controller
 			$this->load->view('admin/faqs', $data);
 		}
 	}
-
 	public function updateBookProduct()
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -544,21 +543,14 @@ class AdminHome extends CI_Controller
 				echo json_encode(['success' => false, 'message' => 'Invalid input data.']);
 				return;
 			}
-			// Decode the order_id
-			$decoded_order_id = decryptId($order_id);
-
-			// Ensure the collation is consistent
-			$this->db->query("SET collation_connection = 'utf8mb4_unicode_ci'");
-
 			// Prepare data to update
 			$updateData = [
 				'sub_category_id' => $sub_category_id,
 				'update_date' => date('Y-m-d H:i:s') // Add update_date field
 			];
+
 			// Update the table
-			$this->db->where('order_id', $decoded_order_id);
-			$update = $this->db->update('tbl_book_product', $updateData);
-			// $update = $this->CommonModel->updateRowById('tbl_book_product', 'order_id', $decoded_order_id, $updateData);
+			$update = $this->CommonModel->updateSingleRowById('tbl_book_product', 'order_id', $order_id, $updateData);
 			if ($update) {
 				echo json_encode(['success' => true, 'message' => 'Lab selected successfully!']);
 			} else {
@@ -568,7 +560,6 @@ class AdminHome extends CI_Controller
 			echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
 		}
 	}
-
 
 
 

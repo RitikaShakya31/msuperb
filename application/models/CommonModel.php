@@ -67,6 +67,11 @@ class CommonModel extends CI_Model
 			return false;
 		}
 	}
+	public function updateSingleRowById($table, $id_column, $id_value, $data) {
+        $this->db->where($id_column, $id_value);
+        return $this->db->update($table, $data);
+    }
+
 	public function getUserByContact($contact)
 	{
 		$this->db->where('contact_no', $contact);

@@ -81,12 +81,8 @@
                                             $id = encryptId($all['id']);
                                             ?>
                                             <tr>
-                                                <td>
-                                                    <?= ++$i; ?>
-                                                </td>
-                                                <td>
-                                                    <?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?>
-                                                </td>
+                                                <td><?= ++$i; ?> </td>
+                                                <td><?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?> </td>
                                                 <td>
                                                     <?php
                                                     if (!empty($productName[$index]) && is_array($productName[$index])) {
@@ -96,36 +92,31 @@
                                                     }
                                                     ?>
                                                 </td>
+                                                <td><?= $all['appointment_date']; ?></td>
+                                                <td><?= $all['appointment_time']; ?></td>
+                                                <td><?= $all['patient_gender']; ?></td>
+                                                <td><?= $all['patient_age']; ?></td>
+                                                <td><?= $all['contact_no']; ?></td>
+                                                <td><?= $all['email']; ?> </td>
+                                                <td><?= $all['address']; ?></td>
+                                                <td><?= $all['service_type']; ?></td>
                                                 <td>
-                                                    <?= $all['appointment_date']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['appointment_time']; ?>
-                                                </td>
-
-                                                <td>
-                                                    <?= $all['patient_gender']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['patient_age']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['contact_no']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['email']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['address']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['service_type']; ?>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                                        data-bs-target="#itemDetails<?= $i ?>">
-                                                        View
-                                                    </button>
+                                                    <?php if ($all['sub_category_id']) {
+                                                        $labName = $this->CommonModel->getSingleRowById('sub_category', ['sub_category_id' => $all['sub_category_id']]);
+                                                        ?>
+                                                        <p class="badge badge-pill badge-soft-success font-size-15 filter-status">
+                                                            <?= $labName['sub_category_name'] ?>
+                                                        </p>
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#itemDetails<?= $i ?>">
+                                                            View
+                                                        </button>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                     <div class="modal fade bs-example-modal-lg" id="itemDetails<?= $i ?>"
                                                         tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2"
                                                         aria-hidden="true">
@@ -209,26 +200,22 @@
                                                         document.getElementById('searchBox<?= $i ?>').addEventListener('click', function (event) {
                                                             event.stopPropagation();
                                                         });
-
                                                         // Prevent hiding results when clicking inside the modal
                                                         document.getElementById('itemDetails<?= $i ?>').addEventListener('click', function (event) {
                                                             event.stopPropagation();
                                                         });
-
                                                         // Add event listener to the select buttons
                                                         document.querySelectorAll('.select-btn').forEach(function (button) {
                                                             button.addEventListener('click', function () {
                                                                 const subCategoryId = this.getAttribute('data-sub-category-id');
                                                                 const orderId = <?= json_encode($all['order_id']); ?>; // Use `json_encode` for safe output
-                                                                console.log('Order ID:', orderId);
-                                                                console.log('Sub Category ID:', subCategoryId);
                                                                 // Make an AJAX request to update the database
                                                                 fetch('updateBookProduct', {
                                                                     method: 'POST',
                                                                     headers: {
                                                                         'Content-Type': 'application/x-www-form-urlencoded'
                                                                     },
-                                                                    body: `order_id=${encodeURIComponent(orderId)}&sub_category_id=${encodeURIComponent(subCategoryId)}`
+                                                                    body: `order_id=${orderId}&sub_category_id=${encodeURIComponent(subCategoryId)}`
                                                                 })
                                                                     .then(response => {
                                                                         if (response.redirected) {
