@@ -76,6 +76,7 @@ $route['statusrefunded/(:any)/(:any)'] = 'admin/AdminHome/statusrefunded/$1/$2';
 $route['statusUpdate/(:any)/(:any)'] = 'admin/AdminHome/statusUpdate/$1/$2';
 $route['changePassword'] = 'admin/AdminHome/changePassword';
 $route['addFaqs'] = 'admin/AdminHome/addFaqs';
+$route['updateBookProduct'] = 'admin/AdminHome/updateBookProduct';
 
 
 // => shiprocket

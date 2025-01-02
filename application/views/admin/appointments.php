@@ -7,6 +7,7 @@
         display: inline-block;
         user-select: none;
     }
+
     .dropdown {
         position: relative;
         display: inline-block;
@@ -16,9 +17,7 @@
         display: none;
         position: absolute;
         right: -111px;
-        /* Adjust for alignment */
         top: 10px;
-        /* Adjust for vertical spacing */
         background-color: #f9f9f9;
         min-width: 130px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -71,7 +70,7 @@
                                         <th style="width: 20%">Patient Email</th>
                                         <th style="width: 20%">Patient Address</th>
                                         <th style="width: 12%">Service Type</th>
-                                        <th style="width: 10%">Action</th>
+                                        <th style="width: 10%">Select Lab</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -123,20 +122,133 @@
                                                     <?= $all['service_type']; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url("appointment-list?dID=$id"); ?>"
-                                                        onclick="return confirm('Are you sure ?')"><i
-                                                            class="fa fa-trash dlt"></i> </a>
-                                                    <!-- <div class="dropdown">
-                                                        <span class="dots-menu" title="More Options">⋮</span>
-                                                        <div class="dropdown-content">
-                                                            <a data-bs-toggle="modal" data-bs-target="#appointmodal<?= $i ?>">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i> Details
-                                                            </a>
-                                                            <a href="<?= base_url("appointment-list?dID=$id"); ?>"
-                                                                onclick="return confirm('Are you sure ?')"><i
-                                                                    class="fa fa-trash dlt"></i> </a>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#itemDetails<?= $i ?>">
+                                                        View
+                                                    </button>
+                                                    <div class="modal fade bs-example-modal-lg" id="itemDetails<?= $i ?>"
+                                                        tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background: #eff2f7;">
+                                                                    <h5 class="modal-title" id="myLargeModalLabel">
+                                                                        <?= $all['order_id'] ?>
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text"><i
+                                                                                        class="fa fa-search"></i></span>
+                                                                                <input type="text" id="searchBox<?= $i ?>"
+                                                                                    class="form-control" placeholder="Search..."
+                                                                                    value="<?= htmlspecialchars($all['address'], ENT_QUOTES, 'UTF-8'); ?>">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-3" id="searchResults<?= $i ?>"></div>
+                                                                    <div class="row mt-3" id="labResults<?= $i ?>">
+                                                                        <?php foreach ($all_labs as $lab) { ?>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="card mb-3">
+                                                                                    <div
+                                                                                        class="card-body d-flex justify-content-between align-items-center">
+                                                                                        <div>
+                                                                                            <h5 class="card-title">
+                                                                                                <?= htmlspecialchars($lab['sub_category_name'], ENT_QUOTES, 'UTF-8'); ?>
+                                                                                            </h5>
+                                                                                            <p class="card-text">
+                                                                                                <?= htmlspecialchars($lab['lab_location'], ENT_QUOTES, 'UTF-8'); ?>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <button class="btn btn-primary select-btn"
+                                                                                            type="button"
+                                                                                            data-sub-category-id="<?= $lab['sub_category_id'] ?>">Select</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div> -->
+                                                    </div>
+                                                    <script>
+                                                        document.getElementById('searchBox<?= $i ?>').addEventListener('input', function () {
+                                                            var searchValue = this.value.toLowerCase();
+                                                            var searchResults = document.getElementById('searchResults<?= $i ?>');
+                                                            var labResults = document.getElementById('labResults<?= $i ?>').querySelectorAll('.col-lg-12');
+                                                            searchResults.innerHTML = '';
+                                                            labResults.forEach(function (lab) {
+                                                                if (lab.innerText.toLowerCase().includes(searchValue)) {
+                                                                    var clone = lab.cloneNode(true);
+                                                                    searchResults.appendChild(clone);
+                                                                }
+                                                            });
+                                                        });
+
+                                                        // Prevent hiding results when clicking on the search box
+                                                        document.getElementById('searchBox<?= $i ?>').addEventListener('focus', function () {
+                                                            var searchValue = this.value.toLowerCase();
+                                                            var searchResults = document.getElementById('searchResults<?= $i ?>');
+                                                            var labResults = document.getElementById('labResults<?= $i ?>').querySelectorAll('.col-lg-12');
+                                                            searchResults.innerHTML = '';
+                                                            labResults.forEach(function (lab) {
+                                                                if (lab.innerText.toLowerCase().includes(searchValue)) {
+                                                                    var clone = lab.cloneNode(true);
+                                                                    searchResults.appendChild(clone);
+                                                                }
+                                                            });
+                                                        });
+
+                                                        // Prevent hiding results when clicking inside the search box
+                                                        document.getElementById('searchBox<?= $i ?>').addEventListener('click', function (event) {
+                                                            event.stopPropagation();
+                                                        });
+
+                                                        // Prevent hiding results when clicking inside the modal
+                                                        document.getElementById('itemDetails<?= $i ?>').addEventListener('click', function (event) {
+                                                            event.stopPropagation();
+                                                        });
+
+                                                        // Add event listener to the select buttons
+                                                        document.querySelectorAll('.select-btn').forEach(function (button) {
+                                                            button.addEventListener('click', function () {
+                                                                const subCategoryId = this.getAttribute('data-sub-category-id');
+                                                                const orderId = <?= json_encode($all['order_id']); ?>; // Use `json_encode` for safe output
+                                                                console.log('Order ID:', orderId);
+                                                                console.log('Sub Category ID:', subCategoryId);
+                                                                // Make an AJAX request to update the database
+                                                                fetch('updateBookProduct', {
+                                                                    method: 'POST',
+                                                                    headers: {
+                                                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                                                    },
+                                                                    body: `order_id=${encodeURIComponent(orderId)}&sub_category_id=${encodeURIComponent(subCategoryId)}`
+                                                                })
+                                                                    .then(response => {
+                                                                        if (response.redirected) {
+                                                                            window.location.href = response.url;
+                                                                        } else {
+                                                                            return response.json();
+                                                                        }
+                                                                    })
+                                                                    .then(data => {
+                                                                        if (data.success) {
+                                                                            alert(data.message || 'Lab selected successfully!');
+                                                                        } else {
+                                                                            alert(data.message || 'Failed to select lab.');
+                                                                        }
+                                                                    })
+                                                                    .catch(error => console.error('Error:', error));
+                                                            });
+                                                        });
+
+                                                    </script>
                                                 </td>
                                             </tr>
                                             <?php
@@ -188,7 +300,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>
