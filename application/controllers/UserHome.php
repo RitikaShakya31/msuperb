@@ -70,6 +70,7 @@ class UserHome extends CI_Controller
         $proName = $data['product']['product_name'];
         $data['title'] = 'Compare Labs';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('compare', $data);
     }
     public function prescriptionData()
@@ -1025,6 +1026,7 @@ class UserHome extends CI_Controller
         $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '1');
         $data['title'] = 'Privacy Policy';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('privacy-policy', $data);
     }
     public function shipping_policy()
@@ -1032,6 +1034,7 @@ class UserHome extends CI_Controller
         $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '3');
         $data['title'] = 'Shipping Policy';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('shipping-policy', $data);
     }
     public function term_condition()
@@ -1039,6 +1042,7 @@ class UserHome extends CI_Controller
         $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '5');
         $data['title'] = 'Terms & Condition ';
         $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
         $this->load->view('term-condition', $data);
     }
     public function about()

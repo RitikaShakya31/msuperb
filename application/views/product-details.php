@@ -136,18 +136,27 @@
     </div>
 </section>
 <?php if ($offers != ''): ?>
-    <h2 class="mb-4 text-center">Special Offers</h2>
-    <div class="row suggest-slider justify-content-center">
+    <div class="container">
+        <h2 class="mb-4 ">Special Offers</h2>
+    <div class="row">
         <?php
-        foreach ($offers as $row) {
-            product($row, "product", "double");
+        if (!empty($offers)) {
+            foreach ($offers as $row) { ?>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <?php product($row, "product", "double"); ?>
+                </div>
+                <?php
+            }
+        } else {
+            echo '<div class="col-12 text-center">No test available</div>';
         }
         ?>
     </div>
+</div>
 <?php endif; ?>
 
-<h2 class="mb-4 text-center">Health Packages</h2>
 <div class="container">
+    <h2 class="mb-4 ">Health Packages</h2>
     <div class="row">
         <?php
         if (!empty($packagepro)) {
