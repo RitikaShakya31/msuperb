@@ -81,8 +81,12 @@
                                             $id = encryptId($all['id']);
                                             ?>
                                             <tr>
-                                                <td><?= ++$i; ?> </td>
-                                                <td><?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?> </td>
+                                                <td>
+                                                    <?= ++$i; ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?>
+                                                </td>
                                                 <td>
                                                     <?php
                                                     if (!empty($productName[$index]) && is_array($productName[$index])) {
@@ -92,14 +96,31 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td><?= $all['appointment_date']; ?></td>
-                                                <td><?= $all['appointment_time']; ?></td>
-                                                <td><?= $all['patient_gender']; ?></td>
-                                                <td><?= $all['patient_age']; ?></td>
-                                                <td><?= $all['contact_no']; ?></td>
-                                                <td><?= $all['email']; ?> </td>
-                                                <td><?= $all['address']; ?></td>
-                                                <td><?= $all['service_type']; ?></td>
+                                                <td>
+                                                    <?= $all['appointment_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['appointment_time']; ?>
+                                                </td>
+
+                                                <td>
+                                                    <?= $all['patient_gender']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['patient_age']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['contact_no']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['email']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['address']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $all['service_type']; ?>
+                                                </td>
                                                 <td>
                                                     <?php if ($all['sub_category_id']) {
                                                         $labName = $this->CommonModel->getSingleRowById('sub_category', ['sub_category_id' => $all['sub_category_id']]);
@@ -124,8 +145,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background: #eff2f7;">
                                                                     <h5 class="modal-title" id="myLargeModalLabel">
-                                                                        <?= $all['order_id'] ?>
-                                                                    </h5>
+                                                                        <?= $all['order_id'] ?></h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
@@ -208,7 +228,7 @@
                                                         document.querySelectorAll('.select-btn').forEach(function (button) {
                                                             button.addEventListener('click', function () {
                                                                 const subCategoryId = this.getAttribute('data-sub-category-id');
-                                                                const orderId = <?= json_encode($all['order_id']); ?>; // Use `json_encode` for safe output
+                                                                const orderId = <?= $all['order_id']; ?>; // Use `json_encode` for safe output
                                                                 // Make an AJAX request to update the database
                                                                 fetch('updateBookProduct', {
                                                                     method: 'POST',

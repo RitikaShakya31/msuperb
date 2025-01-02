@@ -17,7 +17,7 @@ class LabHome extends CI_Controller
                 if ($user['password'] == $password) {
                     if ($user['status'] == 'accepted') {
                         $this->session->set_userdata('isUserLogin', $user['sub_category_id']);
-                        $this->session->set_userdata('isUserLabname', $user['lab_name']);
+                        $this->session->set_userdata('isUserLabname', $user['sub_category_name']);
                         redirect(base_url('lab-dashboard'));
                     } else {
                         $this->session->set_userdata('msg', '<div class="alert alert-danger">Invalid Login: Your account is Rejected.</div>');
@@ -47,6 +47,26 @@ class LabHome extends CI_Controller
             'id',
             'DESC'
         );
+        $data['appointment'] = $this->CommonModel->getRowByIdInOrder(
+            'book_product',
+            ['sub_category_id' => $user_id], 
+            'product_book_id',
+            'DESC'
+        );
+        if (!empty($data['appointment'])) {
+			foreach ($data['appointment'] as $appointment) { 
+				$orderId = $appointment['order_id']; 
+				$getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
+				if (!empty($getPro)) {
+					$proId = $getPro['product_name']; 
+					$data['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
+				} else {
+					$data['productName'][] = "No product found for order ID: $orderId";
+				}
+			}
+		} else {
+			echo "No appointments found.";
+		}
         $data['number'] = $this->CommonModel->getNumRows('appointment', ['appointment_date' => $current_date]);
         $data['setting'] = $this->setting;
         $this->load->view('lab/user_dashboard', $data);
@@ -174,7 +194,7 @@ class LabHome extends CI_Controller
     public function userLogout()
     {
         $this->session->unset_userdata('isUserLogin');
-        redirect('user-login');
+        redirect('lab-login');
     }
 
 

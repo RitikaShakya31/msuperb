@@ -36,7 +36,7 @@
 <script src="<?= base_url() ?>assets/lab/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="<?= base_url() ?>assets/lab/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.20.0/full/ckeditor.js"></script>
-<link rel="icon" href="<?= base_url() ?>assets/img/small.png">
+<link rel="icon" href="<?= base_url($setting[3]['particular_value']) ?>">
 <style>
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {

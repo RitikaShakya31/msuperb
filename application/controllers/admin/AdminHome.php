@@ -960,7 +960,7 @@ class AdminHome extends CI_Controller
 				// Fetch product details using the order ID
 				$getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
 				if (!empty($getPro)) {
-					$proId = $getPro['product_name']; // Extract product_name (as service_id)
+					$proId = $getPro['product_name']; 
 
 					// Fetch service details
 					$get['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);

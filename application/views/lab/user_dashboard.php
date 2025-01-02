@@ -47,7 +47,7 @@
         <div class="container-fluid">
             <div class="row">
                 <h4>Hello! <?= $lab_name ?></h4>
-                <div class="col-md-8">
+                <!-- <div class="col-md-8">
                     <div class="card mini-stats-wid" style="border: 1px solid #000000bf; border-radius: 12px;">
                         <div class="card-body" style="padding: 10px 22px !important;">
                             <div class="media">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -80,88 +80,75 @@
                                 <div class="card-body">
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                                         <thead>
-                                        <tr>
-                                        <th style="width: 8%">S.n.</th>
-                                        <th style="width: 15%">Appointment Date</th>
-                                        <th style="width: 20%">Patient Name</th>
-                                        <th style="width: 12%">Test </th>
-                                        <th style="width: 12%">Booked Slot</th>
-                                        <th style="width: 12%">Status </th>
-                                        <th style="width: 10%">More</th>
-                                    </tr>
+                                            <tr>
+                                                <th style="width: 8%">S.n.</th>
+                                                <th style="width: 15%">Appointment Date</th>
+                                                <th style="width: 20%">Patient Name</th>
+                                                <th style="width: 12%">Test </th>
+                                                <th style="width: 12%">Booked Slot</th>
+                                                <th style="width: 12%">Status </th>
+                                                <th style="width: 10%">More</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            if ($today_appointment) {
+                                            if ($appointment) {
                                                 $i = 0;
-                                                foreach ($today_appointment as $all) {
+                                                foreach ($appointment as $all) {
                                                     $id = encryptId($all['id']);
                                                     ?>
                                                     <tr>
-                                                <td>
-                                                    <?= ++$i; ?>
-                                                </td>
-                                                <td>
-                                                    <?= convertDatedmy($all['appointment_date']) ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['patient_name'] ?>
-                                                </td>
-                                                <!-- <td>
-                                                    <table class="table table-borderless">
-                                                        <tr>
-                                                            <td><strong>Name :</strong> <?= $all['patient_name'] ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Contact Number : </strong> <?= $all['patient_phone'] ?>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Email : </strong> <?= $all['patient_email'] ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Gender : </strong> <?= $all['patient_gender'] ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Age : </strong> <?= $all['patient_age'] ?></td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                -->
-                                                <td>
-                                                    <?= $all['test_type'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['appointment_time'] ?>
-                                                </td>
-                                                <td>
-                                                    <form action="<?= base_url("visitStatus/$id") ?>" method="POST"
-                                                        onsubmit="return confirm('Are you sure to update?')">
-                                                        <select class="form-control" name="visit_status"
-                                                            onchange="this.form.submit()">
-                                                            <option value="2" <?= $all['visit_status'] == '2' ? 'selected' : '' ?>>
-                                                                Visit Pending</option>
-                                                            <option value="1" <?= $all['visit_status'] == '1' ? 'selected' : '' ?>>
-                                                                Visit Done</option>
-                                                            <option value="0" <?= $all['visit_status'] == '0' ? 'selected' : '' ?>>
-                                                                Visit Cancel</option>
-                                                        </select>
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <span class="dots-menu" title="More Options">⋮</span>
-                                                        <div class="dropdown-content">
-                                                            <a data-bs-toggle="modal" data-bs-target="#appointmodal<?= $i ?>">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i> Details
-                                                            </a>
-                                                            <a href="<?= base_url("appointment-list?dID=$id"); ?>"
-                                                                onclick="return confirm('Are you sure ?')"><i
-                                                                    class="fa fa-trash dlt"></i> Delete </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                        <td>
+                                                            <?= ++$i; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $all['appointment_date'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $all['name'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if (!empty($productName) && isset($productName[$i - 1]) && is_array($productName[$i - 1])) {
+                                                                echo htmlspecialchars($productName[$i - 1]['service_name'], ENT_QUOTES, 'UTF-8');
+                                                            } else {
+                                                                echo "Service not found";
+                                                            }
+                                                            ?>
+                                                        </td>
+
+                                                        <td>
+                                                            <?= $all['appointment_time'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <form action="<?= base_url("visitStatus/$id") ?>" method="POST"
+                                                                onsubmit="return confirm('Are you sure to update?')">
+                                                                <select class="form-control" name="visit_status"
+                                                                    onchange="this.form.submit()">
+                                                                    <option value="2" <?= $all['visit_status'] == '2' ? 'selected' : '' ?>>
+                                                                        Visit Pending</option>
+                                                                    <option value="1" <?= $all['visit_status'] == '1' ? 'selected' : '' ?>>
+                                                                        Visit Done</option>
+                                                                    <option value="0" <?= $all['visit_status'] == '0' ? 'selected' : '' ?>>
+                                                                        Visit Cancel</option>
+                                                                </select>
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <span class="dots-menu" title="More Options">⋮</span>
+                                                                <div class="dropdown-content">
+                                                                    <a data-bs-toggle="modal"
+                                                                        data-bs-target="#appointmodal<?= $i ?>">
+                                                                        <i class="fa fa-eye" aria-hidden="true"></i> Details
+                                                                    </a>
+                                                                    <a href="<?= base_url("appointment-list?dID=$id"); ?>"
+                                                                        onclick="return confirm('Are you sure ?')"><i
+                                                                            class="fa fa-trash dlt"></i> Delete </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                     <?php
                                                 }
                                             }
@@ -187,7 +174,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel<?= $i ?>">
-                   Details of <?= $all['patient_name'] ?>
+                    Details of <?= $all['patient_name'] ?>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <button type="button" class="btn btn-primary btn-sm ms-3" id="copyBtn<?= $i ?>">Copy All Info</button>
@@ -207,9 +194,9 @@
                         <tr>
                             <td><?= $all['patient_age'] ?></td>
                             <td><?= $all['patient_gender'] ?></td>
-                            <td><?= $all['patient_phone'] ?></td>
-                            <td><?= $all['patient_email'] ?></td>
-                            <td><?= $all['patient_address'] ?></td>
+                            <td><?= $all['contact_no'] ?></td>
+                            <td><?= $all['email'] ?></td>
+                            <td><?= $all['address'] ?></td>
                         </tr>
                     </tbody>
                 </table>
