@@ -63,7 +63,7 @@
                                         <th style="width: 20%">Patient Name</th>
                                         <th style="width: 12%">Test </th>
                                         <th style="width: 15%">Appointment Date</th>
-                                        <th style="width: 15%">Appointment Date</th>
+                                        <th style="width: 15%">Appointment Time</th>
                                         <th style="width: 20%">Patient Address</th>
                                         <th style="width: 10%">Select Lab</th>
                                         <th style="width: 15%">More Details</th>
@@ -233,7 +233,7 @@
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#patientDetailsModal<?= $i ?>">
-                                                        View 
+                                                        View
                                                     </button>
                                                     <div class="modal fade" id="patientDetailsModal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="patientDetailsModalLabel<?= $i ?>" aria-hidden="true">
                                                         <div class="modal-dialog modal-lg">

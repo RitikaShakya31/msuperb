@@ -215,11 +215,11 @@ class AdminHome extends CI_Controller
 			$getReg = false;
 		}
 		$get['service_name'] = set_value('service_name') == false ? @$getReg['service_name'] : set_value('service_name');
-		$get['service_type'] = set_value('service_type') == false ? @$getReg['service_type'] : set_value('service_type');
+		// $get['service_type'] = set_value('service_type') == false ? @$getReg['service_type'] : set_value('service_type');
 		// $get['service_charge'] = set_value('service_charge') == false ? @$getReg['service_charge'] : set_value('service_charge');
 		if (count($_POST) > 0) {
 			extract($this->input->post());
-			$post['service_type'] = $service_type;
+			// $post['service_type'] = $service_type;
 			$post['service_name'] = $service_name;
 
 			if (isset($id) && !empty($id)) {
@@ -954,15 +954,13 @@ class AdminHome extends CI_Controller
 		$get['all_labs'] = $this->CommonModel->getRowByIdInOrder('sub_category', [], 'sub_category_id', 'DESC');
 		// Check if there is any data in the zeroth index
 		if (!empty($get['all_appointments'])) {
-			foreach ($get['all_appointments'] as $appointment) { // Loop through all appointments
-				$orderId = $appointment['order_id']; // Extract order_id
+			foreach ($get['all_appointments'] as $appointment) { 
+				$orderId = $appointment['order_id']; 
 
-				// Fetch product details using the order ID
 				$getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
 				if (!empty($getPro)) {
 					$proId = $getPro['product_name']; 
 
-					// Fetch service details
 					$get['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
 				} else {
 					$get['productName'][] = "No product found for order ID: $orderId";
@@ -971,7 +969,6 @@ class AdminHome extends CI_Controller
 		} else {
 			echo "No appointments found.";
 		}
-
 
 		$get['title'] = 'AHCS | All Appointment List';
 		$get['setting'] = $this->setting;

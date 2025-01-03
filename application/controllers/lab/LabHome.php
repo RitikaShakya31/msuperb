@@ -43,7 +43,7 @@ class LabHome extends CI_Controller
         $current_date = date('d-m-y');
         $data['today_appointment'] = $this->CommonModel->getRowByIdInOrder(
             'appointment',
-            ['appointment_date' => $current_date], // Filter by today's date
+            ['appointment_date' => $current_date], 
             'id',
             'DESC'
         );
@@ -100,7 +100,28 @@ class LabHome extends CI_Controller
             redirect('appointment-list');
             exit;
         }
-        $get['all_appointments'] = $this->CommonModel->getRowByIdInOrder('appointment', [], 'id', 'DESC');
+        // $get['all_appointments'] = $this->CommonModel->getRowByIdInOrder('appointment', [], 'id', 'DESC');
+        $user_id = $this->session->userdata('isUserLogin');
+        $get['appointment'] = $this->CommonModel->getRowByIdInOrder(
+            'book_product',
+            ['sub_category_id' => $user_id], 
+            'product_book_id',
+            'DESC'
+        );
+        if (!empty($get['appointment'])) {
+			foreach ($get['appointment'] as $appointment) { 
+				$orderId = $appointment['order_id']; 
+				$getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
+				if (!empty($getPro)) {
+					$proId = $getPro['product_name']; 
+					$get['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
+				} else {
+					$get['productName'][] = "No product found for order ID: $orderId";
+				}
+			}
+		} else {
+			echo "No appointments found.";
+		}
         $get['title'] = 'AHCS | All Appointment List';
         $get['setting'] = $this->setting;
         $this->load->view('lab/appointment_list', $get);

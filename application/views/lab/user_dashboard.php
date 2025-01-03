@@ -120,7 +120,6 @@
                                                             }
                                                             ?>
                                                         </td>
-
                                                         <td>
                                                             <?= $all['appointment_time'] ?>
                                                         </td>

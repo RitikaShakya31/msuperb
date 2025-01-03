@@ -63,6 +63,7 @@
                                     <tr>
                                         <th style="width: 8%">S.n.</th>
                                         <th style="width: 15%">Appointment Date</th>
+                                        <th style="width: 15%">Appointment Time</th>
                                         <th style="width: 20%">Patient Name</th>
                                         <th style="width: 12%">Test </th>
                                         <th style="width: 12%">Booked Slot</th>
@@ -72,9 +73,9 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    if ($all_appointments) {
+                                    if ($appointment) {
                                         $i = 0;
-                                        foreach ($all_appointments as $all) {
+                                        foreach ($appointment as $all) {
                                             $id = encryptId($all['id']);
                                             ?>
                                             <tr>
@@ -85,31 +86,19 @@
                                                     <?= $all['appointment_date'] ?>
                                                 </td>
                                                 <td>
-                                                    <?= $all['patient_name'] ?>
+                                                    <?= $all['appointment_time'] ?>
                                                 </td>
-                                                <!-- <td>
-                                                    <table class="table table-borderless">
-                                                        <tr>
-                                                            <td><strong>Name :</strong> <?= $all['patient_name'] ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Contact Number : </strong> <?= $all['patient_phone'] ?>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Email : </strong> <?= $all['patient_email'] ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Gender : </strong> <?= $all['patient_gender'] ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> <strong>Age : </strong> <?= $all['patient_age'] ?></td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                -->
                                                 <td>
-                                                    <?= $all['test_type'] ?>
+                                                    <?= $all['name'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if (!empty($productName) && isset($productName[$i - 1]) && is_array($productName[$i - 1])) {
+                                                        echo htmlspecialchars($productName[$i - 1]['service_name'], ENT_QUOTES, 'UTF-8');
+                                                    } else {
+                                                        echo "Service not found";
+                                                    }
+                                                    ?>
                                                 </td>
                                                 <td>
                                                     <?= $all['appointment_time'] ?>
@@ -165,7 +154,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel<?= $i ?>">
-                   Details of <?= $all['patient_name'] ?>
+                    Details of <?= $all['patient_name'] ?>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <button type="button" class="btn btn-primary btn-sm ms-3" id="copyBtn<?= $i ?>">Copy All Info</button>

@@ -49,7 +49,7 @@
                                                 </td> -->
                                                 <td>
                                                     <a href="<?= base_url("categoryAdd?id=$id"); ?>" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
-                                                    <!-- <a onclick="return confirm('Are you want to sure ?')" href="<?= base_url("categoryAdd?dID=$id"); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> -->
+                                                    <a onclick="return confirm('Are you want to sure ?')" href="<?= base_url("categoryAdd?dID=$id"); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
                                                 </td>
                                             </tr>
                                     <?php
