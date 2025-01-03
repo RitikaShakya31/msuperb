@@ -63,14 +63,10 @@
                                         <th style="width: 20%">Patient Name</th>
                                         <th style="width: 12%">Test </th>
                                         <th style="width: 15%">Appointment Date</th>
-                                        <th style="width: 15%">Appointment Time</th>
-                                        <th style="width: 20%">Patient Gender</th>
-                                        <th style="width: 20%">Patient Age</th>
-                                        <th style="width: 20%">Patient Contact</th>
-                                        <th style="width: 20%">Patient Email</th>
+                                        <th style="width: 15%">Appointment Date</th>
                                         <th style="width: 20%">Patient Address</th>
-                                        <th style="width: 12%">Service Type</th>
                                         <th style="width: 10%">Select Lab</th>
+                                        <th style="width: 15%">More Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,31 +92,9 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
-                                                    <?= $all['appointment_date']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['appointment_time']; ?>
-                                                </td>
-
-                                                <td>
-                                                    <?= $all['patient_gender']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['patient_age']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['contact_no']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['email']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['address']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['service_type']; ?>
-                                                </td>
+                                                <td><?= $all['appointment_date']; ?></td>
+                                                <td><?= $all['appointment_time']; ?> </td>
+                                                <td><?= $all['address']; ?></td>
                                                 <td>
                                                     <?php if ($all['sub_category_id']) {
                                                         $labName = $this->CommonModel->getSingleRowById('sub_category', ['sub_category_id' => $all['sub_category_id']]);
@@ -256,6 +230,43 @@
                                                         });
 
                                                     </script>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#patientDetailsModal<?= $i ?>">
+                                                        View 
+                                                    </button>
+                                                    <div class="modal fade" id="patientDetailsModal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="patientDetailsModalLabel<?= $i ?>" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="patientDetailsModalLabel<?= $i ?>">Patient Details</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="table table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Patient Gender</th>
+                                                                                <th>Patient Age</th>
+                                                                                <th>Contact Number</th>
+                                                                                <th>Email</th>
+                                                                                <th>Service Type</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><?= $all['patient_gender']; ?></td>
+                                                                                <td><?= $all['patient_age']; ?></td>
+                                                                                <td><?= $all['contact_no']; ?></td>
+                                                                                <td><?= $all['email']; ?></td>
+                                                                                <td><?= $all['service_type']; ?></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <?php

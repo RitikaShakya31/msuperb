@@ -63,7 +63,7 @@
                                             <label for="example-text-input" class="col-md-3 col-form-label">Offer
                                                 Image</label>
                                             <div class="col-md-9">
-                                                <input class="form-control " type="file" name="offer" <?= $image == "" ? 'required' : '' ?>>
+                                                <input class="form-control " type="file" name="offer">
                                                 <h6>Image Size: 1519*300</h6>
                                             </div>
                                             

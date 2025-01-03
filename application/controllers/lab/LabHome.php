@@ -69,6 +69,7 @@ class LabHome extends CI_Controller
 		}
         $data['number'] = $this->CommonModel->getNumRows('appointment', ['appointment_date' => $current_date]);
         $data['setting'] = $this->setting;
+        $data['title'] = 'AHCS | Laboratory Dashboard';
         $this->load->view('lab/user_dashboard', $data);
     } 
     public function supportFormData()

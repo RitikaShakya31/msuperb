@@ -83,6 +83,7 @@
                                             <tr>
                                                 <th style="width: 8%">S.n.</th>
                                                 <th style="width: 15%">Appointment Date</th>
+                                                <th style="width: 15%">Appointment Time</th>
                                                 <th style="width: 20%">Patient Name</th>
                                                 <th style="width: 12%">Test </th>
                                                 <th style="width: 12%">Booked Slot</th>
@@ -103,6 +104,9 @@
                                                         </td>
                                                         <td>
                                                             <?= $all['appointment_date'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $all['appointment_time'] ?>
                                                         </td>
                                                         <td>
                                                             <?= $all['name'] ?>
