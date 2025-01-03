@@ -66,6 +66,7 @@
                                         <th style="width: 15%">Appointment Time</th>
                                         <th style="width: 20%">Patient Address</th>
                                         <th style="width: 10%">Select Lab</th>
+                                        <th style="width: 10%">Visit Status</th>
                                         <th style="width: 15%">More Details</th>
                                     </tr>
                                 </thead>
@@ -119,7 +120,8 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background: #eff2f7;">
                                                                     <h5 class="modal-title" id="myLargeModalLabel">
-                                                                        <?= $all['order_id'] ?></h5>
+                                                                        <?= $all['order_id'] ?>
+                                                                    </h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
@@ -202,7 +204,7 @@
                                                         document.querySelectorAll('.select-btn').forEach(function (button) {
                                                             button.addEventListener('click', function () {
                                                                 const subCategoryId = this.getAttribute('data-sub-category-id');
-                                                                const orderId = <?= $all['order_id']; ?>; // Use `json_encode` for safe output
+                                                                const orderId = <?= json_encode($all['order_id']); ?>;  // Use `json_encode` for safe output
                                                                 // Make an AJAX request to update the database
                                                                 fetch('updateBookProduct', {
                                                                     method: 'POST',
@@ -232,15 +234,36 @@
                                                     </script>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#patientDetailsModal<?= $i ?>">
+                                                    <strong>
+                                                        <?php
+                                                        if ($all['visit_status'] == '1') {
+                                                            echo '<span class="badge badge-pill badge-soft-primary font-size-14 mb-2">Visited</span><br>';
+                                                        } elseif ($all['visit_status'] == '0') {
+                                                            echo '<span class="badge badge-pill badge-soft-danger font-size-14">Cancelled</span>';
+                                                        } elseif ($all['visit_status'] == '2') {
+                                                            echo '<span class="badge badge-pill badge-soft-warning font-size-14">Pending</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-pill badge-soft-secondary font-size-14">Unknown</span>';
+                                                        }
+                                                        ?>
+                                                    </strong>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#patientDetailsModal<?= $i ?>">
                                                         View
                                                     </button>
-                                                    <div class="modal fade" id="patientDetailsModal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="patientDetailsModalLabel<?= $i ?>" aria-hidden="true">
+                                                    <div class="modal fade" id="patientDetailsModal<?= $i ?>" tabindex="-1"
+                                                        role="dialog" aria-labelledby="patientDetailsModalLabel<?= $i ?>"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="patientDetailsModalLabel<?= $i ?>">Patient Details</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    <h5 class="modal-title"
+                                                                        id="patientDetailsModalLabel<?= $i ?>">Patient Details
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <table class="table table-bordered">

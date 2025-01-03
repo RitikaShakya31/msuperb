@@ -550,6 +550,8 @@ class AdminHome extends CI_Controller
 
 			// Update the table
 			$update = $this->CommonModel->updateSingleRowById('tbl_book_product', 'order_id', $order_id, $updateData);
+			redirect($_SERVER['HTTP_REFERER']);
+
 			if ($update) {
 				echo json_encode(['success' => true, 'message' => 'Lab selected successfully!']);
 			} else {

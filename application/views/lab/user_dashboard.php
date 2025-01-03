@@ -47,29 +47,12 @@
         <div class="container-fluid">
             <div class="row">
                 <h4>Hello! <?= $lab_name ?></h4>
-                <!-- <div class="col-md-8">
-                    <div class="card mini-stats-wid" style="border: 1px solid #000000bf; border-radius: 12px;">
-                        <div class="card-body" style="padding: 10px 22px !important;">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h4 class="mb-3 mt-3" style="font-size: 35px;color: #516ae4;"><?= $number ?></h4>
-                                    <p class="text-muted fw-medium mb-0">Today's ! Appointments</p>
-                                </div>
-                                <div class="mini-stat-icon  align-self-center">
-                                    <span class="avatar-title">
-                                        <img src="<?= base_url() ?>assets/user/images/image.png" alt="" width="120">
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
 </div>
 <div class="main-content">
-    <div class="">
+    <!-- <div class="">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-12">
@@ -166,8 +149,7 @@
             </div>
         </div>
     </div>
-
-</div>
+</div> -->
 <?php $this->load->view('lab/template/footer'); ?>
 
 <!-- Modal -->
