@@ -321,14 +321,26 @@ class AdminHome extends CI_Controller
 	}
 	public function payment_history()
 	{
-		$get['setting_data'] = $this->CommonModel->getAllRows('settings');
-		$get['commission'] = $get['setting_data'][40]['content_value'];
-		$get['payment_details'] = $this->CommonModel->getRowByIdInOrder('appointment', "visit_status = '1'", 'id', 'DESC');
+		$get['setting_data'] = $this->CommonModel->getAllRows('setting');
+		$get['commission'] = $get['setting_data'][4]['particular_value'];
+		$get['payment_details'] = $this->CommonModel->getRowByIdInOrder('book_product', "visit_status = '1'", 'product_book_id', 'DESC');
 		$get['all_service'] = $this->CommonModel->getRowByIdInOrder('all_service', [], 'service_id', 'DESC');
 		$get['title'] = 'Payment History';
 		$get['setting'] = $this->setting;
 		$this->load->view('admin/payment_history', $get);
 	}
+	public function paymentStatus($user_id)
+    {
+        $visit_status = $this->input->post('payment_status'); // Fetch the posted status
+        $post = array('payment_status' => $visit_status);
+        $update = $this->CommonModel->updateRowById('book_product', 'product_book_id', decryptId($user_id), $post);
+        if ($update) {
+            flashMultiData(['success_status' => "success", 'msg' => "Payment Status Updated"]);
+        } else {
+            flashMultiData(['success_status' => "error", 'msg' => "Something Went Wrong."]);
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 	public function changePassword()
 	{
 		$admin_id = $this->session->userdata('admin_id');

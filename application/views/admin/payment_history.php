@@ -50,11 +50,13 @@
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h2 class="mb-sm-0 "><?= $title ?></h2>
                         <p>
-                            <span class="badge badge-pill badge-soft-danger font-size-15 filter-status" data-status="0" style="cursor: pointer;">Pending</span>
-                            <span class="badge badge-pill badge-soft-success font-size-15 filter-status" data-status="1" style="cursor: pointer;">Paid</span>
+                            <span class="badge badge-pill badge-soft-danger font-size-15 filter-status" data-status="0"
+                                style="cursor: pointer;">Pending</span>
+                            <span class="badge badge-pill badge-soft-success font-size-15 filter-status" data-status="1"
+                                style="cursor: pointer;">Paid</span>
                         </p>
-                        <a href="<?= base_url("testAdd"); ?>" class="btn btn-success"><i class="fa fa-plus"></i>
-                            Add</a>
+                        <!-- <a href="<?= base_url("testAdd"); ?>" class="btn btn-success"><i class="fa fa-plus"></i>
+                            Add</a> -->
                     </div>
                 </div>
             </div>
@@ -81,8 +83,8 @@
                                         $i = 0;
                                         foreach ($payment_details as $item) {
                                             $i = $i + 1;
-                                            $id = encryptId($item['id']);
-                                            $test_amount = $item['test_amount']; // Received payment amount
+                                            $id = encryptId($item['product_book_id']);
+                                            $test_amount = $item['final_amount']; // Received payment amount
                                             $commission_percentage = $commission; // Commission in percentage
                                     
                                             // Calculate commission amount
@@ -91,14 +93,10 @@
                                             // Calculate lab payment (remaining amount after deducting commission)
                                             $lab_payment = $test_amount - $commission_amount;
                                             ?>
-                                            <tr data-status="<?= $item['lab_payment_status'] ?>">
+                                            <tr data-status="<?= $item['payment_status'] ?>">
                                                 <td><?= $i ?></td>
-                                                <td>
-                                                    <?= $item['patient_name'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $item['test_amount'] ?>
-                                                </td>
+                                                <td><?= $item['name'] ?></td>
+                                                <td><?= $item['final_amount'] ?></td>
                                                 <td>
                                                     <?= number_format($commission_amount, 2) ?>
                                                 </td>
@@ -108,10 +106,10 @@
                                                 <td>
                                                     <form action="<?= base_url("paymentStatus/$id") ?>" method="POST"
                                                         onsubmit="return confirm('Are you sure to update?')">
-                                                        <select class="form-control" name="lab_payment_status"
+                                                        <select class="form-control" name="payment_status"
                                                             onchange="this.form.submit()">
-                                                            <option value="0" <?= $item['lab_payment_status'] == '0' ? 'selected' : '' ?>>Pending</option>
-                                                            <option value="1" <?= $item['lab_payment_status'] == '1' ? 'selected' : '' ?>>Paid</option>
+                                                            <option value="0" <?= $item['payment_status'] == '0' ? 'selected' : '' ?>>Pending</option>
+                                                            <option value="1" <?= $item['payment_status'] == '1' ? 'selected' : '' ?>>Paid</option>
                                                         </select>
                                                     </form>
                                                 </td>
@@ -179,7 +177,6 @@
                             <td><?= $item['test_type'] ?></td>
                             <td><?= $item['appointment_date'] ?></td>
                             <td><?= $item['appointment_time'] ?></td>
-
                         </tr>
                     </tbody>
                 </table>
@@ -218,7 +215,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $getReg = $this->CommonModal->getSingleRowById('register', "register_id = '{$item['lab_id']}'");
+                        $getReg = $this->CommonModel->getSingleRowById('register', "register_id = '{$item['lab_id']}'");
                         ?>
                         <tr>
                             <td><?= $getReg['lab_email'] ?></td>
@@ -243,18 +240,18 @@
 
 <script>
     $(document).ready(function () {
-    $('.filter-status').on('click', function () {
-        var status = $(this).data('status');
-        
-        // Show all rows if no status is selected
-        if (status === undefined) {
-            $('#datatable tbody tr').show();
-        } else {
-            // Hide rows that don't match the selected status
-            $('#datatable tbody tr').hide();
-            $('#datatable tbody tr[data-status="' + status + '"]').show();
-        }
+        $('.filter-status').on('click', function () {
+            var status = $(this).data('status');
+
+            // Show all rows if no status is selected
+            if (status === undefined) {
+                $('#datatable tbody tr').show();
+            } else {
+                // Hide rows that don't match the selected status
+                $('#datatable tbody tr').hide();
+                $('#datatable tbody tr[data-status="' + status + '"]').show();
+            }
+        });
     });
-});
 
 </script>

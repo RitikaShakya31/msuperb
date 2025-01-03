@@ -78,12 +78,8 @@
                                             $id = encryptId($all['id']);
                                             ?>
                                             <tr>
-                                                <td>
-                                                    <?= ++$i; ?>
-                                                </td>
-                                                <td>
-                                                    <?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?>
-                                                </td>
+                                                <td> <?= ++$i; ?></td>
+                                                <td><?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <?php
                                                     if (!empty($productName[$index]) && is_array($productName[$index])) {
