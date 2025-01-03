@@ -136,7 +136,6 @@ $route['reorder/(:any)'] = 'UserHome/reorder/$1';
 $route['nearest-lab-location/(:any)'] = 'UserHome/lab_location/$1';
 
 
-
 /////////////////////  User API    ///////////////////////
 
 $route['stateApi'] = 'UserApi/stateApi';

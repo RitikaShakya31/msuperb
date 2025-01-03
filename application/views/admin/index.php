@@ -121,6 +121,68 @@
                             </a>
                         </div> -->
                     </div>
+                    <div class="row">
+                        <h4>Query</h4>
+                        <div class="col-md-4">
+                            <a href="<?= base_url('appointments') ?>">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="text-muted fw-medium">Total Appointments</p>
+                                                <h4 class="mb-0"><?= $appointment ?></h4>
+                                            </div>
+
+                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-archive-in font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="<?= base_url('prescription') ?>">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="text-muted fw-medium">Total Prescription</p>
+                                                <h4 class="mb-0"><?= $prescription ?></h4>
+                                            </div>
+
+                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <a href="<?= base_url('productAll') ?>">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="text-muted fw-medium">Total Sub Product</p>
+                                                <h4 class="mb-0"><?= $total_product ?></h4>
+                                            </div>
+                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> -->
+                    </div>
                 </div>
             </div>
            

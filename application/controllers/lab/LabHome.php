@@ -205,7 +205,7 @@ class LabHome extends CI_Controller
     {
         $visit_status = $this->input->post('visit_status'); // Fetch the posted status
         $post = array('visit_status' => $visit_status);
-        $update = $this->CommonModel->updateRowById('appointment', 'id', decryptId($user_id), $post);
+        $update = $this->CommonModel->updateRowById('book_product', 'product_book_id', decryptId($user_id), $post);
         if ($update) {
             flashMultiData(['success_status' => "success", 'msg' => "Status Updated"]);
         } else {

@@ -76,7 +76,7 @@
                                     if ($appointment) {
                                         $i = 0;
                                         foreach ($appointment as $all) {
-                                            $id = encryptId($all['id']);
+                                            $id = encryptId($all['product_book_id']);
                                             ?>
                                             <tr>
                                                 <td>

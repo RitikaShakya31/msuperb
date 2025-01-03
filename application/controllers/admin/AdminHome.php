@@ -15,11 +15,10 @@ class AdminHome extends CI_Controller
 	}
 	public function dashboard()
 	{
-
-		$getRows['active_user'] = $this->CommonModel->getNumRows("user_registration", "user_status = '1'");
-		$getRows['inactive_user'] = $this->CommonModel->getNumRows("user_registration", "user_status = '0'");
 		$getRows['product_category'] = $this->CommonModel->getNumRows("category", "is_delete = '1'");
 		$getRows['product_sub_category'] = $this->CommonModel->getNumRows("sub_category", "is_delete = '1'");
+		$getRows['appointment'] = $this->CommonModel->getNumRow("book_product");
+		$getRows['prescription'] = $this->CommonModel->getNumRow("prescription_data");
 		$getRows['total_product'] = $this->CommonModel->getNumRows("product", "is_delete = '1'");
 		$getRows['recent_orders'] = $this->CommonModel->getNumRows("book_product", "booking_status = '0' AND status != '10' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')");
 		$getRows['accepted_orders'] = $this->CommonModel->getNumRows("book_product", "booking_status = '1' AND (payment_mode = '1' OR payment_mode = '2' AND transaction_status = '1')");

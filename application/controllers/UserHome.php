@@ -90,6 +90,9 @@ class UserHome extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
+
+  
+
     public function delete_variant()
     {
         $id = $_POST['id'];
@@ -150,9 +153,9 @@ class UserHome extends CI_Controller
         $data['products_variant'] = $this->CommonModel->getRowById('product_variant', 'product_id', decryptId($id));
         $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
         $data['reviews'] = $this->CommonModel->getRowByOrderWithLimit('product_review', array('product_id' => decryptId($id), 'status' => 'accepted'), 'rid', 'DESC', '100');
-        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | Your One Care Medical' : $data['details']['seo_title'];
+        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | ' : $data['details']['seo_title'];
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
-        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
+        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | ' : $data['details']['seo_keyword'];
         $data['contact'] = $this->contact;
         $this->load->view('lab_details', $data);
     }
@@ -164,9 +167,9 @@ class UserHome extends CI_Controller
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
         $data['products_variant'] = $this->CommonModel->getRowById('product_variant', 'product_id', decryptId($id));
         $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
-        // $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | Your One Care Medical' : $data['details']['seo_title'];
+        // $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | ' : $data['details']['seo_title'];
         // $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
-        // $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
+        // $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | ' : $data['details']['seo_keyword'];
         $data['title'] = 'Test details';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
@@ -180,9 +183,9 @@ class UserHome extends CI_Controller
 
         $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => $category_id), 'product_id', 'DESC', '20');
 
-        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | Your One Care Medical' : $data['details']['seo_title'];
+        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | ' : $data['details']['seo_title'];
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
-        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | Your One Care Medical' : $data['details']['seo_keyword'];
+        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | ' : $data['details']['seo_keyword'];
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
         $this->load->view('test_details', $data);
@@ -209,7 +212,7 @@ class UserHome extends CI_Controller
             redirect(base_url('profile'));
         }
         $data['logo'] = 'assets/logo.png';
-        $data['title'] = 'Register -  | Your One Care Medical';
+        $data['title'] = 'Register -  | ';
         $data['state_list'] = $this->CommonModel->getAllRows('state');
         if (count($_POST) > 0) {
             $post = $this->input->post();
@@ -237,7 +240,7 @@ class UserHome extends CI_Controller
             redirect(base_url('profile'));
         }
         $data['logo'] = 'assets/logo.png';
-        $data['title'] = 'Register -  | Your One Care Medical';
+        $data['title'] = 'Register -  | ';
 
         $data['contact'] = $this->contact;
         $this->load->view('check-otp', $data);
@@ -298,7 +301,7 @@ class UserHome extends CI_Controller
         }
         $data['category'] = $this->CommonModel->getAllRowsInOrder('category', 'category_id', 'desc');
         $data['logo'] = 'assets/logo.png';
-        $data['title'] = 'Login -  | Your One Care Medical';
+        $data['title'] = 'Login -  | ';
         if (count($_POST) > 0) {
             extract($this->input->post());
             $table = "user_registration";
@@ -331,7 +334,7 @@ class UserHome extends CI_Controller
     }
     public function forgot_password()
     {
-        $data['title'] = 'Forgot Password -  | Your One Care Medical';
+        $data['title'] = 'Forgot Password -  | ';
         if (count($_POST) > 0) {
             extract($this->input->post());
             $email = $this->input->post('email');
@@ -387,7 +390,7 @@ class UserHome extends CI_Controller
         // print_r($data['cancelOrderDetails']);
         // exit();
         $data['checkoutnum'] = $this->CommonModel->getNumRows('book_product', array('user_id' => $this->session->userdata('login_user_id')));
-        $data['title'] = ' Profile -  | Your One Care Medical';
+        $data['title'] = ' Profile -  | ';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
@@ -474,7 +477,7 @@ class UserHome extends CI_Controller
             }
             redirect(base_url('profile'));
         } else {
-            $data['title'] = 'Profile -  | Your One Care Medical';
+            $data['title'] = 'Profile -  | ';
             $data['logo'] = 'assets/logo.png';
             $data['contact'] = $this->contact;
             $data['setting'] = $this->setting;
@@ -503,7 +506,7 @@ class UserHome extends CI_Controller
             redirect(base_url('orders'));
         }
 
-        $data['title'] = 'Profile -  | Your One Care Medical';
+        $data['title'] = 'Profile -  | ';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
         $data['orderId'] = $orderId;
@@ -527,7 +530,7 @@ class UserHome extends CI_Controller
         $data['login_user'] = $this->session->userdata();
         $data['orderDetails'] = $this->CommonModel->getRowByIdInOrder('checkout', array('user_id' => $this->session->userdata('login_user_id')), 'id', 'DESC');
         $data['orderProductDetails'] = $this->CommonModel->getRowById('checkout_product', 'product_book_id', $checkoutID);
-        $data['title'] = 'Orde Details -  | Your One Care Medical';
+        $data['title'] = 'Orde Details -  | ';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
         $this->load->view('orderDetails', $data);
@@ -544,7 +547,7 @@ class UserHome extends CI_Controller
         }
         $data['orderDetails'] = $this->CommonModel->getRowById('checkout', 'id', $checkoutID);
         $data['orderProductDetails'] = $this->CommonModel->getRowById('checkout_product', 'product_book_id', $checkoutID);
-        $data['title'] = ' Your Order Invoice -  | Your One Care Medical';
+        $data['title'] = ' Your Order Invoice -  | ';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
         $this->load->view('orderInvoice', $data);
@@ -655,7 +658,6 @@ class UserHome extends CI_Controller
                 //     $postdata['prescription_image'] = imageUpload('prescription_image', 'upload/prescription/', '');
                 // }
                 if ($this->input->post('final_amount') > 0) {
-                    // echo '<pre>';
                     $postdata = $this->input->post();
                     $postdata['same_as_billing'] = (($this->input->post('same_as_billing') !== null) ? '1' : '0');
                     $postdata['order_id'] = (sessionId('order_id')) ? sessionId('order_id') : orderIdGenerateUser();
@@ -683,7 +685,6 @@ class UserHome extends CI_Controller
                         $insertStatus = $this->CommonModel->insertRowReturnId('user_registration', $insertData);
                         $postdata['user_id'] = $insertStatus;
                     } else {
-
                         $postdata['user_id'] = 0;
                     }
                     if (sessionId('order_id')) {
@@ -730,11 +731,9 @@ class UserHome extends CI_Controller
                     if ($post_checkout_data) {
                         $post = $this->CommonModel->updateRowById('book_product', 'order_id', sessionId('order_id'), $postdata);
                     } else {
-
                         $post = $this->CommonModel->insertRowReturnId('book_product', $postdata);
                         $insert2 = $this->CommonModel->insertRowInBatch('book_item', $mydata);
                     }
-
                     if ($post != '') {
                         if ($this->input->post('payment_mode') == '1') {
                             $invoice = ['orderlist' => ['orderDate' => date('d-m-y'), 'order_id' => $postdata['order_id'], 'name' => $postdata['name'], 'number' => $postdata['contact_no'], 'email' => $postdata['email'], 'grand_total' => $ga], 'order' => $postdata, 'products' => $mydata, 'contact' => $this->contact];
@@ -995,7 +994,7 @@ class UserHome extends CI_Controller
         } else {
         }
         $data['logo'] = 'assets/logo.png';
-        $data['title'] = 'Payment Status -  | Your One Care Medical';
+        $data['title'] = 'Payment Status -  | ';
         $msg = '';
         $msg .= '<img src="assets/img/order.png" alt="Booking" style="max-width: 100px;"/>';
         $msg .= "<h1>Order Placed</h1>";
@@ -1278,7 +1277,7 @@ class UserHome extends CI_Controller
     public function pagenotfound()
     {
         // $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '5');
-        $data['title'] = 'Terms & Condition -  | Your One Care Medical';
+        $data['title'] = 'Terms & Condition -  | ';
         $this->load->view('pagenotfound', $data);
     }
     public function reorder($order_id)

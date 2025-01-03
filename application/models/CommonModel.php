@@ -194,6 +194,14 @@ class CommonModel extends CI_Model
 			return false;
 		}
 	}
+	public function getNumRow($table)
+	{
+		$ci = &get_instance();
+		$get = $ci->db->select()
+			->from($table)
+			->get();
+		return $get->num_rows();
+	}
 
 	public function getRowByMoreId($table, $where)
 	{
