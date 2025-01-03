@@ -18,10 +18,8 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
+                                        <th>Brand</th>
                                         <th>Test Name</th>
-                                        <!-- <th>Category</th>
-                                        <th>Sub Category</th> -->
-                                        <!-- <th>Status</th> -->
                                         <th>Test Type</th>
                                         <th>Test Amount</th>
                                         <!-- <th>Sale Price</th> -->
@@ -36,16 +34,18 @@
                                         foreach ($all_product as $item) {
                                             $i = $i + 1;
                                             $getPro = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $item['product_name']]);
+                                            $getBrand = $this->CommonModel->getSingleRowById('tbl_category', ['category_id' => $item['category_id']]);
                                             $id = encryptId($item['product_id']);
                                     ?>
                                             <tr>
                                                 <td><?= $i ?></td>
+                                                <td><?= $getBrand['category_name'] ?> </td>
                                                 <td>
                                                     <p class="wrap_text"><?= ucwords($getPro['service_name']) ?></p>
                                                     <?= (($item['is_bestselling'] == '1') ? '<span class="bg-info badge badge-info">Bestselling</span>' : '') ?>
                                                 </td>
-                                                <!-- <td><?= $item['category_name'] ?> </td>
-                                                <td><?= $item['sub_category_name'] ?> </td> -->
+                                              
+                                                <!-- <td><?= $item['sub_category_name'] ?> </td> -->
                                                 <!-- <td><?= (($item['product_status'] == '1') ? '<span class="bg-info badge badge-info">Instock</span>' : (($item['product_status'] == '2') ? '<span class="bg-danger badge badge-danger">Out of stock</span>' : '')) ?></td> -->
                                                 <td><?= (($item['product_type'] == '3') ? 'Package' : (($item['product_type'] == '2') ? 'Offer' : 'Normal')) ?></td>
                                                 <!-- <td><?= $item['market_price'] ?></td> -->
