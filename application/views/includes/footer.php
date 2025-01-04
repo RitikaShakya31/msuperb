@@ -3,7 +3,8 @@
 		<div class="row">
 			<div class="col-sm-6 col-xl-3">
 				<div class="footer-widget">
-					<a class="footer-logo" href="<?= base_url() ?>"><img src="<?= base_url($setting[1]['particular_value']) ?>"
+					<a class="footer-logo" href="<?= base_url() ?>"><img
+							src="<?= base_url($setting[1]['particular_value']) ?>"
 							alt="CARE1 | Your One Care Medical"></a>
 					<p class="footer-desc">At Msuperb, we are dedicated to simplifying healthcare for you. Our mission
 						is to provide easy access to quality healthcare products and services, all in one place
@@ -95,7 +96,8 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="footer-bottom">
-					<p class="footer-copytext">&copy; All Copyrights Reserved by <a href="<?= base_url() ?>">Msuperb</a></p>
+					<p class="footer-copytext">&copy; All Copyrights Reserved by <a href="<?= base_url() ?>">Msuperb</a>
+					</p>
 					<div class="footer-card"><a href="<?= base_url() ?>"><img
 								src="<?= base_url() ?>assets/images/payment/jpg/01.jpg" alt="payment"></a><a
 							href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/images/payment/jpg/02.jpg"
@@ -109,8 +111,8 @@
 	</div>
 </footer>
 <input type="hidden" value="<?= base_url() ?>" id="base">
-<a href="tel:<?= $contact['contact_f'] ?>" class="floating_consult consultButtonHeader d-none" rel="noopener noreferrer"><i
-		class="fas fa-headphones"></i> Consult Now</a>
+<a href="tel:<?= $contact['contact_f'] ?>" class="floating_consult consultButtonHeader d-none"
+	rel="noopener noreferrer"><i class="fas fa-headphones"></i> Consult Now</a>
 
 <!-- whatsapp -->
 <div>

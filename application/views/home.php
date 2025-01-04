@@ -31,13 +31,13 @@ $this->session->unset_userdata('msg'); ?>
             <div class="row">
                 <div class="col-md-8 col-lg-6">
                     <!-- Button inside the banner -->
-                    <div class="upload-prescription-btn d-flex justify-content-between" style="">
+                    <div class="upload-prescription-btn d-flex justify-content-between">
                         <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
                             style="padding: 10px 20px; font-size: 16px;">
                             <i class="fa fa-file"></i>
                             Upload Prescription
                         </a>
-                        <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
+                        <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#bookHomeVisitModal"
                             style="padding: 10px 15px; font-size: 16px;margin-left: 10px;">
                             <i class="fa fa-file"></i>
                             Book a Home Visit

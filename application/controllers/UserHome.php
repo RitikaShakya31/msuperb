@@ -90,6 +90,23 @@ class UserHome extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
+    public function visitData()
+    {
+        if (count($_POST) > 0) {
+            $post = $this->input->post();
+            $post['create_date'] = date('Y-m-d');
+            if ($_FILES['prescription_image']['name'] != '') {
+                $post['prescription_image'] = imageUpload('prescription_image', 'upload/prescription/', '');
+            }
+            $insert = $this->CommonModel->insertRowReturnId('visit_details', $post);
+            if ($insert) {
+                $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submit. We will contact you as soon as possible.</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing technical error ,please try again later or get in touch with Email ID provided in contact section.</div>');
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
 
   
 
