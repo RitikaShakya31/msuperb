@@ -88,6 +88,7 @@
                                                     <option value="1" <?= ($product_type == '1') ? 'selected' : '' ?>>Normal</option>
                                                     <option value="2" <?= ($product_type == '2') ? 'selected' : '' ?>>Offer</option>
                                                     <option value="3" <?= ($product_type == '3') ? 'selected' : '' ?>>Package</option>
+                                                    <option value="4" <?= ($product_type == '4') ? 'selected' : '' ?>>Radiology</option>
                                                 </select>
                                             </div>
                                         </div>
