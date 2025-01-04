@@ -161,6 +161,7 @@ class UserHome extends CI_Controller
     }
     public function product_details($id, $title)
     {
+        $data['radiology'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '4', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['offers'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
