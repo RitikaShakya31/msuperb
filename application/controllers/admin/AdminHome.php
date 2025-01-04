@@ -329,7 +329,7 @@ class AdminHome extends CI_Controller
 		$get['setting'] = $this->setting;
 		$this->load->view('admin/payment_history', $get);
 	}
-	public function paymentStatus($user_id)
+		public function paymentStatus($user_id)
     {
         $visit_status = $this->input->post('payment_status'); // Fetch the posted status
         $post = array('payment_status' => $visit_status);

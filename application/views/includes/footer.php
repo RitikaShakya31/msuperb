@@ -109,7 +109,7 @@
 	</div>
 </footer>
 <input type="hidden" value="<?= base_url() ?>" id="base">
-<a href="tel:<?= $contact['contact_f'] ?>" class="floating_consult consultButtonHeader " rel="noopener noreferrer"><i
+<a href="tel:<?= $contact['contact_f'] ?>" class="floating_consult consultButtonHeader d-none" rel="noopener noreferrer"><i
 		class="fas fa-headphones"></i> Consult Now</a>
 
 <!-- whatsapp -->
