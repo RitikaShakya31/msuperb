@@ -606,8 +606,6 @@ class UserHome extends CI_Controller
         //     redirect(base_url());
         // }
 
-
-
         if (count($this->cart->contents()) <= 0) {
             redirect('/product');
         }
@@ -622,14 +620,11 @@ class UserHome extends CI_Controller
         if (count($_POST) > 0) {
            
             $this->load->library('form_validation');
-
             // Set validation rules
             $this->form_validation->set_rules('contact_no', 'Contact Number', 'required|numeric|min_length[10]|max_length[10]');
             // $this->form_validation->set_rules('name', 'Name', 'required|alpha');
             $this->form_validation->set_rules('name', 'Name', 'required|regex_match[/^[a-zA-Z ]+$/]');
-
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-
             // Check if validation passes
             if ($this->form_validation->run() == FALSE) {
                 // Validation failed; load the view with errors
@@ -728,6 +723,7 @@ class UserHome extends CI_Controller
                     $postdata['total_item_amount_mp'] = $total_item_amount_mp;
                     $postdata['final_amount'] = $total_item_amount + $postdata['shipping_charges'] - $postdata['promocode_amount'] - (($postdata['payment_mode'] == '2') ? $discount_amount : 0);
                     $postdata['booking_status'] = '2';
+                    
                     if ($post_checkout_data) {
                         $post = $this->CommonModel->updateRowById('book_product', 'order_id', sessionId('order_id'), $postdata);
                     } else {

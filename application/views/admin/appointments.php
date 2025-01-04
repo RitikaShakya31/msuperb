@@ -85,7 +85,7 @@
                                                     if (!empty($productName[$index]) && is_array($productName[$index])) {
                                                         echo htmlspecialchars($productName[$index]['service_name'], ENT_QUOTES, 'UTF-8');
                                                     } else {
-                                                        echo "Service not found";
+                                                        echo "Test not found";
                                                     }
                                                     ?>
                                                 </td>

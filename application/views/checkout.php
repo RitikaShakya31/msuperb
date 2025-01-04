@@ -15,7 +15,7 @@
 </section>
 <section class="inner-section checkout-part">
     <div class="container">
-        <form id="checkoutformend" method="post" enctype="multipart/form-data">
+        <form id="checkoutformend" method="post"  enctype="multipart/form-data">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="account-card paymentMethodWrapper">

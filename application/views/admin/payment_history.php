@@ -68,7 +68,6 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <!-- <th>Action</th> -->
                                         <th>Patient Name</th>
                                         <th>Payment Received</th>
                                         <th>Commission amount</th>
@@ -86,10 +85,8 @@
                                             $id = encryptId($item['product_book_id']);
                                             $test_amount = $item['final_amount']; // Received payment amount
                                             $commission_percentage = $commission; // Commission in percentage
-                                    
                                             // Calculate commission amount
                                             $commission_amount = ($test_amount * $commission_percentage) / 100;
-
                                             // Calculate lab payment (remaining amount after deducting commission)
                                             $lab_payment = $test_amount - $commission_amount;
                                             ?>
@@ -97,12 +94,8 @@
                                                 <td><?= $i ?></td>
                                                 <td><?= $item['name'] ?></td>
                                                 <td><?= $item['final_amount'] ?></td>
-                                                <td>
-                                                    <?= number_format($commission_amount, 2) ?>
-                                                </td>
-                                                <td>
-                                                    <?= number_format($lab_payment, 2) ?>
-                                                </td>
+                                                <td><?= number_format($commission_amount, 2) ?></td>
+                                                <td><?= number_format($lab_payment, 2) ?></td>
                                                 <td>
                                                     <form action="<?= base_url("paymentStatus/$id") ?>" method="POST"
                                                         onsubmit="return confirm('Are you sure to update?')">
@@ -125,7 +118,7 @@
                                                             </a>
                                                             <a href="<?= base_url("userAll?dID=$id"); ?>"
                                                                 onclick="return confirm('Are you sure ?')"><i
-                                                                    class="fa fa-trash dlt"></i> Delete </a>
+                                                                    class="fa fa-trash dlt"></i>Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -144,100 +137,115 @@
     </div>
 </div>
 
+<?php
+if ($payment_details) {
+    $i = 0;
+    foreach ($payment_details as $item) {
+        $lab_details = $this->CommonModel->getSingleRowById('sub_category', ['sub_category_id' => $item['sub_category_id']]);
+        $order_id = $item['order_id'];
+        $pro_id = $this->CommonModel->getSingleRowById('book_item', "order_id = '$order_id'");
+        $pro_name = $pro_id['product_name'];
+        $test_name = $this->CommonModel->getSingleRowById('all_service', "service_id = '$pro_name'");
+        $i = $i + 1;
+        ?>
+        <!-- Modal -->
+        <div class="modal fade" id="appointmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="appointmodal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel<?= $i ?>">
+                            All Details of <?= $item['patient_name'] ?>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn btn-primary btn-sm ms-3" id="copyBtn<?= $i ?>">Copy All Info</button>
+                    </div>
+                    <div class="modal-body" id="modalBody<?= $i ?>">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Contact Number</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Age</th>
+                                    <th>Test</th>
+                                    <th>Appointment Date</th>
+                                    <th>Time Slot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?= $item['contact_no'] ?></td>
+                                    <td><?= $item['email'] ?></td>
+                                    <td><?= $item['address'] ?></td>
+                                    <td><?= $item['patient_age'] ?></td>
+                                    <td><?= $test_name['service_name'] ?></td>
+                                    <td><?= $item['appointment_date'] ?></td>
+                                    <td><?= $item['appointment_time'] ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ----lab modal---; -->
+        <div class="modal fade bs-example-modal-lg" id="labmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="labmodal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel<?= $i ?>">
+                            Lab Details of <?= $item['booked_lab'] ?>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn btn-primary btn-sm ms-3" id="copyBtn<?= $i ?>">Copy All Info</button>
+                    </div>
+                    <div class="modal-body" id="modalBody<?= $i ?>">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Lab Name</th>
+                                    <th>Email</th>
+                                    <th>Contact Number</th>
+                                    <th>Address</th>
+                                    <th>Bank Name 1</th>
+                                    <th>IFSC Code 1</th>
+                                    <th>UPI ID 1</th>
+                                    <th>Bank Name 2</th>
+                                    <th>IFSC Code 2</th>
+                                    <th>UPI ID 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $getReg = $this->CommonModel->getSingleRowById('register', "register_id = '{$item['lab_id']}'");
+                                ?>
+                                <tr>
+                                    <td><?= $lab_details['sub_category_name'] ?></td>
+                                    <td><?= $lab_details['lab_email'] ?></td>
+                                    <td><?= $lab_details['lab_contact'] ?></td>
+                                    <td><?= $lab_details['lab_location'] ?></td>
+                                    <td><?= $lab_details['bank_name'] ?></td>
+                                    <td><?= $lab_details['ifsc_code'] ?></td>
+                                    <td><?= $lab_details['upi_id'] ?></td>
+                                    <td><?= $lab_details['bank_name2'] ?></td>
+                                    <td><?= $lab_details['ifsc_code2'] ?></td>
+                                    <td><?= $lab_details['upi_id2'] ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+}
+?>
+
 <?php $this->load->view('admin/template/footer'); ?>
-<!-- Modal -->
-<div class="modal fade" id="appointmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $i ?>"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel<?= $i ?>">
-                    All Details of <?= $item['patient_name'] ?>
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <button type="button" class="btn btn-primary btn-sm ms-3" id="copyBtn<?= $i ?>">Copy All Info</button>
-            </div>
-            <div class="modal-body" id="modalBody<?= $i ?>">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Test</th>
-                            <th>Appointment Date</th>
-                            <th>Time Slot</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><?= $item['patient_phone'] ?></td>
-                            <td><?= $item['patient_email'] ?></td>
-                            <td><?= $item['patient_address'] ?></td>
-                            <td><?= $item['test_type'] ?></td>
-                            <td><?= $item['appointment_date'] ?></td>
-                            <td><?= $item['appointment_time'] ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- ----lab modal---; -->
-<div class="modal fade" id="labmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $i ?>"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel<?= $i ?>">
-                    Lab Details of <?= $item['booked_lab'] ?>
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <button type="button" class="btn btn-primary btn-sm ms-3" id="copyBtn<?= $i ?>">Copy All Info</button>
-            </div>
-            <div class="modal-body" id="modalBody<?= $i ?>">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Email</th>
-                            <th>Contact Number</th>
-                            <th>Address</th>
-                            <th>Bank Name 1</th>
-                            <th>IFSC Code 1</th>
-                            <th>UPI ID 1</th>
-                            <th>Bank Name 2</th>
-                            <th>IFSC Code 2</th>
-                            <th>UPI ID 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $getReg = $this->CommonModel->getSingleRowById('register', "register_id = '{$item['lab_id']}'");
-                        ?>
-                        <tr>
-                            <td><?= $getReg['lab_email'] ?></td>
-                            <td><?= $getReg['lab_contact'] ?></td>
-                            <td><?= $getReg['lab_location'] ?></td>
-                            <td><?= $getReg['bank_name'] ?></td>
-                            <td><?= $getReg['ifsc_code'] ?></td>
-                            <td><?= $getReg['upi_id'] ?></td>
-                            <td><?= $getReg['bank_name2'] ?></td>
-                            <td><?= $getReg['ifsc_code2'] ?></td>
-                            <td><?= $getReg['upi_id2'] ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
 <script>
     $(document).ready(function () {
         $('.filter-status').on('click', function () {
