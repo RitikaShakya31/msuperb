@@ -11,12 +11,13 @@
             background-size: cover !important;
         }
     }
-    @media (max-width: 576px) {
-    .banner-part {
-        height: 280px !important; /* Adjust height for mobile view */
-    }
-}
 
+    @media (max-width: 576px) {
+        .banner-part {
+            height: 280px !important;
+            /* Adjust height for mobile view */
+        }
+    }
 </style>
 <!-- Button trigger modal -->
 <?php if ($this->session->userdata('msg') != '') { ?>
@@ -24,38 +25,28 @@
 <?php }
 $this->session->unset_userdata('msg'); ?>
 <section class="home-banner">
-    <?php
-    if ($banner) {
-        foreach ($banner as $all) {
-            ?>
-            <div class="banner-part"
-                style="background: url(<?= $setting[0]['particular_value'] ?>) no-repeat center; height: 480px; position: relative; background-size: cover;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-lg-6">
-                            <!-- Button inside the banner -->
-                            <div class="upload-prescription-btn"
-                                style="">
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
-                                    style="padding: 10px 20px; font-size: 16px;">
-                                    <i class="fa fa-file"></i>
-                                    Upload Prescription
-                                </a>
-                            </div>
-                        </div>
+    <div class="banner-part"
+        style="background: url(<?= $setting[0]['particular_value'] ?>) no-repeat center; height: 480px; position: relative; background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-6">
+                    <!-- Button inside the banner -->
+                    <div class="upload-prescription-btn d-flex justify-content-between" style="">
+                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
+                            style="padding: 10px 20px; font-size: 16px;">
+                            <i class="fa fa-file"></i>
+                            Upload Prescription
+                        </a>
+                        <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
+                            style="padding: 10px 15px; font-size: 16px;margin-left: 10px;">
+                            <i class="fa fa-file"></i>
+                            Book a Home Visit
+                        </a>
                     </div>
-                </div>
+                </div>  
             </div>
-            <?php
-        }
-    } else {
-        ?>
-        <div class="no-banner">
-            <p>No banners available.</p>
         </div>
-        <?php
-    }
-    ?>
+    </div>
 </section>
 <!-- <section class="home-classic-slider slider-arrow">
     <?php
@@ -170,7 +161,7 @@ $this->session->unset_userdata('msg'); ?>
             <div class="col-lg-6">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-laptop-medical"></i> 
+                        <i class="fas fa-laptop-medical"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Quality Services</h4>
@@ -222,7 +213,7 @@ $this->session->unset_userdata('msg'); ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="faq-parent">
-                <?php
+                    <?php
                     if ($getFaqs):
                         foreach ($getFaqs as $row):
                             ?>
@@ -249,4 +240,5 @@ $this->session->unset_userdata('msg'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
