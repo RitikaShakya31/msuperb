@@ -101,8 +101,8 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <img style="width: 100%;border-radius: 45px;" src="<?= setImage(@$category['banner'], 'upload/category/') ?>"
-                    alt="Category">
+                <img style="width: 100%;border-radius: 45px;"
+                    src="<?= setImage(@$category['banner'], 'upload/category/') ?>" alt="Category">
                 <div class="details-content">
                     <p class="details-desc"><?= $category['category_description']; ?></p>
                     <div class="details-list-group"><label class="details-list-title">Share:</label>
@@ -138,21 +138,21 @@
 <?php if ($offers != ''): ?>
     <div class="container">
         <h2 class="mb-4 ">Special Offers</h2>
-    <div class="row">
-        <?php
-        if (!empty($offers)) {
-            foreach ($offers as $row) { ?>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <?php product($row, "product", "double"); ?>
-                </div>
-                <?php
+        <div class="row">
+            <?php
+            if (!empty($offers)) {
+                foreach ($offers as $row) { ?>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <?php product($row, "product", "double"); ?>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo '<div class="col-12 text-center">No test available</div>';
             }
-        } else {
-            echo '<div class="col-12 text-center">No test available</div>';
-        }
-        ?>
+            ?>
+        </div>
     </div>
-</div>
 <?php endif; ?>
 <div class="container">
     <h2 class="mb-4 ">Health Packages</h2>
@@ -178,22 +178,13 @@ if ($category['offer'] != '') {
         alt="<?= $category['category_name'] ?>">
 <?php } else {
 } ?>
-<form action="<?= base_url('product-details') ?>" method="get" class="product-form">
+
+<form action="<?= base_url('product-details') ?>" method="get" class="product-form d-none">
     <input placeholder="Search test..." type="text" name="searchbox" list="browsers" id="browser"
         value="<?= isset($search) ? $search : '' ?>" required>
-    <datalist id="browsers">
-        <?php
-        $search = getRowByMoreId('product', array('status' => '1', 'is_delete' => '1'));
-        if (!empty($search)) {
-            foreach ($search as $search_row) {
-                ?>
-                <?php
-            }
-        }
-        ?>
-    </datalist><button type="submit"><i class="fas fa-search"></i></button>
+    <button type="submit"><i class="fas fa-search"></i></button>
 </form>
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <?php
         if (!empty($routinepro)) {
@@ -210,7 +201,7 @@ if ($category['offer'] != '') {
     </div>
 </div>
 <div class="container mt-5">
-<h2 class="mb-4 ">Radiology</h2>
+    <h2 class="mb-4 ">Radiology</h2>
     <div class="row">
         <?php
         if (!empty($radiology)) {
@@ -230,4 +221,5 @@ if ($category['offer'] != '') {
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>
 </body>
+
 </html>

@@ -330,19 +330,23 @@ class AdminProduct extends CI_Controller
 		while (($filesop = fgetcsv($handle, 1000, ',')) !== false) {
 			if (array_filter($filesop)) {
 				$post = [];
-				$brand_name = $filesop[1]; // Fetch product name
-				if (!empty($brand_name)) {
+				$test_name = $filesop[1]; // Fetch product name
+				if (!empty($test_name)) {
+					// test name
+					// $post['test_name'] = $filesop[1];
+					// $post['test_name'] = url_title(trim($filesop[1]), '-', true);
+					$test_slug = url_title(trim($filesop[1]), '-', true);
+					$test_id = $this->CommonModel->getSingleRowById('tbl_all_service', ['slug_title' => $test_slug]);
+					$post['product_name'] = $test_id ? $test_id['service_id'] : '';
 					//brand name
+					$brand_name = $filesop[2];
 					$category_id = $this->CommonModel->getSingleRowById('tbl_category', ['category_name' => $brand_name, 'is_delete' => '1']);
 					$post['category_id'] = $category_id ? $category_id['category_id'] : '';
 					//laboratory name
-					$laboratory_name = $filesop[2];
+					$laboratory_name = $filesop[3];
 					$sub_category_id = $this->CommonModel->getSingleRowById('tbl_sub_category', ['sub_category_name' => $laboratory_name, 'is_delete' => '1']);
 					$post['sub_category_id'] = $sub_category_id ? $sub_category_id['sub_category_id'] : '';
-					// test name
-					$test_name = $filesop[3];
-					$test_id = $this->CommonModel->getSingleRowById('tbl_all_service', ['service_name' => $test_name]);
-					$post['product_name'] = $test_id ? $test_id['service_id'] : '';
+
 					//test type
 					switch ($filesop[4]) {
 						case 'Normal':

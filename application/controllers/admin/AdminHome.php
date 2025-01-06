@@ -220,7 +220,7 @@ class AdminHome extends CI_Controller
 			extract($this->input->post());
 			// $post['service_type'] = $service_type;
 			$post['service_name'] = $service_name;
-
+			$post['slug_title'] = url_title($service_name, '-', true);
 			if (isset($id) && !empty($id)) {
 				// Ensure proper handling for update
 				$this->CommonModel->updateRowById('all_service', 'service_id', $decrypt_id, $post);
