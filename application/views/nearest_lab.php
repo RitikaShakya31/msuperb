@@ -4,12 +4,6 @@
         <h2>Our Labs</h2>
     </div>
 </section>
-<!-- Search Form -->
-<form action="<?= base_url('nearest-lab'); ?>" method="get" class="product-form">
-    <input placeholder="Search nearest lab..." type="text" name="searchbox" id="browser"
-        value="<?= isset($search) ? htmlspecialchars($search, ENT_QUOTES, 'UTF-8') : ''; ?>" required>
-    <button type="submit"><i class="fas fa-search"></i></button>
-</form>
 <!-- Labs Data -->
 <div class="row justify-content-center">
     <?php if (!empty($labsData)) { ?>

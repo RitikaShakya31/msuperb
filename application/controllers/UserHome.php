@@ -44,6 +44,7 @@ class UserHome extends CI_Controller
     }
     public function nearest_lab()
     {
+
         $data['labsData'] = $this->CommonModel->getAllRowsInOrder('tbl_category', 'category_id', 'DESC', array('is_delete' => '1'));
         $data['title'] = 'Our Labs';
         $data['contact'] = $this->contact;
@@ -52,18 +53,38 @@ class UserHome extends CI_Controller
     }
     public function lab_location($id)
     {
-        $id = decryptId($id);
-        $data['lab'] = $this->CommonModel->getRowByIdInOrder(
-            'tbl_sub_category',
-            " is_delete = '1' AND category_id = $id",
-            'sub_category_id',
-            'DESC'
-        );
+        // Decrypt the category ID
+        $categoryId = decryptId($id);
+    
+        // Initialize search variable
+        $search = $this->input->get('searchbox', true); // Use CI's input class for better security.
+    
+        if (!empty($search)) {
+            // Build the query to filter by search term and category ID
+            $query = "SELECT * FROM `tbl_sub_category` 
+                      WHERE `is_delete` = '1' 
+                      AND `category_id` = " . $this->db->escape($categoryId) . "
+                      AND (`lab_location` LIKE '%" . $this->db->escape_like_str(trim($search)) . "%')";
+    
+            $data['lab'] = $this->CommonModel->runQuery($query);
+        } else {
+            // Get all data for the specific category when no search term is provided
+            $data['lab'] = $this->CommonModel->getRowByIdInOrder(
+                'tbl_sub_category',
+                "is_delete = '1' AND category_id = " . $this->db->escape($categoryId),
+                'sub_category_id',
+                'DESC'
+            );
+        }    
+        // Additional data for the view
         $data['title'] = 'Nearest Labs';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
+    
+        // Load the view
         $this->load->view('lab_location', $data);
     }
+    
     public function compare($id)
     {
         $data['product'] = $this->CommonModel->getSingleRowById('product', ['product_id' => decryptId($id)]);
@@ -108,7 +129,7 @@ class UserHome extends CI_Controller
         }
     }
 
-  
+
 
     public function delete_variant()
     {
@@ -636,7 +657,7 @@ class UserHome extends CI_Controller
         $grand_total = 0;
         $ga = 0;
         if (count($_POST) > 0) {
-           
+
             $this->load->library('form_validation');
             // Set validation rules
             $this->form_validation->set_rules('contact_no', 'Contact Number', 'required|numeric|min_length[10]|max_length[10]');
@@ -741,7 +762,7 @@ class UserHome extends CI_Controller
                     $postdata['total_item_amount_mp'] = $total_item_amount_mp;
                     $postdata['final_amount'] = $total_item_amount + $postdata['shipping_charges'] - $postdata['promocode_amount'] - (($postdata['payment_mode'] == '2') ? $discount_amount : 0);
                     $postdata['booking_status'] = '2';
-                    
+
                     if ($post_checkout_data) {
                         $post = $this->CommonModel->updateRowById('book_product', 'order_id', sessionId('order_id'), $postdata);
                     } else {
@@ -1055,7 +1076,7 @@ class UserHome extends CI_Controller
         $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '5');
         $data['title'] = 'Terms & Condition ';
         $data['contact'] = $this->contact;
-        
+
         $this->load->view('term-condition', $data);
     }
     public function about()
