@@ -22,8 +22,8 @@
                                             <label for="example-text-input" class="col-md-3 col-form-label">Lab
                                                 Name</label>
                                             <div class="col-md-9">
-                                                <input class="form-control" type="text" name="lab_name" required
-                                                    value="<?= $profileData['lab_name'] ?>">
+                                                <input class="form-control" type="text" name="sub_category_name" required
+                                                    value="<?= $profileData['sub_category_name'] ?>">
                                             </div>
                                         </div>
                                     </div>

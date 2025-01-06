@@ -131,7 +131,7 @@ class LabHome extends CI_Controller
         $user_id = $this->session->userdata('isUserLogin');
         if (count($_POST) > 0) {
             $post = $this->input->post();
-            $update = $this->CommonModel->updateRowById('register', 'register_id', $user_id, $post);
+            $update = $this->CommonModel->updateRowById('sub_category', 'sub_category_id', $user_id, $post);
             if ($update) {
                 flashMultiData(['success_status' => "success", 'msg' => "Profile Data Updated"]);
             } else {
@@ -140,7 +140,7 @@ class LabHome extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         }
 
-        $get['profileData'] = $this->CommonModel->getSingleRowById('register', "register_id = '$user_id'");
+        $get['profileData'] = $this->CommonModel->getSingleRowById('sub_category', "sub_category_id = '$user_id'");
         $get['title'] = 'AHCS | Profile';
         $get['setting'] = $this->setting;
         $this->load->view('lab/lab_profile', $get);
