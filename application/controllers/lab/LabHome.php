@@ -68,6 +68,7 @@ class LabHome extends CI_Controller
 			echo "No appointments found.";
 		}
         $data['number'] = $this->CommonModel->getNumRows('appointment', ['appointment_date' => $current_date]);
+        $data['appoint'] = $this->CommonModel->getNumRow("book_product");
         $data['setting'] = $this->setting;
         $data['title'] = 'AHCS | Laboratory Dashboard';
         $this->load->view('lab/user_dashboard', $data);

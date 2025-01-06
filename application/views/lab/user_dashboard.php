@@ -48,6 +48,33 @@
             <div class="row">
                 <h4>Hello! <?= $lab_name ?></h4>
             </div>
+            <div class="row">
+                <div class="col-xl-8 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="<?= base_url('categoryAll') ?>">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="text-muted fw-medium">Total Appointment</p>
+                                                <h4 class="mb-0"><?= $appoint ?></h4>
+                                            </div>
+
+                                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-archive-in font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
         </div>
     </div>
 </div>
