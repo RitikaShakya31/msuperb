@@ -40,8 +40,6 @@
                                         foreach ($paymentData as $item) {
                                             $order_id = $item['order_id'];
                                             $pro_id = $this->CommonModel->getSingleRowById('book_item', "order_id = '$order_id'");
-                                            $pro_name = $pro_id['product_name'];
-                                            $test_name = $this->CommonModel->getSingleRowById('all_service', "service_id = '$pro_name'");
                                             $i = $i + 1;
 
                                             $id = encryptId($item['id']);
@@ -59,7 +57,7 @@
                                                 <td>
                                                     <p style="line-height:25px;"><?= ucwords($item['name']) ?></p>
                                                 </td>
-                                                <td><?= $test_name['service_name'] ?> </td>
+                                                <td><?= $pro_id['product_name'] ?> </td>
                                                 <td><?= number_format($lab_payment, 2) ?></td>
                                                 <td>
                                                     <?php

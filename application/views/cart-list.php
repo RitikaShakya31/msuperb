@@ -44,7 +44,7 @@
 					</a>
 					<h6>
 						<a
-							href="<?= base_url('test-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $productName['service_name']; ?>
+							href="<?= base_url('test-details/' . encryptId($items['id']) . '/' . url_title($items['name'])) ?>"><?php echo $items['name']; ?>
 							<!-- - <?php echo $items['variant_name']; ?></a> &nbsp; -->
 							<button class="cart-delete removeCarthm remove" data-id="<?= $items['rowid'] ?>"><i
 									class="far fa-trash-alt"></i></button>

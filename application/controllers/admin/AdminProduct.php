@@ -31,9 +31,9 @@ class AdminProduct extends CI_Controller
 		$data['banner'] = set_value('banner') == false ? @$get['banner'] : set_value('banner');
 		$data['image'] = set_value('image') == false ? @$get['image'] : set_value('image');
 		if (isset($id)) {
-			$data['title'] = 'Edit Category';
+			$data['title'] = 'Edit Brand';
 		} else {
-			$data['title'] = 'Add Category';
+			$data['title'] = 'Add Brand';
 		}
 		if (isset($dID)) {
 			$update = $this->CommonModel->updateRowById('category', 'category_id', decryptId($dID), array('is_delete' => '0'));
@@ -159,7 +159,7 @@ class AdminProduct extends CI_Controller
 		if (isset($subCategoryId)) {
 			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1' AND product.sub_category_id = '" . decryptId($subCategoryId) . "'", $join, 'product_name', 'ASC', 1);
 		} else {
-			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1'", $join, 'product_name', 'ASC', 1);
+			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1'", $join, 'product_name', 'DESC', 1);
 		}
 		$get['title'] = 'All Test';
 		$get['setting'] = $this->setting;
@@ -188,7 +188,7 @@ class AdminProduct extends CI_Controller
 		if (isset($id)) {
 			$id = $this->input->get('id');
 			$decrypt_id = decryptId($id);
-			$data['title'] = 'Edit Product';
+			$data['title'] = 'Edit Test';
 			$getProduct = $this->CommonModel->getSingleRowById('product', "product_id = '$decrypt_id'");
 			// $data['image_all'] = $this->CommonModel->getRowById('product_image', "product_id", $decrypt_id);
 			$data['variant'] = $this->CommonModel->getRowById('product_variant', "product_id", $decrypt_id);
@@ -211,7 +211,11 @@ class AdminProduct extends CI_Controller
 
 		if (count($_POST) > 0) {
 			extract($this->input->post());
-			$post['product_name'] = $product_name;
+			// $post['product_name'] = $product_name;
+			$product_id = $product_name;
+			$get_name = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $product_id]);
+			$post['service_id'] = $product_name;
+			$post['product_name'] = $get_name['service_name'];
 			$post['description'] = $description;
 			$post['product_type'] = $product_type;
 			$post['market_price'] = $market_price;
@@ -219,90 +223,14 @@ class AdminProduct extends CI_Controller
 			$post['seo_title'] = $seo_title;
 			$post['seo_description'] = $seo_description;
 			$post['seo_keyword'] = $seo_keyword;
-			// $post['product_status'] = $product_status;
 			$post['sub_category_id'] = $sub_category_id;
 			$post['category_id'] = $category_id;
 			$post['is_bestselling'] = ((isset($is_bestselling)) ? 1 : 0);
-
-			// $variant = ['variant_product_id' => $_POST['variant_product_id'], 'product_title' => $_POST['variant_product_title'], 'market_price' => $_POST['variant_market_price'], 'sale_price' => $_POST['variant_sale_price'], 'product_description' => $_POST['variant_product_description'], 'tag' => $_POST['variant_tag']];
-			// unset(
-			// 	$_POST['product_title'],
-			// 	$_POST['market_price'],
-			// 	$_POST['sale_price'],
-			// 	$_POST['product_description'],
-			// 	$_POST['tag'],
-			// 	$_POST['variant_product_id']
-			// );
-			// $dataCount = count($variant['product_title']);
 			if (isset($id)) {
 				$update = $this->CommonModel->updateRowById('product', 'product_id', $decrypt_id, $post);
-				// if ($dataCount > 0) {
-				// 	for ($i = 0; $i < $dataCount; $i++) {
-				// 		if ($variant['product_title'][$i] != '') {
-				// 			$post2 = array('product_id' => $decrypt_id, 'product_title' => $variant['product_title'][$i], 'market_price' => $variant['market_price'][$i], 'sale_price' => $variant['sale_price'][$i], 'product_description' => $variant['product_description'][$i], 'tag' => $variant['tag'][$i]);
-
-				// 			if ($variant['variant_product_id'][$i] != '') {
-				// 				$updates = $this->CommonModel->updateRowById('product_variant', 'id', $variant['variant_product_id'][$i], $post2);
-				// 			} else {
-				// 				$inserts = $this->CommonModel->insertRow('product_variant', $post2);
-				// 			}
-				// 		}
-				// 	}
-				// }
-
-				// $filesCount = count($_FILES['image']['name']);
-
-				// if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'][0])) {
-				// 	$filesCount = count($_FILES['image']['name']);
-				// 	for ($i = 0; $i < $filesCount; $i++) {
-				// 		if (!empty($_FILES['image']['name'][$i])) { // चेक करें कि फाइल खाली नहीं है
-				// 			$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
-				// 			$newFilename = round(microtime(true) * 1000) . '.' . $extension;
-				// 			$_FILES['files']['name'] = $newFilename;
-				// 			$_FILES['files']['type'] = $_FILES['image']['type'][$i];
-				// 			$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-				// 			$_FILES['files']['error'] = $_FILES['image']['error'][$i];
-				// 			$_FILES['files']['size'] = $_FILES['image']['size'][$i];
-				// 			$picture = fullImage('files', PRODUCT_IMAGE);
-				// 			if ($picture) {
-				// 				$post3['image_path'] = $picture;
-				// 				$post3['product_id'] = isset($decrypt_id) ? $decrypt_id : $p_id;
-				// 				$this->CommonModel->insertRow('product_image', $post3);
-				// 			}
-				// 		}
-				// 	}
-				// } else {
-				// 	$file_error = "Please select at least one file to upload.";
-				// }
 				flashData('errors', 'Produce update successfully');
 			} else {
 				$p_id = $this->CommonModel->insertRowReturnIdWithClean('product', $post);
-				// if ($p_id > 0) {
-				// 	$filesCount = count($_FILES['image']['name']);
-				// 	if ($filesCount > 0) {
-				// 		for ($i = 0; $i < $filesCount; $i++) {
-				// 			if ($_FILES['image']['name'] != '') {
-				// 				$extension = pathinfo($_FILES["image"]["name"][$i], PATHINFO_EXTENSION);
-				// 				$newFilename = round(microtime(true) * 1000);
-				// 				$_FILES['files']['name'] = $newFilename . '.' . $extension;
-				// 				$_FILES['files']['type'] = $_FILES['image']['type'][$i];
-				// 				$_FILES['files']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-				// 				$_FILES['files']['error'] = $_FILES['image']['error'][$i];
-				// 				$_FILES['files']['size'] = $_FILES['image']['size'][$i];
-				// 				$picture = fullImage('files', PRODUCT_IMAGE);
-				// 				// $picture = imageUploadWithRatio('files', PRODUCT_IMAGE, 600, 400, "");
-				// 				if ($picture) {
-				// 					$post2['image_path'] = $picture;
-				// 					$post2['product_id'] = $p_id;
-				// 					$insert = $this->CommonModel->insertRow('product_image', $post2);
-				// 				}
-				// 			}
-				// 		}
-				// 	}
-				// 	flashData('errors', 'Produce add successfully');
-				// } else {
-				// 	flashData('errors', 'Product not add');
-				// }
 			}
 			redirect('productAll');
 		}

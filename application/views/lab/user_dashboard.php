@@ -52,7 +52,7 @@
                 <div class="col-xl-8 mt-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="<?= base_url('categoryAll') ?>">
+                            <a href="<?= base_url('appointment-list') ?>">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="media">

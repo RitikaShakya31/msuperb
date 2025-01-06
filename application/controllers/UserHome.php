@@ -677,15 +677,13 @@ class UserHome extends CI_Controller
                     $allowed_extensions = ['png', 'jpg', 'jpeg', 'webp', 'pdf'];
 
                     if (in_array(strtolower($file_extension), $allowed_extensions)) {
-                        // Valid extension, proceed with upload
                         $postdata['prescription_image'] = imageWithpdfUpload('prescription_image', 'upload/prescription/', '');
                     } else {
                         $data['file_error'] = 'Only .png, .jpg, .jpeg, .webp, and .pdf files are allowed.';
                         $this->load->view('checkout', $data); // Reload view with file error
-                        return; // Stop further execution
+                        return;
                     }
                 } else {
-                    // If no file is uploaded and it is required, set an error message
                     $data['file_error'] = 'Please upload a valid file.';
                 }
                 //  if ($_FILES['prescription_image']['name'] != '') {

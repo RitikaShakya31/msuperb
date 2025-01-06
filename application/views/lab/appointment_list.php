@@ -78,6 +78,8 @@
                                         $i = 0;
                                         foreach ($appointment as $all) {
                                             $id = encryptId($all['product_book_id']);
+                                            $orderId = $all['order_id'];
+                                            $getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
                                             ?>
                                             <tr>
                                                 <td>
@@ -96,13 +98,14 @@
                                                     <?= $all['name'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php
+                                                    <?= $getPro['product_name'] ?>
+                                                    <!-- <?php
                                                     if (!empty($productName) && isset($productName[$i - 1]) && is_array($productName[$i - 1])) {
                                                         echo htmlspecialchars($productName[$i - 1]['service_name'], ENT_QUOTES, 'UTF-8');
                                                     } else {
                                                         echo "Service not found";
                                                     }
-                                                    ?>
+                                                    ?> -->
                                                 </td>
                                                 <td>
                                                     <?= $all['appointment_time'] ?>
@@ -122,7 +125,7 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                <button class="btn btn-info" type="button" data-bs-toggle="modal"
+                                                    <button class="btn btn-info" type="button" data-bs-toggle="modal"
                                                         data-bs-target="#patientDetailsModal<?= $i ?>">
                                                         View
                                                     </button>

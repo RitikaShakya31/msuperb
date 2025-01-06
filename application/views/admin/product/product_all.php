@@ -37,7 +37,6 @@
                                         $i = 0;
                                         foreach ($all_product as $item) {
                                             $i = $i + 1;
-                                            $getPro = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $item['product_name']]);
                                             $getBrand = $this->CommonModel->getSingleRowById('tbl_category', ['category_id' => $item['category_id']]);
                                             $id = encryptId($item['product_id']);
                                             ?>
@@ -45,8 +44,9 @@
                                                 <td><?= $i ?></td>
                                                 <td><?= $getBrand['category_name'] ?> </td>
                                                 <td>
-                                                    <p class="wrap_text"><?= ucwords($getPro['service_name']) ?></p>
-                                                    <?= (($item['is_bestselling'] == '1') ? '<span class="bg-info badge badge-info">Bestselling</span>' : '') ?>
+                                                    <!-- <p class="wrap_text"><?= ucwords($getPro['service_name']) ?></p> -->
+                                                    <p class="wrap_text"><?= ucwords($item['product_name']) ?></p>
+                                                   
                                                 </td>
                                                 <!-- <td><?= (($item['product_status'] == '1') ? '<span class="bg-info badge badge-info">Instock</span>' : (($item['product_status'] == '2') ? '<span class="bg-danger badge badge-danger">Out of stock</span>' : '')) ?></td> -->
                                                 <td><?= (($item['product_type'] == '3') ? 'Package' : (($item['product_type'] == '2') ? 'Offer' : 'Normal')) ?>

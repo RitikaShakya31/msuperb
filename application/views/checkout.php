@@ -15,7 +15,7 @@
 </section>
 <section class="inner-section checkout-part">
     <div class="container">
-        <form id="checkoutformend" method="post"  enctype="multipart/form-data">
+        <form  method="post" enctype="multipart/form-data" action="">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="account-card paymentMethodWrapper">
@@ -144,8 +144,8 @@
                             <div class="form-outline">
                                 <label class="mt-2">Home/Lab Service</label>
                                 <select class="form-control checkoutfield" name="service_type">
+                                    <option disabled readonly>Select Service</option>
                                     <option value="Home Service">Home Service</option>
-                                    <option selected="selected">Select Type</option>
                                     <option value="Lab Service">Laboratory Service</option>
                                 </select>
                                 <?= form_error('service_type', '<div class="error" style="color:red;">', '</div>'); ?>

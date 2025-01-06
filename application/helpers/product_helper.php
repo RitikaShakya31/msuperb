@@ -2,7 +2,7 @@
 function product($row, $ss = 1)
 {
     $data = getSingleRowById('product_image', array('product_id' => $row['product_id']));
-    $getPro = getSingleRowById('all_service', ['service_id' => $row['product_name']]);
+    // $getPro = getSingleRowById('all_service', ['service_id' => $row['product_name']]);
     ?>
     <div class="product-card d-flex flex-column justify-content-between">
         <div class="product-media">
@@ -11,7 +11,7 @@ function product($row, $ss = 1)
         <div class="product-content" style="border:none;">
             <h6 class="product-name"><a
                     href="<?= base_url('test-details/' . encryptId($row['product_id']) . '/' . url_title($row['product_name'], 'dash', true)) ?>">
-                    <?= $getPro['service_name']; ?>
+                    <?= $row['product_name']; ?>
                 </a></h6>
             <h6 class="product-price mb-1"><span>₹
                     <?= $row['sale_price']; ?><small></small>
