@@ -157,7 +157,7 @@ class AdminProduct extends CI_Controller
 			['sub_category', 'sub_category.sub_category_id = product.sub_category_id', 'LEFT'],
 		];
 		if (isset($subCategoryId)) {
-			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1' AND product.sub_category_id = '" . decryptId($subCategoryId)  . "'", $join, 'product_name', 'ASC', 1);
+			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1' AND product.sub_category_id = '" . decryptId($subCategoryId) . "'", $join, 'product_name', 'ASC', 1);
 		} else {
 			$get['all_product'] = $this->CommonModel->getRowWithMultiJoin($select, 'product', "product.is_delete = '1'", $join, 'product_name', 'ASC', 1);
 		}
@@ -309,6 +309,81 @@ class AdminProduct extends CI_Controller
 		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/product_add', $data);
 	}
+
+	public function productExcelUpload()
+	{
+		$data['title'] = 'Upload Test\'s Excel';
+		$data['setting'] = $this->setting;
+		$this->load->view('admin/product/product_excel_upload', $data);
+	}
+	public function update_bulk_product()
+	{
+		$file = $_FILES['product_sheet']['tmp_name'];
+		$handle = fopen($file, "r");
+		$c = 0;
+		$existsCandidate = [
+			'exists' => [],
+			'inserted' => []
+		];
+		$msg = [];
+		fgetcsv($handle);
+		while (($filesop = fgetcsv($handle, 1000, ',')) !== false) {
+			if (array_filter($filesop)) {
+				$post = [];
+				$brand_name = $filesop[1]; // Fetch product name
+				if (!empty($brand_name)) {
+					//brand name
+					$category_id = $this->CommonModel->getSingleRowById('tbl_category', ['category_name' => $brand_name, 'is_delete' => '1']);
+					$post['category_id'] = $category_id ? $category_id['category_id'] : '';
+					//laboratory name
+					$laboratory_name = $filesop[2];
+					$sub_category_id = $this->CommonModel->getSingleRowById('tbl_sub_category', ['sub_category_name' => $laboratory_name, 'is_delete' => '1']);
+					$post['sub_category_id'] = $sub_category_id ? $sub_category_id['sub_category_id'] : '';
+					// test name
+					$test_name = $filesop[3];
+					$test_id = $this->CommonModel->getSingleRowById('tbl_all_service', ['service_name' => $test_name]);
+					$post['product_name'] = $test_id ? $test_id['service_id'] : '';
+					//test type
+					switch ($filesop[4]) {
+						case 'Normal':
+							$post['product_type'] = '1';
+							break;
+						case 'Offer':
+							$post['product_type'] = '2';
+							break;
+						case 'Package':
+							$post['product_type'] = '3';
+							break;
+						case 'Radiology':
+							$post['product_type'] = '4';
+							break;
+						default:
+							$post['product_type'] = '0'; // Default or unknown type
+							break;
+					}
+					$post['market_price'] = $filesop[5];
+					$post['sale_price'] = $filesop[6];
+					$post['description'] = $filesop[7];
+					$post['seo_title'] = $filesop[8];
+					$post['seo_description'] = $filesop[9];
+					$post['seo_keyword'] = $filesop[10];
+					$insertID = $this->CommonModel->insertRowReturnId('tbl_product', $post);
+				}
+			} else {
+				// Skip empty row
+				continue;
+			}
+		}
+		// $this->session->set_userdata('msg', "Sheet Uploaded");
+		fclose($handle); // Close the file handle
+		if (isset($insertID) && $insertID) {
+			echo "success";
+		} else {
+			echo "fail";
+		}
+	}
+
+
 	public function productImageD($id, $img)
 	{
 		$delete = $this->CommonModel->deleteRowById('product_image', "product_image_id = '" . decryptId($id) . "'");

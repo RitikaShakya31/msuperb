@@ -78,6 +78,7 @@ $route['statusUpdate/(:any)/(:any)'] = 'admin/AdminHome/statusUpdate/$1/$2';
 $route['changePassword'] = 'admin/AdminHome/changePassword';
 $route['addFaqs'] = 'admin/AdminHome/addFaqs';
 $route['updateBookProduct'] = 'admin/AdminHome/updateBookProduct';
+$route['setting'] = 'admin/AdminHome/setting';
 
 
 // => shiprocket
@@ -98,7 +99,7 @@ $route['productAdd'] = 'admin/AdminProduct/productAdd';
 $route['productView'] = 'admin/AdminProduct/productView';
 $route['getProductSubCategory'] = 'admin/AdminProduct/getProductSubCategory';
 $route['productImageD/(:any)/(:any)'] = 'admin/AdminProduct/productImageD/$1/$2';
-$route['setting'] = 'admin/AdminHome/setting';
+$route['productExcelUpload'] = 'admin/AdminProduct/productExcelUpload';
 
 ///////////////////// website   ///////////////////////
 $route['contact'] = 'UserHome/contact';

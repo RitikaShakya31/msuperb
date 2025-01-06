@@ -4,8 +4,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h2 class="mb-sm-0 "><?= $title ?></h2>
+                    <h2 class="mb-sm-0 "><?= $title ?></h2>
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-end">
+                        <a href="<?= base_url("productExcelUpload"); ?>" class="btn btn-success"
+                            style="margin-right: 10px;"><i class="fa fa-file-excel"></i>
+                            Upload Excel</a>
                         <a href="<?= base_url("productAdd"); ?>" class="btn btn-success"><i class="fa fa-plus"></i>
                             Add</a>
                     </div>
