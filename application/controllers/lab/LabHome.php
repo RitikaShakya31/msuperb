@@ -100,7 +100,6 @@ class LabHome extends CI_Controller
             redirect('appointment-list');
             exit;
         }
-        // $get['all_appointments'] = $this->CommonModel->getRowByIdInOrder('appointment', [], 'id', 'DESC');
         $user_id = $this->session->userdata('isUserLogin');
         $get['appointment'] = $this->CommonModel->getRowByIdInOrder(
             'book_product',
@@ -160,9 +159,9 @@ class LabHome extends CI_Controller
         //     exit;
         // }
         $get['paymentData'] = $this->CommonModel->getRowByIdInOrder(
-            'appointment',
-            ['lab_payment_status' => '1'], // Filter by today's date
-            'id',
+            'book_product',
+            [], // Filter by today's date
+            'product_book_id',
             'DESC'
         );
         $get['title'] = 'AHCS | All Payment History';

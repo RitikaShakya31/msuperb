@@ -68,6 +68,7 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
+                                        <th>Service Type</th>
                                         <th>Patient Name</th>
                                         <th>Payment Received</th>
                                         <th>Commission amount</th>
@@ -92,6 +93,7 @@
                                             ?>
                                             <tr data-status="<?= $item['payment_status'] ?>">
                                                 <td><?= $i ?></td>
+                                                <td><?= $item['service_type'] ?></td>
                                                 <td><?= $item['name'] ?></td>
                                                 <td><?= $item['final_amount'] ?></td>
                                                 <td><?= number_format($commission_amount, 2) ?></td>

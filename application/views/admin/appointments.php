@@ -60,8 +60,9 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 8%">S.n.</th>
-                                        <th style="width: 20%">Patient Name</th>
+                                        <th style="width: 20%">Service Type</th>
                                         <th style="width: 12%">Test </th>
+                                        <th style="width: 20%">Patient Name</th>
                                         <th style="width: 15%">Appointment Date</th>
                                         <th style="width: 15%">Appointment Time</th>
                                         <th style="width: 20%">Patient Address</th>
@@ -79,7 +80,7 @@
                                             ?>
                                             <tr>
                                                 <td> <?= ++$i; ?></td>
-                                                <td><?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?= $all['service_type']; ?></td>
                                                 <td>
                                                     <?php
                                                     if (!empty($productName[$index]) && is_array($productName[$index])) {
@@ -89,6 +90,8 @@
                                                     }
                                                     ?>
                                                 </td>
+                                                <td><?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?></td>
+
                                                 <td><?= $all['appointment_date']; ?></td>
                                                 <td><?= $all['appointment_time']; ?> </td>
                                                 <td><?= $all['address']; ?></td>
@@ -269,7 +272,6 @@
                                                                                 <th>Patient Age</th>
                                                                                 <th>Contact Number</th>
                                                                                 <th>Email</th>
-                                                                                <th>Service Type</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -278,7 +280,6 @@
                                                                                 <td><?= $all['patient_age']; ?></td>
                                                                                 <td><?= $all['contact_no']; ?></td>
                                                                                 <td><?= $all['email']; ?></td>
-                                                                                <td><?= $all['service_type']; ?></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
