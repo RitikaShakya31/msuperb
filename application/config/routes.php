@@ -32,6 +32,7 @@ $route['testAdd'] = 'admin/AdminHome/test_add';
 $route['userAll'] = 'admin/AdminHome/user_all';
 $route['appointments'] = 'admin/AdminHome/appointments';
 $route['payment-history'] = 'admin/AdminHome/payment_history';
+$route['homeVisit'] = 'admin/AdminHome/homeVisit';
 $route['paymentStatus/(:any)'] = 'admin/AdminHome/paymentStatus/$1';
 
 //Lab routes

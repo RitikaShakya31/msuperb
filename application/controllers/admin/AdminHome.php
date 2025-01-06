@@ -319,6 +319,13 @@ class AdminHome extends CI_Controller
 		$get['setting'] = $this->setting;
 		$this->load->view('admin/prescription', $get);
 	}
+	public function homeVisit()
+	{
+		$get['visitData'] = $this->CommonModel->getRowByIdInOrder('visit_details', [], 'id', 'DESC');
+		$get['title'] = 'Home Visit Booking';
+		$get['setting'] = $this->setting;
+		$this->load->view('admin/home_visit', $get);
+	}
 	public function payment_history()
 	{
 		$get['setting_data'] = $this->CommonModel->getAllRows('setting');
