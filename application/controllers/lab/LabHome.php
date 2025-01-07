@@ -191,7 +191,7 @@ class LabHome extends CI_Controller
     public function uploadReport($user_id)
     {
         $report_file = $this->input->post('report_file'); // Fetch the posted status
-        $post['report_file'] = imageUpload('report_file', 'upload/report/', '');
+        $post['report_file'] = documentUpload('report_file', 'upload/report/', '');
         
         $update = $this->CommonModel->updateRowById('book_product', 'product_book_id', decryptId($user_id), $post);
         if ($update) {

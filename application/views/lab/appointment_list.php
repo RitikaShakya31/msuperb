@@ -175,7 +175,8 @@
                                                     <?php } else { ?>
                                                         <form action="<?= base_url("uploadReport/$id") ?>" method="POST"
                                                             enctype="multipart/form-data">
-                                                            <input type="file" name="report_file" accept=".pdf, .png, .webp, .jpg, .jpeg" required>
+                                                            <input type="file" name="report_file"
+                                                                accept=".pdf, .png, .webp, .jpg, .jpeg" required>
                                                             <button type="submit" class="btn btn-primary">Upload</button>
                                                         </form>
                                                     <?php } ?>
