@@ -55,17 +55,17 @@ class UserHome extends CI_Controller
     {
         // Decrypt the category ID
         $categoryId = decryptId($id);
-    
+
         // Initialize search variable
         $search = $this->input->get('searchbox', true); // Use CI's input class for better security.
-    
+
         if (!empty($search)) {
             // Build the query to filter by search term and category ID
             $query = "SELECT * FROM `tbl_sub_category` 
                       WHERE `is_delete` = '1' 
                       AND `category_id` = " . $this->db->escape($categoryId) . "
                       AND (`lab_location` LIKE '%" . $this->db->escape_like_str(trim($search)) . "%')";
-    
+
             $data['lab'] = $this->CommonModel->runQuery($query);
         } else {
             // Get all data for the specific category when no search term is provided
@@ -75,16 +75,15 @@ class UserHome extends CI_Controller
                 'sub_category_id',
                 'DESC'
             );
-        }    
+        }
         // Additional data for the view
         $data['title'] = 'Nearest Labs';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
-    
+
         // Load the view
         $this->load->view('lab_location', $data);
     }
-    
     public function compare($id)
     {
         $data['product'] = $this->CommonModel->getSingleRowById('product', ['product_id' => decryptId($id)]);
@@ -98,16 +97,43 @@ class UserHome extends CI_Controller
     {
         if (count($_POST) > 0) {
             $post = $this->input->post();
-            $post['create_date'] = date('Y-m-d');
-            if ($_FILES['prescription_image']['name'] != '') {
+            $otp = rand(10000, 99999); // Generate OTP
+            $post['create_date'] = date('Y-m-d'); // Set creation date
+            // Handle file upload for prescription_image
+            if (!empty($_FILES['prescription_image']['name'])) {
                 $post['prescription_image'] = imageUpload('prescription_image', 'upload/prescription/', '');
             }
-            $insert = $this->CommonModel->insertRowReturnId('prescription_data', $post);
-            if ($insert) {
-                $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submit. We will contact you as soon as possible.</div>');
+            // Insert data into 'prescription_data' table
+            $prescriptionInsertId = $this->CommonModel->insertRowReturnId('prescription_data', $post);
+
+            if ($prescriptionInsertId) {
+                // Check if contact_no exists in the database
+                $contactExists = $this->CommonModel->checkContactExists($post['contact_no']);
+                if ($contactExists) {
+                    // If contact_no exists, update OTP
+                    $this->CommonModel->updateOtp($post['contact_no'], $otp);
+                } else {
+                    // If contact_no doesn't exist, insert into 'tbl_user_registration'
+                    $userInsertData = [
+                        'contact_no' => $post['contact_no'],
+                        'otp' => $otp,
+                        'create_date' => date('Y-m-d'),
+                    ];
+                    $userInsertId = $this->CommonModel->insertRow('tbl_user_registration', $userInsertData);
+
+                    if (!$userInsertId) {
+                        $this->session->set_userdata('msg', '<div class="alert alert-danger">Error in registering user. Please try again.</div>');
+                        redirect($_SERVER['HTTP_REFERER']);
+                        return;
+                    }
+                }
+                // Success message for prescription insertion
+                $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submitted. We will contact you as soon as possible.</div>');
             } else {
-                $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing technical error ,please try again later or get in touch with Email ID provided in contact section.</div>');
+                // Error in prescription insertion
+                $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing a technical error, please try again later or get in touch with the Email ID provided in the contact section.</div>');
             }
+
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
@@ -115,22 +141,43 @@ class UserHome extends CI_Controller
     {
         if (count($_POST) > 0) {
             $post = $this->input->post();
-            $post['create_date'] = date('Y-m-d');
-            if ($_FILES['prescription_image']['name'] != '') {
+            $otp = rand(10000, 99999); // Generate OTP
+            $post['create_date'] = date('Y-m-d'); // Set creation date
+            // Handle file upload for prescription_image
+            if (!empty($_FILES['prescription_image']['name'])) {
                 $post['prescription_image'] = imageUpload('prescription_image', 'upload/prescription/', '');
             }
-            $insert = $this->CommonModel->insertRowReturnId('visit_details', $post);
-            if ($insert) {
-                $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submit. We will contact you as soon as possible.</div>');
+            // Insert data into 'visit_details' table
+            $visitInsertId = $this->CommonModel->insertRowReturnId('visit_details', $post);
+            if ($visitInsertId) {
+                // Check if contact_no exists in the database
+                $contactExists = $this->CommonModel->checkContactExists($post['contact_no']);
+                if ($contactExists) {
+                    // If contact_no exists, update OTP
+                    $this->CommonModel->updateOtp($post['contact_no'], $otp);
+                } else {
+                    // If contact_no doesn't exist, insert into 'tbl_user_registration'
+                    $userInsertData = [
+                        'contact_no' => $post['contact_no'],
+                        'otp' => $otp,
+                        'create_date' => date('Y-m-d'),
+                    ];
+                    $userInsertId = $this->CommonModel->insertRow('tbl_user_registration', $userInsertData);
+                    if (!$userInsertId) {
+                        $this->session->set_userdata('msg', '<div class="alert alert-danger">Error in registering user. Please try again.</div>');
+                        redirect($_SERVER['HTTP_REFERER']);
+                        return;
+                    }
+                }
+                $this->session->set_userdata('msg', '<div class="alert alert-success">Your query is successfully submitted. We will contact you as soon as possible.</div>');
             } else {
-                $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing technical error ,please try again later or get in touch with Email ID provided in contact section.</div>');
+                // Error in visit details insertion
+                $this->session->set_userdata('msg', '<div class="alert alert-danger">We are facing a technical error, please try again later or get in touch with the Email ID provided in the contact section.</div>');
             }
+            // Redirect back to the previous page
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
-
-
-
     public function delete_variant()
     {
         $id = $_POST['id'];
@@ -457,10 +504,8 @@ class UserHome extends CI_Controller
                 $this->session->set_userdata('login_user_contact', $post['contact_no']);
                 $post['otp'] = rand(10000, 99999);
                 $this->session->set_userdata('otp', $post['otp']);
-
                 // Check if the email already exists
                 $contExists = $this->CommonModel->checkContactExists($post['contact_no']);
-
                 if ($contExists) {
                     // If the email exists, update the OTP
                     $this->CommonModel->updateOtp($post['contact_no'], $post['otp']);
