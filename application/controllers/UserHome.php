@@ -204,11 +204,10 @@ class UserHome extends CI_Controller
         $data['offers'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['routinepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => decryptId($id)));
-        $data['products_variant'] = $this->CommonModel->getRowById('product_variant', 'product_id', decryptId($id));
         $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
-        // $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | ' : $data['details']['seo_title'];
-        // $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
-        // $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | ' : $data['details']['seo_keyword'];
+        $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | ' : $data['details']['seo_title'];
+        $data['desc'] = ($data['details']['seo_description'] == '') ? $data['details']['seo_description'] . '| ' : $data['details']['seo_description'];
+        $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | ' : $data['details']['seo_keyword'];
         $data['title'] = 'Test details';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
@@ -216,12 +215,25 @@ class UserHome extends CI_Controller
     }
     public function test_details($id, $title)
     {
+        $test_id = decryptId($id);
+        if (count($_POST) > 0) {
+            $post = $this->input->post();
+            $post['product_id'] = $test_id;
+            $insert = $this->CommonModel->insertRowReturnId('test_review', $post);
+            if ($insert) {
+                $this->session->set_userdata('msg', '<div class="alert alert-success">Thanks! Your Review is Successfully Submit.</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-danger">Something Went Wrong.</div>');
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+        }
+        $data['review'] = $this->CommonModel->getRowByMoreId('test_review', "product_id = '$test_id'");
         $data['product'] = $this->CommonModel->getSingleRowById('product', array('product_id' => decryptId($id)));
         $category_id = $data['product']['category_id'];
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => $category_id));
-
         $data['dailypro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '1', 'status' => '1', 'is_delete' => '1', 'category_id' => $category_id), 'product_id', 'DESC', '20');
-
+        $data['details'] = $this->CommonModel->getRowById("product", 'product_id', decryptId($id))[0];
         $data['title'] = ($data['details']['seo_title'] == '') ? $data['details']['product_name'] . '|  | ' : $data['details']['seo_title'];
         $data['desc'] = ($data['details']['seo_description'] == '') ? SEODESCRIPTION : $data['details']['seo_description'];
         $data['keyword'] = ($data['details']['seo_keyword'] == '') ? $data['details']['seo_keyword'] . '|  | ' : $data['details']['seo_keyword'];

@@ -420,7 +420,7 @@
 	border-radius: 8px;
 	margin-bottom: 30px;
 	background: var(--white);	
-    border-bottom: 1px solid #80808029;
+    /* border-bottom: 1px solid #80808029; */
 }
 .product-details-frame:last-child {
 	margin-bottom: 0px;
@@ -485,11 +485,11 @@
 	border-right: 1px solid var(--border);
 }
 .review-item {
-	padding: 0px 0px;
+	padding: 10px 0px;
     /* border-radius: 8px; */
     /* margin-bottom: 30px; */
     /* background: var(--chalk); */
-    /* border-bottom: 1px solid var(--border); */
+    border-bottom: 1px solid var(--border);
 }
 .review-item:last-child {
 	margin-bottom: 0px;
