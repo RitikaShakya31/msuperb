@@ -66,17 +66,14 @@
                                                 Name</label>
                                             <div class="col-md-12">
                                                 <select class="form-control" name="product_name">
-                                                    <option value="">Select Test</option>
                                                     <?php if ($services) {
                                                         foreach ($services as $service) { ?>
-                                                            <option value="<?= $service['service_id'] ?>">
+                                                            <option value="<?= $service['service_id'] ?>" <?= $service['service_name'] == $product_name ? 'selected' : '' ?>>
                                                                 <?= $service['service_name'] ?>
                                                             </option>
                                                         <?php }
                                                     } ?>
                                                 </select>
-                                                <!-- <input class="form-control" type="text" name="product_name" required
-                                                    value="<?= $product_name ?>"> -->
                                             </div>
                                         </div>
                                     </div>
@@ -93,17 +90,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-lg-4 mb-3">
-                                        <div class="row">
-                                            <label for="example-text-input" class="col-md-12 col-form-label">Product Status</label>
-                                            <div class="col-md-12">
-                                                <select class="select2 form-control" name="product_status">
-                                                    <option value="1" <?= ($product_status == '1') ? 'selected' : '' ?>>In stock</option>
-                                                    <option value="2" <?= ($product_status == '2') ? 'selected' : '' ?>>Out of stock</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                  
                                     <div class="col-lg-4 mb-3 d-none">
                                         <div class="row">
                                             <label for="example-text-input"

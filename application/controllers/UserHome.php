@@ -228,7 +228,7 @@ class UserHome extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
         } else {
         }
-        $data['review'] = $this->CommonModel->getRowByMoreId('test_review', "product_id = '$test_id'");
+        $data['review'] = $this->CommonModel->getRowByOrderWithLimit('test_review', array('product_id' => $test_id), 'id', 'DESC', '4');
         $data['product'] = $this->CommonModel->getSingleRowById('product', array('product_id' => decryptId($id)));
         $category_id = $data['product']['category_id'];
         $data['category'] = $this->CommonModel->getSingleRowById('category', array('category_id' => $category_id));

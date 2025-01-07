@@ -137,15 +137,23 @@
                                     <a class="review-avatar" href="#">
                                         <img src="<?= base_url('assets/images/user.png') ?>" alt="review" />
                                     </a>
-                                    <h5 class="review-meta"><a
-                                            href="#"><?= $row['name'] ?></a><span><?= dateConvertToView($row['create_date']) ?></span></h5>
+                                    <h5 class="review-meta">
+                                        <a href="#"><?= $row['name'] ?></a>
+                                        <span><?= dateConvertToView($row['create_date']) ?></span>
+                                    </h5>
                                 </div>
                                 <ul class="review-rating" style="padding-left:14%;">
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rate-blank"></li>
+                                    <?php
+                                    // Assuming $row['rating'] contains the rating value (1 to 5)
+                                    $rating = $row['rating'];
+                                    for ($i = 1; $i <= 5; $i++) {
+                                        if ($i <= $rating) {
+                                            echo '<li class="icofont-ui-rating"></li>'; // Filled star
+                                        } else {
+                                            echo '<li class="icofont-ui-rate-blank"></li>'; // Blank star
+                                        }
+                                    }
+                                    ?>
                                 </ul>
                                 <p style="padding-left:14%;"><?= $row['review'] ?></p>
                             </li>
@@ -153,23 +161,29 @@
                         }
                     } else {
                         echo 'no reviews available';
-                    } ?>
+                    }
+                    ?>
+
                 </ul>
             </div>
         </div>
         <!-- Right Column (Review Form) -->
         <div class="col-lg-6">
             <div class="product-details-frame">
+                <?php if ($this->session->userdata('msg') != '') { ?>
+                    <?= $this->session->userdata('msg'); ?>
+                <?php }
+                $this->session->unset_userdata('msg'); ?>
                 <h3 class="frame-title">add your review</h3>
                 <form class="review-form" method="post">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="star-rating">
-                                <input type="radio" name="rating" value="1" id="star-1" /><label for="star-1"></label>
-                                <input type="radio" name="rating" value="2" id="star-2" /><label for="star-2"></label>
+                                <input type="radio" name="rating" value="5" id="star-1" /><label for="star-1"></label>
+                                <input type="radio" name="rating" value="4" id="star-2" /><label for="star-2"></label>
                                 <input type="radio" name="rating" value="3" id="star-3" /><label for="star-3"></label>
-                                <input type="radio" name="rating" value="4" id="star-4" /><label for="star-4"></label>
-                                <input type="radio" name="rating" value="5" id="star-5" /><label for="star-5"></label>
+                                <input type="radio" name="rating" value="2" id="star-4" /><label for="star-4"></label>
+                                <input type="radio" name="rating" value="1" id="star-5" /><label for="star-5"></label>
                             </div>
                         </div>
                         <div class="col-lg-12">

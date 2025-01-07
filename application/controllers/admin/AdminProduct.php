@@ -228,7 +228,7 @@ class AdminProduct extends CI_Controller
 			$post['is_bestselling'] = ((isset($is_bestselling)) ? 1 : 0);
 			if (isset($id)) {
 				$update = $this->CommonModel->updateRowById('product', 'product_id', $decrypt_id, $post);
-				flashData('errors', 'Produce update successfully');
+				flashData('errors', 'Test update successfully');
 			} else {
 				$p_id = $this->CommonModel->insertRowReturnIdWithClean('product', $post);
 			}
@@ -349,7 +349,7 @@ class AdminProduct extends CI_Controller
 	public function review(){
 		$id = $this->input->get('id');
 		$decrypt_id = decryptId($id);
-		$data['review'] = $this->CommonModel->getRowByMoreId('test_review', "product_id = '$decrypt_id'");
+		$data['review'] = $this->CommonModel->getRowByOrderWithLimit('test_review', array('product_id' => $decrypt_id), 'id', 'DESC', '150');
 		$data['title'] = 'Reviews';
 		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/review', $data);
