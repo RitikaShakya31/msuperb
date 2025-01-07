@@ -140,7 +140,6 @@ class LabHome extends CI_Controller
             'product_book_id',
             'DESC'
         );
-        
         $get['title'] = 'AHCS | All Payment History';
         $get['setting'] = $this->setting;
         $this->load->view('lab/payment_list', $get);
@@ -179,11 +178,24 @@ class LabHome extends CI_Controller
     }
     public function visitStatus($user_id)
     {
-        $visit_status = $this->input->post('visit_status'); // Fetch the posted status
-        $post = array('visit_status' => $visit_status);
+        $report_file = $this->input->post('report_file'); // Fetch the posted status
+        $post = array('report_file' => $report_file);
         $update = $this->CommonModel->updateRowById('book_product', 'product_book_id', decryptId($user_id), $post);
         if ($update) {
             flashMultiData(['success_status' => "success", 'msg' => "Status Updated"]);
+        } else {
+            flashMultiData(['success_status' => "error", 'msg' => "Something Went Wrong."]);
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    public function uploadReport($user_id)
+    {
+        $report_file = $this->input->post('report_file'); // Fetch the posted status
+        $post['report_file'] = imageUpload('report_file', 'upload/report/', '');
+        
+        $update = $this->CommonModel->updateRowById('book_product', 'product_book_id', decryptId($user_id), $post);
+        if ($update) {
+            flashMultiData(['success_status' => "success", 'msg' => "Report Updated"]);
         } else {
             flashMultiData(['success_status' => "error", 'msg' => "Something Went Wrong."]);
         }

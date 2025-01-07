@@ -70,6 +70,7 @@
                                         <th style="width: 10%">Booked Slot</th>
                                         <th style="width: 12%">Status </th>
                                         <th style="width: 10%">More</th>
+                                        <th style="width: 10%">Report</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,21 +83,11 @@
                                             $getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
                                             ?>
                                             <tr>
-                                                <td>
-                                                    <?= ++$i; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['service_type'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['appointment_date'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['appointment_time'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $all['name'] ?>
-                                                </td>
+                                                <td><?= ++$i; ?></td>
+                                                <td><?= $all['service_type'] ?></td>
+                                                <td><?= $all['appointment_date'] ?></td>
+                                                <td><?= $all['appointment_time'] ?></td>
+                                                <td><?= $all['name'] ?></td>
                                                 <td>
                                                     <?= $getPro['product_name'] ?>
                                                     <!-- <?php
@@ -107,9 +98,7 @@
                                                     }
                                                     ?> -->
                                                 </td>
-                                                <td>
-                                                    <?= $all['appointment_time'] ?>
-                                                </td>
+                                                <td><?= $all['appointment_time'] ?></td>
                                                 <td>
                                                     <form action="<?= base_url("visitStatus/$id") ?>" method="POST"
                                                         onsubmit="return confirm('Are you sure to update?')">
@@ -178,6 +167,18 @@
                                                                     class="fa fa-trash dlt"></i> Delete </a>
                                                         </div>
                                                     </div> -->
+                                                </td>
+                                                <td>
+                                                    <?php if (!empty($all['report_file'])) { ?>
+                                                        <a href="<?= base_url("upload/report/" . $all['report_file']) ?>"
+                                                            target="_blank" class="btn btn-info mt-2">View</a>
+                                                    <?php } else { ?>
+                                                        <form action="<?= base_url("uploadReport/$id") ?>" method="POST"
+                                                            enctype="multipart/form-data">
+                                                            <input type="file" name="report_file" accept=".pdf, .png, .webp, .jpg, .jpeg" required>
+                                                            <button type="submit" class="btn btn-primary">Upload</button>
+                                                        </form>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                             <?php

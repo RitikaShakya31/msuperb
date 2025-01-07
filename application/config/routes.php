@@ -40,6 +40,7 @@ $route['lab-login'] = 'lab/LabHome/user_login';
 $route['lab-dashboard'] = 'lab/LabHome/user_dashboard';
 $route['supportFormData'] = 'lab/LabHome/supportFormData';
 $route['visitStatus/(:any)'] = 'lab/LabHome/visitStatus/$1';
+$route['uploadReport/(:any)'] = 'lab/LabHome/uploadReport/$1';
 $route['appointment-list'] = 'lab/LabHome/appointment_list';
 $route['services-list'] = 'lab/LabHome/services_list';
 $route['payment-list'] = 'lab/LabHome/payment_list';
