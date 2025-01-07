@@ -976,20 +976,17 @@ class AdminHome extends CI_Controller
 		if (!empty($get['all_appointments'])) {
 			foreach ($get['all_appointments'] as $appointment) { 
 				$orderId = $appointment['order_id']; 
-
-				$getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
-				if (!empty($getPro)) {
-					$proId = $getPro['product_name']; 
-
-					$get['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
-				} else {
-					$get['productName'][] = "No product found for order ID: $orderId";
-				}
+				$get['getPro'] = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
+				// if (!empty($getPro)) {
+				// 	$proId = $getPro['product_name']; 
+				// 	$get['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
+				// } else {
+				// 	$get['productName'][] = "No product found for order ID: $orderId";
+				// }
 			}
 		} else {
 			echo "No appointments found.";
 		}
-
 		$get['title'] = 'AHCS | All Appointment List';
 		$get['setting'] = $this->setting;
 		$this->load->view('admin/appointments', $get);

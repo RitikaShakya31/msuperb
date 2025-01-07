@@ -76,22 +76,15 @@
                                     if ($all_appointments) {
                                         $i = 0;
                                         foreach ($all_appointments as $index => $all) {
+                                            $orderId = $all['order_id'];
+                                            $getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
                                             $id = encryptId($all['id']);
                                             ?>
                                             <tr>
-                                                <td> <?= ++$i; ?></td>
+                                                <td><?= ++$i; ?></td>
                                                 <td><?= $all['service_type']; ?></td>
-                                                <td>
-                                                    <?php
-                                                    if (!empty($productName[$index]) && is_array($productName[$index])) {
-                                                        echo htmlspecialchars($productName[$index]['service_name'], ENT_QUOTES, 'UTF-8');
-                                                    } else {
-                                                        echo "Test not found";
-                                                    }
-                                                    ?>
-                                                </td>
+                                                <td><?= $getPro['product_name']; ?></td>
                                                 <td><?= htmlspecialchars($all['name'], ENT_QUOTES, 'UTF-8'); ?></td>
-
                                                 <td><?= $all['appointment_date']; ?></td>
                                                 <td><?= $all['appointment_time']; ?> </td>
                                                 <td><?= $all['address']; ?></td>
