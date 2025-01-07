@@ -46,7 +46,7 @@
                                                 <td>
                                                     <!-- <p class="wrap_text"><?= ucwords($getPro['service_name']) ?></p> -->
                                                     <p class="wrap_text"><?= ucwords($item['product_name']) ?></p>
-                                                   
+
                                                 </td>
                                                 <!-- <td><?= (($item['product_status'] == '1') ? '<span class="bg-info badge badge-info">Instock</span>' : (($item['product_status'] == '2') ? '<span class="bg-danger badge badge-danger">Out of stock</span>' : '')) ?></td> -->
                                                 <td><?= (($item['product_type'] == '3') ? 'Package' : (($item['product_type'] == '2') ? 'Offer' : 'Normal')) ?>
@@ -59,6 +59,9 @@
                                                         class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
                                                     <a href="<?php echo base_url(); ?>productAdd?id=<?= $id; ?>"
                                                         class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a href="<?php echo base_url(); ?>review?id=<?= $id; ?>"
+                                                        class="btn btn-warning"><i class="fa fa-star" aria-hidden="true"></i>
+                                                        Reviews</a>
                                                     <a href="<?= base_url("productAll?dID=$id"); ?>"
                                                         onclick="return confirm('Are you sure ?')" class="btn btn-danger"><i
                                                             class="fa fa-trash"></i> Delete</a>

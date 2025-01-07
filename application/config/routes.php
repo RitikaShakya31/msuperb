@@ -96,6 +96,7 @@ $route['subCategoryAdd'] = 'admin/AdminProduct/subCategoryAdd';
 $route['getSubCategory'] = 'admin/AdminProduct/getSubCategory';
 $route['productAll'] = 'admin/AdminProduct/productAll';
 $route['productDetails'] = 'admin/AdminProduct/productDetails';
+$route['review'] = 'admin/AdminProduct/review';
 $route['productAdd'] = 'admin/AdminProduct/productAdd';
 $route['productView'] = 'admin/AdminProduct/productView';
 $route['getProductSubCategory'] = 'admin/AdminProduct/getProductSubCategory';

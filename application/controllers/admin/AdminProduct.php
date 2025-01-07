@@ -346,4 +346,13 @@ class AdminProduct extends CI_Controller
 		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/view_product_details', $data);
 	}
+	public function review(){
+		$id = $this->input->get('id');
+		$decrypt_id = decryptId($id);
+		$data['review'] = $this->CommonModel->getRowByMoreId('test_review', "product_id = '$decrypt_id'");
+		$data['title'] = 'Reviews';
+		$data['setting'] = $this->setting;
+		$this->load->view('admin/product/review', $data);
+
+	}
 }
