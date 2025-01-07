@@ -61,10 +61,10 @@
                                                 <td><?= number_format($lab_payment, 2) ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($item['payment_status'] == '1') {
+                                                    if ($item['payment_status'] === '1' && $item['visit_status'] === '1') {
                                                         echo '<span class="badge badge-pill badge-soft-success font-size-14 mb-2">Success</span><br>';
                                                     } else {
-                                                        echo '<span class="badge badge-pill badge-soft-warning font-size-14">Paid</span>';
+                                                        echo '<span class="badge badge-pill badge-soft-warning font-size-14">Pending</span>';
                                                     }
                                                     ?>
                                                 </td>

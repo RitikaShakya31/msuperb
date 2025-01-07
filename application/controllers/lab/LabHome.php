@@ -68,7 +68,7 @@ class LabHome extends CI_Controller
 			echo "No appointments found.";
 		}
         $data['number'] = $this->CommonModel->getNumRows('appointment', ['appointment_date' => $current_date]);
-        $data['appoint'] = $this->CommonModel->getNumRow("book_product");
+        $data['appoint'] = $this->CommonModel->getNumRows("book_product", ['sub_category_id' => $user_id]);
         $data['setting'] = $this->setting;
         $data['title'] = 'AHCS | Laboratory Dashboard';
         $this->load->view('lab/user_dashboard', $data);
@@ -133,24 +133,14 @@ class LabHome extends CI_Controller
     }
     public function payment_list()
     {
-        // $get['query'] = $this->CommonModel->getAllRowsInOrder('appointment_list', 'id', 'DESC');
-        // $BdID = $this->input->get('dID');
-        // if (decryptId($BdID) != '') {
-        //     $delete = $this->CommonModel->deleteRowById('appointment_list', array('id' => decryptId($BdID)));
-        //     if ($delete) {
-        //         flashMultiData(['success_status' => "success", 'msg' => "Appointment Query Deleted"]);
-        //     } else {
-        //         flashMultiData(['success_status' => "error", 'msg' => "Something Went Wrong."]);
-        //     }
-        //     redirect('appointment-list');
-        //     exit;
-        // }
+        $user_id = $this->session->userdata('isUserLogin');
         $get['paymentData'] = $this->CommonModel->getRowByIdInOrder(
             'book_product',
-            [], // Filter by today's date
+            ['sub_category_id' => $user_id],
             'product_book_id',
             'DESC'
         );
+        
         $get['title'] = 'AHCS | All Payment History';
         $get['setting'] = $this->setting;
         $this->load->view('lab/payment_list', $get);

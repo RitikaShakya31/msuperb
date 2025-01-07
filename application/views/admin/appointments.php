@@ -146,7 +146,14 @@
                                                                                         </div>
                                                                                         <button class="btn btn-primary select-btn"
                                                                                             type="button"
-                                                                                            data-sub-category-id="<?= $lab['sub_category_id'] ?>">Select</button>
+                                                                                            data-order-id="<?= htmlspecialchars($all['order_id'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                                            data-sub-category-id="<?= htmlspecialchars($lab['sub_category_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                                                                                            Select
+                                                                                        </button>
+
+                                                                                        <!-- <button class="btn btn-primary select-btn"
+                                                                                            type="button"
+                                                                                            data-sub-category-id="<?= $lab['sub_category_id'] ?>">Select</button> -->
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -196,14 +203,15 @@
                                                         document.querySelectorAll('.select-btn').forEach(function (button) {
                                                             button.addEventListener('click', function () {
                                                                 const subCategoryId = this.getAttribute('data-sub-category-id');
-                                                                const orderId = <?= json_encode($all['order_id']); ?>;  // Use `json_encode` for safe output
+                                                                const orderId = this.getAttribute('data-order-id'); // Get the correct order ID from the button
+
                                                                 // Make an AJAX request to update the database
                                                                 fetch('updateBookProduct', {
                                                                     method: 'POST',
                                                                     headers: {
                                                                         'Content-Type': 'application/x-www-form-urlencoded'
                                                                     },
-                                                                    body: `order_id=${orderId}&sub_category_id=${encodeURIComponent(subCategoryId)}`
+                                                                    body: `order_id=${encodeURIComponent(orderId)}&sub_category_id=${encodeURIComponent(subCategoryId)}`
                                                                 })
                                                                     .then(response => {
                                                                         if (response.redirected) {

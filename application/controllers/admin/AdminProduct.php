@@ -130,10 +130,10 @@ class AdminProduct extends CI_Controller
 				}
 				if (isset($id)) {
 					$update = $this->CommonModel->updateRowById('sub_category', 'sub_category_id', $decrypt_id, $post);
-					flashData('errors', 'Sub Category Update Successfully');
+					flashData('errors', 'Laboratory Update Successfully');
 				} else {
 					$insert = $this->CommonModel->insertRow('sub_category', $post);
-					flashData('errors', 'Sub Category Add Successfully');
+					flashData('errors', 'Laboratory Add Successfully');
 				}
 				redirect('subCategoryAll');
 			}
