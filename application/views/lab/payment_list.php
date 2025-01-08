@@ -10,7 +10,7 @@
                             <span class="badge badge-pill badge-soft-warning font-size-15 filter-status" data-status="0"
                                 style="cursor: pointer;">Pending</span>
                             <span class="badge badge-pill badge-soft-success font-size-15 filter-status" data-status="1"
-                                style="cursor: pointer;">Paid</span>
+                                style="cursor: pointer;">Success</span>
                         </p>
                         <!-- <a href="<?= base_url("testAdd"); ?>" class="btn btn-success"><i class="fa fa-plus"></i>
                             Add</a> -->

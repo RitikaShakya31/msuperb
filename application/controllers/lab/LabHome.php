@@ -134,6 +134,8 @@ class LabHome extends CI_Controller
     public function payment_list()
     {
         $user_id = $this->session->userdata('isUserLogin');
+        $get['setting_data'] = $this->CommonModel->getAllRows('setting');
+        $get['commission'] = $get['setting_data'][4]['particular_value'];
         $get['paymentData'] = $this->CommonModel->getRowByIdInOrder(
             'book_product',
             ['sub_category_id' => $user_id],

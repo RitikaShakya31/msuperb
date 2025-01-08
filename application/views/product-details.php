@@ -200,23 +200,29 @@ if ($category['offer'] != '') {
         ?>
     </div>
 </div>
-<div class="container mt-5">
-    <h2 class="mb-4 ">Radiology</h2>
-    <div class="row">
-        <?php
-        if (!empty($radiology)) {
-            foreach ($radiology as $row) { ?>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <?php product($row, "product", "double"); ?>
-                </div>
-                <?php
+<?php
+if ($radiology) {
+    ?>
+    <div class="container mt-5">
+        <h2 class="mb-4 ">Radiology</h2>
+        <div class="row">
+            <?php
+            if (!empty($radiology)) {
+                foreach ($radiology as $row) { ?>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <?php product($row, "product", "double"); ?>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo '<div class="col-12 text-center">No test available</div>';
             }
-        } else {
-            echo '<div class="col-12 text-center">No test available</div>';
-        }
-        ?>
+            ?>
+        </div>
     </div>
-</div>
+    <?php
+} ?>
+
 </div>
 <?php $this->load->view('includes/footer'); ?>
 <?php $this->load->view('includes/footer-link'); ?>

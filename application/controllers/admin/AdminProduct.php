@@ -60,10 +60,10 @@ class AdminProduct extends CI_Controller
 				}
 				if (isset($id)) {
 					$update = $this->CommonModel->updateRowById('category', 'category_id', $decrypt_id, $post);
-					flashData('errors', 'Category Update Successfully');
+					flashData('errors', 'Brand Update Successfully');
 				} else {
 					$insert = $this->CommonModel->insertRow('category', $post);
-					flashData('errors', 'Category Add Successfully');
+					flashData('errors', 'Brand Add Successfully');
 				}
 				redirect('categoryAll');
 			}
@@ -261,11 +261,11 @@ class AdminProduct extends CI_Controller
 				$test_name = $filesop[1]; // Fetch product name
 				if (!empty($test_name)) {
 					// test name
-					// $post['test_name'] = $filesop[1];
+					$post['product_name'] = $test_name;
 					// $post['test_name'] = url_title(trim($filesop[1]), '-', true);
-					$test_slug = url_title(trim($filesop[1]), '-', true);
-					$test_id = $this->CommonModel->getSingleRowById('tbl_all_service', ['slug_title' => $test_slug]);
-					$post['product_name'] = $test_id ? $test_id['service_id'] : '';
+					// $test_slug = url_title(trim($filesop[1]), '-', true);
+					// $test_id = $this->CommonModel->getSingleRowById('tbl_all_service', ['slug_title' => $test_slug]);
+					// $post['product_name'] = $test_id ? $test_id['service_id'] : '';
 					//brand name
 					$brand_name = $filesop[2];
 					$category_id = $this->CommonModel->getSingleRowById('tbl_category', ['category_name' => $brand_name, 'is_delete' => '1']);

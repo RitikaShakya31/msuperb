@@ -70,7 +70,7 @@
                                         <th style="width: 10%">Booked Slot</th>
                                         <th style="width: 15%">Visit Status </th>
                                         <th style="width: 10%">More</th>
-                                        <th style="width: 10%">Report</th>
+                                        <th style="width: 8%">Report</th>
                                     </tr>
                                 </thead>
                                 <tbody>
