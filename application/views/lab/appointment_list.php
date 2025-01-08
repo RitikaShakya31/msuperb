@@ -68,7 +68,7 @@
                                         <th style="width: 10%">Patient Name</th>
                                         <th style="width: 12%">Test </th>
                                         <th style="width: 10%">Booked Slot</th>
-                                        <th style="width: 12%">Status </th>
+                                        <th style="width: 15%">Visit Status </th>
                                         <th style="width: 10%">More</th>
                                         <th style="width: 10%">Report</th>
                                     </tr>
@@ -105,11 +105,11 @@
                                                         <select class="form-control" name="visit_status"
                                                             onchange="this.form.submit()">
                                                             <option value="2" <?= $all['visit_status'] == '2' ? 'selected' : '' ?>>
-                                                                Visit Pending</option>
+                                                                Pending</option>
                                                             <option value="1" <?= $all['visit_status'] == '1' ? 'selected' : '' ?>>
-                                                                Visit Done</option>
+                                                                 Done</option>
                                                             <option value="0" <?= $all['visit_status'] == '0' ? 'selected' : '' ?>>
-                                                                Visit Cancel</option>
+                                                                 Cancel</option>
                                                         </select>
                                                     </form>
                                                 </td>

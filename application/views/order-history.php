@@ -67,161 +67,103 @@
           <?php
           $i = 0;
           if (!empty($cancelOrderDetails)) {
-            echo "<h4 class='heading'>Cancelled Appointment</h4>";
             foreach ($cancelOrderDetails as $row) {
               $i = $i + 1;
               $getnum = getNumRows('book_item', array('order_id' => $row['order_id']));
               ?>
               <div class="orderlist">
                 <div class="orderlist-head">
-                  <h5>Appointment#
-                    <?= $i ?>
-                  </h5>
+                  <h5>Appointment#<?= $i ?></h5>
                   <?php
                   if ($row['cancel_date']) {
                     ?>
-                    <h5 class="text-secondary">Cancelled on:
-                      <?= $row['cancel_date'] ?>
-                    </h5>
+                    <h5 class="text-secondary">Cancelled on: <?= $row['cancel_date'] ?> </h5>
                   <?php }
                   ?>
-                  <!-- <h5>
-                    <span>Refund Status :
-                      <?php
-                      if ($row['is_refunded'] == '0') {
-                        echo '<span class="font-size-14">Initiated</span>';
-                      } elseif ($row['is_refunded'] == '1') {
-                        echo '<span class="font-size-14">Refunded</span>';
-                      } else {
-                        echo '<span class="font-size-14">Refund Cancelled</span>';
-                      }
-                      ?>
-                    </span>
-                  </h5> -->
-                  <!-- <h5>
-                    <span class="text-danger"> Order Cancel Reason :
-                      <?= $row['cancel_message'] ?>
-                    </span>
-                  </h5> -->
                 </div>
                 <div class="orderlist-body">
                   <div class="row">
                     <div class="col-lg-12">
-                    <div class="order-track">
-    <ul class="order-track-list">
-        <!-- Appointment Initiated -->
-        <li class="order-track-item placed active">
-            <i class="icofont-check"></i>
-            <span>Appointment Initiated</span>
-        </li>
-
-        <!-- Show 'Appointment Done' if status is 2 -->
-        <?php if ($row['visit_status'] == '2') { ?>
-            <li class="order-track-item accept active">
-                <i class="icofont-check"></i>
-                <span>Appointment Done</span>
-            </li>
-        <?php } ?>
-
-        <!-- Show 'Appointment Cancelled' only if status is 0 -->
-        <?php if ($row['visit_status'] == '0') { ?>
-            <li class="order-track-item cancelled active">
-                <i class="icofont-close"></i>
-                <span>Appointment Cancelled</span>
-            </li>
-        <?php } ?>
-    </ul>
-</div>
-
+                      <div class="order-track">
+                        <ul class="order-track-list">
+                          <!-- Appointment Initiated -->
+                          <li class="order-track-item placed active">
+                            <i class="icofont-check"></i>
+                            <span>Appointment Initiated</span>
+                          </li>
+                          <!-- Show 'Appointment Done' if status is 2 -->
+                          <?php if ($row['visit_status'] == '2') { ?>
+                            <li class="order-track-item accept active">
+                              <i class="icofont-check"></i>
+                              <span>Appointment Done</span>
+                            </li>
+                          <?php } ?>
+                          <!-- Show 'Appointment Cancelled' only if status is 0 -->
+                          <?php if ($row['visit_status'] == '0') { ?>
+                            <li class="order-track-item cancelled active">
+                              <i class="icofont-close"></i>
+                              <span>Appointment Cancelled</span>
+                            </li>
+                          <?php } ?>
+                        </ul>
+                      </div>
                     </div>
                     <div class="col-lg-6">
                       <ul class="orderlist-details">
                         <li>
                           <h6>order id</h6>
-                          <p>
-                            <?= $row['order_id'] ?>
-                          </p>
+                          <p><?= $row['order_id'] ?></p>
                         </li>
                         <li>
                           <h6>Total Quantity</h6>
-                          <p>
-                            <?= $getnum ?> Items
-                          </p>
+                          <p><?= $getnum ?> Items</p>
                         </li>
                         <li>
                           <h6>Appointment Date</h6>
-                          <p>
-                            <?= $row['appointment_date'] ?>
-                          </p>
+                          <p><?= $row['appointment_date'] ?></p>
                         </li>
                         <li>
                           <h6>Appointment Time</h6>
-                          <p>
-                            <?= $row['appointment_time'] ?>
-                          </p>
+                          <p><?= $row['appointment_time'] ?> </p>
                         </li>
                         <li>
                           <h6>Service Type</h6>
-                          <p>
-                            <?= $row['service_type'] ?>
-                          </p>
+                          <p><?= $row['service_type'] ?></p>
                         </li>
-                        <!-- <li>
-                          <h6>Delivery Time</h6>
-                          <p>
-                            <?= ($row['estimated_time'] != '' ? $row['estimated_time'] : 'Updated Soon...') ?>
-                          </p>
-                        </li> -->
                       </ul>
                     </div>
                     <div class="col-lg-6">
                       <ul class="orderlist-details">
                         <li>
                           <h6>Sub Total</h6>
-                          <p>₹
-                            <?= $row['total_item_amount'] ?>
-                          </p>
+                          <p>₹<?= $row['total_item_amount'] ?></p>
                         </li>
                         <li>
                           <h6>discount</h6>
-                          <p>
-                            <?= ($row['promocode_amount'] > '0' ? '₹     ' . $row['promocode_amount'] : '...') ?>
-                          </p>
+                          <p><?= ($row['promocode_amount'] > '0' ? '₹     ' . $row['promocode_amount'] : '...') ?> </p>
                         </li>
                         <li>
                           <h6>delivery fee</h6>
-                          <p>
-                            <?= ($row['delivery_charges'] > '0' ? '₹' . $row['delivery_charges'] : 'Free') ?>
-                          </p>
+                          <p><?= ($row['delivery_charges'] > '0' ? '₹' . $row['delivery_charges'] : 'Free') ?></p>
                         </li>
                         <li>
                           <h6>Total</h6>
-                          <p>₹
-                            <?= $row['final_amount'] ?>
-                          </p>
+                          <p>₹ <?= $row['final_amount'] ?></p>
+                        </li>
+                        <li>
+                          <?php if (!empty($row['report_file'])) { ?>
+                            <a href="<?= base_url("upload/report/" . $row['report_file']) ?>" target="_blank"
+                              class="btn btn-info mt-2">View Report</a>
+                          <?php } ?>
                         </li>
                       </ul>
                     </div>
-                    <!-- <div class="col-lg-3">
-                      <div class="orderlist-deliver">
-                        <h6>Delivery location</h6>
-                        <p>
-                          <?= $row['address'] ?>
-                        </p>
-                        <hr>
-                        <h6>Pin Code
-                          :
-                          <?= $row['postal_code'] ?>
-                        </h6>
-                      </div>
-                    </div> -->
                     <div class="col-lg-12">
                       <div class="table-scroll">
                         <table class="table-list">
                           <thead>
                             <tr>
                               <th scope="col">Serial</th>
-                              <!-- <th scope="col">Product</th> -->
                               <th scope="col">Test Name</th>
                               <th scope="col">Price</th>
                               <th scope="col">quantity</th>
@@ -239,24 +181,16 @@
                                 ?>
                                 <tr>
                                   <td class="table-serial">
-                                    <h6 class="text-center">
-                                      <?= $j ?>
-                                    </h6>
+                                    <h6 class="text-center"><?= $j ?> </h6>
                                   </td>
                                   <td class="table-name">
-                                    <h6 class="text-center">
-                                      <?= $productRow['product_name'] ?>
-                                    </h6>
+                                    <h6 class="text-center"><?= $productRow['product_name'] ?></h6>
                                   </td>
                                   <td class="table-price">
-                                    <h6 class="text-center">₹
-                                      <?= $products['sale_price'] ?>
-                                    </h6>
+                                    <h6 class="text-center">₹<?= $products['sale_price'] ?></h6>
                                   </td>
                                   <td class="table-quantity">
-                                    <h6 class="text-center">
-                                      <?= $productRow['no_of_items'] ?>
-                                    </h6>
+                                    <h6 class="text-center"><?= $productRow['no_of_items'] ?></h6>
                                   </td>
                                 </tr>
                                 <?php
