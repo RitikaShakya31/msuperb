@@ -483,12 +483,9 @@ class UserHome extends CI_Controller
         //  echo '<pre>';
         // print_r($data['orderDetails']);
         // exit();
-        $data['cancelOrderDetails'] = $this->CommonModel->getRowByIdInOrder('book_product', 'user_id = ' . $this->session->userdata('login_user_id') . ' AND booking_status = "2" ', 'product_book_id', 'DESC');
-        //  echo '<pre>';
-        // print_r($data['cancelOrderDetails']);
-        // exit();
+        $data['cancelOrderDetails'] = $this->CommonModel->getRowByIdInOrder('book_product', 'user_id = ' . $this->session->userdata('login_user_id'), 'product_book_id', 'DESC');
         $data['checkoutnum'] = $this->CommonModel->getNumRows('book_product', array('user_id' => $this->session->userdata('login_user_id')));
-        $data['title'] = ' Profile -  | ';
+        $data['title'] = ' Appointment History ';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
@@ -554,8 +551,6 @@ class UserHome extends CI_Controller
     }
     public function profile()
     {
-        // echo '<pre>';
-        // print_r($this->profile);
         if (!$this->session->has_userdata('login_user_id')) {
             redirect(base_url());
         }
@@ -573,7 +568,7 @@ class UserHome extends CI_Controller
             }
             redirect(base_url('profile'));
         } else {
-            $data['title'] = 'Profile -  | ';
+            $data['title'] = 'Profile';
             $data['logo'] = 'assets/logo.png';
             $data['contact'] = $this->contact;
             $data['setting'] = $this->setting;
