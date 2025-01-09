@@ -151,7 +151,7 @@
 						Home
 					</a>
 				</li>
-				<li class="navbar-item dropdown"><a class="navbar-link" href="">
+				<li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('about') ?>">
 						About Us
 					</a>
 				</li>

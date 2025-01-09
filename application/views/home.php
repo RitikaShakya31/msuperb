@@ -29,21 +29,21 @@ $this->session->unset_userdata('msg'); ?>
         style="background: url(<?= $setting[0]['particular_value'] ?>) no-repeat center; height: 480px; position: relative; background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-lg-6">
+                <div class="col-md-12 col-lg-12 col-12">
                     <!-- Button inside the banner -->
-                    <div class="upload-prescription-btn d-flex justify-content-between">
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#prescriptionModal"
-                            style="padding: 10px 20px; font-size: 16px;">
+                    <div class="upload-prescription-btn d-flex justify-content-center">
+                        <a href="#" class="btn btn-success prescription" data-bs-toggle="modal"
+                            data-bs-target="#prescriptionModal">
                             <i class="fa fa-file"></i>
                             Upload Prescription
                         </a>
-                        <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#bookHomeVisitModal"
-                            style="padding: 10px 15px; font-size: 16px;margin-left: 10px;">
+                        <a href="#" class="btn btn-warning home-visit" data-bs-toggle="modal"
+                            data-bs-target="#bookHomeVisitModal">
                             <i class="fa fa-file"></i>
                             Book a Home Visit
                         </a>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>

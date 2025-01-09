@@ -105,7 +105,6 @@ class UserHome extends CI_Controller
             }
             // Insert data into 'prescription_data' table
             $prescriptionInsertId = $this->CommonModel->insertRowReturnId('prescription_data', $post);
-
             if ($prescriptionInsertId) {
                 // Check if contact_no exists in the database
                 $contactExists = $this->CommonModel->checkContactExists($post['contact_no']);
@@ -120,7 +119,6 @@ class UserHome extends CI_Controller
                         'create_date' => date('Y-m-d'),
                     ];
                     $userInsertId = $this->CommonModel->insertRow('tbl_user_registration', $userInsertData);
-
                     if (!$userInsertId) {
                         $this->session->set_userdata('msg', '<div class="alert alert-danger">Error in registering user. Please try again.</div>');
                         redirect($_SERVER['HTTP_REFERER']);
@@ -301,7 +299,8 @@ class UserHome extends CI_Controller
         } else {
         }
         $data['title'] = 'Contact Us';
-        $data['contact'] = $this->contact;
+        $data['contact'] = $this->contact; 
+        $data['setting'] = $this->setting;
         $this->load->view('contact', $data);
     }
     public function register()
@@ -1126,7 +1125,7 @@ class UserHome extends CI_Controller
         $data['pp'] = $this->CommonModel->getRowById('policy', 'ppid', '5');
         $data['title'] = 'Terms & Condition ';
         $data['contact'] = $this->contact;
-
+        $data['setting'] = $this->setting;
         $this->load->view('term-condition', $data);
     }
     public function about()

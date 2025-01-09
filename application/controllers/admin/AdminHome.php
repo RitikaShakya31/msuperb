@@ -17,6 +17,7 @@ class AdminHome extends CI_Controller
 	{
 		$getRows['product_category'] = $this->CommonModel->getNumRows("category", "is_delete = '1'");
 		$getRows['product_sub_category'] = $this->CommonModel->getNumRows("sub_category", "is_delete = '1'");
+		$getRows['homeVisit'] = $this->CommonModel->getNumRow("visit_details");
 		$getRows['appointment'] = $this->CommonModel->getNumRow("book_product");
 		$getRows['prescription'] = $this->CommonModel->getNumRow("prescription_data");
 		$getRows['total_product'] = $this->CommonModel->getNumRows("product", "is_delete = '1'");

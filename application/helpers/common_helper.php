@@ -1,4 +1,5 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH'))
+	exit('No direct script access allowed');
 
 function setDateTime()
 {
@@ -395,7 +396,7 @@ function imageUpload($imageName, $path, $temp_image)
 		// $configi['height'] = 260;
 		$ci->load->library('image_lib');
 		$ci->image_lib->initialize($configi);
-// 		$ci->image_lib->resize();
+		// 		$ci->image_lib->resize();
 		if ($temp_image != "") {
 			unlink($target_path . '/' . $temp_image);
 		}
@@ -433,7 +434,7 @@ function imageWithpdfUpload($imageName, $path, $temp_image)
 		// $configi['height'] = 260;
 		$ci->load->library('image_lib');
 		$ci->image_lib->initialize($configi);
-// 		$ci->image_lib->resize();
+		// 		$ci->image_lib->resize();
 		if ($temp_image != "") {
 			unlink($target_path . '/' . $temp_image);
 		}
@@ -450,9 +451,9 @@ function upload_video($input_name, $upload_path)
 	$CI = &get_instance();
 
 	// Set up upload configuration
-	$config['upload_path']      = $upload_path;
-	$config['allowed_types']    = 'mp4|mov|avi|wmv'; // Add more video formats if necessary
-	$config['max_size']         = 20480; // Max size in kilobytes (20MB)
+	$config['upload_path'] = $upload_path;
+	$config['allowed_types'] = 'mp4|mov|avi|wmv'; // Add more video formats if necessary
+	$config['max_size'] = 20480; // Max size in kilobytes (20MB)
 	$config['file_ext_tolower'] = TRUE;
 	$CI->load->library('upload', $config);
 
@@ -566,7 +567,7 @@ function compressImage($file, $path, $temp_file_name)
 	$image_parts = explode(";base64,", $file);
 	$image_base64 = base64_decode($image_parts[1]);
 	$file_name = uniqid() . '.png';
-	$aadhaarB =  $path . $file_name;
+	$aadhaarB = $path . $file_name;
 	file_put_contents($aadhaarB, $image_base64);
 	if ($temp_file_name != "") {
 		unlink($path . $temp_file_name);
@@ -577,7 +578,7 @@ function compressImage($file, $path, $temp_file_name)
 function curlResponse($url, $dataArray)
 {
 	$ch = curl_init();
-	$url =  $url;
+	$url = $url;
 	$data = http_build_query($dataArray);
 	$getUrl = $url . "?" . $data;
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -594,7 +595,7 @@ function multi_array_in_search($column, $id, $array)
 	if (!empty($array)) {
 		$i = 0;
 		foreach ($array as $key => $val) {
-			$val['total_user'] =  ++$i;
+			$val['total_user'] = ++$i;
 			if ($val[$column] === $id) {
 				return $val;
 			}
@@ -623,15 +624,15 @@ function flashMultiData($vardata)
 }
 function mailmsg($to, $subject, $message)
 {
-	$config['protocol']    = 'smtp';
+	$config['protocol'] = 'smtp';
 	// $config['smtp_crypto'] = 'ssl';
-	$config['smtp_host']    = 'mail.webangeltech.com';
-	$config['smtp_port']    = '465';
+	$config['smtp_host'] = 'mail.webangeltech.com';
+	$config['smtp_port'] = '465';
 	$config['smtp_timeout'] = '8';
-	$config['smtp_user']    = 'svgh@webangeltech.com';
-	$config['smtp_pass']    = 'svgh@2023';	
-	$config['charset']    = 'utf-8';
-	$config['newline']    = "\n";
+	$config['smtp_user'] = 'svgh@webangeltech.com';
+	$config['smtp_pass'] = 'svgh@2023';
+	$config['charset'] = 'utf-8';
+	$config['newline'] = "\n";
 	$config['mailtype'] = 'html';
 	$config['validation'] = TRUE;
 
@@ -1134,7 +1135,7 @@ function calculatePercentageDiscount($marketPrice, $salePrice)
 	if ($marketPrice > 0) {
 		// Calculate the percentage discount
 		$percentageDiscount = (($marketPrice - $salePrice) / $marketPrice) * 100;
-		return (int)$percentageDiscount;
+		return (int) $percentageDiscount;
 	} else {
 		// Return an error message if market price is not valid
 		return "Error: Market price should be greater than zero.";
@@ -1145,9 +1146,9 @@ function calculatePercentageDiscount($marketPrice, $salePrice)
 function sendOTP($contact_no, $otp, $route = 1)
 {
 	$ch = curl_init();
-	 
+
 	$message_content = "Hi, Your OTP for verify your mobile number is {$otp} From Care1. Valid for 30 minutes. Please do not share this OTP.\nRegards,\n\nGNOSISACCRUE Team";
-    $url = "http://sms.mysmsshop.in/V2/http-api.php?apikey=YyOzQ9c7pLO6zlIN&senderid=GNSPVT&number=$contact_no&message=" . urlencode($message_content) ."&format=json";
+	$url = "http://sms.mysmsshop.in/V2/http-api.php?apikey=YyOzQ9c7pLO6zlIN&senderid=GNSPVT&number=$contact_no&message=" . urlencode($message_content) . "&format=json";
 	$getUrl = $url;
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
@@ -1156,11 +1157,11 @@ function sendOTP($contact_no, $otp, $route = 1)
 	curl_setopt($ch, CURLOPT_URL, $getUrl);
 	curl_setopt($ch, CURLOPT_TIMEOUT, 80);
 	$response = curl_exec($ch);
-	return json_decode($response,true);
+	return json_decode($response, true);
 }
 function sendTextMessage($contact_no, $otp)
 {
-    $message_content = "Hi, Your OTP for verify your mobile number is $otp. Valid for 30 minutes. Please do not share this OTP.
+	$message_content = "Hi, Your OTP for verify your mobile number is $otp. Valid for 30 minutes. Please do not share this OTP.
 
 Regards,
 GNOSISACCRUE Team
