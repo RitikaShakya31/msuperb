@@ -73,8 +73,9 @@
                                         <th>Patient Number</th>
                                         <th>Patient Email</th>
                                         <th>Patient Gender </th>
-                                        <th>Patient DOB</th>
-                                        <th>View Prescription</th>
+                                        <th>Patient Address</th>
+                                        <th>Test</th>
+                                        <th>Select Lab</th>
                                         <!-- <th>More</th> -->
                                     </tr>
                                 </thead>
@@ -92,10 +93,74 @@
                                                 <td><?= $item['contact_no'] ?></td>
                                                 <td><?= $item['email'] ?></td>
                                                 <td><?= $item['gender'] ?></td>
-                                                <td><?= $item['DOB'] ?></td>
-                                                <td><a class="btn btn-success" href="<?= base_url('upload/prescription/' . $item['prescription_image']) ?>"
+                                                <td><?= $item['address'] ?></td>
+                                                <td><?= $item['test_name'] ?></td>
+                                                <!-- <td><a class="btn btn-success"
+                                                        href="<?= base_url('upload/prescription/' . $item['prescription_image']) ?>"
                                                         target="_blank">
-                                                        Click Here</a></td>
+                                                        Click Here</a></td> -->
+                                                <td>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#itemDetails<?= $i ?>">
+                                                        View
+                                                    </button>
+                                                    <div class="modal fade bs-example-modal-lg" id="itemDetails<?= $i ?>"
+                                                        tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background: #eff2f7;">
+
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text"><i
+                                                                                        class="fa fa-search"></i></span>
+                                                                                <input type="text" id="searchBox<?= $i ?>"
+                                                                                    class="form-control" placeholder="Search..."
+                                                                                    value="<?= htmlspecialchars($item['address'], ENT_QUOTES, 'UTF-8'); ?>">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-3" id="searchResults<?= $i ?>"></div>
+                                                                    <div class="row mt-3" id="labResults<?= $i ?>">
+                                                                        <?php foreach ($all_labs as $lab) { ?>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="card mb-3">
+                                                                                    <div
+                                                                                        class="card-body d-flex justify-content-between align-items-center">
+                                                                                        <div>
+                                                                                            <h5 class="card-title">
+                                                                                                <?= htmlspecialchars($lab['sub_category_name'], ENT_QUOTES, 'UTF-8'); ?>
+                                                                                            </h5>
+                                                                                            <p class="card-text">
+                                                                                                <?= htmlspecialchars($lab['lab_location'], ENT_QUOTES, 'UTF-8'); ?>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <!-- <button class="btn btn-primary select-btn"
+                                                                                            type="button"
+                                                                                            data-order-id="<?= htmlspecialchars($all['order_id'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                                            data-sub-category-id="<?= htmlspecialchars($lab['sub_category_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                                                                                            Select
+                                                                                        </button> -->
+
+                                                                                        <!-- <button class="btn btn-primary select-btn"
+                                                                                            type="button"
+                                                                                            data-sub-category-id="<?= $lab['sub_category_id'] ?>">Select</button> -->
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                                 <!-- <td>
                                                     <form action="<?= base_url("paymentStatus/$id") ?>" method="POST"
                                                         onsubmit="return confirm('Are you sure to update?')">

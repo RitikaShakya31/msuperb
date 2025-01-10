@@ -113,7 +113,7 @@
               </div>
               <div class="mb-3">
                 <!-- <label for="contact" class="form-label">Contact</label> -->
-                <input type="tel" class="form-control" id="contact" name="contact_no" placeholder="Mobile no *"
+                <input type="tel" class="form-control" id="contact" name="contact_no" maxlength="10" placeholder="Mobile no *"
                   required>
               </div>
               <div class="mb-3">
@@ -121,10 +121,14 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email id *" required>
               </div>
               <div class="mb-3">
+                <!-- <label for="email" class="form-label">Email</label> -->
+                <input type="text" class="form-control" id="email" name="test_name" placeholder="Enter Test Name" required>
+              </div>
+              <!-- <div class="mb-3">
                 <input type="file" class="form-control" accept=".png, .jpg, .webp, .jpeg"
                   placeholder="Upload Prescription" name="prescription_image" required>
                 <label for="image" class="form-label">Please Attach the Prescription</label>
-              </div>
+              </div> -->
               <div class="mb-3">
                 <select class="form-select" name="gender" id="gender" required>
                   <option value="" disabled selected>Select Gender *</option>
@@ -135,9 +139,9 @@
               </div>
               <div class="mb-3">
                 <!-- <label for="dob" class="form-label">Date of Birth</label> -->
-                <input type="date" class="form-control" id="dob" placeholder="Date of Birth" name="DOB" required>
+                <input type="text" class="form-control" id="dob" placeholder="Enter Address" name="address" required>
               </div>
-              <div class="mb-3 form-check">
+              <div class="mb-3 form-check"> 
                 <input type="checkbox" class="form-check-input" id="agree" required>
                 <label class="form-check-label" for="agree">I agree to the <a href="<?= base_url('term-condition')?>">terms and conditions</a></label>
               </div>

@@ -237,7 +237,6 @@ class AdminProduct extends CI_Controller
 		$data['setting'] = $this->setting;
 		$this->load->view('admin/product/product_add', $data);
 	}
-
 	public function productExcelUpload()
 	{
 		$data['title'] = 'Upload Test\'s Excel';
@@ -314,8 +313,6 @@ class AdminProduct extends CI_Controller
 			echo "fail";
 		}
 	}
-
-
 	public function productImageD($id, $img)
 	{
 		$delete = $this->CommonModel->deleteRowById('product_image', "product_image_id = '" . decryptId($id) . "'");

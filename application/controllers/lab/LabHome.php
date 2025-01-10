@@ -6,7 +6,6 @@ class LabHome extends CI_Controller
         parent::__construct();
         $this->setting = $this->CommonModel->getAllRows('setting');
     }
-
     public function user_login()
     {
         if (count($_POST) > 0) {
@@ -32,7 +31,6 @@ class LabHome extends CI_Controller
         $data['title'] = 'User Login ';
         $this->load->view('lab/user_login', $data);
     }
-
     public function user_dashboard()
     {
         if (sessionId('isUserLogin') == "") {
@@ -43,36 +41,36 @@ class LabHome extends CI_Controller
         $current_date = date('d-m-y');
         $data['today_appointment'] = $this->CommonModel->getRowByIdInOrder(
             'appointment',
-            ['appointment_date' => $current_date], 
+            ['appointment_date' => $current_date],
             'id',
             'DESC'
         );
         $data['appointment'] = $this->CommonModel->getRowByIdInOrder(
             'book_product',
-            ['sub_category_id' => $user_id], 
+            ['sub_category_id' => $user_id],
             'product_book_id',
             'DESC'
         );
         if (!empty($data['appointment'])) {
-			foreach ($data['appointment'] as $appointment) { 
-				$orderId = $appointment['order_id']; 
-				$getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
-				if (!empty($getPro)) {
-					$proId = $getPro['product_name']; 
-					$data['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
-				} else {
-					$data['productName'][] = "No product found for order ID: $orderId";
-				}
-			}
-		} else {
-			echo "No appointments found.";
-		}
+            foreach ($data['appointment'] as $appointment) {
+                $orderId = $appointment['order_id'];
+                $getPro = $this->CommonModel->getSingleRowById('book_item', ['order_id' => $orderId]);
+                if (!empty($getPro)) {
+                    $proId = $getPro['product_name'];
+                    $data['productName'][] = $this->CommonModel->getSingleRowById('all_service', ['service_id' => $proId]);
+                } else {
+                    $data['productName'][] = "No product found for order ID: $orderId";
+                }
+            }
+        } else {
+            echo "No appointments found.";
+        }
         $data['number'] = $this->CommonModel->getNumRows('appointment', ['appointment_date' => $current_date]);
         $data['appoint'] = $this->CommonModel->getNumRows("book_product", ['sub_category_id' => $user_id]);
         $data['setting'] = $this->setting;
         $data['title'] = 'AHCS | Laboratory Dashboard';
         $this->load->view('lab/user_dashboard', $data);
-    } 
+    }
     public function supportFormData()
     {
         if (count($_POST) > 0) {
@@ -104,7 +102,7 @@ class LabHome extends CI_Controller
         $user_id = $this->session->userdata('isUserLogin');
         $get['appointment'] = $this->CommonModel->getRowByIdInOrder(
             'book_product',
-            ['sub_category_id' => $user_id], 
+            ['sub_category_id' => $user_id],
             'product_book_id',
             'DESC'
         );
@@ -194,7 +192,7 @@ class LabHome extends CI_Controller
     {
         $report_file = $this->input->post('report_file'); // Fetch the posted status
         $post['report_file'] = documentUpload('report_file', 'upload/report/', '');
-        
+
         $update = $this->CommonModel->updateRowById('book_product', 'product_book_id', decryptId($user_id), $post);
         if ($update) {
             flashMultiData(['success_status' => "success", 'msg' => "Report Updated"]);
@@ -208,7 +206,6 @@ class LabHome extends CI_Controller
         $this->session->unset_userdata('isUserLogin');
         redirect('lab-login');
     }
-
 
 }
 ?>

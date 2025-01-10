@@ -323,6 +323,7 @@ class AdminHome extends CI_Controller
 	public function homeVisit()
 	{
 		$get['visitData'] = $this->CommonModel->getRowByIdInOrder('visit_details', [], 'id', 'DESC');
+		$get['all_labs'] = $this->CommonModel->getRowByIdInOrder('sub_category', [], 'sub_category_id', 'DESC');
 		$get['title'] = 'Home Visit Booking';
 		$get['setting'] = $this->setting;
 		$this->load->view('admin/home_visit', $get);
@@ -337,7 +338,7 @@ class AdminHome extends CI_Controller
 		$get['setting'] = $this->setting;
 		$this->load->view('admin/payment_history', $get);
 	}
-		public function paymentStatus($user_id)
+	public function paymentStatus($user_id)
     {
         $visit_status = $this->input->post('payment_status'); // Fetch the posted status
         $post = array('payment_status' => $visit_status);
