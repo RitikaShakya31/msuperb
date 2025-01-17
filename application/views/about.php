@@ -26,7 +26,8 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-img d-flex justify-content-center">
-                    <img src="<?= $setting[2]['particular_value'] ?>" alt="about" style="width:100%">
+                    <img src="<?= $setting[2]['particular_value'] ?>" alt="about"
+                        style="width:100%;border-radius: 28px;">
                 </div>
             </div>
         </div>
@@ -35,64 +36,74 @@
 
 <section class="about-choose pb-65">
     <div class="container">
-    <div class="row">
-            <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-4">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
                         <i class="fas fa-boxes"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Quick Process</h4>
+                        <p>Fast Sample Collection, Get tested at our lab or from the comfort of your home with our
+                            expert phlebotomists</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
                         <i class="fas fa-vials"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Accurate Report</h4>
+                        <p>We ensure precise and reliable test results with advanced technology and expert analysis.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-laptop-medical"></i> 
+                        <i class="fas fa-laptop-medical"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Quality Services</h4>
+                        <p> We provide top-notch pathology services with expert care and advanced technology.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-shipping-fast"></i> <!-- Font Awesome icon for "Order Tracking" -->
+                        <i class="fas fa-shipping-fast"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Patient Support</h4>
+                        <p>Our dedicated team is always available to assist you with queries, guidance, and seamless
+                            healthcare experience.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-lock"></i> <!-- Font Awesome icon for "Secure Payments" -->
+                        <i class="fas fa-lock"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Secure Payments</h4>
+                        <p> We offer safe, encrypted, and hassle-free payment options for a smooth and worry-free
+                            transaction experience.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="choose-card choose-card-102">
                     <div class="choose-icon">
-                        <i class="fas fa-book-medical"></i> <!-- Font Awesome icon for "Health Blogs and Tips" -->
+                        <i class="fas fa-book-medical"></i>
                     </div>
                     <div class="choose-text">
                         <h4>Health Tips</h4>
+                        <p>Get expert advice and personalized health tips to help you maintain a healthy lifestyle and
+                            prevent illnesses.</p>
                     </div>
                 </div>
             </div>
@@ -100,31 +111,7 @@
     </div>
 </section>
 
-<!-- <section class="about-choose pb-110">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="why-us-points min-h245 mybox-2">
-                    <h2>Our Mission</h2>
-                    <p class="text-center fs-14">To deliver the best healthcare experience by providing reliable and
-                        affordable healthcare products and services, ensuring that everyone has access to quality care
-                        at their convenience. </p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="why-us-points min-h245 mybox-2">
-                    <h2>Our Vision</h2>
-                    <p class="text-center fs-14">To become a trusted leader in the healthcare sector, empowering
-                        individuals to take control of their health with ease and confidence by offering a seamless
-                        digital platform.
 
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section> -->
 
 <section class="section countdown-part"
     style="background-image: url('assets/images/bg-2.png');background-size: cover; background-position: top;">
@@ -136,8 +123,7 @@
                     <!-- <p>Reprehenderit sed quod autem molestiae aut modi minus veritatis iste dolorum suscipit quis
                         voluptatum fugiat mollitia quia minima</p> -->
                     <br>
-                    <a href="tel:9999999999999"
-                         class="btn btn-white ">
+                    <a href="tel:9999999999999" class="btn btn-white ">
                         <i class="fas fa-headphones"></i><span>Consult Now</span>
                     </a>
                 </div>

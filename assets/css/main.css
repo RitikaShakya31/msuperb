@@ -116,6 +116,7 @@ h1 {
 }
 
 h2 {
+	color: #095287;
 	font-size: var(--h2size);
 	line-height: var(--h2height);
 	letter-spacing: -0.3px;
@@ -194,7 +195,12 @@ button:focus {
 		-ms-flex-direction: column-reverse;
 		flex-direction: column-reverse;
 	}
-
+	.about-content{
+		padding: 25px !important;
+	}
+	.about-img {
+		width: 100% !important;
+	}
 	.dm-none {
 		display: none;
 	}
@@ -3259,12 +3265,26 @@ tbody tr td:last-child {
 	display: flex;
 	margin-bottom: 20px;
 }
-
+/* 
 .choose-card:hover i {
 	color: var(--white);
 	background: #095287;
+} */
+.middle-line{
+	height: 1px;
+    background: red;
+    width: 46px;
+    margin: auto;
+    margin-top: 7px;
 }
-
+.middle-white-line{
+	height: 1px;
+    background: #ffffff;
+    width: 100%;
+    margin: auto;
+    /* margin-top: 7px; */
+    margin-bottom: 18px;
+}
 .choose-icon i {
 	width: 80px;
 	height: 80px;
@@ -3273,12 +3293,13 @@ tbody tr td:last-child {
 	border-radius: 50%;
 	margin-right: 30px;
 	text-align: center;
-	display: inline-block;
+	color: #e91717;
+	/* display: inline-block;
 	color: #095287;
 	background: var(--white);
 	text-shadow: var(--primary-tshadow);
 	-webkit-box-shadow: var(--primary-bshadow);
-	box-shadow: var(--primary-bshadow);
+	box-shadow: var(--primary-bshadow); */
 	transition: all linear 0.3s;
 	-webkit-transition: all linear 0.3s;
 	-moz-transition: all linear 0.3s;
@@ -3295,11 +3316,11 @@ tbody tr td:last-child {
 	margin-right: 30px;
 	text-align: center;
 	display: inline-block;
-	color: #095287;
+	/* color: #095287;
 	background: var(--white);
 	text-shadow: var(--primary-tshadow);
 	-webkit-box-shadow: var(--primary-bshadow);
-	box-shadow: var(--primary-bshadow);
+	box-shadow: var(--primary-bshadow); */
 	transition: all linear 0.3s;
 	-webkit-transition: all linear 0.3s;
 	-moz-transition: all linear 0.3s;
@@ -6474,6 +6495,7 @@ tbody tr td:last-child {
 }
 
 .footer-title {
+	color: #065286;
 	margin-bottom: 25px;
 	letter-spacing: -0.3px;
 	text-transform: capitalize;
@@ -6555,10 +6577,11 @@ tbody tr td:last-child {
 	padding: 20px 35px 15px;
 	border-radius: 8px 8px 0px 0px;
 	background: #0a5384;
-	border-top: 1px solid var(--border);
-	display: -webkit-box;
+	border-top: 1px solid #bcbcbc;
+	text-align: center;
+	/* display: -webkit-box;
 	display: -ms-flexbox;
-	display: flex;
+	display: flex; */
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -6569,7 +6592,7 @@ tbody tr td:last-child {
 
 .footer-copytext {
 	font-size: 15px;
-	color: var(--white);
+	color: #ffff;
 }
 
 .footer-copytext a {
@@ -7505,8 +7528,8 @@ tbody tr td:last-child {
 	display: -ms-flexbox;
 	display: flex;
 	margin-bottom: 30px;
-	align-items: center;
-	background: #095287;
+	/* align-items: center; */
+	/* background: #095287; */
 	padding: 15px 14px;
 	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -7515,9 +7538,13 @@ tbody tr td:last-child {
 
 .choose-card-102 .choose-text h4 {
 	/* margin-bottom: 10px; */
-	font-size: 27px;
+	font-size: 20px;
 	line-height: 41px;
-	color: #fff !important;
+	color: #e91717 !important;
+    font-weight: 600;
+}
+.choose-card-102 .choose-text p {
+	font-size: 14px;
 }
 
 .why-us-points {
@@ -7817,11 +7844,12 @@ html .njs-sticky-side.image_button_cover a:hover {
 }
 
 .mybox-2 {
-	padding: 29px 11px;
+	padding: 29px 35px;
 	box-shadow: none !important;
 	/*border: 1px dashed #2e531f63;*/
 	justify-content: flex-start;
-	background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+	background: #3ea758;
+	/* background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%); */
 }
 
 .mybox-2 h2 {
@@ -8227,7 +8255,7 @@ html .njs-sticky-side.image_button_cover a:hover {
     justify-content: center;
     align-items: center;
     transform: translate(,);
-    transform: translate(0px, 23rem);
+    transform: translate(0px, 25rem);
     position: relative;
     margin: 0 auto !important;
     text-align: center;
@@ -8254,10 +8282,27 @@ html .njs-sticky-side.image_button_cover a:hover {
 	border-radius: 28px;
 }
 .prescription {
-	padding: 10px 20px;
-	font-size: 16px;
+	/* padding: 10px 20px;
+	font-size: 16px; */
+	background: #0b5286;
+    color: #fffbff;
+    border: 1px solid #fdfdfd61;
+    border-radius: 4px;
 }
 .home-visit {
-	
+	background: #fecb2d;
+    border: 1px solid #fdfdfd61;
+    border-radius: 4px;
 	margin-left: 10px;
+}
+.about-content{
+	padding: 75px;
+    border-radius: 22px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.about-img{
+	width: 94%;
+    /* border: 1px solid grey; */
+    border-radius: 28px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

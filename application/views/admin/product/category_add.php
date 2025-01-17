@@ -11,7 +11,7 @@
                         <h2 class="mb-sm-0 "><?= $title ?></h2>
                     </div>
                 </div>
-            </div>
+            </div>  
             <div class="row">
                 <div class="col-8 offset-2">
                     <div class="card">

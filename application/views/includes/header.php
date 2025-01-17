@@ -2,7 +2,6 @@
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <?php $this->load->view('includes/header-link'); ?>
-
 <body>
 	<div class="backdrop"></div>
 	<a class="backtop fas fa-arrow-up" href="#"></a>
@@ -19,7 +18,6 @@
 											style="color:#fff"><?= $contact['email_f'] ?> </a></span></p>
 							</li>
 						</ul>
-
 					</div>
 				</div>
 				<div class="col-md-7 col-lg-6">
@@ -48,7 +46,6 @@
 				</div>
 				<a href="<?= base_url() ?>" class="header-logo">
 					<img src="<?= base_url($setting[1]['particular_value']) ?>" alt="Msuperb">
-
 				</a>
 				<?php
 				if ($this->session->has_userdata('login_user_id')):
@@ -68,15 +65,12 @@
 					<?php
 				endif;
 				?>
-				<form action="<?= base_url('product') ?>" action="" class="header-form">
+				<form action="<?= base_url('product') ?>" class="header-form">
 					<input placeholder="Search Here..." type="text" name="searchbox" list="browsers" id="browser"
 						value="<?= isset($search) ? $search : '' ?>" required>
 					<datalist id="browsers">
 						<?php
 						$search = getRowByMoreId('product', array('status' => '1', 'is_delete' => '1'));
-
-						// print_r($search );
-						
 						if (!empty($search)) {
 							foreach ($search as $search_row) {
 								?>

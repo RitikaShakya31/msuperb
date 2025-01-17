@@ -41,8 +41,6 @@ class AdminHome extends CI_Controller
 		} else {
 			$sId = '';
 		}
-
-
 		$data['promocode'] = set_value('promocode') == false ? @$getPlans[0]['promocode'] : set_value('promocode');
 		$data['expiry_date'] = set_value('expiry_date') == false ? @$getPlans[0]['expiry_date'] : set_value('expiry_date');
 		$data['minimum_order'] = set_value('minimum_order') == false ? @$getPlans[0]['minimum_order'] : set_value('minimum_order');
@@ -584,14 +582,7 @@ class AdminHome extends CI_Controller
 	}
 
 
-
-
-
-
 	//  ALL REMAINING FUNCTIONS
-
-
-
 	public function banner()
 	{
 		$data['banner'] = $this->CommonModel->getSingleRowById('banner', "banner_id = '1'");

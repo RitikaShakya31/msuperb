@@ -17,9 +17,7 @@
         display: none;
         position: absolute;
         right: -111px;
-        /* Adjust for alignment */
         top: 10px;
-        /* Adjust for vertical spacing */
         background-color: #f9f9f9;
         min-width: 140px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -110,7 +108,6 @@
                                                         <div class="modal-dialog modal-xl">
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background: #eff2f7;">
-
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
@@ -219,12 +216,10 @@
                             <td><?= $item['test_type'] ?></td>
                             <td><?= $item['appointment_date'] ?></td>
                             <td><?= $item['appointment_time'] ?></td>
-
                         </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>
@@ -274,7 +269,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>

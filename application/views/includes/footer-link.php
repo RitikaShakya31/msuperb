@@ -15,7 +15,6 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div id="snackbar">Item Added Successfully</div>
 
-
 <script>
   <?php
   if (sessionId('success_status')) {

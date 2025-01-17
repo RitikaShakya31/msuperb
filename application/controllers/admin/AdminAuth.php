@@ -1,5 +1,4 @@
 <?php
-
 class AdminAuth extends CI_Controller
 {
 	public function __construct()
@@ -7,7 +6,6 @@ class AdminAuth extends CI_Controller
 		parent::__construct();
 		date_default_timezone_set("Asia/Kolkata");
 	}
-
 	public function admin()
 	{
 		if (sessionId('admin_id') != '') {
@@ -44,7 +42,6 @@ class AdminAuth extends CI_Controller
 			$this->load->view('admin/login');
 		}
 	}
-
 	public function adminLogout()
 	{
 		$this->session->unset_userdata('admin_id');

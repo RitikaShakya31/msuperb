@@ -98,13 +98,13 @@
 				<div class="footer-bottom">
 					<p class="footer-copytext">&copy; All Copyrights Reserved by <a href="<?= base_url() ?>">Msuperb</a>
 					</p>
-					<div class="footer-card"><a href="<?= base_url() ?>"><img
+					<!-- <div class="footer-card"><a href="<?= base_url() ?>"><img
 								src="<?= base_url() ?>assets/images/payment/jpg/01.jpg" alt="payment"></a><a
 							href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/images/payment/jpg/02.jpg"
 								alt="payment"></a><a href="<?= base_url() ?>"><img
 								src="<?= base_url() ?>assets/images/payment/jpg/03.jpg" alt="payment"></a><a
 							href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/images/payment/jpg/04.jpg"
-								alt="payment"></a></div>
+								alt="payment"></a></div> -->
 				</div>
 			</div>
 		</div>
