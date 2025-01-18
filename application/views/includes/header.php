@@ -22,12 +22,6 @@
 				</div>
 				<div class="col-md-7 col-lg-6">
 					<ul class="header-top-list">
-						<!-- <li>
-							<a href="https://api.whatsapp.com/send?phone=918359000204&text=Hello I have a Query."
-								target="_blank" class="consultButtonHeader ">
-								<i class="fas fa-headphones"></i>&nbsp;<span class="blink-soft">Consult Now</span>
-							</a>
-						</li> -->
 						<li><a href="tel:<?= $contact['contact_f'] ?>">need help</a></li>
 						<li><a href="<?= base_url('contact') ?>">contact us</a></li>
 					</ul>
@@ -74,9 +68,6 @@
 						if (!empty($search)) {
 							foreach ($search as $search_row) {
 								?>
-								<!--<option value="<?= strtoupper($search_row['product_name']); ?>">-->
-								<!--	<?= strtoupper($search_row['product_name']); ?>-->
-								<!--</option>-->
 								<?php
 							}
 						}
@@ -160,18 +151,9 @@
 				<?php
 				if ($this->session->has_userdata('login_user_id')):
 					?>
-					<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('orders') ?>">
-							<?= $this->profile[0]['name'] ?> Orders
-						</a>
-					</li> -->
 					<?php
 				else:
 					?>
-
-					<!-- <li class="navbar-item dropdown"><a class="navbar-link" href="<?= base_url('login') ?>">
-							Login Here
-						</a>
-					</li> -->
 					<?php
 				endif;
 				?>
@@ -209,7 +191,6 @@
 			?>
 			<a href="javascript:;" class="header-widget cart-checkout-btn"><i class="fas fa-sign-out-alt"></i><span>Sign
 					In</span></a>
-			<!-- <a href="<?= base_url('register') ?>"> <i class="fas fa-user"></i><span>Register </span></a> -->
 			<?php
 		}
 		?>

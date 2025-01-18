@@ -186,8 +186,6 @@
                 <div class="col-lg-6">
                     <div class="account-card" id="">
                         <!--<div class="d-flex align-items-center justify-content-center pt-4">                            -->
-
-
                         <?php if (count($this->cart->contents()) > 0) { ?>
                             <div class="account-title">
                                 <h4>Order summary</h4>

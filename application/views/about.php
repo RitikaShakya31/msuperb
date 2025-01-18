@@ -3,13 +3,8 @@
 <section class=" single-banner">
     <div class="container">
         <h2>About Us</h2>
-        <!-- <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">About Us</li>
-        </ol> -->
     </div>
 </section>
-
 <section class="inner-section about-company pt-50">
     <div class="container">
         <div class="row align-items-center">

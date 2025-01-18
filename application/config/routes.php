@@ -110,6 +110,7 @@ $route['check_verification'] = 'UserHome/check_verification';
 $route['nearest-lab'] = 'UserHome/nearest_lab';
 $route['compare/(:any)'] = 'UserHome/compare/$1';
 
+$route['track-health'] = 'UserHome/track_health';
 $route['register'] = 'UserHome/register';
 $route['checkout'] = 'UserHome/checkout';
 $route['order-history'] = 'UserHome/order_history';

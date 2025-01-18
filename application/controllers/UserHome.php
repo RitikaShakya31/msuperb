@@ -479,9 +479,6 @@ class UserHome extends CI_Controller
 
         $data['login_user'] = $this->session->userdata();
         $data['orderDetails'] = $this->CommonModel->getRowByIdInOrder('book_product', array('user_id' => $this->session->userdata('login_user_id')), 'product_book_id', 'DESC');
-        //  echo '<pre>';
-        // print_r($data['orderDetails']);
-        // exit();
         $data['cancelOrderDetails'] = $this->CommonModel->getRowByIdInOrder('book_product', 'user_id = ' . $this->session->userdata('login_user_id'), 'product_book_id', 'DESC');
         $data['checkoutnum'] = $this->CommonModel->getNumRows('book_product', array('user_id' => $this->session->userdata('login_user_id')));
         $data['title'] = ' Appointment History ';
@@ -489,6 +486,19 @@ class UserHome extends CI_Controller
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
         $this->load->view('order-history', $data);
+    }
+    public function track_health()
+    {
+        // if (!$this->session->has_userdata('login_user_id')) {
+        //     redirect();
+        // }
+        $data['orderDetails'] = $this->CommonModel->getRowByIdInOrder('book_product', array('user_id' => $this->session->userdata('login_user_id')), 'product_book_id', 'DESC');
+        $data['checkoutnum'] = $this->CommonModel->getNumRows('book_product', array('user_id' => $this->session->userdata('login_user_id')));
+        $data['title'] = ' Track your Health ';
+        $data['logo'] = 'assets/logo.png';
+        $data['contact'] = $this->contact;
+        $data['setting'] = $this->setting;
+        $this->load->view('track_health', $data);
     }
     public function requestOtp()
     {

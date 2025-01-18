@@ -55,10 +55,13 @@
       <div class="col-lg-12">
         <div class="orderlist-filter">
           <h5>Welcome<span>
-              <?= sessionId('login_user_name') ?>
+          <?= $this->profile[0]['name'] ?>
             </span></h5>
           <div class="filter-short"><label class="form-label"></label>
-            <a href="<?= base_url('profile') ?>" style="color:green">My Profile<i class="icofont-arrow-right"></i></a>
+            <a href="<?= base_url('track-health') ?>" style="color:#733e0c;font-weight: 600;">Track Health<i class="icofont-arrow-right"></i></a>
+          </div>
+          <div class="filter-short"><label class="form-label"></label>
+            <a href="<?= base_url('profile') ?>" style="color:green;font-weight: 600;">My Profile<i class="icofont-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -66,8 +69,8 @@
         <div class="col-lg-12">
           <?php
           $i = 0;
-          if (!empty($cancelOrderDetails)) {
-            foreach ($cancelOrderDetails as $row) {
+          if (!empty($orderDetails)) {
+            foreach ($orderDetails as $row) {
               $i = $i + 1;
               $getnum = getNumRows('book_item', array('order_id' => $row['order_id']));
               ?>
@@ -176,17 +179,16 @@
                             if (!empty($checkoutProduct)) {
                               foreach ($checkoutProduct as $productRow) {
                                 $products = getRowById('product', 'product_id', $productRow['product_id'])[0];
-                                $data = getSingleRowById('product_image', array('product_id' => $products['product_id']));
                                 $j = $j + 1;
                                 ?>
                                 <tr>
                                   <td class="table-serial">
-                                    <h6 class="text-center"><?= $j ?> </h6>
+                                    <h6 class="text-center"><?= $j ?></h6>
                                   </td>
                                   <td class="table-name">
                                     <h6 class="text-center"><?= $productRow['product_name'] ?></h6>
                                   </td>
-                                  <td class="table-price">
+                                  <td class="table-price">  
                                     <h6 class="text-center">₹<?= $products['sale_price'] ?></h6>
                                   </td>
                                   <td class="table-quantity">
