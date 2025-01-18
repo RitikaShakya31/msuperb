@@ -195,7 +195,7 @@ button:focus {
 		-ms-flex-direction: column-reverse;
 		flex-direction: column-reverse;
 	}
-	.about-content{
+	.about-content {
 		padding: 25px !important;
 	}
 	.about-img {
@@ -3246,14 +3246,14 @@ tbody tr td:last-child {
 		/* position: absolute; */
 		bottom: 30px;
 		/* right: 30% !important; */
-	    transform: translate(0px, 12rem) !important;
+		transform: translate(0px, 12rem) !important;
 	}
-	.prescription{
+	.prescription {
 		padding: 15px 5px !important;
 		font-size: 11px !important;
 	}
-	.home-visit{
-		margin-left:10px;
+	.home-visit {
+		margin-left: 10px;
 		padding: 15px 5px !important;
 		font-size: 11px !important;
 	}
@@ -3270,20 +3270,20 @@ tbody tr td:last-child {
 	color: var(--white);
 	background: #095287;
 } */
-.middle-line{
+.middle-line {
 	height: 1px;
-    background: red;
-    width: 46px;
-    margin: auto;
-    margin-top: 7px;
+	background: red;
+	width: 46px;
+	margin: auto;
+	margin-top: 7px;
 }
-.middle-white-line{
+.middle-white-line {
 	height: 1px;
-    background: #ffffff;
-    width: 100%;
-    margin: auto;
-    /* margin-top: 7px; */
-    margin-bottom: 18px;
+	background: #ffffff;
+	width: 100%;
+	margin: auto;
+	/* margin-top: 7px; */
+	margin-bottom: 18px;
 }
 .choose-icon i {
 	width: 80px;
@@ -7541,7 +7541,7 @@ tbody tr td:last-child {
 	font-size: 20px;
 	line-height: 41px;
 	color: #e91717 !important;
-    font-weight: 600;
+	font-weight: 600;
 }
 .choose-card-102 .choose-text p {
 	font-size: 14px;
@@ -8252,13 +8252,13 @@ html .njs-sticky-side.image_button_cover a:hover {
 	padding-top: 8px;
 }
 .upload-prescription-btn {
-    justify-content: center;
-    align-items: center;
-    transform: translate(,);
-    transform: translate(0px, 25rem);
-    position: relative;
-    margin: 0 auto !important;
-    text-align: center;
+	justify-content: center;
+	align-items: center;
+	transform: translate();
+	transform: translate(0px, 25rem);
+	position: relative;
+	margin: 0 auto !important;
+	text-align: center;
 }
 .upload-prescription-btn .btn-primary {
 	/* background-color: #0b5286; */
@@ -8285,24 +8285,32 @@ html .njs-sticky-side.image_button_cover a:hover {
 	/* padding: 10px 20px;
 	font-size: 16px; */
 	background: #0b5286;
-    color: #fffbff;
-    border: 1px solid #fdfdfd61;
-    border-radius: 4px;
+	color: #fffbff;
+	border: 1px solid #fdfdfd61;
+	border-radius: 4px;
 }
 .home-visit {
 	background: #fecb2d;
-    border: 1px solid #fdfdfd61;
-    border-radius: 4px;
+	border: 1px solid #fdfdfd61;
+	border-radius: 4px;
 	margin-left: 10px;
 }
-.about-content{
+.about-content {
 	padding: 75px;
-    border-radius: 22px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	border-radius: 22px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.about-img{
+.about-img {
 	width: 94%;
-    /* border: 1px solid grey; */
-    border-radius: 28px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	/* border: 1px solid grey; */
+	border-radius: 28px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#filterForm {
+	border-radius: 16px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+	/* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; */
+	padding: 32px 46px;
+	margin-top: 35px;
 }

@@ -1,27 +1,39 @@
 <?php $this->load->view('includes/header'); ?>
 <!-- Include Chart.js library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<div class="container">
+<!-- Include jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<section class="single-banner">
+    <div class="container">
+        <h2>Generate Report Graph</h2>
+    </div>
+</section>
+<div class="container mt-4">
     <form id="filterForm" class="row g-3">
-        <div class="col-md-3">
-            <label for="testName" class="form-label">Test Name</label>
+        <div class="col-md-12">
+            <label for="testName" class="form-label">Enter Test Name</label>
             <input type="text" class="form-control" id="testName" name="testName">
         </div>
-        <div class="col-md-3">
-            <label for="appointmentDate" class="form-label">Appointment Date</label>
-            <input type="date" class="form-control" id="appointmentDate" name="appointmentDate">
-        </div>
-        <div class="col-md-3">
-            <label for="referenceRange" class="form-label">Reference Range</label>
-            <input type="text" class="form-control" id="referenceRange" name="referenceRange">
-        </div>
-        <div class="col-md-3">
-            <label for="result" class="form-label">Result</label>
-            <input type="number" class="form-control" id="result" name="result">
+        <div id="testFieldsContainer" class="col-12">
+            <div class="test-fields row g-3 mb-3">
+                <div class="col-md-3">
+                    <label for="appointmentDate" class="form-label">Appointment Date</label>
+                    <input type="date" class="form-control" name="appointmentDate[]">
+                </div>
+                <div class="col-md-3">
+                    <label for="result" class="form-label">Result</label>
+                    <input type="number" class="form-control" name="result[]">
+                </div>
+                <div class="col-md-3">
+                    <label for="referenceRange" class="form-label">Reference Range</label>
+                    <input type="text" class="form-control" name="referenceRange[]">
+                </div>
+            </div>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="button" class="btn btn-success" id="addTest">Add </button>
+            <button type="submit" class="btn btn-warning">Filter</button>
+            <button type="button" class="btn btn-secondary" id="downloadPdf">Download PDF</button>
         </div>
     </form>
 
@@ -29,26 +41,27 @@
 </div>
 
 <script>
+    document.getElementById('addTest').addEventListener('click', function() {
+        var container = document.getElementById('testFieldsContainer');
+        var newTestFields = document.querySelector('.test-fields').cloneNode(true);
+        newTestFields.querySelectorAll('input').forEach(input => input.value = '');
+        container.appendChild(newTestFields);
+    });
+
     var ctx = document.getElementById('scaleStackingGraph').getContext('2d');
     var scaleStackingGraph = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: [],
-            datasets: [{
-                label: 'Results',
-                data: [],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
+            datasets: []
         },
         options: {
             scales: {
                 x: {
-                    stacked: true
+                    stacked: false
                 },
                 y: {
-                    stacked: true
+                    stacked: false
                 }
             }
         }
@@ -57,20 +70,33 @@
     document.getElementById('filterForm').addEventListener('submit', function(event) {
         event.preventDefault();
         var testName = document.getElementById('testName').value;
-        var appointmentDate = document.getElementById('appointmentDate').value;
-        var referenceRange = document.getElementById('referenceRange').value;
-        var result = document.getElementById('result').value;
+        var appointmentDates = document.querySelectorAll('input[name="appointmentDate[]"]');
+        var results = document.querySelectorAll('input[name="result[]"]');
+        var referenceRanges = document.querySelectorAll('input[name="referenceRange[]"]');
 
-        // Update the graph with the new data
-        scaleStackingGraph.data.labels.push(appointmentDate);
-        scaleStackingGraph.data.datasets[0].data.push(result);
+        scaleStackingGraph.data.labels = Array.from(appointmentDates).map(input => input.value);
+        scaleStackingGraph.data.datasets = [];
+
+        var resultData = Array.from(results).map(input => input.value);
+
+        scaleStackingGraph.data.datasets.push({
+            label: testName,
+            data: resultData,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        });
+
         scaleStackingGraph.update();
+    });
 
-        // Add your filtering logic here
-        console.log('Test Name:', testName);
-        console.log('Appointment Date:', appointmentDate);
-        console.log('Reference Range:', referenceRange);
-        console.log('Result:', result);
+    document.getElementById('downloadPdf').addEventListener('click', function() {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        var testName = document.getElementById('testName').value;
+        pdf.text(`Health Tracking Graph - ${testName}`, 10, 10);
+        pdf.addImage(scaleStackingGraph.toBase64Image(), 'PNG', 10, 20, 180, 160);
+        pdf.save("health_tracking_graph.pdf");
     });
 </script>
 
