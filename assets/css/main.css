@@ -3249,12 +3249,17 @@ tbody tr td:last-child {
 		transform: translate(0px, 12rem) !important;
 	}
 	.prescription {
-		padding: 15px 5px !important;
+		padding: 5px 5px !important;
 		font-size: 11px !important;
 	}
 	.home-visit {
 		margin-left: 10px;
-		padding: 15px 5px !important;
+		padding: 5px 5px !important;
+		font-size: 11px !important;
+	}
+	.track-health-btn {
+		margin-left: 10px;
+		padding: 5px 5px !important;
 		font-size: 11px !important;
 	}
 }
@@ -8294,6 +8299,13 @@ html .njs-sticky-side.image_button_cover a:hover {
 	border: 1px solid #fdfdfd61;
 	border-radius: 4px;
 	margin-left: 10px;
+}
+.track-health-btn {
+	background: #40a65c;
+    border: 1px solid #fdfdfd61;
+    border-radius: 4px;
+    margin-left: 10px;
+    color: white;
 }
 .about-content {
 	padding: 75px;

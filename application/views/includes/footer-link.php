@@ -29,6 +29,13 @@
   }
   ?>
 </script>
+<script>
+  $(document).ready(function () {
+		$('#trackButton').click(function () {
+			$('#exampleModal').modal('show'); // Open modal
+		});
+	});
+</script>
 <!-- Modal -->
 <div class="modal fade" id="prescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

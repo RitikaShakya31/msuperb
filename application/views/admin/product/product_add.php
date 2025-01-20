@@ -66,6 +66,7 @@
                                                 Name</label>
                                             <div class="col-md-12">
                                                 <select class="form-control" name="product_name">
+                                                  
                                                     <?php if ($services) {
                                                         foreach ($services as $service) { ?>
                                                             <option value="<?= $service['service_id'] ?>" <?= $service['service_name'] == $product_name ? 'selected' : '' ?>>

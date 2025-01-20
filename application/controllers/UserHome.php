@@ -244,6 +244,7 @@ class UserHome extends CI_Controller
     }
     public function product_details($id, $title)
     {
+
         $data['radiology'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '4', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['packagepro'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '3', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
         $data['offers'] = $this->CommonModel->getRowByOrderWithLimit('product', array('product_type' => '2', 'status' => '1', 'is_delete' => '1', 'category_id' => decryptId($id)), 'product_id', 'DESC', '20');
@@ -299,7 +300,7 @@ class UserHome extends CI_Controller
         } else {
         }
         $data['title'] = 'Contact Us';
-        $data['contact'] = $this->contact; 
+        $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;
         $this->load->view('contact', $data);
     }
@@ -489,12 +490,32 @@ class UserHome extends CI_Controller
     }
     public function track_health()
     {
-        // if (!$this->session->has_userdata('login_user_id')) {
-        //     redirect();
-        // }
-        $data['orderDetails'] = $this->CommonModel->getRowByIdInOrder('book_product', array('user_id' => $this->session->userdata('login_user_id')), 'product_book_id', 'DESC');
-        $data['checkoutnum'] = $this->CommonModel->getNumRows('book_product', array('user_id' => $this->session->userdata('login_user_id')));
-        $data['title'] = ' Track your Health ';
+        if (count($_POST) > 0) {
+            $post = $this->input->post();       
+            $user_id = $this->session->userdata('login_user_id'); // Correct way to get user ID
+            $test_name = $post['test_name'];
+            $appointmentDates = $post['appointmentDate']; // Already an array
+            $results = $post['result']; // Already an array
+            $referenceRanges = $post['referenceRange']; // Already an array
+            $create_date = date('Y-m-d H:i:s'); // Current timestamp
+
+            for ($i = 0; $i < count($appointmentDates); $i++) {
+                $data = [
+                    'test_name' => $test_name,
+                    'appointmentDate' => trim($appointmentDates[$i]),
+                    'result' => trim($results[$i]),
+                    'referenceRange' => is_array($referenceRanges) ? implode('-', $referenceRanges) : trim($referenceRanges),
+                    'create_date' => $create_date,
+                    'user_id' => $user_id,      
+                ];
+             
+                $this->CommonModel->insertRow('track_health_data', $data);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+        }
+        $data['services'] = $this->CommonModel->getAllRows('all_service');
+        $data['title'] = 'Track your Health';
         $data['logo'] = 'assets/logo.png';
         $data['contact'] = $this->contact;
         $data['setting'] = $this->setting;

@@ -106,4 +106,5 @@ if (count($this->cart->contents()) > 0) { ?>
 			$('#exampleModal').modal('show'); // Open modal
 		});
 	});
+	
 </script>

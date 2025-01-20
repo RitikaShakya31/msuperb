@@ -213,11 +213,11 @@ class AdminHome extends CI_Controller
 			$getReg = false;
 		}
 		$get['service_name'] = set_value('service_name') == false ? @$getReg['service_name'] : set_value('service_name');
-		// $get['service_type'] = set_value('service_type') == false ? @$getReg['service_type'] : set_value('service_type');
+		$get['ref_range'] = set_value('ref_range') == false ? @$getReg['ref_range'] : set_value('ref_range');
 		// $get['service_charge'] = set_value('service_charge') == false ? @$getReg['service_charge'] : set_value('service_charge');
 		if (count($_POST) > 0) {
 			extract($this->input->post());
-			// $post['service_type'] = $service_type;
+			$post['ref_range'] = $ref_range;
 			$post['service_name'] = $service_name;
 			$post['slug_title'] = url_title($service_name, '-', true);
 			if (isset($id) && !empty($id)) {

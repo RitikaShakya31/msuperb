@@ -32,16 +32,31 @@ $this->session->unset_userdata('msg'); ?>
                 <div class="col-md-12 col-lg-12 col-12">
                     <!-- Button inside the banner -->
                     <div class="upload-prescription-btn d-flex justify-content-center">
-                        <a href="#" class="btn btn-success prescription" data-bs-toggle="modal"
-                            data-bs-target="#prescriptionModal">
-                            <i class="fa fa-file"></i>
+                        <a href="#" class="btn prescription" data-bs-toggle="modal" data-bs-target="#prescriptionModal">
+                            <i class="fa fa-upload"></i>
                             Upload Prescription
                         </a>
                         <a href="#" class="btn btn-warning home-visit" data-bs-toggle="modal"
                             data-bs-target="#bookHomeVisitModal">
-                            <i class="fa fa-file"></i>
+                            <i class="fa fa-home"></i>
                             Book a Home Visit
                         </a>
+                        
+                        <?php
+                        if ($this->session->has_userdata('login_user_id')):
+                            ?>
+                        <a href="<?= base_url('track-health') ?>" id="trackButton" class="btn track-health-btn">
+                            <i class="fa fa-medkit"></i>
+                            Track Health
+                        </a>
+                            <?php
+                        else:
+                            ?>
+                          <a href="javascript:void(0);" id="trackButton" class="btn track-health-btn">
+                            <i class="fa fa-medkit"></i>
+                            Track Health
+                        </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -155,7 +170,8 @@ $this->session->unset_userdata('msg'); ?>
                     </div>
                     <div class="choose-text">
                         <h4>Patient Support</h4>
-                        <p>Our dedicated team is always available to assist you with queries, guidance, and seamless healthcare experience.</p>
+                        <p>Our dedicated team is always available to assist you with queries, guidance, and seamless
+                            healthcare experience.</p>
                     </div>
                 </div>
             </div>
@@ -166,7 +182,8 @@ $this->session->unset_userdata('msg'); ?>
                     </div>
                     <div class="choose-text">
                         <h4>Secure Payments</h4>
-                        <p> We offer safe, encrypted, and hassle-free payment options for a smooth and worry-free transaction experience.</p>
+                        <p> We offer safe, encrypted, and hassle-free payment options for a smooth and worry-free
+                            transaction experience.</p>
                     </div>
                 </div>
             </div>
@@ -177,7 +194,8 @@ $this->session->unset_userdata('msg'); ?>
                     </div>
                     <div class="choose-text">
                         <h4>Health Tips</h4>
-                        <p>Get expert advice and personalized health tips to help you maintain a healthy lifestyle and prevent illnesses.</p>
+                        <p>Get expert advice and personalized health tips to help you maintain a healthy lifestyle and
+                            prevent illnesses.</p>
                     </div>
                 </div>
             </div>

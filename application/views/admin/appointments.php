@@ -238,9 +238,7 @@
                                                         <?php
                                                         if ($all['visit_status'] == '1') {
                                                             echo '<span class="badge badge-pill badge-soft-primary font-size-14 mb-2">Visited</span><br>';
-                                                            if (!empty($all['report_file'])) {
-                                                                echo '<a href="' . base_url("upload/report/" . $all['report_file']) . '" class="badge badge-pill badge-soft-success font-size-14 mb-2" target="_blank">View Report</a><br>';
-                                                            }
+                                                            echo '<a href="' . base_url("upload/report/" . $all['report_file']) . '" class="badge badge-pill badge-soft-warning font-size-14 mb-2" target="_blank">View Report</a><br>';
                                                         } elseif ($all['visit_status'] == '0') {
                                                             echo '<span class="badge badge-pill badge-soft-danger font-size-14">Cancelled</span>';
                                                         } elseif ($all['visit_status'] == '2') {
